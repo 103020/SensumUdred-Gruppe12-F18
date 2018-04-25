@@ -10,5 +10,5 @@ package Acq;
  * @author stefan
  */
 public interface IBusiness {
-    
+    public int getCaseNumber();
 }
