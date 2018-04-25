@@ -10,7 +10,7 @@ package Acq;
  * @author stefan
  */
 public interface ICaseWorker {
-    public boolean accessCase(int caseNumber);
+    public boolean accessCase(int caseNumber); //Accesses case from data
     public void createCase();
     public void setName(String name);
     public void setDepartment(String department);
