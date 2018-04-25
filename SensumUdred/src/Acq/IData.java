@@ -5,11 +5,13 @@
  */
 package Acq;
 
+import java.util.List;
+
 /**
  *
  * @author stefan
  */
 public interface IData {
-    private;
+    public boolean save(List list);
     
 }
