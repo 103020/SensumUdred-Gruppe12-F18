@@ -13,5 +13,6 @@ import java.util.List;
  */
 public interface IData {
     public boolean save(List list);
+    public List load();
     
 }
