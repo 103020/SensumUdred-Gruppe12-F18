@@ -10,5 +10,6 @@ package Acq;
  * @author stefan
  */
 public interface IData {
+    private;
     
 }
