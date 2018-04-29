@@ -11,5 +11,5 @@ package Acq;
  */
 public interface IBusiness {
     public int getCaseNumber();
-    public ICaseWorker getCaseWorker();
+    public ICaseworker getCaseWorker();
 }

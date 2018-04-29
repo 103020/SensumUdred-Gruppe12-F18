@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BusinessFacade;
+package Acq;
 
 /**
  *
- * @author Nicolai
+ * @author Stefan
  */
-public class CaseWorker {
-    
+public interface IDepartment {
+
+    /**
+     *
+     * @return Return the name of the department
+     */
+    @Override
+    String toString();
 }

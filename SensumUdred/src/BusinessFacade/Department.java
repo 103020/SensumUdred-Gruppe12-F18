@@ -5,10 +5,19 @@
  */
 package BusinessFacade;
 
+import Acq.IDepartment;
+
 /**
  *
  * @author Nicolai
  */
-public class Department {
+public class Department implements IDepartment{
+    private String departmentName;
     
+    
+    @Override
+    public String toString(){
+        return departmentName;
+    }
+
 }

@@ -5,82 +5,53 @@
  */
 package BusinessFacade;
 
-import Acq.ICase;
 import Acq.ICaseworker;
-import Acq.IIndividual;
-import java.util.Date;
+import Acq.IDepartment;
 
 /**
  *
  * @author Nicolai
  */
-public class Case implements ICase{
-    
-    private static int totalCases;
-    private int caseNumber;
-//    private CaseWorker caseWorker;
-//    private Individual individual;
-    private Date creationDate;
-//    private Diary diary;
-    private boolean closed;
-    
-    Case(){      
-    }
+public class Caseworker implements ICaseworker{
 
     @Override
-    public void ICase(String caseType, String individualName, String individualAddress, int individualCPR) {
+    public boolean accessCase(int caseNumber) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int getCaseNumber() {
+    public void createCase() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ICaseworker getCaseWorker() {
+    public void setName(String name) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public IIndividual getIndividual() {
+    public void setDepartment(IDepartment department) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Date getCreationDate() {
+    public void setEmployeeID(String employeeID) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void saveCase() {
+    public String getName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void editCase() {
+    public IDepartment getDepartment() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void createMeeting() {
+    public int getEmployeeID() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public void closeCase() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ICase fetchCase(int caseNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setCaseworker(ICaseworker caseworker) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     
 }

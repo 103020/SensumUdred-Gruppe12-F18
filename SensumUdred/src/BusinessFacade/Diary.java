@@ -5,10 +5,28 @@
  */
 package BusinessFacade;
 
+import Acq.IDiary;
+import java.util.Date;
+
 /**
  *
  * @author Nicolai
  */
-public class Diary {
+public class Diary implements IDiary{
+
+    @Override
+    public void IDiary(String entry) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getEntry() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Date getDate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
