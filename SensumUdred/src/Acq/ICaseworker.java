@@ -13,10 +13,7 @@ public interface ICaseworker {
      */
     public boolean accessCase(int caseNumber); 
     
-    /**
-     *
-     * @return
-     */
+ 
     public void createCase(); 
     
     /**
