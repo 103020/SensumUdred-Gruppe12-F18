@@ -5,6 +5,8 @@
  */
 package Acq;
 
+import java.util.Date;
+
 /**
  *
  * @author stefan
@@ -12,4 +14,29 @@ package Acq;
 public interface IBusiness {
     public int getCaseNumber();
     public ICaseworker getCaseWorker();
+    public IIndividual getIndividual();
+    public boolean saveCase();
+    public Date getCaseCreationDate();
+    public void editCase(ICase ca);
+    public void createMeeting();
+    public void closeCase();
+    public ICase accessCase();
+    public void createCase();
+    public void setEmployeeName(String name);
+    public void setEmployeeDepartment(String department);
+    public void setEmployeeID(int employeeID);
+    public String getEmployeeName();
+    public String getEmployeeDepartment();
+    public int getEmployeeID();
+    public void setMeetingTime(Date time);
+    public void setMeetingParticipants(String participants);
+    public Date getMeetingTime();
+    public String getMeetingParticipants();
+    public String getIndividualName();
+    public String getIndividualAddress();
+    public int getIndividualCPR();
+    public void setIndividualName(String name);
+    public void setIndividualAddress(String address);
+    public void setIndividualCPR(int CPR);
+    
 }

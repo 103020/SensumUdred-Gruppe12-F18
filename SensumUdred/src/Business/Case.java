@@ -14,7 +14,7 @@ import java.util.Date;
  *
  * @author Nicolai
  */
-public class Case implements ICase{
+public class Case extends Log implements ICase{
     
     private static int totalCases;
     private int caseNumber;
