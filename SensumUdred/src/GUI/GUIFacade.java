@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DataFacade;
+package GUI;
+
+import Acq.IGUI;
 
 /**
  *
- * @author Nicolai
+ * @author Stefan
  */
-public class UserHandler {
+public class GUIFacade implements IGUI{
     
 }

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DataFacade;
+package Data;
 
 /**
  *
  * @author Nicolai
  */
-public class DataHandler {
+public class UserHandler {
     
 }
