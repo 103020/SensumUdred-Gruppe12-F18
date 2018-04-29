@@ -13,16 +13,20 @@ public interface IDiary {
      * @param entry the text-entry of the diary.
      */
     void IDiary(String entry);
+    
+    void saveEntry(ICaseworker caseworker);
 
     /**
      *
      * @return  Returns the entry in string format.
      */
-    String getEntry();
+    String getEntry(ICaseworker caseworker);
 
     /**
      *
      * @return  returns the date of the entry
      */
     Date getDate();
+    
+    
 }
