@@ -10,7 +10,13 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
 
 /**
  *
@@ -19,17 +25,51 @@ import javafx.scene.control.Label;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
-    private Label label;
-    
+    private Button loginButton;
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+    private Button supportButton;
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private Label userStatus; //add two spaces before the String
+    @FXML
+    private Label userName; //add two spaces before the String
+    @FXML
+    private Button myCaseButton;
+    @FXML
+    private Button dateSortButton;
+    @FXML
+    private Button casenumberSortButton;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private ListView<?> listView;
+    @FXML
+    private Button createCaseButton;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void handleButtonLogin(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleButtonSupport(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION); //just a debug alert
+        alert.setTitle("debug Support");
+        alert.setHeaderText("debug Support");
+        alert.setContentText("Help is not available."); 
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void searchFieldHandler(InputMethodEvent event) {
+    }
     
 }
