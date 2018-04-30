@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLDocumentController">
+<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLDocumentController">
   <tabs>
-    <Tab id="loginTab" text="Login Tab">
+    <Tab id="loginTab" fx:id="loginTab" text="Login Tab">
          <content>
             <GridPane>
               <columnConstraints>
@@ -37,7 +39,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleButtonLogin" prefHeight="25.0" prefWidth="354.0" text="Login" GridPane.columnIndex="1" />
+                        <Button fx:id="loginButtonLT" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleButtonLogin" prefHeight="25.0" prefWidth="354.0" text="Login" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -51,7 +53,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="supportButton" mnemonicParsing="false" onAction="#handleButtonSupport" prefHeight="25.0" prefWidth="326.0" text="Support" />
+                        <Button fx:id="supportButtonLT" mnemonicParsing="false" onAction="#handleButtonSupport" prefHeight="25.0" prefWidth="326.0" text="Support" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.rowIndex="1">
@@ -80,8 +82,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="usernameField" promptText="&quot;Insert username here&quot;" />
-                        <PasswordField fx:id="passwordField" promptText="&quot;Insert password here&quot;" GridPane.rowIndex="1" />
+                        <TextField fx:id="usernameFieldLT" promptText="&quot;Insert username here&quot;" />
+                        <PasswordField fx:id="passwordFieldLT" promptText="&quot;Insert password here&quot;" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>
@@ -113,8 +115,11 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="userStatus" prefHeight="17.0" prefWidth="300.0" text="Label" GridPane.columnSpan="2" />
+                        <Label fx:id="userStatusMT" prefHeight="17.0" prefWidth="300.0" text="Label" GridPane.columnSpan="2" />
                      </children>
+                     <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </padding>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1">
                     <columnConstraints>
@@ -127,7 +132,10 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="userName" prefHeight="17.0" prefWidth="300.0" text="Label" GridPane.columnSpan="2" />
+                        <Label fx:id="userNameMT" prefHeight="17.0" prefWidth="300.0" text="Label" GridPane.columnSpan="2">
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding></Label>
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="3">
@@ -147,17 +155,131 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="myCaseButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="My Case" GridPane.rowIndex="1" />
-                        <Button fx:id="dateSortButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button fx:id="casenumberSortButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Casenumber" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <TextField fx:id="searchField" onInputMethodTextChanged="#searchFieldHandler" promptText="Search Field" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="5" />
-                        <Button fx:id="createCaseButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Create Case" GridPane.columnIndex="1" />
+                        <Button fx:id="myCaseButtonMT" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="My Case" GridPane.rowIndex="1" />
+                        <Button fx:id="dateSortButtonMT" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="casenumberSortButtonMT" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Casenumber" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="searchFieldMT" onInputMethodTextChanged="#searchFieldHandler" promptText="Search Field" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <ListView fx:id="caseListViewMT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="5" />
+                        <Button fx:id="createCaseButtonMT" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Create Case" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                </children>
+               <padding>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </padding>
             </GridPane>
          </content>
     </Tab>
+      <Tab fx:id="createCaseTab" text="Create Case">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <GridPane GridPane.columnSpan="2" GridPane.rowIndex="1">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextField fx:id="createNameFieldCC" GridPane.columnIndex="1" />
+                        <TextField fx:id="createPersonalNumberFieldCC" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="createAdresseFieldCC" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Name:" />
+                        <Label text="Personal Number:" GridPane.rowIndex="1" />
+                        <Label text="Adresse:" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+                  <GridPane GridPane.columnSpan="2" GridPane.rowIndex="2">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextArea fx:id="commentTextAreaCC" prefHeight="123.0" prefWidth="143.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowSpan="3" />
+                     </children>
+                  </GridPane>
+                  <Button fx:id="createCaseButtonCC" mnemonicParsing="false" prefHeight="25.0" prefWidth="165.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               </children>
+               <padding>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </padding>
+            </GridPane>
+         </content>
+      </Tab>
+      <Tab text="Untitled Tab">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </GridPane>
+         </content>
+      </Tab>
+      <Tab text="Untitled Tab">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </GridPane>
+         </content>
+      </Tab>
+      <Tab text="Untitled Tab">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </GridPane>
+         </content>
+      </Tab>
   </tabs>
 </TabPane>
