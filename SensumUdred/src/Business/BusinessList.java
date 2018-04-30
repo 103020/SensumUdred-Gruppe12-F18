@@ -41,6 +41,7 @@ public class BusinessList implements IBusinessList {
         return caseWorkers;
     }
     
+    /** find ud af om caseNumber skal laves om til et index **/ 
     @Override
     public Case getCase(int caseNumber){
         return cases.get(caseNumber);
