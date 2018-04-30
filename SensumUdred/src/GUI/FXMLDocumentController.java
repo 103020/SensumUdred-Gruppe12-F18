@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.input.InputMethodEvent;
 
@@ -48,15 +49,18 @@ public class FXMLDocumentController implements Initializable {
     private ListView<?> listView;
     @FXML
     private Button createCaseButton;
+    @FXML
+    private Tab mainTab;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        mainTab.setDisable(true);
     }    
 
     @FXML
     private void handleButtonLogin(ActionEvent event) {
+        mainTab.setDisable(false);
     }
 
     @FXML
