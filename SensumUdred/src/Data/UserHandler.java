@@ -5,10 +5,18 @@
  */
 package Data;
 
+import Acq.*;
+import java.util.List;
+
 /**
  *
  * @author Nicolai
  */
-public class UserHandler {
+public class UserHandler implements IUserHandler{
+
+    @Override
+    public List<ICaseworker> loadUser() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
