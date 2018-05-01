@@ -54,6 +54,7 @@ public class DataHandler implements IDataHandler{
             String b = reading.next();
             String c = reading.next();
         }
+        return null;
     }
 
     @Override
