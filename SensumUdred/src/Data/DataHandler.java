@@ -67,6 +67,7 @@ public class DataHandler implements IDataHandler{
             System.out.println("Class not found.");
             return null;
         }
+        return null;
     }
 
     @Override

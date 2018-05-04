@@ -5,6 +5,7 @@
  */
 package Business;
 import Acq.*;
+import java.util.ArrayList;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author Tobias
  */
-public class BusinessList implements IBusinessList {
+public class BusinessList extends ArrayList implements IBusinessList {
     
     private List<Case> cases;
     private List<Caseworker> caseWorkers;
