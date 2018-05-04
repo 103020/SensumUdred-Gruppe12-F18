@@ -24,7 +24,11 @@ public class Case extends Log implements ICase{
 //    private Diary diary;
     private boolean closed;
     
-    Case(){      
+    Case(){
+        caseNumber = totalCases;
+        totalCases++;
+        creationDate = new Date();
+        closed = false;
     }
 
     @Override

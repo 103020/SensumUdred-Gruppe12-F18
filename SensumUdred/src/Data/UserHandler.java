@@ -6,6 +6,11 @@
 package Data;
 
 import Acq.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +21,27 @@ public class UserHandler implements IUserHandler{
 
     @Override
     public List<ICaseworker> loadUser() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<ICaseworker> objectList;
+        
+        try{
+            FileInputStream fis = new FileInputStream("Test.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Object neededList = ois.readObject();
+            objectList = (ArrayList) neededList;
+            
+            fis.close();
+            ois.close();
+            return objectList;
+        } catch (FileNotFoundException ex) {
+            System.out.println("File not found, try agian");
+            return null;
+        } catch (IOException ex) {
+            System.out.println("IO Exception cought");
+            return null;
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Class not found.");
+            return null;
+        }
     }
     
 }
