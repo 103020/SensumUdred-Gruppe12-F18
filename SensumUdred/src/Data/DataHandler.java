@@ -15,9 +15,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  *
@@ -67,11 +65,12 @@ public class DataHandler implements IDataHandler{
             System.out.println("Class not found.");
             return null;
         }
-        return null;
     }
 
     @Override
     public List<Object> convert(ICase chosenCase) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Object> listOfCases = new ArrayList<>();
+        listOfCases.add(chosenCase);
+        return listOfCases;
     }
 }
