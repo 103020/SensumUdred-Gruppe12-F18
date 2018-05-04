@@ -130,19 +130,18 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonCreateCaseCC(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         if (!createNameFieldCC.getText().equals("") && !createPersonalNumberFieldCC.getText().equals("") && !createAdresseFieldCC.getText().equals("")) {
             if (isInteger(createPersonalNumberFieldCC.getText(), 10)) {
                 facade.createCase(createNameFieldCC.getText(),Integer.parseInt(createPersonalNumberFieldCC.getText()),createAdresseFieldCC.getText());
                 
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR); //just a debug alert
                 alert.setTitle("Forkert input");
                 alert.setHeaderText("Forkerte værdier i \"CPR\"");
                 alert.setContentText("Der skal stå et tal i \"CPR\"."); 
                 alert.showAndWait();
             }
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR); //just a debug alert
             alert.setTitle("Forkert input");
             alert.setHeaderText("Forkerte værdier i felterne");
             alert.setContentText("Check \"Navn\", \"CPR\" og \"Adresse\"."); 
