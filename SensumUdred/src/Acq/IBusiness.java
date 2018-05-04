@@ -22,6 +22,7 @@ public interface IBusiness {
     public void closeCase();
     public ICase accessCase();
     public void createCase();
+    public void createCase(String name, int CPR, String address);
     public void setEmployeeName(String name);
     public void setEmployeeDepartment(String department);
     public void setEmployeeID(int employeeID);

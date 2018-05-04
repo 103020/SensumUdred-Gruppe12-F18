@@ -67,8 +67,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Password:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Username:" GridPane.columnIndex="1" />
+                        <Label text="Kode:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Brugernavn:" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -155,12 +155,12 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="myCaseButtonMT" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="My Case" GridPane.rowIndex="1" />
-                        <Button fx:id="dateSortButtonMT" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button fx:id="casenumberSortButtonMT" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Casenumber" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <TextField fx:id="searchFieldMT" onInputMethodTextChanged="#searchFieldHandler" promptText="Search Field" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Button fx:id="myCaseButtonMT" mnemonicParsing="false" onAction="#handleButtonMyCase" prefHeight="25.0" prefWidth="150.0" text="Mine Sager" GridPane.rowIndex="1" />
+                        <Button fx:id="dateSortButtonMT" mnemonicParsing="false" onAction="#handleButtonDate" prefHeight="25.0" prefWidth="150.0" text="Dato" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="casenumberSortButtonMT" mnemonicParsing="false" onAction="#handleButtonCaseNumber" prefHeight="25.0" prefWidth="150.0" text="Sagsnummer" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="searchFieldMT" onAction="#handleSearchField" onInputMethodTextChanged="#searchFieldHandler" promptText="Search Field" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                         <ListView fx:id="caseListViewMT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="5" />
-                        <Button fx:id="createCaseButtonMT" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Create Case" GridPane.columnIndex="1" />
+                        <Button fx:id="createCaseButtonMT" mnemonicParsing="false" onAction="#handleButtonCreateCaseMT" prefHeight="25.0" prefWidth="150.0" text="Lav Sag" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                </children>
@@ -170,7 +170,7 @@
             </GridPane>
          </content>
     </Tab>
-      <Tab fx:id="createCaseTab" text="Create Case">
+      <Tab fx:id="createCaseTab" text="Lav Sag">
          <content>
             <GridPane>
               <columnConstraints>
@@ -184,24 +184,29 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <GridPane GridPane.columnSpan="2" GridPane.rowIndex="1">
+                  <GridPane GridPane.columnSpan="2" GridPane.rowSpan="2">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="createNameFieldCC" GridPane.columnIndex="1" />
-                        <TextField fx:id="createPersonalNumberFieldCC" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="createAdresseFieldCC" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label text="Name:" />
-                        <Label text="Personal Number:" GridPane.rowIndex="1" />
-                        <Label text="Adresse:" GridPane.rowIndex="2" />
+                        <TextField fx:id="createNameFieldCC" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="createPersonalNumberFieldCC" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="createAdresseFieldCC" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label text="Navn:" GridPane.rowIndex="3" />
+                        <Label text="CPR:" GridPane.rowIndex="4" />
+                        <Label text="Adresse:" GridPane.rowIndex="5" />
+                        <Label text="Sagsnummer:" GridPane.rowIndex="2" />
+                        <Label fx:id="caseNumberLabelCC" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnSpan="2" GridPane.rowIndex="2">
@@ -219,7 +224,7 @@
                         <TextArea fx:id="commentTextAreaCC" prefHeight="123.0" prefWidth="143.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowSpan="3" />
                      </children>
                   </GridPane>
-                  <Button fx:id="createCaseButtonCC" mnemonicParsing="false" prefHeight="25.0" prefWidth="165.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Button fx:id="createCaseButtonCC" mnemonicParsing="false" onAction="#handleButtonCreateCaseCC" prefHeight="25.0" prefWidth="165.0" text="Lav Sag" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                </children>
                <padding>
                   <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
