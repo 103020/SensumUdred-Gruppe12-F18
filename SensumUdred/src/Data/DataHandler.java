@@ -8,9 +8,13 @@ package Data;
 import Acq.ICase;
 import Acq.IDataHandler;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Scanner;
@@ -21,38 +25,47 @@ import java.util.Scanner;
  */
 public class DataHandler implements IDataHandler{
 
-    private Formatter x; //output strings to a file
-    private Scanner reading; 
-    
     @Override
-    public boolean save(List<Object> givenList, int index) {
+    public boolean save(List<Object> givenList) {
         try{
-            x = new Formatter("Cases.txt"); //creates a file on the computer if it doesn't exsists. Makes it at the directory of the project
-            System.out.println("you created a file");
-        } catch (Exception e){
-            System.out.println("Error caught");
-        }
-            
-        if(givenList.get(index) != null){
-            x.format("%s", givenList.get(0));
-            x.close();
+            File saveFile = new File("Test.txt");
+            FileOutputStream fos = new FileOutputStream(saveFile);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            fos.close();
+            oos.close();
             return true;
+        } catch (FileNotFoundException ex) {
+            System.out.println("File was not found");
+            return false;
+        } catch (IOException ex) {
+            System.out.println("IO Exception catched");
+            return false;
         }
-        return false;
     }
 
     @Override
     public List<Object> load() {
-        try{
-            reading = new Scanner(new File("Cases.txt"));
-        } catch(Exception e){
-            System.out.println("File not found");
-        }
         
-        while(reading.hasNextLine()){
-            String a = reading.next(); //takes the first part of the textfile and splitting with Space
-            String b = reading.next();
-            String c = reading.next();
+        List<Object> objectList;
+        
+        try{
+            FileInputStream fis = new FileInputStream("Test.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Object neededList = ois.readObject();
+            objectList = (ArrayList) neededList;
+            
+            fis.close();
+            ois.close();
+            return objectList;
+        } catch (FileNotFoundException ex) {
+            System.out.println("File not found, try agian");
+            return null;
+        } catch (IOException ex) {
+            System.out.println("IO Exception cought");
+            return null;
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Class not found.");
+            return null;
         }
         return null;
     }

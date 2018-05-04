@@ -12,7 +12,7 @@ import java.util.List;
  * @author Tobias
  */
 public interface IDataHandler  {
-    boolean save(List<Object> givenList, int index);
+    boolean save(List<Object> givenList);
     List<Object> load();
     List<Object> convert(ICase chosenCase);
 }
