@@ -28,6 +28,9 @@ import javafx.scene.input.InputMethodEvent;
  * @author 103020
  */
 public class FXMLDocumentController implements Initializable {
+    
+    GUIFacade facade;
+    
     @FXML
     private Tab mainTab;
     @FXML
@@ -70,10 +73,13 @@ public class FXMLDocumentController implements Initializable {
     private TabPane tabPane;
     @FXML
     private Tab loginTab;
+    @FXML
+    private Label caseNumberLabelCC;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        facade = new GUIFacade();
         mainTab.setDisable(true);
         createCaseTab.setDisable(true);
     }    
@@ -100,5 +106,65 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void searchFieldHandler(InputMethodEvent event) {
     }
+
+    @FXML
+    private void handleButtonMyCase(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleButtonDate(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleButtonCaseNumber(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleSearchField(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleButtonCreateCaseMT(ActionEvent event) {
+        tabPane.getSelectionModel().selectNext();
+    }
+
+    @FXML
+    private void handleButtonCreateCaseCC(ActionEvent event) {
+        if (!createNameFieldCC.getText().equals("") && !createPersonalNumberFieldCC.getText().equals("") && !createAdresseFieldCC.getText().equals("")) {
+            if (isInteger(createPersonalNumberFieldCC.getText(), 10)) {
+                facade.createCase(createNameFieldCC.getText(),Integer.parseInt(createPersonalNumberFieldCC.getText()),createAdresseFieldCC.getText());
+                
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR); //just a debug alert
+                alert.setTitle("Forkert input");
+                alert.setHeaderText("Forkerte værdier i \"CPR\"");
+                alert.setContentText("Der skal stå et tal i \"CPR\"."); 
+                alert.showAndWait();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR); //just a debug alert
+            alert.setTitle("Forkert input");
+            alert.setHeaderText("Forkerte værdier i felterne");
+            alert.setContentText("Check \"Navn\", \"CPR\" og \"Adresse\"."); 
+            alert.showAndWait();
+        }
+    }
+    /**
+     * checks if a String is a number
+     * @param s the String being checked
+     * @param radix the number system
+     * @return a boolean true is returned if s was a number
+     */
+    protected static boolean isInteger(String s, int radix) {
+    if(s.isEmpty()) return false;
+    for(int i = 0; i < s.length(); i++) {
+        if(i == 0 && s.charAt(i) == '-') {
+            if(s.length() == 1) return false;
+            else continue;
+        }
+        if(Character.digit(s.charAt(i),radix) < 0) return false;
+    }
+    return true;
+}
     
 }

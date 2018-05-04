@@ -146,5 +146,10 @@ public class BusinessFacade implements IBusiness {
     public void setIndividualCPR(int CPR) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void createCase(String name, int CPR, String address) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
