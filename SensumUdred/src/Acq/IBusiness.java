@@ -6,6 +6,7 @@
 package Acq;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -39,5 +40,6 @@ public interface IBusiness {
     public void setIndividualName(String name);
     public void setIndividualAddress(String address);
     public void setIndividualCPR(int CPR);
-    
+    public List getDateSortedList();
+    public List getCasenumSortedList();
 }

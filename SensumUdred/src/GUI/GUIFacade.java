@@ -9,6 +9,7 @@ import Acq.ICase;
 import Acq.IGUI;
 import java.util.Date;
 import Business.BusinessFacade;
+import java.util.List;
 
 /**
  *
@@ -91,5 +92,15 @@ public class GUIFacade implements IGUI{
     @Override
     public void setIndividualCPR(int CPR) {
         b.setIndividualCPR(CPR);
+    }
+
+    @Override
+    public List getDateSortedList() {
+        return b.getDateSortedList();
+    }
+
+    @Override
+    public List getCasenumSortedList() {
+        return b.getCasenumSortedList();
     }
 }

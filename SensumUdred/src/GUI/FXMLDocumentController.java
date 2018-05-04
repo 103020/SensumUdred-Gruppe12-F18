@@ -6,6 +6,7 @@
 package GUI;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -113,10 +114,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonDate(ActionEvent event) {
+        caseListViewMT.getItems().clear();
+        caseListViewMT.getItems().addAll(facade.getDateSortedList());
     }
 
     @FXML
     private void handleButtonCaseNumber(ActionEvent event) {
+        caseListViewMT.getItems().clear();
+        caseListViewMT.getItems().addAll(facade.getCasenumSortedList());
     }
 
     @FXML
@@ -155,15 +160,15 @@ public class FXMLDocumentController implements Initializable {
      * @return a boolean true is returned if s was a number
      */
     protected static boolean isInteger(String s, int radix) {
-    if(s.isEmpty()) return false;
-    for(int i = 0; i < s.length(); i++) {
-        if(i == 0 && s.charAt(i) == '-') {
-            if(s.length() == 1) return false;
-            else continue;
+        if(s.isEmpty()) return false;
+        for(int i = 0; i < s.length(); i++) {
+            if(i == 0 && s.charAt(i) == '-') {
+                if(s.length() == 1) return false;
+                else continue;
+            }
+            if(Character.digit(s.charAt(i),radix) < 0) return false;
         }
-        if(Character.digit(s.charAt(i),radix) < 0) return false;
+        return true;
     }
-    return true;
-}
     
 }

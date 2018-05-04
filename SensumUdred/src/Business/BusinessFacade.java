@@ -10,6 +10,7 @@ import Acq.ICase;
 import Acq.ICaseworker;
 import Acq.IIndividual;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -149,6 +150,16 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void createCase(String name, int CPR, String address) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List getDateSortedList() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List getCasenumSortedList() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
