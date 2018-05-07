@@ -9,6 +9,7 @@ import Acq.IBusiness;
 import Acq.ICase;
 import Acq.ICaseworker;
 import Acq.IIndividual;
+import Data.DataFacade;
 import java.util.Date;
 import java.util.List;
 
@@ -17,30 +18,39 @@ import java.util.List;
  * @author Stefan
  */
 public class BusinessFacade implements IBusiness {
+    
+    //temp to test
+    Case sag = new Case();
+    Caseworker worker = new Caseworker();
+    Meeting meeting = new Meeting();
+    Individual per = new Individual();
+    
+    DataFacade data = new DataFacade();
 
     @Override
     public int getCaseNumber() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sag.getCaseNumber();
     }
 
     @Override
     public ICaseworker getCaseWorker() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sag.getCaseWorker();
     }
 
     @Override
     public IIndividual getIndividual() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sag.getIndividual();
     }
 
     @Override
     public boolean saveCase() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //return data.save(list) //need a methode were we get the list from Case
     }
 
     @Override
     public Date getCaseCreationDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sag.getCreationDate();
     }
 
     @Override
@@ -50,102 +60,105 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void createMeeting() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sag.createMeeting();
     }
 
     @Override
     public void closeCase() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sag.closeCase();
     }
 
     @Override
     public ICase accessCase() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //return sag.accessData(this, caseworker)//need more implemented
     }
 
     @Override
     public void createCase() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //need the caseList to be finished
     }
 
     @Override
     public void setEmployeeName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        worker.setName(name);
     }
 
     @Override
     public void setEmployeeDepartment(String department) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        worker.setDepartment(department); //check IDepartment as input?
     }
 
     @Override
     public void setEmployeeID(int employeeID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        worker.setEmployeeID(""+employeeID); //TODO: this is temp to remove an error
     }
 
     @Override
     public String getEmployeeName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return worker.getName();
     }
 
     @Override
     public String getEmployeeDepartment() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return worker.getDepartment().toString();
     }
 
     @Override
     public int getEmployeeID() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return worker.getEmployeeID();
     }
 
     @Override
     public void setMeetingTime(Date time) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        meeting.setMeetingTime(time);
     }
 
     @Override
     public void setMeetingParticipants(String participants) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        meeting.setMeetingParticipants(participants);
     }
 
     @Override
     public Date getMeetingTime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return meeting.getMeetingTime();
     }
 
     @Override
     public String getMeetingParticipants() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return meeting.getMeetingParticipants();
     }
 
     @Override
     public String getIndividualName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return per.getName();
     }
 
     @Override
     public String getIndividualAddress() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return per.getAddress();
     }
 
     @Override
     public int getIndividualCPR() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return per.getCPR();
     }
 
     @Override
     public void setIndividualName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        per.setName(name);
     }
 
     @Override
     public void setIndividualAddress(String address) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        per.setAddress(address);
     }
 
     @Override
     public void setIndividualCPR(int CPR) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        per.setCPR(CPR);
     }
 
     @Override
