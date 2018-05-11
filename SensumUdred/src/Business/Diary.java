@@ -13,7 +13,7 @@ import java.util.Date;
  *
  * @author Nicolai
  */
-public class Diary extends Log implements IDiary{
+public class Diary implements IDiary{
     private Date date;
     private String entry;
 
@@ -25,7 +25,7 @@ public class Diary extends Log implements IDiary{
 
     @Override
     public String getEntry(ICaseworker caseworker) {
-        super.accessData(this, caseworker);
+        
         return entry;
     }
 
@@ -36,7 +36,7 @@ public class Diary extends Log implements IDiary{
 
     @Override
     public void saveEntry(ICaseworker caseworker) {
-        super.writeLog(this, caseworker);
+        
         
         
     }

@@ -1,29 +1,41 @@
 package Business;
 
-import Acq.ICaseworker;
-import java.util.Date;
+import java.time.LocalDateTime;
+
+
 
 /**
  *
- * @author Nicolai
- * @param <E>
+ * @author Stefan
+ * @param <E> use 'this' and make sure the object logged has a describing toString()
  */
-public abstract class Log<E> {
-    private Date date;
+public class Log<E> {
+
+    private String logString = "";
     
-    
-    String writeLog(E element, ICaseworker caseworker){
-        date = new Date();
-        String logstring = element.toString() + " saved on date: " + 
-            date.toString() + " by caseworker ID: " + caseworker.getEmployeeID();
-        // write to database log
-        return logstring;
+    Log(E e){
+        logString += LocalDateTime.now().toString();
+        logString += e.toString();
     }
     
-    String accessData(E element, ICaseworker caseworker){
-        date = new Date();
-        String logstring = element.toString() + " accessed on date: " + date.toString();
-        // write to database log
-        return logstring;
+    void writeLog(E e){
+        logString += LocalDateTime.now().toString();
+        logString += e.toString();
     }
+    
+    
+//    String writeLog(E element, ICaseworker caseworker){
+//        date = new Date();
+//        String logstring = element.toString() + " saved on date: " + 
+//            date.toString() + " by caseworker ID: " + caseworker.getEmployeeID();
+//        // write to database log
+//        return logstring;
+//    }
+//    
+//    String accessData(E element, ICaseworker caseworker){
+//        date = new Date();
+//        String logstring = element.toString() + " accessed on date: " + date.toString();
+//        // write to database log
+//        return logstring;
+//    }
 }
