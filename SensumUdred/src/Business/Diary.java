@@ -7,6 +7,7 @@ package Business;
 
 import Acq.ICaseworker;
 import Acq.IDiary;
+import Acq.ILog;
 import java.util.Date;
 
 /**
@@ -18,15 +19,9 @@ public class Diary implements IDiary{
     private String entry;
 
     @Override
-    public void IDiary(String entry) {
+    public void IDiary(String entry, ILog log) {
         this.entry = entry;
         date = new Date();
-    }
-
-    @Override
-    public String getEntry(ICaseworker caseworker) {
-        
-        return entry;
     }
 
     @Override
@@ -34,15 +29,19 @@ public class Diary implements IDiary{
         return date;
     }
 
-    @Override
-    public void saveEntry(ICaseworker caseworker) {
-        
-        
-        
-    }
     
     @Override
     public String toString(){
         return "Diary entry date: " + date.toString();
+    }
+
+    @Override
+    public void saveEntry(ICaseworker caseworker, ILog log) {
+        
+    }
+
+    @Override
+    public String getEntry(ICaseworker caseworker, ILog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

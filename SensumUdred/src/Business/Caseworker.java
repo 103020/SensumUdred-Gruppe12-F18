@@ -7,20 +7,21 @@ package Business;
 
 import Acq.ICaseworker;
 import Acq.IDepartment;
+import Acq.ILog;
 
 /**
  *
  * @author Nicolai
  */
-public class Caseworker implements ICaseworker{
+public class Caseworker implements ICaseworker{ 
 
     @Override
-    public boolean accessCase(int caseNumber) {
+    public boolean accessCase(int caseNumber, ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void createCase() {
+    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -53,5 +54,4 @@ public class Caseworker implements ICaseworker{
     public int getEmployeeID() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

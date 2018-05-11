@@ -8,6 +8,7 @@ package Business;
 import Acq.ICase;
 import Acq.ICaseworker;
 import Acq.IIndividual;
+import Acq.ILog;
 import java.util.Date;
 
 /**
@@ -29,10 +30,10 @@ public class Case implements ICase{
         totalCases++;
         creationDate = new Date();
         closed = false;
-    }
+    }   
 
     @Override
-    public void ICase(String caseType, String individualName, String individualAddress, int individualCPR) {
+    public void ICase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -57,34 +58,32 @@ public class Case implements ICase{
     }
 
     @Override
-    public void saveCase() {
+    public void saveCase(ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void editCase() {
+    public void editCase(ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void createMeeting() {
+    public void createMeeting(ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void closeCase() {
+    public void closeCase(ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ICase fetchCase(int caseNumber) {
+    public ICase fetchCase(int caseNumber, ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void setCaseworker(ICaseworker caseworker) {
+    public void setCaseworker(ICaseworker caseworker, ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
 }

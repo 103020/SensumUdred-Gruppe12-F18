@@ -20,26 +20,26 @@ import java.util.List;
 public class BusinessFacade implements IBusiness {
     
     //temp to test
-    Case sag = new Case();
+    Case case = new Case();
     Caseworker worker = new Caseworker();
     Meeting meeting = new Meeting();
-    Individual per = new Individual();
+    Individual ind = new Individual();
     
     DataFacade data = new DataFacade();
 
     @Override
     public int getCaseNumber() {
-        return sag.getCaseNumber();
+        return case.getCaseNumber();
     }
 
     @Override
     public ICaseworker getCaseWorker() {
-        return sag.getCaseWorker();
+        return case.getCaseWorker();
     }
 
     @Override
     public IIndividual getIndividual() {
-        return sag.getIndividual();
+        return case.getIndividual();
     }
 
     @Override
@@ -50,7 +50,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public Date getCaseCreationDate() {
-        return sag.getCreationDate();
+        return case.getCreationDate();
     }
 
     @Override
@@ -60,18 +60,18 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void createMeeting() {
-        sag.createMeeting();
+        case.createMeeting();
     }
 
     @Override
     public void closeCase() {
-        sag.closeCase();
+        case.closeCase();
     }
 
     @Override
     public ICase accessCase() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        //return sag.accessData(this, caseworker)//need more implemented
+        //return case.accessData(this, caseworker)//need more implemented
     }
 
     @Override
@@ -133,32 +133,32 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public String getIndividualName() {
-        return per.getName();
+        return ind.getName();
     }
 
     @Override
     public String getIndividualAddress() {
-        return per.getAddress();
+        return ind.getAddress();
     }
 
     @Override
     public int getIndividualCPR() {
-        return per.getCPR();
+        return ind.getCPR();
     }
 
     @Override
     public void setIndividualName(String name) {
-        per.setName(name);
+        ind.setName(name);
     }
 
     @Override
     public void setIndividualAddress(String address) {
-        per.setAddress(address);
+        ind.setAddress(address);
     }
 
     @Override
     public void setIndividualCPR(int CPR) {
-        per.setCPR(CPR);
+        ind.setCPR(CPR);
     }
 
     @Override

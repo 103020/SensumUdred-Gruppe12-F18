@@ -14,8 +14,9 @@ public interface ICase {
      * @param individualName    The name of the individual the case is about.
      * @param individualAddress The address of the individual the case is about.
      * @param individualCPR     The CPR number of the individual the case is about.
+     * @param log Attach the log file created by the Caseworker when creating a case
      */
-    void ICase(String caseType, String individualName, String individualAddress, int individualCPR);
+    void ICase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log);
 
     /**
      *
@@ -40,21 +41,21 @@ public interface ICase {
      * @return Returns the creation date of the case
      */
     Date getCreationDate();
-    void saveCase();
-    void editCase();
-    void createMeeting();
-    void closeCase();
+    void saveCase(ILog log);
+    void editCase(ILog log);
+    void createMeeting(ILog log);
+    void closeCase(ILog log);
 
     /**
-     *
+     * for fetching a case from the database.
      * @param caseNumber
      * @return
      */
-    ICase fetchCase(int caseNumber); //for fetching a case from the database.
+    ICase fetchCase(int caseNumber, ILog log); 
 
     /**
      *
      * @param caseworker the caseworker to be assigned to the case
      */
-    void setCaseworker(ICaseworker caseworker);
+    void setCaseworker(ICaseworker caseworker, ILog log);
 }

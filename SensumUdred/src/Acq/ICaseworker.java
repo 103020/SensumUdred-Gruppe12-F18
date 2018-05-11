@@ -11,10 +11,10 @@ public interface ICaseworker {
      * @return
      * @param caseNumber the case number of the case to be accessed
      */
-    public boolean accessCase(int caseNumber); 
+    public boolean accessCase(int caseNumber, ILog log); 
     
  
-    public void createCase(); 
+    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log); 
     
     /**
      *

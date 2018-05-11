@@ -1,5 +1,7 @@
 package Business;
 
+import Acq.ICaseworker;
+import Acq.ILog;
 import java.time.LocalDateTime;
 
 
@@ -9,33 +11,20 @@ import java.time.LocalDateTime;
  * @author Stefan
  * @param <E> use 'this' and make sure the object logged has a describing toString()
  */
-public class Log<E> {
+public class Log<E> implements ILog{
 
     private String logString = "";
     
-    Log(E e){
+    Log(E e, ICaseworker cs){
         logString += LocalDateTime.now().toString();
-        logString += e.toString();
+        logString += " access to " + e.toString();
+        logString += " by " + cs.toString();
     }
-    
-    void writeLog(E e){
+
+    @Override
+    public void writeLog(Object e, ICaseworker cs) {
         logString += LocalDateTime.now().toString();
-        logString += e.toString();
+        logString += " access to " + e.toString();
+        logString += " by " + cs.toString();
     }
-    
-    
-//    String writeLog(E element, ICaseworker caseworker){
-//        date = new Date();
-//        String logstring = element.toString() + " saved on date: " + 
-//            date.toString() + " by caseworker ID: " + caseworker.getEmployeeID();
-//        // write to database log
-//        return logstring;
-//    }
-//    
-//    String accessData(E element, ICaseworker caseworker){
-//        date = new Date();
-//        String logstring = element.toString() + " accessed on date: " + date.toString();
-//        // write to database log
-//        return logstring;
-//    }
 }

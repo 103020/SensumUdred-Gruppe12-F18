@@ -6,6 +6,7 @@
 package Business;
 
 import Acq.IIndividual;
+import Acq.ILog;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Individual implements IIndividual{
     
     
     @Override
-    public void IIndividual(String name, String address, int CPR) {
+    public void IIndividual(String name, String address, int CPR, ILog log) {
         this.name = name;
         this.address = address;
         this.CPR = CPR;
@@ -41,17 +42,17 @@ public class Individual implements IIndividual{
     }
 
     @Override
-    public void setName(String name) {
+    public void setName(String name, ILog log) {
         this.name = name;
     }
 
     @Override
-    public void setAddress(String address) {
+    public void setAddress(String address, ILog log) {
         this.address = address;
     }
 
     @Override
-    public void setCPR(int CPR) {
+    public void setCPR(int CPR, ILog log) {
         this.CPR = CPR;
     }
     
