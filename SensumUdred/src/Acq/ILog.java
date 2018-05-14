@@ -11,6 +11,6 @@ package Acq;
  * @param <E>
  */
 public interface ILog<E> {
-    public void writeLog(E e, ICaseworker cs);
+    public void writeLog(E e);
     
 }
