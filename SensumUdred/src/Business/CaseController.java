@@ -5,6 +5,7 @@
  */
 package Business;
 import Acq.*;
+import java.util.List;
 
 /**
  *
@@ -12,10 +13,10 @@ import Acq.*;
  */
 public class CaseController {
     
-    ICaseworker caseworker;
+    List<ICase> caseList;
     
-    public void createCase(){
-        caseworker.createCase();
+    public void createCase(ICase newCase){
+        caseList.add(newCase);
     }
     
 }
