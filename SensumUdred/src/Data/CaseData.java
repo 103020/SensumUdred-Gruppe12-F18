@@ -1,38 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Business;
+package Data;
 
 import Acq.ICase;
 import Acq.ICaseworker;
+import Acq.IDiary;
 import Acq.IIndividual;
 import Acq.ILog;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  *
- * @author Nicolai
+ * @author stefan
  */
-public class Case implements ICase{
-    
-    private static int totalCases;
+public class CaseData implements ICase{
     private int caseNumber;
-//    private CaseWorker caseWorker;
-//    private Individual individual;
-    private Date creationDate;
-//    private Diary diary;
+    private ICaseworker caseworker;
+    private IIndividual individual;
+    private LocalDateTime creationDate;
+    private IDiary diary;
     private boolean isClosed;
     
-    Case(){
-        caseNumber = totalCases;
-        totalCases++;
-        creationDate = new Date();
-        isClosed = false;
-    }   
-
+    CaseData(int caseNumber, ICaseworker casew, IIndividual ind, LocalDateTime creationDate, IDiary diary, boolean isClosed) {
+        this.caseNumber = caseNumber;
+        this.caseworker = casew;
+        this.individual = ind;
+        this.creationDate = creationDate;
+        this.diary = diary;
+        this.isClosed = isClosed;
+    }    
 
     @Override
     public int getCaseNumber() {
@@ -54,21 +48,6 @@ public class Case implements ICase{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void saveCase(ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void editCase(ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void createMeeting(ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void closeCase(ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public ICase fetchCase(int caseNumber, ILog log) {
@@ -79,4 +58,5 @@ public class Case implements ICase{
     public void setCaseworker(ICaseworker caseworker, ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

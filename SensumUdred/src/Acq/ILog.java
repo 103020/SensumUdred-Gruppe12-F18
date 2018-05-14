@@ -12,5 +12,6 @@ package Acq;
  */
 public interface ILog<E> {
     public void writeLog(E e);
+    public String getLogString();
     
 }

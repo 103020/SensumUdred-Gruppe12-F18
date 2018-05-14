@@ -19,8 +19,8 @@ public class Individual implements IIndividual{
     private int CPR;
     
     
-    @Override
-    public void IIndividual(String name, String address, int CPR, ILog log) {
+
+    public void Individual(String name, String address, int CPR, ILog log) {
         this.name = name;
         this.address = address;
         this.CPR = CPR;

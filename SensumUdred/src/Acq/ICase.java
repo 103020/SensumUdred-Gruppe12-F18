@@ -1,22 +1,12 @@
 package Acq;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  *
  * @author Stefan
  */
 public interface ICase {
-
-    /**
-     *  
-     * @param caseType  A text string for describing what type of case this is. can be used for what the department prefers.
-     * @param individualName    The name of the individual the case is about.
-     * @param individualAddress The address of the individual the case is about.
-     * @param individualCPR     The CPR number of the individual the case is about.
-     * @param log Attach the log file created by the Caseworker when creating a case
-     */
-    void ICase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log);
 
     /**
      *
@@ -40,11 +30,7 @@ public interface ICase {
      *
      * @return Returns the creation date of the case
      */
-    Date getCreationDate();
-    void saveCase(ILog log);
-    void editCase(ILog log);
-    void createMeeting(ILog log);
-    void closeCase(ILog log);
+    LocalDateTime getCreationDate();
 
     /**
      * for fetching a case from the database.
