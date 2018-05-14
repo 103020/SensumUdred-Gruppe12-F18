@@ -5,10 +5,7 @@
  */
 package Business;
 
-import Acq.IBusiness;
-import Acq.ICase;
-import Acq.ICaseworker;
-import Acq.IIndividual;
+import Acq.*;
 import Data.DataFacade;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +17,7 @@ import java.util.List;
 public class BusinessFacade implements IBusiness {
     
     //temp to test
-    Case cas = new Case();
+    ICase cas = new Case();
     Caseworker worker = new Caseworker();
     Meeting meeting = new Meeting();
     Individual ind = new Individual();
@@ -49,7 +46,7 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public Date getCaseCreationDate() {
+    public String getCaseCreationDate() {
         return cas.getCreationDate();
     }
 
@@ -60,12 +57,12 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void createMeeting() {
-        cas.createMeeting();
+        //cas.createMeeting();
     }
 
     @Override
     public void closeCase() {
-        cas.closeCase();
+        //cas.closeCase();
     }
 
     @Override
@@ -107,7 +104,7 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public int getEmployeeID() {
+    public String getEmployeeID() {
         return worker.getEmployeeID();
     }
 
@@ -148,17 +145,17 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void setIndividualName(String name) {
-        ind.setName(name);
+        //ind.setName(name);
     }
 
     @Override
     public void setIndividualAddress(String address) {
-        ind.setAddress(address);
+        //ind.setAddress(address);
     }
 
     @Override
     public void setIndividualCPR(int CPR) {
-        ind.setCPR(CPR);
+        //ind.setCPR(CPR);
     }
 
     @Override

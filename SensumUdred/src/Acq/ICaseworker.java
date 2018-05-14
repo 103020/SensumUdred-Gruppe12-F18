@@ -50,5 +50,5 @@ public interface ICaseworker {
      *
      * @return returns the employee ID of the caseworker
      */
-    public int getEmployeeID();
+    public String getEmployeeID();
 }

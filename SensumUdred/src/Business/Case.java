@@ -5,11 +5,9 @@
  */
 package Business;
 
-import Acq.ICase;
-import Acq.ICaseworker;
-import Acq.IIndividual;
-import Acq.ILog;
-import java.util.Date;
+import Acq.*;
+import Data.*;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -19,47 +17,55 @@ public class Case implements ICase{
     
     private static int totalCases;
     private int caseNumber;
-//    private CaseWorker caseWorker;
-//    private Individual individual;
-    private Date creationDate;
-//    private Diary diary;
-    private boolean closed;
+    private ICaseworker caseWorker;
+    private IIndividual individual;
+    private final String creationDate;
+    private IDiary diary;
+    private boolean isClosed;
+    private String caseType;
+    
+    Case(String caseType, String individualName, String individualAddress, int individualCPR, ILog log){
+        caseNumber = totalCases;
+        totalCases++;
+        creationDate = LocalDateTime.now().toString();
+        isClosed = false;
+        this.caseType = caseType;
+        this.individual.setName(individualName, log);
+        this.individual.setAddress(individualAddress, log);
+        this.individual.setCPR(individualCPR, log);
+    }
     
     Case(){
         caseNumber = totalCases;
         totalCases++;
-        creationDate = new Date();
-        closed = false;
-    }   
-
-    @Override
-    public void ICase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        creationDate = LocalDateTime.now().toString();
+        isClosed = false;
     }
 
     @Override
     public int getCaseNumber() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return caseNumber;
     }
 
     @Override
     public ICaseworker getCaseWorker() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return caseWorker;
     }
 
     @Override
     public IIndividual getIndividual() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return individual;
     }
 
     @Override
-    public Date getCreationDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getCreationDate() {
+        return creationDate;
     }
 
     @Override
     public void saveCase(ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        IData dataFacade = new DataFacade();
+//      dataFacade.save(list);
     }
 
     @Override
@@ -74,7 +80,7 @@ public class Case implements ICase{
 
     @Override
     public void closeCase(ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        isClosed = true;
     }
 
     @Override

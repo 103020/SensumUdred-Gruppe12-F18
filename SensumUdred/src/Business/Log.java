@@ -16,15 +16,14 @@ public class Log<E> implements ILog{
     private String logString = "";
     
     Log(E e, ICaseworker cs){
-        logString += LocalDateTime.now().toString();
+        logString += "\n" + LocalDateTime.now().toString();
         logString += " access to " + e.toString();
         logString += " by " + cs.toString();
     }
 
     @Override
-    public void writeLog(Object e, ICaseworker cs) {
-        logString += LocalDateTime.now().toString();
+    public void writeLog(Object e) {
+        logString += "\n\t" + LocalDateTime.now().toString();
         logString += " access to " + e.toString();
-        logString += " by " + cs.toString();
     }
 }
