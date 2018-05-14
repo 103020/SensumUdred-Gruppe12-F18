@@ -20,7 +20,7 @@ import java.util.List;
 public class BusinessFacade implements IBusiness {
     
     //temp to test
-    Case case = new Case();
+    Case cas = new Case();
     Caseworker worker = new Caseworker();
     Meeting meeting = new Meeting();
     Individual ind = new Individual();
@@ -29,17 +29,17 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public int getCaseNumber() {
-        return case.getCaseNumber();
+        return cas.getCaseNumber();
     }
 
     @Override
     public ICaseworker getCaseWorker() {
-        return case.getCaseWorker();
+        return cas.getCaseWorker();
     }
 
     @Override
     public IIndividual getIndividual() {
-        return case.getIndividual();
+        return cas.getIndividual();
     }
 
     @Override
@@ -50,7 +50,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public Date getCaseCreationDate() {
-        return case.getCreationDate();
+        return cas.getCreationDate();
     }
 
     @Override
@@ -60,24 +60,24 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void createMeeting() {
-        case.createMeeting();
+        cas.createMeeting();
     }
 
     @Override
     public void closeCase() {
-        case.closeCase();
+        cas.closeCase();
     }
 
     @Override
     public ICase accessCase() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        //return case.accessData(this, caseworker)//need more implemented
+        //return cas.accessData(this, casworker)//need more implemented
     }
 
     @Override
     public void createCase() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        //need the caseList to be finished
+        //need the casList to be finished
     }
 
     @Override
