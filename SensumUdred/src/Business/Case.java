@@ -8,6 +8,8 @@ package Business;
 import Acq.*;
 import Data.*;
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -16,13 +18,16 @@ import java.time.LocalDateTime;
 public class Case implements ICase{
     
     private static int totalCases;
-    private int caseNumber;
+    private final int caseNumber;
     private ICaseworker caseWorker;
     private IIndividual individual;
     private final String creationDate;
     private IDiary diary;
     private boolean isClosed;
     private String caseType;
+    private Meeting meeting;
+    
+    private IData dataFacade = new DataFacade();
     
     Case(String caseType, String individualName, String individualAddress, int individualCPR, ILog log){
         caseNumber = totalCases;
@@ -64,7 +69,6 @@ public class Case implements ICase{
 
     @Override
     public void saveCase(ILog log) {
-        IData dataFacade = new DataFacade();
 //      dataFacade.save(list);
     }
 
@@ -74,8 +78,9 @@ public class Case implements ICase{
     }
 
     @Override
-    public void createMeeting(ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void createMeeting(int year, int month, int date, ILog log) {
+        Date meetingDate = new Date(year, month, date);
+        meeting.setMeetingTime(meetingDate);
     }
 
     @Override
@@ -85,11 +90,13 @@ public class Case implements ICase{
 
     @Override
     public ICase fetchCase(int caseNumber, ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<ICase> tempList;
+        tempList = dataFacade.load();
+        return tempList.get(caseNumber);
     }
 
     @Override
     public void setCaseworker(ICaseworker caseworker, ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.caseWorker = caseworker;
     }
 }

@@ -23,14 +23,8 @@ public class Caseworker implements ICaseworker{
     public boolean accessCase(int caseNumber, ILog log) {
         IData dataFacade = new DataFacade();
         dataFacade.load();
-        if(dataFacade.load() != null){
-            return true;   
-        }
-        
-        return false;
+        return dataFacade.load() != null;
     }
-    
-    
 
     @Override
     public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log) {
