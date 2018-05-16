@@ -246,22 +246,62 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void handleButtonCreateCaseCO(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Manglende input");
         if (caseFrom.getSelectedToggle() != null) {
             System.out.println(caseFrom.getSelectedToggle().toString());
+        } else {
+                alert.setHeaderText("Mangler at vælge hvor henvendelse kommer fra!");
+                alert.setContentText("Der skal også angives navn og adresse."); 
+                alert.showAndWait();
         }
         if (caseClarity.getSelectedToggle() != null) {
             System.out.println(caseClarity.getSelectedToggle().toString());
+        } else {
+                alert.setHeaderText("Er borgeren klar over hvad der søges efter");
+                alert.setContentText("Der skal vælge ja eller nej."); 
+                alert.showAndWait();
         }
         if (consent.getSelectedToggle() != null) {
             System.out.println(consent.getSelectedToggle().toString());
+        } else {
+                alert.setHeaderText("Er det relevant med samtykkeerklæring");
+                alert.setContentText("Der skal vælge ja eller nej."); 
+                alert.showAndWait();
         }
         if (individualKnow.getSelectedToggle() != null) {
             System.out.println(individualKnow.getSelectedToggle().toString());
+        } else {
+                alert.setHeaderText("Er borgeren indforstået med henvendelsen");
+                alert.setContentText("Der skal vælge ja eller nej."); 
+                alert.showAndWait();
         }
         if (talkedWriten.getSelectedToggle() != null) {
             System.out.println(talkedWriten.getSelectedToggle().toString());
+        } else if (consentRadioYesCO.isSelected()) {
+                alert.setHeaderText("Er samtykket give mundligt eller skriftligt?");
+                alert.setContentText("Der skal vælge mellem mundligt eller skriftligt."); 
+                alert.showAndWait();
         }
     }
+    
+        @FXML
+    private void handleRadioButtonConsent(ActionEvent event) {
+        if (consentRadioNoCO.isSelected()) {
+                consentRadioWrittenCO.setSelected(false);
+                consentRadioOrallyCO.setSelected(false);
+                consentRadioWrittenCO.setDisable(true);
+                consentRadioOrallyCO.setDisable(true);
+        }
+        if (consentRadioYesCO.isSelected()) {
+                consentRadioWrittenCO.setSelected(true);
+                consentRadioOrallyCO.setSelected(true);
+                consentRadioWrittenCO.setDisable(false);
+                consentRadioOrallyCO.setDisable(false);
+        }
+
+    }
+    
     /**
      * checks if a String is a number
      * @param s the String being checked
@@ -282,14 +322,43 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonEditCaseMT(ActionEvent event) {
-        tabPane.getTabs().add(editCaseTab);
-        tabPane.getSelectionModel().selectNext();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        if (caseListViewMT.getItems().isEmpty()) {
+            alert.setTitle("The List is empty");
+            alert.setHeaderText("There is nothing to edit!");
+            alert.setContentText("Make a case instead."); 
+            alert.showAndWait();
+        } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
+            caseListViewMT.getSelectionModel().getSelectedItem().get(0); //TODO: not edit a closed case, TODO: get the case so it can be edited
+            tabPane.getTabs().add(editCaseTab);
+            tabPane.getSelectionModel().selectNext();
+        } else {
+            alert.setTitle("Nothing Selected");
+            alert.setHeaderText("No case is Selected!");
+            alert.setContentText("Select a case."); 
+            alert.showAndWait();
+        }
+        
     }
 
     @FXML
     private void handleButtonViewCaseMT(ActionEvent event) {
-        tabPane.getTabs().add(readCaseTab);
-        tabPane.getSelectionModel().selectNext();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        if (caseListViewMT.getItems().isEmpty()) {
+            alert.setTitle("The List is empty");
+            alert.setHeaderText("There is nothing to edit!");
+            alert.setContentText("Make a case instead."); 
+            alert.showAndWait();
+        } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
+            caseListViewMT.getSelectionModel().getSelectedItem().get(0); //TODO: get the case so it can be viewed
+            tabPane.getTabs().add(readCaseTab);
+            tabPane.getSelectionModel().selectNext();
+        } else {
+            alert.setTitle("Nothing Selected");
+            alert.setHeaderText("No case is Selected!");
+            alert.setContentText("Select a case."); 
+            alert.showAndWait();
+        }
     }
 
     @FXML

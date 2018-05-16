@@ -460,12 +460,12 @@
                      <children>
                         <Label prefWidth="193.0" text="Samtykkeerklæring" GridPane.columnSpan="2" />
                         <Label text="Relevant?" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                        <RadioButton fx:id="consentRadioYesCO" mnemonicParsing="false" text="Ja" GridPane.columnIndex="2" GridPane.columnSpan="2">
+                        <RadioButton fx:id="consentRadioYesCO" mnemonicParsing="false" onAction="#handleRadioButtonConsent" text="Ja" GridPane.columnIndex="2" GridPane.columnSpan="2">
                            <toggleGroup>
                               <ToggleGroup fx:id="consent" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="consentRadioNoCO" mnemonicParsing="false" text="Nej" toggleGroup="$consent" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <RadioButton fx:id="consentRadioNoCO" mnemonicParsing="false" onAction="#handleRadioButtonConsent" text="Nej" toggleGroup="$consent" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                         <RadioButton fx:id="consentRadioOrallyCO" mnemonicParsing="false" text="Mundtligt" GridPane.columnIndex="3">
                            <toggleGroup>
                               <ToggleGroup fx:id="talkedWriten" />
