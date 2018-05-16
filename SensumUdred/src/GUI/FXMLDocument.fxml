@@ -234,7 +234,7 @@
                         <Label text="Notat:" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-                  <Button fx:id="saveChangesButtonEC" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCreateCaseCC" prefHeight="25.0" prefWidth="165.0" text="Gem Ændringer" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Button fx:id="saveChangesButtonEC" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonSaveChangesVC" prefHeight="25.0" prefWidth="165.0" text="Gem Ændringer" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                </children>
                <padding>
                   <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
@@ -275,6 +275,69 @@
                   <Label fx:id="personalNumberLabelVC" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label fx:id="adresseLabelVC" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
+            </GridPane>
+         </content>
+      </Tab>
+      <Tab fx:id="createCaseTab" text="Lav Sag">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <GridPane GridPane.columnSpan="2" GridPane.rowSpan="2">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextField fx:id="createNameFieldCC" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="createPersonalNumberFieldCC" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="createAdresseFieldCC" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label text="Navn:" GridPane.rowIndex="3" />
+                        <Label text="CPR:" GridPane.rowIndex="4" />
+                        <Label text="Adresse:" GridPane.rowIndex="5" />
+                        <Label text="Sagsnummer:" GridPane.rowIndex="2" />
+                        <Label fx:id="caseNumberLabelCC" text="1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+                  <GridPane GridPane.columnSpan="2" GridPane.rowIndex="2">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextArea fx:id="commentTextAreaCC" maxWidth="1.7976931348623157E308" prefHeight="123.0" prefWidth="143.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowSpan="3" />
+                        <Label text="Notat:" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <Button fx:id="nextTabButtonCC" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonNextTabCC" prefHeight="25.0" prefWidth="165.0" text="Næste tab" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               </children>
+               <padding>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </padding>
             </GridPane>
          </content>
       </Tab>
@@ -416,71 +479,8 @@
                   </GridPane>
                   <TextArea fx:id="citizenInvolvementTextAreaCO" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="69.0" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2" />
                   <Label text="Borgerinddragelse" GridPane.rowIndex="3" />
-                  <Button fx:id="nextButtonCO" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Næste tab" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.rowSpan="2" />
+                  <Button fx:id="nextButtonCO" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCreateCaseCO" text="Lav Sag" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.rowSpan="2" />
                </children>
-            </GridPane>
-         </content>
-      </Tab>
-      <Tab fx:id="createCaseTab" text="Lav Sag">
-         <content>
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <GridPane GridPane.columnSpan="2" GridPane.rowSpan="2">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <TextField fx:id="createNameFieldCC" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="createPersonalNumberFieldCC" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField fx:id="createAdresseFieldCC" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label text="Navn:" GridPane.rowIndex="3" />
-                        <Label text="CPR:" GridPane.rowIndex="4" />
-                        <Label text="Adresse:" GridPane.rowIndex="5" />
-                        <Label text="Sagsnummer:" GridPane.rowIndex="2" />
-                        <Label fx:id="caseNumberLabelCC" text="1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                     </children>
-                  </GridPane>
-                  <GridPane GridPane.columnSpan="2" GridPane.rowIndex="2">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <TextArea fx:id="commentTextAreaCC" maxWidth="1.7976931348623157E308" prefHeight="123.0" prefWidth="143.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowSpan="3" />
-                        <Label text="Notat:" GridPane.rowIndex="1" />
-                     </children>
-                  </GridPane>
-                  <Button fx:id="createCaseButtonCC" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCreateCaseCC" prefHeight="25.0" prefWidth="165.0" text="Lav Sag" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-               </children>
-               <padding>
-                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-               </padding>
             </GridPane>
          </content>
       </Tab>

@@ -117,8 +117,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Tab caseOpeningTab;
     @FXML
-    private Button createCaseButtonCC;
-    @FXML
     private TextArea inquiryTextAreaCO;
     @FXML
     private RadioButton seekRadioYesCO;
@@ -160,6 +158,8 @@ public class FXMLDocumentController implements Initializable {
     private TextArea citizenInvolvementTextAreaCO;
     @FXML
     private Button nextButtonCO;
+    @FXML
+    private Button nextTabButtonCC;
     
     
     @Override
@@ -216,13 +216,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonCreateCaseMT(ActionEvent event) {
-        tabPane.getTabs().add(caseOpeningTab);
         tabPane.getTabs().add(createCaseTab);
+        tabPane.getTabs().add(caseOpeningTab);
         tabPane.getSelectionModel().selectNext();
     }
 
-    @FXML
-    private void handleButtonCreateCaseCC(ActionEvent event) {
+        @FXML
+    private void handleButtonNextTabCC(ActionEvent event) {
+        //TODO: will also save that values on that page
         Alert alert = new Alert(Alert.AlertType.ERROR);
         if (!createNameFieldCC.getText().equals("") && !createPersonalNumberFieldCC.getText().equals("") && !createAdresseFieldCC.getText().equals("")) {
             if (isInteger(createPersonalNumberFieldCC.getText(), 10)) {
@@ -239,6 +240,26 @@ public class FXMLDocumentController implements Initializable {
             alert.setHeaderText("Forkerte værdier i felterne");
             alert.setContentText("Check \"Navn\", \"CPR\" og \"Adresse\"."); 
             alert.showAndWait();
+        }
+        tabPane.getSelectionModel().selectNext();
+    }
+    
+    @FXML
+    private void handleButtonCreateCaseCO(ActionEvent event) {
+        if (caseFrom.getSelectedToggle() != null) {
+            System.out.println(caseFrom.getSelectedToggle().toString());
+        }
+        if (caseClarity.getSelectedToggle() != null) {
+            System.out.println(caseClarity.getSelectedToggle().toString());
+        }
+        if (consent.getSelectedToggle() != null) {
+            System.out.println(consent.getSelectedToggle().toString());
+        }
+        if (individualKnow.getSelectedToggle() != null) {
+            System.out.println(individualKnow.getSelectedToggle().toString());
+        }
+        if (talkedWriten.getSelectedToggle() != null) {
+            System.out.println(talkedWriten.getSelectedToggle().toString());
         }
     }
     /**
@@ -279,5 +300,9 @@ public class FXMLDocumentController implements Initializable {
             tabPane.getTabs().remove(readCaseTab);
             tabPane.getTabs().remove(caseOpeningTab);
         }
+    }
+
+    @FXML
+    private void handleButtonSaveChangesVC(ActionEvent event) {
     }
 }
