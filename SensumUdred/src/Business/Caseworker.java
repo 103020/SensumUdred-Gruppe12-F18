@@ -27,8 +27,8 @@ public class Caseworker implements ICaseworker{
     }
 
     @Override
-    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log) {
-        cas = new Case(caseType, individualName, individualAddress, individualCPR, log);
+    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
+        cas = new Case(caseType, individualName, individualAddress,individualCPR, log, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
     }
 
     @Override
