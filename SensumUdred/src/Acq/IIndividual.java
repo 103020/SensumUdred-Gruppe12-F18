@@ -7,14 +7,6 @@ package Acq;
 public interface IIndividual {
 
     /**
-     *  Constructor for the IIndividual implementation
-     * @param name  Name of the individual.
-     * @param address address of the individual.
-     * @param CPR Personal CPR number of the individual.
-     */
-    void IIndividual(String name, String address, int CPR, ILog log);
-
-    /**
      *
      * @return  Returns the name of the individual
      */

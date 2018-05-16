@@ -26,4 +26,9 @@ public class Log<E> implements ILog{
         logString += "\n\t" + LocalDateTime.now().toString();
         logString += " access to " + e.toString();
     }
+
+    @Override
+    public String getLogString() {
+        return logString;
+    }
 }

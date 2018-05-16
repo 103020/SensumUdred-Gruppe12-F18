@@ -1,6 +1,6 @@
 package Acq;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -31,21 +31,22 @@ public interface ICase {
      * @return Returns the creation date of the case
      */
     String getCreationDate();
-    void saveCase(ILog log);
-    void editCase(ILog log);
-    void createMeeting(int year, int month, int date, ILog log);
-    void closeCase(ILog log);
 
-    /**
-     * for fetching a case from the database.
-     * @param caseNumber
-     * @return
-     */
-    ICase fetchCase(int caseNumber, ILog log); 
 
-    /**
-     *
-     * @param caseworker the caseworker to be assigned to the case
-     */
-    void setCaseworker(ICaseworker caseworker, ILog log);
+    public String getCaseType();
+    public String getInquiry();
+    public String getIndividualInvolvement();
+    public String getCaseFrom();
+    public String getCaseFromAdress();
+    public IDiary getDiary();
+    public boolean isClosed();
+    public IMeeting getMeeting();
+    public boolean isConsent();
+    public boolean isWrittenConsent();
+    public boolean isOralConsent();
+    public StringBuilder getCaseFromAddress();
+    public boolean isCaseClarity();
+    public boolean isIndividualUnderstanding();
+    
+    
 }

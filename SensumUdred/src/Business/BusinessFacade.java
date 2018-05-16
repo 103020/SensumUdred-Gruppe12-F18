@@ -7,6 +7,7 @@ package Business;
 
 import Acq.*;
 import Data.DataFacade;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -86,8 +87,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
-        worker.createCase(caseType, individualName, individualAddress, individualCPR, log, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
+    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
+        worker.createCase(caseType, individualName, individualAddress, individualCPR, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
     }
 
     @Override
@@ -122,7 +123,7 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void setMeetingTime(Date time) {
+    public void setMeetingTime(LocalDateTime time) {
         meeting.setMeetingTime(time);
     }
 
@@ -132,7 +133,7 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public Date getMeetingTime() {
+    public LocalDateTime getMeetingTime() {
         return meeting.getMeetingTime();
     }
 
@@ -188,7 +189,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void createCase() {
-        //worker.createCase("Pizza", "Morten", "Anstalten 17", 0, log, "jeg vil gerne have pizza", "jeg vil gerne have pizza", true, true, true, true, true, InquiryFrom.INDIVIDUAL, "anstalten 17");
+        //worker.createCase("Pizza", "Morten", "Anstalten 17", 0, "jeg vil gerne have pizza", "jeg vil gerne have pizza", true, true, true, true, true, InquiryFrom.INDIVIDUAL, "anstalten 17");
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
