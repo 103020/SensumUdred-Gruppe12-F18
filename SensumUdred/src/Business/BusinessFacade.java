@@ -22,8 +22,22 @@ public class BusinessFacade implements IBusiness {
     Meeting meeting = new Meeting();
     Individual ind = new Individual();
     
-    DataFacade data = new DataFacade();
+    static DataFacade data;
 
+    
+    private static BusinessFacade instance;
+
+
+    public static BusinessFacade getInstance() {
+
+        if (instance == null) {
+            instance = new BusinessFacade();
+        }
+        data = DataFacade.getInstance();
+        return instance;
+        
+    }
+    
     @Override
     public int getCaseNumber() {
         return cas.getCaseNumber();
@@ -72,9 +86,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void createCase() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        //need the casList to be finished
+    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
+        worker.createCase(caseType, individualName, individualAddress, individualCPR, log, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
     }
 
     @Override
@@ -171,6 +184,12 @@ public class BusinessFacade implements IBusiness {
     @Override
     public List getCasenumSortedList() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void createCase() {
+        //worker.createCase("Pizza", "Morten", "Anstalten 17", 0, log, "jeg vil gerne have pizza", "jeg vil gerne have pizza", true, true, true, true, true, InquiryFrom.INDIVIDUAL, "anstalten 17");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }
