@@ -32,16 +32,21 @@ public interface ICase {
      */
     String getCreationDate();
 
-    /**
-     * for fetching a case from the database.
-     * @param caseNumber
-     * @return
-     */
-    ICase fetchCase(int caseNumber, ILog log); 
 
-    /**
-     *
-     * @param caseworker the caseworker to be assigned to the case
-     */
-    void setCaseworker(ICaseworker caseworker, ILog log);
+    public String getCaseType();
+    public String getInquiry();
+    public String getIndividualInvolvement();
+    public String getCaseFrom();
+    public String getCaseFromAdress();
+    public IDiary getDiary();
+    public boolean isClosed();
+    public IMeeting getMeeting();
+    public boolean isConsent();
+    public boolean isWrittenConsent();
+    public boolean isOralConsent();
+    public StringBuilder getCaseFromAddress();
+    public boolean isCaseClarity();
+    public boolean isIndividualUnderstanding();
+    
+    
 }

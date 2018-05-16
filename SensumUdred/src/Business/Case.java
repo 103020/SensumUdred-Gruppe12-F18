@@ -30,7 +30,7 @@ public class Case implements ICase{
     private boolean caseClarity;
     private boolean individualUnderstanding;
     
-    private IData dataFacade;
+    //private IData dataFacade;
     
     Case(String caseType, String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry,
             String _individualInvolvement, boolean individualUnderstanding,boolean consent,
@@ -102,18 +102,21 @@ public class Case implements ICase{
 
     }
 
-    public boolean isIsClosed() {
+    public boolean isClosed() {
         return isClosed;
     }
 
+    @Override
     public String getCaseType() {
         return caseType;
     }
 
+    @Override
     public String getInquiry() {
         return inquiry.toString();
     }
 
+    @Override
     public String getIndividualInvolvement() {
         return individualInvolvement.toString();
     }
@@ -130,10 +133,12 @@ public class Case implements ICase{
         return oralConsent;
     }
 
+    @Override
     public String getCaseFrom() {
         return caseFrom;
     }
 
+    @Override
     public String getCaseFromAdress() {
         return caseFromAddress.toString();
     }
@@ -164,15 +169,28 @@ public class Case implements ICase{
         isClosed = true;
     }
 
-    @Override
     public ICase fetchCase(int caseNumber, ILog log) {
         List<ICase> tempList;
-        tempList = dataFacade.load();
+        //tempList = dataFacade.load();
         return tempList.get(caseNumber);
     }
 
-    @Override
     public void setCaseworker(ICaseworker caseworker, ILog log) {
         this.caseWorker = caseworker;
     } 
+
+    @Override
+    public IDiary getDiary() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IMeeting getMeeting() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public StringBuilder getCaseFromAddress() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
