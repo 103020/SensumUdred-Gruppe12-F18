@@ -5,7 +5,7 @@
  */
 package Acq;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -23,7 +23,7 @@ public interface IGUI {
     public void setEmployeeName(String name);
     public void setEmployeeDepartment(String department);
     public void setEmployeeID(int employeeID);
-    public void setMeetingTime(Date time);
+    public void setMeetingTime(LocalDateTime time);
     public void setMeetingParticipants(String participants);
     public void setIndividualName(String name);
     public void setIndividualAddress(String address);

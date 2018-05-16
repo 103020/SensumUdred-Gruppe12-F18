@@ -7,6 +7,7 @@ package Business;
 
 import Acq.*;
 import Data.DataFacade;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -122,7 +123,7 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void setMeetingTime(Date time) {
+    public void setMeetingTime(LocalDateTime time) {
         meeting.setMeetingTime(time);
     }
 
@@ -132,7 +133,7 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public Date getMeetingTime() {
+    public LocalDateTime getMeetingTime() {
         return meeting.getMeetingTime();
     }
 

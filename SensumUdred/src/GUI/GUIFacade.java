@@ -7,8 +7,8 @@ package GUI;
 
 import Acq.ICase;
 import Acq.IGUI;
-import java.util.Date;
 import Business.BusinessFacade;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -70,7 +70,7 @@ public class GUIFacade implements IGUI{
     }
 
     @Override
-    public void setMeetingTime(Date time) {
+    public void setMeetingTime(LocalDateTime time) {
         b.setMeetingTime(time);
     }
 

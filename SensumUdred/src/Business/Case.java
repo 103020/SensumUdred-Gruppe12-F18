@@ -2,8 +2,6 @@ package Business;
 
 import Acq.*;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -30,7 +28,7 @@ public class Case implements ICase{
     private boolean caseClarity;
     private boolean individualUnderstanding;
     
-    //private IData dataFacade;
+    private IBusiness businessFacade;
     
     Case(String caseType, String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry,
             String _individualInvolvement, boolean individualUnderstanding,boolean consent,
@@ -51,9 +49,7 @@ public class Case implements ICase{
         this.oralConsent = oralConsent;
         this.caseClarity = caseClarity;
         this.caseFromAddress = new StringBuilder(_caseFromAddress);
-        //dataFacade = DataFacade.getInstance();
 
-        
         switch(inquiryFrom){
             case INDIVIDUAL:
                 caseFrom = inquiryFrom.INDIVIDUAL.toString();
@@ -70,6 +66,8 @@ public class Case implements ICase{
             default:
                 break;
         }
+        
+        businessFacade = BusinessFacade.getInstance();
     }
 
     
@@ -100,7 +98,6 @@ public class Case implements ICase{
     @Override
     public String getCreationDate() {
         return creationDate;
-
     }
 
     public boolean isClosed() {
@@ -161,8 +158,8 @@ public class Case implements ICase{
     }
 
 
-    public void createMeeting(int year, int month, int date, ILog log) {
-        Date meetingDate = new Date(year, month, date);
+    public void createMeeting(int year, int month, int date, int hour, int minute, ILog log) {
+        LocalDateTime meetingDate = LocalDateTime.of(year, month, date, hour, minute);
         meeting.setMeetingTime(meetingDate);
     }
 
@@ -171,9 +168,8 @@ public class Case implements ICase{
     }
 
     public ICase fetchCase(int caseNumber, ILog log) {
-        List<ICase> tempList;
-        //tempList = dataFacade.load();
-        return tempList.get(caseNumber);
+        ICase cas = businessFacade.accessCase();
+        return cas;
     }
 
     public void setCaseworker(ICaseworker caseworker, ILog log) {

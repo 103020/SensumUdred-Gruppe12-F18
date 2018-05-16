@@ -5,7 +5,7 @@
  */
 package Business;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -13,20 +13,23 @@ import java.util.Date;
  */
 public class Meeting {
 
-    void setMeetingTime(Date time) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private LocalDateTime dayOfMeeting;
+    private String participants;
+    
+    void setMeetingTime(LocalDateTime time) {
+        dayOfMeeting = time;
     }
 
     void setMeetingParticipants(String participants) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.participants = participants;
     }
 
-    Date getMeetingTime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    LocalDateTime getMeetingTime() {
+        return dayOfMeeting;
     }
 
     String getMeetingParticipants() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return participants;
     }
     
 }

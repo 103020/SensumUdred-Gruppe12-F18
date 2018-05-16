@@ -5,7 +5,7 @@
  */
 package Acq;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -30,9 +30,9 @@ public interface IBusiness {
     public String getEmployeeName();
     public String getEmployeeDepartment();
     public String getEmployeeID();
-    public void setMeetingTime(Date time);
+    public void setMeetingTime(LocalDateTime time);
     public void setMeetingParticipants(String participants);
-    public Date getMeetingTime();
+    public LocalDateTime getMeetingTime();
     public String getMeetingParticipants();
     public String getIndividualName();
     public String getIndividualAddress();
