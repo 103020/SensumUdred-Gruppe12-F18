@@ -6,7 +6,6 @@
 package Business;
 
 import Acq.*;
-import Data.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -57,7 +56,7 @@ public class Case implements ICase{
         this.oralConsent = oralConsent;
         this.caseClarity = caseClarity;
         this.caseFromAddress = new StringBuilder(_caseFromAddress);
-        dataFacade = DataFacade.getInstance();
+
         
         switch(inquiryFrom){
             case INDIVIDUAL:

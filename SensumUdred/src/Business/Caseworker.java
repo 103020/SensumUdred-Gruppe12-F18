@@ -21,7 +21,7 @@ public class Caseworker implements ICaseworker{
     
     @Override
     public boolean accessCase(int caseNumber, ILog log) {
-        IData dataFacade = new DataFacade();
+        IData dataFacade = DataFacade.getInstance();
         dataFacade.load();
         return dataFacade.load() != null;
     }
