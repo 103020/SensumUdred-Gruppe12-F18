@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
@@ -165,6 +166,7 @@
                         <Button fx:id="createCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCreateCaseMT" prefHeight="25.0" prefWidth="150.0" text="Lav Sag" />
                         <Button fx:id="editCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonEditCaseMT" text="Ændre Sag" GridPane.rowIndex="3" />
                         <Button fx:id="viewCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonViewCaseMT" text="Se Sag" GridPane.rowIndex="2" />
+                        <ChoiceBox fx:id="choiceBoxMT" prefWidth="150.0" GridPane.columnIndex="3" />
                      </children>
                   </GridPane>
                </children>

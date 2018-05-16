@@ -11,12 +11,15 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
@@ -35,6 +38,8 @@ import javafx.scene.input.InputMethodEvent;
 public class FXMLDocumentController implements Initializable {
     
     GUIFacade facade;
+    
+    FilteredList<caseListAbler> fList;
     
     @FXML
     private Tab mainTab;
@@ -61,7 +66,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField searchFieldMT;
     @FXML
-    private ListView<List> caseListViewMT;
+    private ListView<FilteredList<caseListAbler>> caseListViewMT;
     @FXML
     private Button createCaseButtonMT;
     @FXML
@@ -105,7 +110,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Tab readCaseTab;
     @FXML
-    private ListView<List> noteListViewVC;
+    private ListView<String> noteListViewVC;
     @FXML
     private Label caseNumberLabelVC;
     @FXML
@@ -160,6 +165,8 @@ public class FXMLDocumentController implements Initializable {
     private Button nextButtonCO;
     @FXML
     private Button nextTabButtonCC;
+    @FXML
+    private ChoiceBox<String> choiceBoxMT;
     
     
     @Override
@@ -170,15 +177,17 @@ public class FXMLDocumentController implements Initializable {
         tabPane.getTabs().remove(editCaseTab);
         tabPane.getTabs().remove(readCaseTab);
         tabPane.getTabs().remove(caseOpeningTab);
-        
+        choiceBoxMT.getItems().addAll("Dato", "Sagsnummer");
+        choiceBoxMT.setValue("Sagsnummer");
+        fList = new FilteredList((ObservableList) facade.getCasenumSortedList(), p -> true);
     }    
 
     @FXML
     private void handleButtonLogin(ActionEvent event) {
         tabPane.getTabs().add(mainTab);
         tabPane.getSelectionModel().selectNext();
+        caseListViewMT.getItems().add(fList);
         tabPane.getTabs().remove(loginTab); // removes the tab
-        //tabPane.getTabs().add(loginTab); // addes the tab again
     }
 
     @FXML
@@ -192,10 +201,20 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void searchFieldHandler(InputMethodEvent event) {
+        //TODO: test when a list is getable
+        switch(choiceBoxMT.getValue()){
+            case "Date":
+                fList.setPredicate(p -> p.getDate().toLowerCase().contains(searchFieldMT.getText().toLowerCase().trim()));
+                break;
+            case "Sagsnummer":
+                fList.setPredicate(p -> p.getDate().toLowerCase().contains(searchFieldMT.getText().toLowerCase().trim()));
+                break;
+        }
     }
 
     @FXML
     private void handleButtonMyCase(ActionEvent event) {
+        //TODO: what do it need to do?
     }
 
     @FXML
@@ -329,7 +348,7 @@ public class FXMLDocumentController implements Initializable {
             alert.setContentText("Make a case instead."); 
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
-            caseListViewMT.getSelectionModel().getSelectedItem().get(0); //TODO: not edit a closed case, TODO: get the case so it can be edited
+            caseListViewMT.getSelectionModel().getSelectedItem().get(1); //TODO: not edit a closed case, TODO: get the case so it can be edited
             tabPane.getTabs().add(editCaseTab);
             tabPane.getSelectionModel().selectNext();
         } else {
@@ -346,11 +365,11 @@ public class FXMLDocumentController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         if (caseListViewMT.getItems().isEmpty()) {
             alert.setTitle("The List is empty");
-            alert.setHeaderText("There is nothing to edit!");
+            alert.setHeaderText("There is nothing to view!");
             alert.setContentText("Make a case instead."); 
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
-            caseListViewMT.getSelectionModel().getSelectedItem().get(0); //TODO: get the case so it can be viewed
+            caseListViewMT.getSelectionModel().getSelectedItem().get(1); //TODO: get the case so it can be viewed
             tabPane.getTabs().add(readCaseTab);
             tabPane.getSelectionModel().selectNext();
         } else {
@@ -373,5 +392,40 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonSaveChangesVC(ActionEvent event) {
+        //TODO: need to get the case data first
+    }
+}
+
+/**
+ * a way to format the case to the listview in the gui
+ * @author 103020
+ */
+class caseListAbler {
+    String caseNumber;
+    String date; //TODO: change type from int when type is known
+    
+    private caseListAbler(String caseNumber, String date){
+        this.caseNumber = caseNumber;
+        this.date = date;
+    }
+
+    public String getCaseNumber() {
+        return caseNumber;
+    }
+
+    public void setCaseNumber(String caseNumber) {
+        this.caseNumber = caseNumber;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
+    public String toString(){
+        return "date: " + date + " caseNumber: " + caseNumber;
     }
 }
