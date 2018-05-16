@@ -44,9 +44,10 @@ public interface ICase {
     public boolean isConsent();
     public boolean isWrittenConsent();
     public boolean isOralConsent();
-    public StringBuilder getCaseFromAddress();
+    public String getCaseFromAddress();
     public boolean isCaseClarity();
     public boolean isIndividualUnderstanding();
+    public ICase getCase();
     
     
 }

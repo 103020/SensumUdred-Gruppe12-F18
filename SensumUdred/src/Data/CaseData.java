@@ -21,40 +21,39 @@ public class CaseData implements ICase{
     private boolean isClosed;
     private String caseType;
     private IMeeting meeting;
-    private StringBuilder inquiry;
-    private StringBuilder individualInvolvement;
+    private String inquiry;
+    private String individualInvolvement;
     private boolean consent;
     private boolean writtenConsent;
     private boolean oralConsent;
     private String caseFrom;
-    private StringBuilder caseFromAddress;
+    private String caseFromAddress;
     private boolean caseClarity;
     private boolean individualUnderstanding;
+    
 
-    public CaseData(int caseNumber, ICaseworker caseWorker, 
-            IIndividual individual, String creationDate, IDiary diary, 
-            boolean isClosed, String caseType, IMeeting meeting, 
-            StringBuilder inquiry, StringBuilder individualInvolvement, 
-            boolean consent, boolean writtenConsent, boolean oralConsent, 
-            String caseFrom, StringBuilder caseFromAddress, boolean caseClarity, 
-            boolean individualUnderstanding) {
-        this.caseNumber = caseNumber;
-        this.caseWorker = caseWorker;
-        this.individual = individual;
-        this.creationDate = creationDate;
-        this.diary = diary;
-        this.isClosed = isClosed;
-        this.caseType = caseType;
-        this.meeting = meeting;
-        this.inquiry = inquiry;
-        this.individualInvolvement = individualInvolvement;
-        this.consent = consent;
-        this.writtenConsent = writtenConsent;
-        this.oralConsent = oralConsent;
-        this.caseFrom = caseFrom;
-        this.caseFromAddress = caseFromAddress;
-        this.caseClarity = caseClarity;
-        this.individualUnderstanding = individualUnderstanding;
+    public CaseData(ICase cas) {
+        this.caseNumber = cas.getCaseNumber();
+        this.caseWorker = cas.getCaseWorker();
+        this.individual = cas.getIndividual();
+        this.creationDate = cas.getCreationDate();
+        this.diary = cas.getDiary();
+        this.isClosed = cas.isClosed();
+        this.caseType = cas.getCaseType();
+        this.meeting = cas.getMeeting();
+        this.inquiry = cas.getInquiry();
+        this.individualInvolvement = cas.getIndividualInvolvement();
+        this.consent = cas.isConsent();
+        this.writtenConsent = cas.isWrittenConsent();
+        this.oralConsent = cas.isOralConsent();
+        this.caseFrom = cas.getCaseFrom();
+        this.caseFromAddress = cas.getCaseFromAddress();
+        this.caseClarity = cas.isCaseClarity();
+        this.individualUnderstanding = cas.isIndividualUnderstanding();
+    }
+    
+    public int getAttributeCount(){
+        return getClass().getDeclaredFields().length;
     }
 
     @Override
@@ -118,7 +117,7 @@ public class CaseData implements ICase{
     }
 
     @Override
-    public StringBuilder getCaseFromAddress() {
+    public String getCaseFromAddress() {
         return caseFromAddress;
     }
 
@@ -146,6 +145,12 @@ public class CaseData implements ICase{
     public String getCaseFromAdress() {
         return caseFromAddress.toString();
     }
+
+    @Override
+    public ICase getCase() {
+        return this;
+    }
+    
     
     
 }

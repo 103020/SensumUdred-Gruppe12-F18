@@ -10,9 +10,10 @@ import java.util.List;
 /**
  *
  * @author Tobias
+ * @param <E>   The object to be used
  */
-public interface IDataHandler  {
-    boolean save(List<Object> givenList);
-    List<Object> load();
+public interface IDataHandler<E>  {
+    boolean save(E obj);
+    E load();
     List<Object> convert(ICase chosenCase);
 }
