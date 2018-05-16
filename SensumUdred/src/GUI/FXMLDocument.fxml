@@ -5,10 +5,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -39,7 +41,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="loginButtonLT" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleButtonLogin" prefHeight="25.0" prefWidth="354.0" text="Login" GridPane.columnIndex="1" />
+                        <Button fx:id="loginButtonLT" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonLogin" prefHeight="25.0" prefWidth="354.0" text="Login" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -53,7 +55,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="supportButtonLT" mnemonicParsing="false" onAction="#handleButtonSupport" prefHeight="25.0" prefWidth="326.0" text="Support" />
+                        <Button fx:id="supportButtonLT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonSupport" prefHeight="25.0" prefWidth="326.0" text="Support" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.rowIndex="1">
@@ -82,15 +84,15 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="usernameFieldLT" promptText="&quot;Insert username here&quot;" />
-                        <PasswordField fx:id="passwordFieldLT" promptText="&quot;Insert password here&quot;" GridPane.rowIndex="1" />
+                        <TextField fx:id="usernameFieldLT" maxWidth="1.7976931348623157E308" promptText="&quot;Indsæt brugernavn her&quot;" />
+                        <PasswordField fx:id="passwordFieldLT" maxWidth="1.7976931348623157E308" promptText="&quot;Indsæt kodeord her&quot;" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>
             </GridPane>
          </content>
     </Tab>
-    <Tab fx:id="mainTab" text="Main Tab">
+    <Tab fx:id="mainTab" onSelectionChanged="#handleTabViewMT" text="Main Tab">
          <content>
             <GridPane>
               <columnConstraints>
@@ -147,20 +149,22 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="myCaseButtonMT" mnemonicParsing="false" onAction="#handleButtonMyCase" prefHeight="25.0" prefWidth="150.0" text="Mine Sager" GridPane.rowIndex="1" />
-                        <Button fx:id="dateSortButtonMT" mnemonicParsing="false" onAction="#handleButtonDate" prefHeight="25.0" prefWidth="150.0" text="Dato" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button fx:id="casenumberSortButtonMT" mnemonicParsing="false" onAction="#handleButtonCaseNumber" prefHeight="25.0" prefWidth="150.0" text="Sagsnummer" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <TextField fx:id="searchFieldMT" onAction="#handleSearchField" onInputMethodTextChanged="#searchFieldHandler" promptText="Search Field" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Button fx:id="myCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonMyCase" prefHeight="25.0" prefWidth="150.0" text="Mine Sager" GridPane.rowIndex="1" />
+                        <Button fx:id="dateSortButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonDate" prefHeight="25.0" prefWidth="150.0" text="Dato" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="casenumberSortButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCaseNumber" prefHeight="25.0" prefWidth="150.0" text="Sagsnummer" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="searchFieldMT" maxWidth="1.7976931348623157E308" onAction="#handleSearchField" onInputMethodTextChanged="#searchFieldHandler" promptText="Søgefelt" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                         <ListView fx:id="caseListViewMT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="5" />
-                        <Button fx:id="createCaseButtonMT" mnemonicParsing="false" onAction="#handleButtonCreateCaseMT" prefHeight="25.0" prefWidth="150.0" text="Lav Sag" GridPane.columnIndex="1" />
+                        <Button fx:id="createCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCreateCaseMT" prefHeight="25.0" prefWidth="150.0" text="Lav Sag" />
+                        <Button fx:id="editCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonEditCaseMT" text="Ændre Sag" GridPane.rowIndex="3" />
+                        <Button fx:id="viewCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonViewCaseMT" text="Se Sag" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </children>
@@ -170,6 +174,110 @@
             </GridPane>
          </content>
     </Tab>
+      <Tab fx:id="editCaseTab" text="Ændre Sag">
+         <content>
+            <GridPane>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <GridPane GridPane.columnSpan="2" GridPane.rowSpan="2">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <TextField fx:id="createNameFieldEC" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <TextField fx:id="createPersonalNumberFieldEC" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <TextField fx:id="createAdresseFieldEC" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <Label text="Navn:" GridPane.rowIndex="3" />
+                        <Label text="CPR:" GridPane.rowIndex="4" />
+                        <Label text="Adresse:" GridPane.rowIndex="5" />
+                        <Label text="Sagsnummer:" GridPane.rowIndex="2" />
+                        <Label fx:id="caseNumberLabelEC" text="1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="currentNameLabelEC" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="currentPersonalNumberLabelEC" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="currentAdresseLabelEC" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label text="Nuværende vædier:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Ændre til:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <GridPane GridPane.columnSpan="2" GridPane.rowIndex="2">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <TextArea fx:id="commentTextAreaEC" maxWidth="1.7976931348623157E308" prefHeight="123.0" prefWidth="143.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowSpan="3" />
+                        <Label text="Notat:" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <Button fx:id="saveChangesButtonEC" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonSaveChangesVC" prefHeight="25.0" prefWidth="165.0" text="Gem Ændringer" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               </children>
+               <padding>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </padding>
+            </GridPane>
+         </content>
+      </Tab>
+      <Tab fx:id="readCaseTab" text="Se Sag">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+               <children>
+                  <ListView fx:id="noteListViewVC" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="6" />
+                  <Label text="Sagsnummer:" GridPane.rowIndex="2" />
+                  <Label text="Navn:" GridPane.rowIndex="3" />
+                  <Label text="CPR:" GridPane.rowIndex="4" />
+                  <Label text="Adresse:" GridPane.rowIndex="5" />
+                  <Label fx:id="caseNumberLabelVC" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="nameLabelVC" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="personalNumberLabelVC" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="adresseLabelVC" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+               </children>
+            </GridPane>
+         </content>
+      </Tab>
       <Tab fx:id="createCaseTab" text="Lav Sag">
          <content>
             <GridPane>
@@ -199,9 +307,9 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="createNameFieldCC" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="createPersonalNumberFieldCC" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField fx:id="createAdresseFieldCC" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="createNameFieldCC" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="createPersonalNumberFieldCC" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="createAdresseFieldCC" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label text="Navn:" GridPane.rowIndex="3" />
                         <Label text="CPR:" GridPane.rowIndex="4" />
                         <Label text="Adresse:" GridPane.rowIndex="5" />
@@ -221,10 +329,11 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextArea fx:id="commentTextAreaCC" prefHeight="123.0" prefWidth="143.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowSpan="3" />
+                        <TextArea fx:id="commentTextAreaCC" maxWidth="1.7976931348623157E308" prefHeight="123.0" prefWidth="143.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowSpan="3" />
+                        <Label text="Notat:" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-                  <Button fx:id="createCaseButtonCC" mnemonicParsing="false" onAction="#handleButtonCreateCaseCC" prefHeight="25.0" prefWidth="165.0" text="Lav Sag" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Button fx:id="nextTabButtonCC" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonNextTabCC" prefHeight="25.0" prefWidth="165.0" text="Næste tab" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                </children>
                <padding>
                   <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
@@ -232,57 +341,146 @@
             </GridPane>
          </content>
       </Tab>
-      <Tab text="Untitled Tab">
+      <Tab fx:id="caseOpeningTab" text="Sagsåbning">
          <content>
             <GridPane>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
-            </GridPane>
-         </content>
-      </Tab>
-      <Tab text="Untitled Tab">
-         <content>
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <padding>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </padding>
-            </GridPane>
-         </content>
-      </Tab>
-      <Tab text="Untitled Tab">
-         <content>
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <padding>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </padding>
+               <children>
+                  <TextArea fx:id="inquiryTextAreaCO" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="70.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+                  <Label text="Hvad drejer henvendelsen sig om?" GridPane.columnSpan="2" />
+                  <GridPane prefHeight="46.0" prefWidth="49.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label prefWidth="193.0" text="Er det klart hvad borgeren" GridPane.columnSpan="2" />
+                        <Label text="søger om?" GridPane.rowIndex="1" />
+                        <RadioButton fx:id="seekRadioYesCO" mnemonicParsing="false" text="Ja" GridPane.columnIndex="2" GridPane.columnSpan="2">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="caseClarity" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="seekRadioNoCO" mnemonicParsing="false" text="Nej" toggleGroup="$caseClarity" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </padding>
+                  </GridPane>
+                  <Label text="'" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <GridPane prefHeight="46.0" prefWidth="68.0" GridPane.columnSpan="3" GridPane.rowIndex="6" GridPane.rowSpan="2">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Hvor kommer" />
+                        <Label text="henvendelsen fra?" GridPane.rowIndex="1" />
+                        <RadioButton fx:id="citizenRadioCO" mnemonicParsing="false" text="Borger" GridPane.columnIndex="1">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="caseFrom" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="relativesRadioCO" mnemonicParsing="false" text="Pårørende" toggleGroup="$caseFrom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <RadioButton fx:id="doctorRadioCO" mnemonicParsing="false" text="Læge/Hospital" toggleGroup="$caseFrom" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <RadioButton fx:id="otherRadioCO" mnemonicParsing="false" text="Andre/andet" toggleGroup="$caseFrom" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="nameAdresseTextFieldCO" maxWidth="1.7976931348623157E308" promptText="Indtast navn og adresse" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+                     </children>
+                  </GridPane>
+                  <GridPane prefHeight="46.0" prefWidth="49.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label prefWidth="193.0" text="Er borgeren indforstået" GridPane.columnSpan="2" />
+                        <Label text="med henvendelsen" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <RadioButton fx:id="informedInquiryRadioYesCO" mnemonicParsing="false" text="Ja" GridPane.columnIndex="2" GridPane.columnSpan="2">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="individualKnow" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="informedInquiryRadioNoCO" mnemonicParsing="false" text="Nej" toggleGroup="$individualKnow" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                     </children>
+                     <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </padding>
+                  </GridPane>
+                  <GridPane prefHeight="46.0" prefWidth="49.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label prefWidth="193.0" text="Samtykkeerklæring" GridPane.columnSpan="2" />
+                        <Label text="Relevant?" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <RadioButton fx:id="consentRadioYesCO" mnemonicParsing="false" text="Ja" GridPane.columnIndex="2" GridPane.columnSpan="2">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="consent" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="consentRadioNoCO" mnemonicParsing="false" text="Nej" toggleGroup="$consent" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <RadioButton fx:id="consentRadioOrallyCO" mnemonicParsing="false" text="Mundtligt" GridPane.columnIndex="3">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="talkedWriten" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="consentRadioWrittenCO" mnemonicParsing="false" text="Skriftligt" toggleGroup="$talkedWriten" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                     </children>
+                     <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </padding>
+                  </GridPane>
+                  <TextArea fx:id="citizenInvolvementTextAreaCO" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="69.0" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2" />
+                  <Label text="Borgerinddragelse" GridPane.rowIndex="3" />
+                  <Button fx:id="nextButtonCO" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCreateCaseCO" text="Lav Sag" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.rowSpan="2" />
+               </children>
             </GridPane>
          </content>
       </Tab>

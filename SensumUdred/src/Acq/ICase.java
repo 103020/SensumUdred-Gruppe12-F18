@@ -30,7 +30,7 @@ public interface ICase {
      *
      * @return Returns the creation date of the case
      */
-    LocalDateTime getCreationDate();
+    String getCreationDate();
 
     /**
      * for fetching a case from the database.

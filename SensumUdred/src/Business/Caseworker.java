@@ -5,9 +5,8 @@
  */
 package Business;
 
-import Acq.ICaseworker;
-import Acq.IDepartment;
-import Acq.ILog;
+import Acq.*;
+import Data.DataFacade;
 
 /**
  *
@@ -15,43 +14,50 @@ import Acq.ILog;
  */
 public class Caseworker implements ICaseworker{ 
 
+    private String name;
+    private IDepartment department;
+    private String employeeID; 
+    private ICase cas;
+    
     @Override
     public boolean accessCase(int caseNumber, ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        IData dataFacade = new DataFacade();
+        dataFacade.load();
+        return dataFacade.load() != null;
     }
 
     @Override
-    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
+        cas = new Case(caseType, individualName, individualAddress,individualCPR, log, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
     }
 
     @Override
     public void setName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.name = name;
     }
 
     @Override
     public void setDepartment(IDepartment department) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.department = department;
     }
 
     @Override
     public void setEmployeeID(String employeeID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.employeeID = employeeID; 
     }
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return name;
     }
 
     @Override
     public IDepartment getDepartment() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return department;
     }
 
     @Override
-    public int getEmployeeID() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getEmployeeID() {
+        return employeeID;
     }
 }

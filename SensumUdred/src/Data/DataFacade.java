@@ -14,19 +14,34 @@ import java.util.List;
  */
 public class DataFacade implements IData{
 
+    private DataHandler dataHandler;
+    private static DataFacade instance;
+
+
+    public static DataFacade getInstance() {
+
+        if (instance == null) {
+            instance = new DataFacade();
+        }
+        return instance;
+
+    }
+    
     @Override
     public boolean save(List list) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dataHandler.save(list);
     }
 
     @Override
     public List load() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        dataHandler = new DataHandler();
+        return dataHandler.load();
     }
 
     @Override
     public List loadUser() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        UserHandler userHandler = new UserHandler();
+        return userHandler.loadUser();
     }
     
 }

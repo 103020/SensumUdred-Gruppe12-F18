@@ -17,7 +17,7 @@ public interface IBusiness {
     public ICaseworker getCaseWorker();
     public IIndividual getIndividual();
     public boolean saveCase();
-    public Date getCaseCreationDate();
+    public String getCaseCreationDate();
     public void editCase(ICase ca);
     public void createMeeting();
     public void closeCase();
@@ -29,7 +29,7 @@ public interface IBusiness {
     public void setEmployeeID(int employeeID);
     public String getEmployeeName();
     public String getEmployeeDepartment();
-    public int getEmployeeID();
+    public String getEmployeeID();
     public void setMeetingTime(Date time);
     public void setMeetingParticipants(String participants);
     public Date getMeetingTime();

@@ -14,7 +14,7 @@ public interface ICaseworker {
     public boolean accessCase(int caseNumber, ILog log); 
     
  
-    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log); 
+    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress); 
     
     /**
      *
@@ -50,5 +50,5 @@ public interface ICaseworker {
      *
      * @return returns the employee ID of the caseworker
      */
-    public int getEmployeeID();
+    public String getEmployeeID();
 }
