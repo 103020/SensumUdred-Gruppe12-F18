@@ -33,7 +33,7 @@ public interface ICase {
     String getCreationDate();
     void saveCase(ILog log);
     void editCase(ILog log);
-    void createMeeting(ILog log);
+    void createMeeting(int year, int month, int date, ILog log);
     void closeCase(ILog log);
 
     /**
