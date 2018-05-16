@@ -36,7 +36,7 @@ public class Case implements ICase{
     private boolean caseClarity;
     private boolean individualUnderstanding;
     
-    private IData dataFacade = new DataFacade();
+    private IData dataFacade;
     
     Case(String caseType, String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry,
             String _individualInvolvement, boolean individualUnderstanding,boolean consent,
@@ -57,7 +57,7 @@ public class Case implements ICase{
         this.oralConsent = oralConsent;
         this.caseClarity = caseClarity;
         this.caseFromAddress = new StringBuilder(_caseFromAddress);
-        
+        dataFacade = DataFacade.getInstance();
         
         switch(inquiryFrom){
             case INDIVIDUAL:
@@ -159,7 +159,7 @@ public class Case implements ICase{
 
     @Override
     public void editCase(ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
