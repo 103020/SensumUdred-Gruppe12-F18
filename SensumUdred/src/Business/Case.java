@@ -52,6 +52,7 @@ public class Case implements ICase{
         this.caseClarity = caseClarity;
         this.caseFromAddress = new StringBuilder(_caseFromAddress);
         //dataFacade = DataFacade.getInstance();
+
         
         switch(inquiryFrom){
             case INDIVIDUAL:
