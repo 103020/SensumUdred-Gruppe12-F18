@@ -15,6 +15,17 @@ import java.util.List;
 public class DataFacade implements IData{
 
     private DataHandler dataHandler;
+    private static DataFacade instance;
+// Her implementeres constructor mm. så det bliver en singleton-klasse:
+
+    public static DataFacade getInstance() {
+
+        if (instance == null) {
+            instance = new DataFacade();
+        }
+        return instance;
+
+    }
     
     @Override
     public boolean save(List list) {
