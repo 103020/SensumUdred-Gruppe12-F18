@@ -22,7 +22,7 @@ public interface IBusiness {
     public void createMeeting();
     public void closeCase();
     public ICase accessCase();
-    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress);
+    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress);
     public void createCase(String name, int CPR, String address);
     public void setEmployeeName(String name);
     public void setEmployeeDepartment(String department);
