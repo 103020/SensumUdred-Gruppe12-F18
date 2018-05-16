@@ -16,7 +16,7 @@ public class DataFacade implements IData{
 
     private DataHandler dataHandler;
     private static DataFacade instance;
-// Her implementeres constructor mm. så det bliver en singleton-klasse:
+
 
     public static DataFacade getInstance() {
 

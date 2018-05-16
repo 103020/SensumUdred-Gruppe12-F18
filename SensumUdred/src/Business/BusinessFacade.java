@@ -22,8 +22,22 @@ public class BusinessFacade implements IBusiness {
     Meeting meeting = new Meeting();
     Individual ind = new Individual();
     
-    DataFacade data = new DataFacade();
+    static DataFacade data;
 
+    
+    private static BusinessFacade instance;
+
+
+    public static BusinessFacade getInstance() {
+
+        if (instance == null) {
+            instance = new BusinessFacade();
+        }
+        data = DataFacade.getInstance();
+        return instance;
+        
+    }
+    
     @Override
     public int getCaseNumber() {
         return cas.getCaseNumber();
