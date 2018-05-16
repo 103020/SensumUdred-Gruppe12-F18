@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Business;
 
 import Acq.*;
@@ -35,7 +30,7 @@ public class Case implements ICase{
     private boolean caseClarity;
     private boolean individualUnderstanding;
     
-    private IData dataFacade;
+    //private IData dataFacade;
     
     Case(String caseType, String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry,
             String _individualInvolvement, boolean individualUnderstanding,boolean consent,
@@ -56,6 +51,7 @@ public class Case implements ICase{
         this.oralConsent = oralConsent;
         this.caseClarity = caseClarity;
         this.caseFromAddress = new StringBuilder(_caseFromAddress);
+        //dataFacade = DataFacade.getInstance();
 
         
         switch(inquiryFrom){
@@ -75,6 +71,7 @@ public class Case implements ICase{
                 break;
         }
     }
+
     
     Case(){
         caseNumber = totalCases;
@@ -103,20 +100,24 @@ public class Case implements ICase{
     @Override
     public String getCreationDate() {
         return creationDate;
+
     }
 
-    public boolean isIsClosed() {
+    public boolean isClosed() {
         return isClosed;
     }
 
+    @Override
     public String getCaseType() {
         return caseType;
     }
 
+    @Override
     public String getInquiry() {
         return inquiry.toString();
     }
 
+    @Override
     public String getIndividualInvolvement() {
         return individualInvolvement.toString();
     }
@@ -133,10 +134,12 @@ public class Case implements ICase{
         return oralConsent;
     }
 
+    @Override
     public String getCaseFrom() {
         return caseFrom;
     }
 
+    @Override
     public String getCaseFromAdress() {
         return caseFromAddress.toString();
     }
@@ -149,42 +152,46 @@ public class Case implements ICase{
         return individualUnderstanding;
     }
 
-    
-    
-    @Override
     public void saveCase(ILog log) {
 //      dataFacade.save(list);
     }
 
-    @Override
     public void editCase(ILog log) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
+
     public void createMeeting(int year, int month, int date, ILog log) {
         Date meetingDate = new Date(year, month, date);
         meeting.setMeetingTime(meetingDate);
     }
 
-    @Override
     public void closeCase(ILog log) {
         isClosed = true;
     }
 
-    @Override
     public ICase fetchCase(int caseNumber, ILog log) {
         List<ICase> tempList;
-        tempList = dataFacade.load();
+        //tempList = dataFacade.load();
         return tempList.get(caseNumber);
     }
 
-    @Override
     public void setCaseworker(ICaseworker caseworker, ILog log) {
         this.caseWorker = caseworker;
+    } 
+
+    @Override
+    public IDiary getDiary() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
-    
+
+    @Override
+    public IMeeting getMeeting() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public StringBuilder getCaseFromAddress() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

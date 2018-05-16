@@ -8,10 +8,7 @@ package Acq;
 /**
  *
  * @author stefan
- * @param <E>
  */
-public interface ILog<E> {
-    public void writeLog(E e);
-    public String getLogString();
+public interface IMeeting {
     
 }

@@ -18,8 +18,7 @@ public class Diary implements IDiary{
     private Date date;
     private String entry;
 
-    @Override
-    public void IDiary(String entry, ILog log) {
+    public void Diary(String entry, ILog log) {
         this.entry = entry;
         date = new Date();
     }
