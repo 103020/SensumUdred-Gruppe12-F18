@@ -100,6 +100,7 @@ public class Case implements ICase{
         return creationDate;
     }
 
+    @Override
     public boolean isClosed() {
         return isClosed;
     }
@@ -119,14 +120,17 @@ public class Case implements ICase{
         return individualInvolvement.toString();
     }
 
+    @Override
     public boolean isConsent() {
         return consent;
     }
 
+    @Override
     public boolean isWrittenConsent() {
         return writtenConsent;
     }
 
+    @Override
     public boolean isOralConsent() {
         return oralConsent;
     }
@@ -141,10 +145,12 @@ public class Case implements ICase{
         return caseFromAddress.toString();
     }
 
+    @Override
     public boolean isCaseClarity() {
         return caseClarity;
     }
 
+    @Override
     public boolean isIndividualUnderstanding() {
         return individualUnderstanding;
     }
