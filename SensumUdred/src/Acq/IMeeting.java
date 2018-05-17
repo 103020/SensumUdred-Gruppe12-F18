@@ -5,10 +5,61 @@
  */
 package Acq;
 
+import java.time.LocalDateTime;
+
+
 /**
  *
  * @author stefan
  */
 public interface IMeeting {
     
+    /**
+     * Set the date of the meeting
+     * @param time is the date of the meeting
+     */
+    void setMeetingTime(LocalDateTime time);
+    
+    /**
+     *  
+     * @return the meeting date 
+     */
+    LocalDateTime getMeetingTime();
+
+    /**
+     * Set the participants for the meeting with a String
+     * @param participants are them who are in the meeting
+     */
+    void setMeetingParticipants(String participants);
+        
+    /**
+     *
+     * @return participants for the meeting
+     */
+    String getMeetingParticipants();
+    
+    /**
+     * Set time of the meeting
+     * @param timeOfMeeting is what time the meeting take place on the specific day
+     */
+    void setTimeOfMeeting(String timeOfMeeting);
+    
+    /**
+     * 
+     * @return the specific time of the meeting, an example could be 11.45
+     */
+    String getTimeOfMeeting();
+    
+    /**
+     * 
+     * @return the location or the addresse the meeting take place at
+     */
+    String getLocation();
+    
+    /**
+     * Set the location of the meeting
+     * @param location is the addresse the meeting take place at
+     */
+    void setLocation(String location);
+ 
 }
