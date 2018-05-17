@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Tobias
  */
-public interface IBusinessList {
+public interface ICaseController {
     boolean addCase(Case newCase);
     boolean addCaseWorker(Caseworker caseWorker);
     List<Case> getCaseList();

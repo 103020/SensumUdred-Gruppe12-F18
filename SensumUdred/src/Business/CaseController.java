@@ -11,12 +11,40 @@ import java.util.List;
  *
  * @author Tobias
  */
-public class CaseController {
+public class CaseController implements ICaseController{
     
-    List<ICase> caseList;
+    private List<Case> cases;
+    private List<Caseworker> caseWorkers;
     
-    public void createCase(ICase newCase){
-        caseList.add(newCase);
+    @Override
+    public boolean addCase(Case newCase){
+        return cases.add(newCase);
+    }
+    
+    @Override
+    public boolean addCaseWorker(Caseworker caseWorker){
+        return caseWorkers.add(caseWorker);
+    }
+    
+    @Override
+    public List<Case> getCaseList(){
+        return cases;
+    }
+    
+    @Override
+    public List<Caseworker> getCaseWorkers(){
+        return caseWorkers;
+    }
+    
+    /** find ud af om caseNumber skal laves om til et index **/ 
+    @Override
+    public Case getCase(int caseNumber){
+        return cases.get(caseNumber);
+    }
+    
+    @Override
+    public Caseworker getCaseworker(int employerID){
+        return caseWorkers.get(employerID);
     }
     
 }
