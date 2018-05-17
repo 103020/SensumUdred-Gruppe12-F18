@@ -39,14 +39,14 @@ public interface ICase {
     public String getCaseFrom();
     public String getCaseFromAdress();
     public IDiary getDiary();
-    public boolean isClosed();
+    public boolean getClosed();
     public IMeeting getMeeting();
-    public boolean isConsent();
-    public boolean isWrittenConsent();
-    public boolean isOralConsent();
+    public boolean getConsent();
+    public boolean getWrittenConsent();
+    public boolean getOralConsent();
     public String getCaseFromAddress();
-    public boolean isCaseClarity();
-    public boolean isIndividualUnderstanding();
+    public boolean getCaseClarity();
+    public boolean getIndividualUnderstanding();
     
     
 }
