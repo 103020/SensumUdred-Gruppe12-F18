@@ -101,7 +101,7 @@ public class Case implements ICase{
     }
 
     @Override
-    public boolean isClosed() {
+    public boolean getClosed() {
         return isClosed;
     }
 
@@ -121,17 +121,17 @@ public class Case implements ICase{
     }
 
     @Override
-    public boolean isConsent() {
+    public boolean getConsent() {
         return consent;
     }
 
     @Override
-    public boolean isWrittenConsent() {
+    public boolean getWrittenConsent() {
         return writtenConsent;
     }
 
     @Override
-    public boolean isOralConsent() {
+    public boolean getOralConsent() {
         return oralConsent;
     }
 
@@ -141,17 +141,17 @@ public class Case implements ICase{
     }
 
     @Override
-    public String getCaseFromAdress() {
+    public String getCaseFromAddress() {
         return caseFromAddress.toString();
     }
 
     @Override
-    public boolean isCaseClarity() {
+    public boolean getCaseClarity() {
         return caseClarity;
     }
 
     @Override
-    public boolean isIndividualUnderstanding() {
+    public boolean getIndividualUnderstanding() {
         return individualUnderstanding;
     }
 
@@ -192,8 +192,4 @@ public class Case implements ICase{
         return meeting;
     }
 
-    @Override
-    public String getCaseFromAddress() {
-        return caseFromAddress.toString();
-    }
 }
