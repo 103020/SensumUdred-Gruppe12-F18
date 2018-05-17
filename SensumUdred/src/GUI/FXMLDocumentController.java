@@ -38,11 +38,11 @@ import javafx.scene.input.KeyEvent;
  * @author 103020
  */
 public class FXMLDocumentController implements Initializable {
-    
+
     GUIFacade facade;
-    
+
     FilteredList<caseListAbler> fList;
-    
+
     @FXML
     private Tab mainTab;
     @FXML
@@ -169,8 +169,7 @@ public class FXMLDocumentController implements Initializable {
     private Button nextTabButtonCC;
     @FXML
     private ChoiceBox<String> choiceBoxMT;
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         facade = new GUIFacade();
@@ -182,8 +181,8 @@ public class FXMLDocumentController implements Initializable {
         choiceBoxMT.getItems().addAll("Dato", "Sagsnummer");
         choiceBoxMT.setValue("Sagsnummer");
         fList = new FilteredList(FXCollections.observableArrayList(facade.getCasenumSortedList()), p -> true);
-    }    
- 
+    }
+
     @FXML
     private void handleButtonLogin(ActionEvent event) {
         tabPane.getTabs().add(mainTab);
@@ -197,21 +196,21 @@ public class FXMLDocumentController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION); //just a debug alert
         alert.setTitle("debug Support");
         alert.setHeaderText("debug Support");
-        alert.setContentText("Help is not available."); 
+        alert.setContentText("Help is not available.");
         alert.showAndWait();
     }
 
-        @FXML
+    @FXML
     private void searchFieldHandler(KeyEvent event) {
         //link: https://stackoverflow.com/questions/47559491/making-a-search-bar-in-javafx?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-        switch(choiceBoxMT.getValue()){
+        switch (choiceBoxMT.getValue()) {
             case "Dato":
-                fList.setPredicate(p -> p.getDate().toLowerCase().contains(""+searchFieldMT.getText().toLowerCase().trim()));
+                fList.setPredicate(p -> p.getDate().toLowerCase().contains("" + searchFieldMT.getText().toLowerCase().trim()));
                 caseListViewMT.getItems().clear();
                 caseListViewMT.getItems().addAll(fList);
                 break;
             case "Sagsnummer":
-                fList.setPredicate(p -> p.getCaseNumber().toLowerCase().contains(""+searchFieldMT.getText().toLowerCase().trim()));
+                fList.setPredicate(p -> p.getCaseNumber().toLowerCase().contains("" + searchFieldMT.getText().toLowerCase().trim()));
                 caseListViewMT.getItems().clear();
                 caseListViewMT.getItems().addAll(fList);
                 break;
@@ -246,29 +245,29 @@ public class FXMLDocumentController implements Initializable {
         tabPane.getSelectionModel().selectNext();
     }
 
-        @FXML
+    @FXML
     private void handleButtonNextTabCC(ActionEvent event) {
         //TODO: will also save that values on that page
         Alert alert = new Alert(Alert.AlertType.ERROR);
         if (!createNameFieldCC.getText().equals("") && !createPersonalNumberFieldCC.getText().equals("") && !createAdresseFieldCC.getText().equals("")) {
             if (isInteger(createPersonalNumberFieldCC.getText(), 10)) {
-                facade.createCase(createNameFieldCC.getText(),Integer.parseInt(createPersonalNumberFieldCC.getText()),createAdresseFieldCC.getText());
-                
+                facade.createCase(createNameFieldCC.getText(), Integer.parseInt(createPersonalNumberFieldCC.getText()), createAdresseFieldCC.getText());
+
             } else {
                 alert.setTitle("Forkert input");
                 alert.setHeaderText("Forkerte værdier i \"CPR\"");
-                alert.setContentText("Der skal stå et tal i \"CPR\"."); 
+                alert.setContentText("Der skal stå et tal i \"CPR\".");
                 alert.showAndWait();
             }
         } else {
             alert.setTitle("Forkert input");
             alert.setHeaderText("Forkerte værdier i felterne");
-            alert.setContentText("Check \"Navn\", \"CPR\" og \"Adresse\"."); 
+            alert.setContentText("Check \"Navn\", \"CPR\" og \"Adresse\".");
             alert.showAndWait();
         }
         tabPane.getSelectionModel().selectNext();
     }
-    
+
     @FXML
     private void handleButtonCreateCaseCO(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -276,73 +275,55 @@ public class FXMLDocumentController implements Initializable {
         if (caseFrom.getSelectedToggle() != null) {
             System.out.println(caseFrom.getSelectedToggle().toString()); //TODO: add calls
         } else {
-                alert.setHeaderText("Mangler at vælge hvor henvendelse kommer fra!");
-                alert.setContentText("Der skal også angives navn og adresse."); 
-                alert.showAndWait();
+            alert.setHeaderText("Mangler at vælge hvor henvendelse kommer fra!");
+            alert.setContentText("Der skal også angives navn og adresse.");
+            alert.showAndWait();
         }
         if (caseClarity.getSelectedToggle() != null) {
             System.out.println(caseClarity.getSelectedToggle().toString()); //TODO: add calls
         } else {
-                alert.setHeaderText("Er borgeren klar over hvad der søges efter");
-                alert.setContentText("Der skal vælge ja eller nej."); 
-                alert.showAndWait();
+            alert.setHeaderText("Er borgeren klar over hvad der søges efter");
+            alert.setContentText("Der skal vælge ja eller nej.");
+            alert.showAndWait();
         }
         if (consent.getSelectedToggle() != null) {
             System.out.println(consent.getSelectedToggle().toString()); //TODO: add calls
         } else {
-                alert.setHeaderText("Er det relevant med samtykkeerklæring");
-                alert.setContentText("Der skal vælge ja eller nej."); 
-                alert.showAndWait();
+            alert.setHeaderText("Er det relevant med samtykkeerklæring");
+            alert.setContentText("Der skal vælge ja eller nej.");
+            alert.showAndWait();
         }
         if (individualKnow.getSelectedToggle() != null) {
             System.out.println(individualKnow.getSelectedToggle().toString()); //TODO: add calls
         } else {
-                alert.setHeaderText("Er borgeren indforstået med henvendelsen");
-                alert.setContentText("Der skal vælge ja eller nej."); 
-                alert.showAndWait();
+            alert.setHeaderText("Er borgeren indforstået med henvendelsen");
+            alert.setContentText("Der skal vælge ja eller nej.");
+            alert.showAndWait();
         }
         if (talkedWriten.getSelectedToggle() != null) {
             System.out.println(talkedWriten.getSelectedToggle().toString()); //TODO: add calls
         } else if (consentRadioYesCO.isSelected()) {
-                alert.setHeaderText("Er samtykket give mundligt eller skriftligt?");
-                alert.setContentText("Der skal vælge mellem mundligt eller skriftligt."); 
-                alert.showAndWait();
+            alert.setHeaderText("Er samtykket give mundligt eller skriftligt?");
+            alert.setContentText("Der skal vælge mellem mundligt eller skriftligt.");
+            alert.showAndWait();
         }
     }
-    
-        @FXML
+
+    @FXML
     private void handleRadioButtonConsent(ActionEvent event) {
         if (consentRadioNoCO.isSelected()) {
-                consentRadioWrittenCO.setSelected(false);
-                consentRadioOrallyCO.setSelected(false);
-                consentRadioWrittenCO.setDisable(true);
-                consentRadioOrallyCO.setDisable(true);
+            consentRadioWrittenCO.setSelected(false);
+            consentRadioOrallyCO.setSelected(false);
+            consentRadioWrittenCO.setDisable(true);
+            consentRadioOrallyCO.setDisable(true);
         }
         if (consentRadioYesCO.isSelected()) {
-                consentRadioWrittenCO.setSelected(true);
-                consentRadioOrallyCO.setSelected(true);
-                consentRadioWrittenCO.setDisable(false);
-                consentRadioOrallyCO.setDisable(false);
+            consentRadioWrittenCO.setSelected(true);
+            consentRadioOrallyCO.setSelected(true);
+            consentRadioWrittenCO.setDisable(false);
+            consentRadioOrallyCO.setDisable(false);
         }
 
-    }
-    
-    /**
-     * checks if a String is a number
-     * @param s the String being checked
-     * @param radix the number system
-     * @return a boolean true is returned if s was a number
-     */
-    protected static boolean isInteger(String s, int radix) {
-        if(s.isEmpty()) return false;
-        for(int i = 0; i < s.length(); i++) {
-            if(i == 0 && s.charAt(i) == '-') {
-                if(s.length() == 1) return false;
-                else continue;
-            }
-            if(Character.digit(s.charAt(i),radix) < 0) return false;
-        }
-        return true;
     }
 
     @FXML
@@ -351,7 +332,7 @@ public class FXMLDocumentController implements Initializable {
         if (caseListViewMT.getItems().isEmpty()) {
             alert.setTitle("The List is empty");
             alert.setHeaderText("There is nothing to edit!");
-            alert.setContentText("Make a case instead."); 
+            alert.setContentText("Make a case instead.");
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
             caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber(); //TODO: not edit a closed case, TODO: get the case so it can be edited
@@ -360,10 +341,10 @@ public class FXMLDocumentController implements Initializable {
         } else {
             alert.setTitle("Nothing Selected");
             alert.setHeaderText("No case is Selected!");
-            alert.setContentText("Select a case."); 
+            alert.setContentText("Select a case.");
             alert.showAndWait();
         }
-        
+
     }
 
     @FXML
@@ -372,7 +353,7 @@ public class FXMLDocumentController implements Initializable {
         if (caseListViewMT.getItems().isEmpty()) {
             alert.setTitle("The List is empty");
             alert.setHeaderText("There is nothing to view!");
-            alert.setContentText("Make a case instead."); 
+            alert.setContentText("Make a case instead.");
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
             caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber(); //TODO: get the case so it can be viewed
@@ -381,7 +362,7 @@ public class FXMLDocumentController implements Initializable {
         } else {
             alert.setTitle("Nothing Selected");
             alert.setHeaderText("No case is Selected!");
-            alert.setContentText("Select a case."); 
+            alert.setContentText("Select a case.");
             alert.showAndWait();
         }
     }
@@ -400,17 +381,45 @@ public class FXMLDocumentController implements Initializable {
     private void handleButtonSaveChangesVC(ActionEvent event) {
         //TODO: need to get the case data first
     }
+    
+    /**
+     * checks if a String is a number
+     *
+     * @param s the String being checked
+     * @param radix the number system
+     * @return a boolean true is returned if s was a number
+     */
+    protected static boolean isInteger(String s, int radix) {
+        if (s.isEmpty()) {
+            return false;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (i == 0 && s.charAt(i) == '-') {
+                if (s.length() == 1) {
+                    return false;
+                } else {
+                    continue;
+                }
+            }
+            if (Character.digit(s.charAt(i), radix) < 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
 /**
  * a way to format the case to the listview in the gui
+ *
  * @author 103020
  */
 class caseListAbler {
+
     String caseNumber;
     String date; //TODO: change type from int when type is known
-    
-    caseListAbler(String caseNumber, String date){
+
+    caseListAbler(String caseNumber, String date) {
         this.caseNumber = caseNumber;
         this.date = date;
     }
@@ -430,8 +439,9 @@ class caseListAbler {
     public void setDate(String date) {
         this.date = date;
     }
-    
-    public String toString(){
+
+    @Override
+    public String toString() {
         return "date: " + date + " caseNumber: " + caseNumber;
     }
 }

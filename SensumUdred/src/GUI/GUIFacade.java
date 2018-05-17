@@ -52,7 +52,7 @@ public class GUIFacade implements IGUI{
     
     @Override
     public void createCase(String name, int CPR, String address) {
-        b.createCase(name,CPR,address);
+        //b.createCase(name,CPR,address);
     }
 
     @Override
@@ -103,9 +103,12 @@ public class GUIFacade implements IGUI{
     @Override
     public List getCasenumSortedList() {
         List convert = new ArrayList();
+        convert.add(new caseListAbler("58", "16/08-12"));
+        convert.add(new caseListAbler("12", "30/01-03"));
+        /* TODO: when a list is returnable
         for (ICase ic : b.getCasenumSortedList()) {
             convert.add(new caseListAbler(""+ic.getCaseNumber(),""+ic.getCreationDate()));
-        }
+        }*/
         return convert;
     }
 }
