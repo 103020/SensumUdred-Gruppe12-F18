@@ -28,6 +28,5 @@ public interface IGUI {
     public void setIndividualName(String name);
     public void setIndividualAddress(String address);
     public void setIndividualCPR(int CPR);
-    public List getDateSortedList();
-    public List getCasenumSortedList();
+    public List getCaseList();
 }

@@ -7,12 +7,10 @@ package GUI;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -30,7 +28,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -181,7 +178,7 @@ public class FXMLDocumentController implements Initializable {
         tabPane.getTabs().remove(caseOpeningTab);
         choiceBoxMT.getItems().addAll("Dato", "Sagsnummer");
         choiceBoxMT.setValue("Sagsnummer");
-        fList = new FilteredList(FXCollections.observableArrayList(facade.getCasenumSortedList()), p -> true);
+        fList = new FilteredList(FXCollections.observableArrayList(facade.getCaseList()), p -> true);
     }
 
     @FXML
@@ -204,7 +201,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleChoiceBoxChange(MouseEvent event) {
         searchFieldMT.clear();
-        switch (choiceBoxMT.getValue()) {
+        switch (choiceBoxMT.getValue()) { //look in the searchfield to find thing that look like it in the list
             case "Dato":
                 fList.setPredicate(p -> p.getDate().toLowerCase().contains("" + searchFieldMT.getText().toLowerCase().trim()));
                 caseListViewMT.getItems().clear();
@@ -220,8 +217,7 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void searchFieldHandler(KeyEvent event) {
-        //link: https://stackoverflow.com/questions/47559491/making-a-search-bar-in-javafx?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-        switch (choiceBoxMT.getValue()) {
+        switch (choiceBoxMT.getValue()) { //look in the searchfield to find thing that look like it in the list
             case "Dato":
                 fList.setPredicate(p -> p.getDate().toLowerCase().contains("" + searchFieldMT.getText().toLowerCase().trim()));
                 caseListViewMT.getItems().clear();
@@ -242,14 +238,16 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonDate(ActionEvent event) {
-        caseListViewMT.getItems().clear();
-        caseListViewMT.getItems().addAll(facade.getDateSortedList());
+        //TODO: sort the fList when what date is, is in place
     }
 
     @FXML
     private void handleButtonCaseNumber(ActionEvent event) {
+        ArrayList temp = (ArrayList) facade.getCaseList();
+        Collections.sort(temp, new listAblerComparator());
+        fList = new FilteredList(FXCollections.observableArrayList(temp), p -> true);
         caseListViewMT.getItems().clear();
-        caseListViewMT.getItems().addAll(facade.getCasenumSortedList());
+        caseListViewMT.getItems().addAll(fList);
     }
 
     @FXML
@@ -435,7 +433,7 @@ public class FXMLDocumentController implements Initializable {
 class caseListAbler {
 
     String caseNumber;
-    String date; //TODO: change type from int when type is known
+    String date;
 
     caseListAbler(String caseNumber, String date) {
         this.caseNumber = caseNumber;
@@ -463,3 +461,16 @@ class caseListAbler {
         return "date: " + date + " caseNumber: " + caseNumber;
     }
 }
+class listAblerComparator implements Comparator<caseListAbler>{
+
+        @Override
+        public int compare(caseListAbler o1, caseListAbler o2) {
+            if (Integer.parseInt(o1.getCaseNumber()) > Integer.parseInt(o2.getCaseNumber())) {
+                return 1;
+            } else if (Integer.parseInt(o1.getCaseNumber()) < Integer.parseInt(o2.getCaseNumber())){
+                return -1;
+            } else {
+                return 0;
+            }
+        }    
+    }

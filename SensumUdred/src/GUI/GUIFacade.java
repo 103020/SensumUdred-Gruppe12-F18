@@ -96,12 +96,7 @@ public class GUIFacade implements IGUI{
     }
 
     @Override
-    public List getDateSortedList() {
-        return b.getDateSortedList();
-    }
-
-    @Override
-    public List getCasenumSortedList() {
+    public List getCaseList() {
         List convert = new ArrayList();
         convert.add(new caseListAbler("58", "16/08-12"));
         convert.add(new caseListAbler("12", "30/01-03"));
