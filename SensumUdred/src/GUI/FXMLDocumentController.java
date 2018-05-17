@@ -248,12 +248,6 @@ public class FXMLDocumentController implements Initializable {
         caseListViewMT.getItems().clear();
         caseListViewMT.getItems().addAll(fList);
     }
-    
-    private ArrayList<caseListAbler> sortCaseNumber(){
-        ArrayList temp = (ArrayList) facade.getCaseList();
-        Collections.sort(temp, new listAblerComparator());
-        return temp;
-    }
 
     @FXML
     private void handleSearchField(ActionEvent event) {
@@ -428,6 +422,16 @@ public class FXMLDocumentController implements Initializable {
         }
         return true;
     }
+    /**
+     * gets a list and sorts it
+     * use for sorting the list af case, that was gotten from the business layer
+     * @return returns a sorted list
+     */
+    private ArrayList<caseListAbler> sortCaseNumber(){
+        ArrayList temp = (ArrayList) facade.getCaseList();
+        Collections.sort(temp, new listAblerComparator());
+        return temp;
+    }
 }
 
 /**
@@ -466,8 +470,11 @@ class caseListAbler {
         return "date: " + date + " caseNumber: " + caseNumber;
     }
 }
+/**
+ * a comparator for the caseListAbler class, for when sorting lists
+ * @author 103020
+ */
 class listAblerComparator implements Comparator<caseListAbler>{
-
         @Override
         public int compare(caseListAbler o1, caseListAbler o2) {
             if (Integer.parseInt(o1.getCaseNumber()) > Integer.parseInt(o2.getCaseNumber())) {
