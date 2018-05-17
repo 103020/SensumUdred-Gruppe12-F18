@@ -141,7 +141,7 @@ public class Case implements ICase{
     }
 
     @Override
-    public String getCaseFromAdress() {
+    public String getCaseFromAddress() {
         return caseFromAddress.toString();
     }
 
@@ -192,8 +192,4 @@ public class Case implements ICase{
         return meeting;
     }
 
-    @Override
-    public String getCaseFromAddress() {
-        return caseFromAddress.toString();
-    }
 }

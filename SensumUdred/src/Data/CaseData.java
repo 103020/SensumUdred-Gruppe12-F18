@@ -142,10 +142,6 @@ public class CaseData implements ICase{
         return individualInvolvement.toString();
     }
 
-    @Override
-    public String getCaseFromAdress() {
-        return caseFromAddress.toString();
-    }
     
     
 }
