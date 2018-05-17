@@ -6,6 +6,8 @@
 package Data;
 
 import Acq.ICase;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -51,17 +53,21 @@ public class ObjectMapper {
     public static List<ICase> getCases(){
         Session s = factory.openSession();
         Transaction tx = null;
-        List cases = null;
+        List<ICase> caseList = new ArrayList();
         
         try {
             tx = s.beginTransaction();
-            cases = s.createQuery("FROM Cases").list();
+            List cases = s.createQuery("FROM Cases").list();
+            for (Iterator iterator = cases.iterator(); iterator.hasNext();){
+                CaseData cas = (CaseData) iterator.next();
+                caseList.add(cas);
+            }
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
             s.close();
         }
-        return cases;
+        return caseList;
     }
     
     public static boolean updateCase(ICase cas) {
