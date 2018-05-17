@@ -173,11 +173,6 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void createCase(String name, int CPR, String address) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List getDateSortedList() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -187,10 +182,10 @@ public class BusinessFacade implements IBusiness {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    //test
     @Override
     public void createCase() {
-        //worker.createCase("Pizza", "Morten", "Anstalten 17", 0, "jeg vil gerne have pizza", "jeg vil gerne have pizza", true, true, true, true, true, InquiryFrom.INDIVIDUAL, "anstalten 17");
-        throw new UnsupportedOperationException("Not supported yet.");
+        worker.createCase("Pizza", "Morten", "Anstalten 17", 0, "jeg vil gerne have pizza", "jeg vil gerne have pizza", true, true, true, true, true, InquiryFrom.INDIVIDUAL, "anstalten 17");
     }
     
 }
