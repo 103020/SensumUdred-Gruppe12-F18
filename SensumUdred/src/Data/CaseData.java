@@ -118,8 +118,8 @@ public class CaseData implements ICase{
     }
 
     @Override
-    public StringBuilder getCaseFromAddress() {
-        return caseFromAddress;
+    public String getCaseFromAddress() {
+        return caseFromAddress.toString();
     }
 
     @Override

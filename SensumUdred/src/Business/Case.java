@@ -178,16 +178,16 @@ public class Case implements ICase{
 
     @Override
     public IDiary getDiary() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return diary;
     }
 
     @Override
     public IMeeting getMeeting() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return meeting;
     }
 
     @Override
-    public StringBuilder getCaseFromAddress() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getCaseFromAddress() {
+        return caseFromAddress.toString();
     }
 }
