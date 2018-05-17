@@ -18,6 +18,7 @@ public class Caseworker implements ICaseworker{
     private IDepartment department;
     private String employeeID; 
     private ICase cas;
+    private Meeting meeting;
     
     @Override
     public boolean accessCase(int caseNumber, ILog log) {
@@ -30,6 +31,13 @@ public class Caseworker implements ICaseworker{
     public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
         ILog log = new Log(this, this);
         cas = new Case(caseType, individualName, individualAddress,individualCPR, log, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
+    }
+    
+    @Override
+    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants){
+        meeting.messageToMeeting();
+        ILog log = new Log(this, (ICaseworker) this);
+        meeting = new Meeting(year, month, day, hour, minute, location, participants, log);
     }
 
     @Override

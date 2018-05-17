@@ -19,7 +19,7 @@ public class Meeting implements IMeeting {
     private String participants;
     private String timeOfMeeting;
     private String location;
-    private boolean meetingActive = true;
+    private boolean meetingActive;
         
     /**
      * This is how a meeting the created with the following attributes
@@ -30,13 +30,15 @@ public class Meeting implements IMeeting {
      * end or the meeting is cancelled in any shape and form the meeting active is set to false 
      * @param log is what track who made the meeting
      */
-    public void createMeeting(LocalDateTime time, String timeOfMeeting, String location, boolean active, ILog log){  
-        this.location = location;
-        this.timeOfMeeting = timeOfMeeting;
-        this.dayOfMeeting = time;
-        this.meetingActive = active;
+    Meeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log){  
+    LocalDateTime meetingDate = LocalDateTime.of(year, month, day, hour, minute);
+    setMeetingTime(meetingDate);
+    meetingActive = true;
     }
-    
+
+    Meeting() {
+    } 
+
     public void saveMeeting(){       
     }
     
@@ -49,27 +51,16 @@ public class Meeting implements IMeeting {
     }
     
     public void messageToMeeting(){
-        System.out.println("We would like if you could come to a meeting: "+ getMeetingTime() + 
-                           " " + getTimeOfMeeting() + "at: " + getLocation());
+        System.out.println("Vi indkalder dig til møde den: "+ getMeetingTime() + 
+                           "\nAddressen: " + getLocation() + "\nDe deltagende er: " + getMeetingParticipants());
    
     }
     
     public void cancelMeeting(){
-        if(meetingActive == false){
-           System.out.println("The meeting has been cancelled");
-        }
-    }
-        
-    @Override
-    public String getTimeOfMeeting() {
-        return timeOfMeeting;
+        meetingActive = false;
+        System.out.println("Mødet er blevet annulleret!!");
     }
 
-    @Override
-    public void setTimeOfMeeting(String timeOfMeeting) {
-        this.timeOfMeeting = timeOfMeeting;
-    }
-    
     @Override
     public void setMeetingTime(LocalDateTime time) {
         dayOfMeeting = time;

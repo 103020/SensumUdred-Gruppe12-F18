@@ -27,6 +27,7 @@ public class Case implements ICase{
     private StringBuilder caseFromAddress;
     private boolean caseClarity;
     private boolean individualUnderstanding;
+    private IMeeting createNewMeeting;
     
     private IBusiness businessFacade;
     
@@ -163,10 +164,10 @@ public class Case implements ICase{
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-
-    public void createMeeting(int year, int month, int date, int hour, int minute, ILog log) {
-        LocalDateTime meetingDate = LocalDateTime.of(year, month, date, hour, minute);
-        meeting.setMeetingTime(meetingDate);
+    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants) {
+//        meeting.messageToMeeting();
+//        ILog log = new Log(this, (ICaseworker) this);
+//        createNewMeeting = new Meeting(year, month, day, hour, minute, location, participants, log);
     }
 
     public void closeCase(ILog log) {
