@@ -32,6 +32,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 /**
  *
@@ -200,6 +201,23 @@ public class FXMLDocumentController implements Initializable {
         alert.showAndWait();
     }
 
+    @FXML
+    private void handleChoiceBoxChange(MouseEvent event) {
+        searchFieldMT.clear();
+        switch (choiceBoxMT.getValue()) {
+            case "Dato":
+                fList.setPredicate(p -> p.getDate().toLowerCase().contains("" + searchFieldMT.getText().toLowerCase().trim()));
+                caseListViewMT.getItems().clear();
+                caseListViewMT.getItems().addAll(fList);
+                break;
+            case "Sagsnummer":
+                fList.setPredicate(p -> p.getCaseNumber().toLowerCase().contains("" + searchFieldMT.getText().toLowerCase().trim()));
+                caseListViewMT.getItems().clear();
+                caseListViewMT.getItems().addAll(fList);
+                break;
+        }
+    }
+    
     @FXML
     private void searchFieldHandler(KeyEvent event) {
         //link: https://stackoverflow.com/questions/47559491/making-a-search-bar-in-javafx?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
