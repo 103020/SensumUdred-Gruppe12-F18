@@ -9,6 +9,7 @@ import Acq.ICase;
 import Acq.IGUI;
 import Business.BusinessFacade;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -101,6 +102,10 @@ public class GUIFacade implements IGUI{
 
     @Override
     public List getCasenumSortedList() {
-        return b.getCasenumSortedList();
+        List convert = new ArrayList();
+        for (ICase ic : b.getCasenumSortedList()) {
+            convert.add(new caseListAbler(""+ic.getCaseNumber(),""+ic.getCreationDate()));
+        }
+        return convert;
     }
 }

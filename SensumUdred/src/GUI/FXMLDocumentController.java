@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
@@ -30,6 +31,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 
 /**
  *
@@ -66,7 +68,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField searchFieldMT;
     @FXML
-    private ListView<FilteredList<caseListAbler>> caseListViewMT;
+    private ListView<caseListAbler> caseListViewMT;
     @FXML
     private Button createCaseButtonMT;
     @FXML
@@ -179,14 +181,14 @@ public class FXMLDocumentController implements Initializable {
         tabPane.getTabs().remove(caseOpeningTab);
         choiceBoxMT.getItems().addAll("Dato", "Sagsnummer");
         choiceBoxMT.setValue("Sagsnummer");
-        fList = new FilteredList((ObservableList) facade.getCasenumSortedList(), p -> true);
+        fList = new FilteredList(FXCollections.observableArrayList(facade.getCasenumSortedList()), p -> true);
     }    
-
+ 
     @FXML
     private void handleButtonLogin(ActionEvent event) {
         tabPane.getTabs().add(mainTab);
         tabPane.getSelectionModel().selectNext();
-        caseListViewMT.getItems().add(fList);
+        caseListViewMT.getItems().addAll(fList);
         tabPane.getTabs().remove(loginTab); // removes the tab
     }
 
@@ -199,15 +201,19 @@ public class FXMLDocumentController implements Initializable {
         alert.showAndWait();
     }
 
-    @FXML
-    private void searchFieldHandler(InputMethodEvent event) {
-        //TODO: test when a list is getable
+        @FXML
+    private void searchFieldHandler(KeyEvent event) {
+        //link: https://stackoverflow.com/questions/47559491/making-a-search-bar-in-javafx?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
         switch(choiceBoxMT.getValue()){
-            case "Date":
-                fList.setPredicate(p -> p.getDate().toLowerCase().contains(searchFieldMT.getText().toLowerCase().trim()));
+            case "Dato":
+                fList.setPredicate(p -> p.getDate().toLowerCase().contains(""+searchFieldMT.getText().toLowerCase().trim()));
+                caseListViewMT.getItems().clear();
+                caseListViewMT.getItems().addAll(fList);
                 break;
             case "Sagsnummer":
-                fList.setPredicate(p -> p.getDate().toLowerCase().contains(searchFieldMT.getText().toLowerCase().trim()));
+                fList.setPredicate(p -> p.getCaseNumber().toLowerCase().contains(""+searchFieldMT.getText().toLowerCase().trim()));
+                caseListViewMT.getItems().clear();
+                caseListViewMT.getItems().addAll(fList);
                 break;
         }
     }
@@ -268,35 +274,35 @@ public class FXMLDocumentController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Manglende input");
         if (caseFrom.getSelectedToggle() != null) {
-            System.out.println(caseFrom.getSelectedToggle().toString());
+            System.out.println(caseFrom.getSelectedToggle().toString()); //TODO: add calls
         } else {
                 alert.setHeaderText("Mangler at vælge hvor henvendelse kommer fra!");
                 alert.setContentText("Der skal også angives navn og adresse."); 
                 alert.showAndWait();
         }
         if (caseClarity.getSelectedToggle() != null) {
-            System.out.println(caseClarity.getSelectedToggle().toString());
+            System.out.println(caseClarity.getSelectedToggle().toString()); //TODO: add calls
         } else {
                 alert.setHeaderText("Er borgeren klar over hvad der søges efter");
                 alert.setContentText("Der skal vælge ja eller nej."); 
                 alert.showAndWait();
         }
         if (consent.getSelectedToggle() != null) {
-            System.out.println(consent.getSelectedToggle().toString());
+            System.out.println(consent.getSelectedToggle().toString()); //TODO: add calls
         } else {
                 alert.setHeaderText("Er det relevant med samtykkeerklæring");
                 alert.setContentText("Der skal vælge ja eller nej."); 
                 alert.showAndWait();
         }
         if (individualKnow.getSelectedToggle() != null) {
-            System.out.println(individualKnow.getSelectedToggle().toString());
+            System.out.println(individualKnow.getSelectedToggle().toString()); //TODO: add calls
         } else {
                 alert.setHeaderText("Er borgeren indforstået med henvendelsen");
                 alert.setContentText("Der skal vælge ja eller nej."); 
                 alert.showAndWait();
         }
         if (talkedWriten.getSelectedToggle() != null) {
-            System.out.println(talkedWriten.getSelectedToggle().toString());
+            System.out.println(talkedWriten.getSelectedToggle().toString()); //TODO: add calls
         } else if (consentRadioYesCO.isSelected()) {
                 alert.setHeaderText("Er samtykket give mundligt eller skriftligt?");
                 alert.setContentText("Der skal vælge mellem mundligt eller skriftligt."); 
@@ -348,7 +354,7 @@ public class FXMLDocumentController implements Initializable {
             alert.setContentText("Make a case instead."); 
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
-            caseListViewMT.getSelectionModel().getSelectedItem().get(1); //TODO: not edit a closed case, TODO: get the case so it can be edited
+            caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber(); //TODO: not edit a closed case, TODO: get the case so it can be edited
             tabPane.getTabs().add(editCaseTab);
             tabPane.getSelectionModel().selectNext();
         } else {
@@ -369,7 +375,7 @@ public class FXMLDocumentController implements Initializable {
             alert.setContentText("Make a case instead."); 
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
-            caseListViewMT.getSelectionModel().getSelectedItem().get(1); //TODO: get the case so it can be viewed
+            caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber(); //TODO: get the case so it can be viewed
             tabPane.getTabs().add(readCaseTab);
             tabPane.getSelectionModel().selectNext();
         } else {
@@ -404,7 +410,7 @@ class caseListAbler {
     String caseNumber;
     String date; //TODO: change type from int when type is known
     
-    private caseListAbler(String caseNumber, String date){
+    caseListAbler(String caseNumber, String date){
         this.caseNumber = caseNumber;
         this.date = date;
     }
