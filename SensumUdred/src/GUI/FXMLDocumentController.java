@@ -178,7 +178,8 @@ public class FXMLDocumentController implements Initializable {
         tabPane.getTabs().remove(caseOpeningTab);
         choiceBoxMT.getItems().addAll("Dato", "Sagsnummer");
         choiceBoxMT.setValue("Sagsnummer");
-        fList = new FilteredList(FXCollections.observableArrayList(facade.getCaseList()), p -> true);
+        fList = new FilteredList(FXCollections.observableArrayList(facade.getCaseList()), p -> true); //temp to test
+        //fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true); //TODO: change to this when testing is done
     }
 
     @FXML
@@ -243,11 +244,15 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonCaseNumber(ActionEvent event) {
-        ArrayList temp = (ArrayList) facade.getCaseList();
-        Collections.sort(temp, new listAblerComparator());
-        fList = new FilteredList(FXCollections.observableArrayList(temp), p -> true);
+        fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true);
         caseListViewMT.getItems().clear();
         caseListViewMT.getItems().addAll(fList);
+    }
+    
+    private ArrayList<caseListAbler> sortCaseNumber(){
+        ArrayList temp = (ArrayList) facade.getCaseList();
+        Collections.sort(temp, new listAblerComparator());
+        return temp;
     }
 
     @FXML
