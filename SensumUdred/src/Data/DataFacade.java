@@ -28,7 +28,7 @@ public class DataFacade implements IData{
     }
     
     @Override
-    public boolean save(List list) {
+    public int save(List list) {
         return dataHandler.save(list);
     }
 
@@ -46,6 +46,11 @@ public class DataFacade implements IData{
 
     @Override
     public boolean login(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int loadHighestCaseNumber() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

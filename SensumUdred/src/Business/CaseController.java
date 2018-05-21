@@ -13,37 +13,37 @@ import java.util.List;
  */
 public class CaseController implements ICaseController{
     
-    private List<Case> cases;
-    private List<Caseworker> caseWorkers;
+    private List<ICase> cases;
+    private List<ICaseworker> caseWorkers;
     
     @Override
-    public boolean addCase(Case newCase){
+    public boolean addCase(ICase newCase){
         return cases.add(newCase);
     }
     
     @Override
-    public boolean addCaseWorker(Caseworker caseWorker){
+    public boolean addCaseWorker(ICaseworker caseWorker){
         return caseWorkers.add(caseWorker);
     }
     
     @Override
-    public List<Case> getCaseList(){
+    public List<ICase> getCaseList(){
         return cases;
     }
     
     @Override
-    public List<Caseworker> getCaseWorkers(){
+    public List<ICaseworker> getCaseWorkers(){
         return caseWorkers;
     }
     
     /** find ud af om caseNumber skal laves om til et index **/ 
     @Override
-    public Case getCase(int caseNumber){
+    public ICase getCase(int caseNumber){
         return cases.get(caseNumber);
     }
     
     @Override
-    public Caseworker getCaseworker(int employerID){
+    public ICaseworker getCaseworker(int employerID){
         return caseWorkers.get(employerID);
     }
     

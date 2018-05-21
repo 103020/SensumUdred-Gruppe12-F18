@@ -12,17 +12,18 @@ public class IndividualData implements IIndividual{
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "SELECT Name FROM Individual";
     }
 
     @Override
     public String getAddress() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "SELECT Address FROM Individual";
     }
 
     @Override
     public int getCPR() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String queryForCPR = "Select CPR FROM Individual";
+        return 0;
     }
 
     @Override

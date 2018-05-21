@@ -12,10 +12,10 @@ import java.util.List;
  * @author Tobias
  */
 public interface ICaseController {
-    boolean addCase(Case newCase);
-    boolean addCaseWorker(Caseworker caseWorker);
-    List<Case> getCaseList();
-    List<Caseworker> getCaseWorkers();
-    Case getCase(int caseNumber);
-    Caseworker getCaseworker(int employerID);
+    boolean addCase(ICase newCase);
+    boolean addCaseWorker(ICaseworker caseWorker);
+    List<ICase> getCaseList();
+    List<ICaseworker> getCaseWorkers();
+    ICase getCase(int caseNumber);
+    ICaseworker getCaseworker(int employerID);
 }

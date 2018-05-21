@@ -19,18 +19,18 @@ public class Caseworker implements ICaseworker{
     private String employeeID; 
     private ICase cas;
     private Meeting meeting;
+    IBusiness businessFacade;
     
     @Override
     public boolean accessCase(int caseNumber, ILog log) {
-        IData dataFacade = DataFacade.getInstance();
-        dataFacade.load();
-        return dataFacade.load() != null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
         ILog log = new Log(this, this);
         cas = new Case(caseType, individualName, individualAddress,individualCPR, log, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
+        cas.setCaseNumber(cas.saveCase(log));
     }
     
     @Override
