@@ -364,18 +364,18 @@ public class FXMLDocumentController implements Initializable {
     private void handleButtonEditCaseMT(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         if (caseListViewMT.getItems().isEmpty()) {
-            alert.setTitle("The List is empty");
-            alert.setHeaderText("There is nothing to edit!");
-            alert.setContentText("Make a case instead.");
+            alert.setTitle("Listen er tom");
+            alert.setHeaderText("Der er ingen ting at redigere!");
+            alert.setContentText("Lav en sag istedet.");
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
             caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber(); //TODO: not edit a closed case, TODO: get the case so it can be edited
             tabPane.getTabs().add(editCaseTab);
             tabPane.getSelectionModel().selectNext();
         } else {
-            alert.setTitle("Nothing Selected");
-            alert.setHeaderText("No case is Selected!");
-            alert.setContentText("Select a case.");
+            alert.setTitle("Ingen ting valgt");
+            alert.setHeaderText("Ingen sag er valgt!");
+            alert.setContentText("Vælgt en sag.");
             alert.showAndWait();
         }
 
@@ -385,18 +385,18 @@ public class FXMLDocumentController implements Initializable {
     private void handleButtonViewCaseMT(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         if (caseListViewMT.getItems().isEmpty()) {
-            alert.setTitle("The List is empty");
-            alert.setHeaderText("There is nothing to view!");
-            alert.setContentText("Make a case instead.");
+            alert.setTitle("Listen er tom");
+            alert.setHeaderText("Der er ingen sager!");
+            alert.setContentText("Lav en sag istedet.");
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
             caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber(); //TODO: get the case so it can be viewed
             tabPane.getTabs().add(readCaseTab);
             tabPane.getSelectionModel().selectNext();
         } else {
-            alert.setTitle("Nothing Selected");
-            alert.setHeaderText("No case is Selected!");
-            alert.setContentText("Select a case.");
+            alert.setTitle("Ingen ting valgt");
+            alert.setHeaderText("Ingen sag er valgt!");
+            alert.setContentText("Vælgt en sag.");
             alert.showAndWait();
         }
     }
@@ -513,7 +513,7 @@ class caseListAbler {
 
     @Override
     public String toString() {
-        return "date: " + date + " caseNumber: " + caseNumber;
+        return "dato: " + date + " sagsnummer: " + caseNumber;
     }
 }
 /**

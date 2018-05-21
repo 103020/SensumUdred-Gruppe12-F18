@@ -39,18 +39,6 @@ public interface IMeeting {
     String getMeetingParticipants();
     
     /**
-     * Set time of the meeting
-     * @param timeOfMeeting is what time the meeting take place on the specific day
-     */
-    void setTimeOfMeeting(String timeOfMeeting);
-    
-    /**
-     * 
-     * @return the specific time of the meeting, an example could be 11.45
-     */
-    String getTimeOfMeeting();
-    
-    /**
      * 
      * @return the location or the addresse the meeting take place at
      */
