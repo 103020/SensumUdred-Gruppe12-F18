@@ -15,5 +15,6 @@ public interface IData {
     public boolean save(List list);
     public List load();
     public List loadUser();
+    public boolean login(String username, String password);
     
 }

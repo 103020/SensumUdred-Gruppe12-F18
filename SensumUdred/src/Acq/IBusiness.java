@@ -207,4 +207,7 @@ public interface IBusiness {
      * @return the location of the meeting
      */
     public String getLocation();
+    
+    public boolean login(String username, String password);
+    
 }

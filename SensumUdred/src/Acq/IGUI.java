@@ -30,4 +30,5 @@ public interface IGUI {
     public void setIndividualCPR(int CPR);
     public List getCaseList();
     public LocalDateTime getMeetingTime();
+    public boolean login(String username, String password);
 }
