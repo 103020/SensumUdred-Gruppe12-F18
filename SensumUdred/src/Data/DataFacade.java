@@ -8,8 +8,6 @@ import java.util.List;
  * @author Stefan
  */
 public class DataFacade implements IData{
-
-    private DataHandler dataHandler;
     private static DataFacade instance;
 
 
@@ -24,13 +22,10 @@ public class DataFacade implements IData{
     
     @Override
     public boolean save(List list) {
-        return dataHandler.save(list);
     }
 
     @Override
     public List load() {
-        dataHandler = new DataHandler();
-        return dataHandler.load();
     }
 
     @Override
