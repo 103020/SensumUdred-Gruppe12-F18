@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Acq.IGUI;
 import Acq.IMeeting;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -40,7 +41,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class FXMLDocumentController implements Initializable {
 
-    GUIFacade facade;
+    IGUI facade;
 
     FilteredList<caseListAbler> fList;
 
