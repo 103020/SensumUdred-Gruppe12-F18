@@ -425,6 +425,8 @@ public class FXMLDocumentController implements Initializable {
         alert.setTitle("Forkert indput!");
         String temp;
         String[] tempList = null;
+        int hour = 0;
+        int minut = 0;
         if (textFieldMeetingM.getText() != "") { 
             temp = textFieldMeetingM.getText();
             tempList = temp.split(":");
@@ -432,16 +434,23 @@ public class FXMLDocumentController implements Initializable {
             alert.setHeaderText("Du skal skrive et klokkeslæt i tekstfeltet!");
             alert.setContentText("Der skal være en værdi i tekstfeltet!");
         }
+        
         try {
-            Integer.parseInt(tempList[0]);//to catch an exception if it can't be converted to an integer
-            Integer.parseInt(tempList[1]);
+            hour = Integer.parseInt(tempList[0]);//to make it so that if an input is 14:80, the time becomes 15:20
+            minut = Integer.parseInt(tempList[1]);
+            if (minut >= 60) {
+                hour = hour + (minut / 60);
+                minut = minut - 60 * (minut / 60);
+            }
+            if (hour >= 24) {
+                hour = hour - 24 * (hour / 24);
+            }
         } catch (NumberFormatException e) {
             alert.setHeaderText("Du skal skrive et klokkeslæt i textfeltet!");
             alert.setContentText("Klokkeslættet skal skrive som \"12:30\", uden \"!");
         } finally {
             //TODO: check where it is sendt
-            System.out.println("test");
-            facade.setMeetingTime(datePickerMeetingM.getValue().atTime(Integer.parseInt(tempList[0]), Integer.parseInt(tempList[1])));
+            facade.setMeetingTime(datePickerMeetingM.getValue().atTime(hour, minut));
             listViewMeetingsM.getItems().clear();
             listViewMeetingsM.getItems().add(facade.getMeetingTime());
         }
