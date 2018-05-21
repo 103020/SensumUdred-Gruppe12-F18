@@ -175,7 +175,7 @@ public class Case implements ICase{
     }
 
     public ICase fetchCase(int caseNumber, ILog log) {
-        ICase cas = businessFacade.accessCase();
+        ICase cas = businessFacade.accessCase(caseNumber);
         return cas;
     }
 

@@ -50,15 +50,13 @@ public interface IBusiness {
      */
     public void editCase(ICase ca);
     
-    public void createMeeting();
-    
     public void closeCase();
     
     /**
      * 
      * @return returns a case
      */
-    public ICase accessCase();
+    public ICase accessCase(int caseNumber);
     
     /**
      * 
@@ -99,7 +97,7 @@ public interface IBusiness {
      * 
      * @param department sets the department of the employee
      */
-    public void setEmployeeDepartment(String department);
+    public void setEmployeeDepartment(IDepartment department);
     
     /**
      * 

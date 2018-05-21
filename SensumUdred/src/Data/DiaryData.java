@@ -19,12 +19,13 @@ public class DiaryData implements IDiary{
 
     @Override
     public String getEntry(ICaseworker caseworker, ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "SELECT" + caseworker + "FROM Diary";
     }
 
     @Override
     public Date getDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String queryForDate = "SELECT Date from Diary";
+        return null;
     }
     
 }
