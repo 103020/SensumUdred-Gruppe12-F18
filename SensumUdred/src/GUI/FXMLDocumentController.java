@@ -431,9 +431,11 @@ public class FXMLDocumentController implements Initializable {
         } else {
             alert.setHeaderText("Du skal skrive et klokkeslæt i tekstfeltet!");
             alert.setContentText("Der skal være en værdi i tekstfeltet!");
+            alert.showAndWait();
         }
-        
+        boolean error = false;
         try {
+            error = false;
             hour = Integer.parseInt(tempList[0]);//to make it so that if an input is 14:80, the time becomes 15:20
             minut = Integer.parseInt(tempList[1]);
             if (minut >= 60) {
@@ -446,11 +448,15 @@ public class FXMLDocumentController implements Initializable {
         } catch (NumberFormatException e) {
             alert.setHeaderText("Du skal skrive et klokkeslæt i textfeltet!");
             alert.setContentText("Klokkeslættet skal skrive som \"HH:MM\", hvor HH er timer og MM er minutter!");
+            alert.showAndWait();
+            error = true;
         } finally {
             //TODO: check where it is sendt
-            facade.setMeetingTime(datePickerMeetingM.getValue().atTime(hour, minut));
-            listViewMeetingsM.getItems().clear();
-            listViewMeetingsM.getItems().add(facade.getMeetingTime());
+            if (!error) {
+                facade.setMeetingTime(datePickerMeetingM.getValue().atTime(hour, minut));
+                listViewMeetingsM.getItems().clear();
+                listViewMeetingsM.getItems().add(facade.getMeetingTime());
+            }
         }
         
     }
