@@ -34,9 +34,9 @@ public interface IBusiness {
     
     /**
      * 
-     * @return returns whether the case is saved
+     * @return returns the caseNumber
      */
-    public boolean saveCase();
+    public int saveCase();
     
     /**
      * 

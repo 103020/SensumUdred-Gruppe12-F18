@@ -24,20 +24,20 @@ import java.util.List;
 public class DataHandler implements IDataHandler{
 
     @Override
-    public boolean save(List<Object> givenList) {
+    public int save(List<Object> givenList) {
         try{
             File saveFile = new File("Test.txt");
             FileOutputStream fos = new FileOutputStream(saveFile);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             fos.close();
             oos.close();
-            return true;
+            return 1;
         } catch (FileNotFoundException ex) {
             System.out.println("File was not found");
-            return false;
+            return 0;
         } catch (IOException ex) {
             System.out.println("IO Exception catched");
-            return false;
+            return 0;
         }
     }
 

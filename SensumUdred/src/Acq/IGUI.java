@@ -13,7 +13,7 @@ import java.util.List;
  * @author stefan
  */
 public interface IGUI {
-    public boolean saveCase();
+    public int saveCase();
     public void editCase(ICase ca);
     public void createMeeting();
     public void closeCase();

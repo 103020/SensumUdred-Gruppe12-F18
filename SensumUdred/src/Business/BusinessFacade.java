@@ -23,7 +23,7 @@ public class BusinessFacade implements IBusiness {
     Meeting meeting = new Meeting();
     Individual ind = new Individual();
     
-    static DataFacade data;
+    static IData data;
 
     
     private static BusinessFacade instance;
@@ -55,7 +55,7 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean saveCase() {
+    public int saveCase() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //return data.save(list) //need a methode were we get the list from Case
     }

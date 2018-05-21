@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * @author stefan
  */
 public class CaseData implements ICase{
-    private final int caseNumber;
+    private int caseNumber;
     private ICaseworker caseWorker;
     private IIndividual individual;
     private final String creationDate;
@@ -140,6 +140,41 @@ public class CaseData implements ICase{
     @Override
     public String getIndividualInvolvement() {
         return individualInvolvement.toString();
+    }
+
+    @Override
+    public int saveCase(ILog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setCaseNumber(int caseNumber) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void editCase(ILog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void closeCase(ILog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ICase fetchCase(int caseNumber, ILog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setCaseworker(ICaseworker caseworker, ILog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

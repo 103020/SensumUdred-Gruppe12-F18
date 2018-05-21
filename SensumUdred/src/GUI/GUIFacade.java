@@ -22,7 +22,7 @@ public class GUIFacade implements IGUI{
     BusinessFacade b = new BusinessFacade();
     
     @Override
-    public boolean saveCase() {
+    public int saveCase() {
         return b.saveCase();
     }
 
@@ -33,7 +33,7 @@ public class GUIFacade implements IGUI{
 
     @Override
     public void createMeeting() {
-        b.createMeeting();
+        //b.createMeeting();
     }
 
     @Override
@@ -43,7 +43,8 @@ public class GUIFacade implements IGUI{
 
     @Override
     public ICase accessCase() {
-        return b.accessCase();
+        //return b.accessCase();
+        return null;
     }
 
     @Override
@@ -58,12 +59,12 @@ public class GUIFacade implements IGUI{
 
     @Override
     public void setEmployeeName(String name) {
-        b.setEmployeeDepartment(name);
+        //b.setEmployeeDepartment(name);
     }
 
     @Override
     public void setEmployeeDepartment(String department) {
-        b.setEmployeeDepartment(department);
+        //b.setEmployeeDepartment(department);
     }
 
     @Override

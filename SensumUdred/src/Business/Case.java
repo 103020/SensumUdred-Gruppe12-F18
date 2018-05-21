@@ -9,8 +9,7 @@ import java.time.LocalDateTime;
  */
 public class Case implements ICase{
     
-    private static int totalCases;
-    private final int caseNumber;
+    private int caseNumber;
     private ICaseworker caseWorker;
     private IIndividual individual;
     private final String creationDate;
@@ -34,8 +33,6 @@ public class Case implements ICase{
     Case(String caseType, String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry,
             String _individualInvolvement, boolean individualUnderstanding,boolean consent,
             boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String _caseFromAddress){
-        caseNumber = totalCases;
-        totalCases++;
         creationDate = LocalDateTime.now().toString();
         isClosed = false;
         this.caseType = caseType;
@@ -50,6 +47,7 @@ public class Case implements ICase{
         this.oralConsent = oralConsent;
         this.caseClarity = caseClarity;
         this.caseFromAddress = new StringBuilder(_caseFromAddress);
+        caseNumber = 0;
 
         switch(inquiryFrom){
             case INDIVIDUAL:
@@ -73,12 +71,16 @@ public class Case implements ICase{
 
     
     Case(){
-        caseNumber = totalCases;
-        totalCases++;
+        caseNumber = 0;
         creationDate = LocalDateTime.now().toString();
         isClosed = false;
         inquiry = new StringBuilder();
         individualInvolvement = new StringBuilder();
+    }
+    
+    @Override
+    public void setCaseNumber(int caseNumber){
+        this.caseNumber = caseNumber;
     }
 
     @Override
@@ -156,29 +158,35 @@ public class Case implements ICase{
         return individualUnderstanding;
     }
 
-    public void saveCase(ILog log) {
-//      dataFacade.save(list);
+    @Override
+    public int saveCase(ILog log) {
+        return businessFacade.saveCase();
     }
 
+    @Override
     public void editCase(ILog log) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
     public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants) {
 //        meeting.messageToMeeting();
 //        ILog log = new Log(this, (ICaseworker) this);
 //        createNewMeeting = new Meeting(year, month, day, hour, minute, location, participants, log);
     }
 
+    @Override
     public void closeCase(ILog log) {
         isClosed = true;
     }
 
+    @Override
     public ICase fetchCase(int caseNumber, ILog log) {
         ICase cas = businessFacade.accessCase(caseNumber);
         return cas;
     }
 
+    @Override
     public void setCaseworker(ICaseworker caseworker, ILog log) {
         this.caseWorker = caseworker;
     } 

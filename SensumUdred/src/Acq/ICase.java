@@ -111,5 +111,16 @@ public interface ICase {
      */
     public boolean getIndividualUnderstanding();
     
+    /**
+     * saves the case to the database
+     * @param log is used to log that the case has been saved
+     */
+    public int saveCase(ILog log);
+    public void setCaseNumber(int caseNumber);
+    public void editCase(ILog log);
+    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants);
+    public void closeCase(ILog log);
+    public ICase fetchCase(int caseNumber, ILog log);
+    public void setCaseworker(ICaseworker caseworker, ILog log);
     
 }
