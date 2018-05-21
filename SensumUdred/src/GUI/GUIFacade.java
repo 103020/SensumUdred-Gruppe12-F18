@@ -7,6 +7,7 @@ package GUI;
 
 import Acq.ICase;
 import Acq.IGUI;
+import Acq.IMeeting;
 import Business.BusinessFacade;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -105,5 +106,10 @@ public class GUIFacade implements IGUI{
             convert.add(new caseListAbler(""+ic.getCaseNumber(),""+ic.getCreationDate()));
         }*/
         return convert;
+    }
+    
+    @Override
+    public LocalDateTime getMeetingTime(){
+        return b.getMeetingTime();
     }
 }

@@ -29,4 +29,5 @@ public interface IGUI {
     public void setIndividualAddress(String address);
     public void setIndividualCPR(int CPR);
     public List getCaseList();
+    public LocalDateTime getMeetingTime();
 }

@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Acq.IMeeting;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -172,7 +173,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Tab meetingTab;
     @FXML
-    private ListView<?> listViewMeetingsM;
+    private ListView<LocalDateTime> listViewMeetingsM;
     @FXML
     private Button buttonCreateMeetingM;
     @FXML
@@ -408,6 +409,8 @@ public class FXMLDocumentController implements Initializable {
             tabPane.getTabs().remove(editCaseTab);
             tabPane.getTabs().remove(readCaseTab);
             tabPane.getTabs().remove(caseOpeningTab);
+            listViewMeetingsM.getItems().clear();
+            listViewMeetingsM.getItems().add(facade.getMeetingTime());
         }
     }
 
@@ -439,6 +442,8 @@ public class FXMLDocumentController implements Initializable {
             //TODO: check where it is sendt
             System.out.println("test");
             facade.setMeetingTime(datePickerMeetingM.getValue().atTime(Integer.parseInt(tempList[0]), Integer.parseInt(tempList[1])));
+            listViewMeetingsM.getItems().clear();
+            listViewMeetingsM.getItems().add(facade.getMeetingTime());
         }
         
     }
