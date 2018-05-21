@@ -112,4 +112,9 @@ public class GUIFacade implements IGUI{
     public LocalDateTime getMeetingTime(){
         return b.getMeetingTime();
     }
+
+    @Override
+    public boolean login(String username, String password) {
+        return b.login(username, password);
+    }
 }

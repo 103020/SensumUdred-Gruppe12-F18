@@ -43,5 +43,10 @@ public class DataFacade implements IData{
         UserHandler userHandler = new UserHandler();
         return userHandler.loadUser();
     }
+
+    @Override
+    public boolean login(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -192,5 +192,10 @@ public class BusinessFacade implements IBusiness {
     public void createCase() {
         worker.createCase("Pizza", "Morten", "Anstalten 17", 0, "jeg vil gerne have pizza", "jeg vil gerne have pizza", true, true, true, true, true, InquiryFrom.INDIVIDUAL, "anstalten 17");
     }
+
+    @Override
+    public boolean login(String username, String password) {
+        return data.login(username, password);
+    }
     
 }

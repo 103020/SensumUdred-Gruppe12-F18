@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Acq.IGUI;
 import Acq.IMeeting;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -40,7 +41,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class FXMLDocumentController implements Initializable {
 
-    GUIFacade facade;
+    IGUI facade;
 
     FilteredList<caseListAbler> fList;
 
@@ -447,7 +448,7 @@ public class FXMLDocumentController implements Initializable {
             }
         } catch (NumberFormatException e) {
             alert.setHeaderText("Du skal skrive et klokkeslæt i textfeltet!");
-            alert.setContentText("Klokkeslættet skal skrive som \"12:30\", uden \"!");
+            alert.setContentText("Klokkeslættet skal skrive som \"HH:MM\", hvor HH er timer og MM er minutter!");
         } finally {
             //TODO: check where it is sendt
             facade.setMeetingTime(datePickerMeetingM.getValue().atTime(hour, minut));
