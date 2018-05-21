@@ -513,7 +513,7 @@ class caseListAbler {
 
     @Override
     public String toString() {
-        return "dato: " + date + " sagsnummer: " + caseNumber;
+        return "date: " + date + " caseNumber: " + caseNumber;
     }
 }
 /**
