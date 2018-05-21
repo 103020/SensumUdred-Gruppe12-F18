@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Acq.IBusiness;
 import Acq.ICase;
 import Acq.IGUI;
 import Acq.IMeeting;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 public class GUIFacade implements IGUI{
 
-    BusinessFacade b = new BusinessFacade();
+    IBusiness b = new BusinessFacade();
     
     @Override
     public boolean saveCase() {

@@ -270,9 +270,6 @@ public class FXMLDocumentController implements Initializable {
         caseListViewMT.getItems().addAll(fList);
     }
 
-    @FXML
-    private void handleSearchField(ActionEvent event) {
-    }
 
     @FXML
     private void handleButtonCreateCaseMT(ActionEvent event) {
@@ -283,7 +280,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonNextTabCC(ActionEvent event) {
-        //TODO: will also save that values on that page
+        //TODO: will also save that values on this page (case opening)
         Alert alert = new Alert(Alert.AlertType.ERROR);
         if (!createNameFieldCC.getText().equals("") && !createPersonalNumberFieldCC.getText().equals("") && !createAdresseFieldCC.getText().equals("")) {
             if (isInteger(createPersonalNumberFieldCC.getText(), 10)) {
