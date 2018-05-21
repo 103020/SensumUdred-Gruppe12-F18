@@ -6,6 +6,7 @@
 package GUI;
 
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
@@ -167,6 +169,16 @@ public class FXMLDocumentController implements Initializable {
     private Button nextTabButtonCC;
     @FXML
     private ChoiceBox<String> choiceBoxMT;
+    @FXML
+    private Tab meetingTab;
+    @FXML
+    private ListView<?> listViewMeetingsM;
+    @FXML
+    private Button buttonCreateMeetingM;
+    @FXML
+    private DatePicker datePickerMeetingM;
+    @FXML
+    private TextField textFieldMeetingM;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -176,6 +188,7 @@ public class FXMLDocumentController implements Initializable {
         tabPane.getTabs().remove(editCaseTab);
         tabPane.getTabs().remove(readCaseTab);
         tabPane.getTabs().remove(caseOpeningTab);
+        tabPane.getTabs().remove(meetingTab);
         choiceBoxMT.getItems().addAll("Dato", "Sagsnummer");
         choiceBoxMT.setValue("Sagsnummer");
         fList = new FilteredList(FXCollections.observableArrayList(facade.getCaseList()), p -> true); //temp to test
@@ -184,8 +197,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonLogin(ActionEvent event) {
+        //TODO: check user inputs
+        //if you succesfully logged in
+        tabPane.getTabs().add(meetingTab);
         tabPane.getTabs().add(mainTab);
         tabPane.getSelectionModel().selectNext();
+        if (listViewMeetingsM.getItems().isEmpty()) {
+            tabPane.getSelectionModel().selectNext();
+        }
         caseListViewMT.getItems().addAll(fList);
         tabPane.getTabs().remove(loginTab); // removes the tab
     }
@@ -384,7 +403,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleTabViewMT(Event event) {
-        if (mainTab.isSelected()) {
+        if (mainTab.isSelected() || meetingTab.isSelected()) {
             tabPane.getTabs().remove(createCaseTab);
             tabPane.getTabs().remove(editCaseTab);
             tabPane.getTabs().remove(readCaseTab);
@@ -395,6 +414,33 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonSaveChangesVC(ActionEvent event) {
         //TODO: need to get the case data first
+    }
+    
+    @FXML
+    private void handleButtonCreateMeetingM(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Forkert indput!");
+        String temp;
+        String[] tempList = null;
+        if (textFieldMeetingM.getText() != "") { 
+            temp = textFieldMeetingM.getText();
+            tempList = temp.split(":");
+        } else {
+            alert.setHeaderText("Du skal skrive et klokkeslæt i tekstfeltet!");
+            alert.setContentText("Der skal være en værdi i tekstfeltet!");
+        }
+        try {
+            Integer.parseInt(tempList[0]);//to catch an exception if it can't be converted to an integer
+            Integer.parseInt(tempList[1]);
+        } catch (NumberFormatException e) {
+            alert.setHeaderText("Du skal skrive et klokkeslæt i textfeltet!");
+            alert.setContentText("Klokkeslættet skal skrive som \"12:30\", uden \"!");
+        } finally {
+            //TODO: check where it is sendt
+            System.out.println("test");
+            facade.setMeetingTime(datePickerMeetingM.getValue().atTime(Integer.parseInt(tempList[0]), Integer.parseInt(tempList[1])));
+        }
+        
     }
     
     /**
@@ -423,7 +469,7 @@ public class FXMLDocumentController implements Initializable {
         return true;
     }
     /**
-     * gets a list and sorts it
+     * takes a list from the GUIFacade and sorts it
      * use for sorting the list af case, that was gotten from the business layer
      * @return returns a sorted list
      */
