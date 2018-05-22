@@ -7,6 +7,7 @@ package GUI;
 
 import Acq.ICase;
 import Acq.IGUI;
+import Acq.InquiryFrom;
 import Business.BusinessFacade;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -45,14 +46,14 @@ public class GUIFacade implements IGUI{
         return b.accessCase();
     }
 
-    @Override
-    public void createCase() {
-        b.createCase();
-    }
+//    @Override
+//    public void createCase() {
+//        b.createCase();
+//    }
     
     @Override
-    public void createCase(String name, int CPR, String address) {
-        //b.createCase(name,CPR,address);
+    public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
+        b.createCase(individualName, individualAddress, individualCPR, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
     }
 
     @Override
@@ -106,4 +107,14 @@ public class GUIFacade implements IGUI{
         }*/
         return convert;
     }
+//
+//    @Override
+//    public void createCase() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    @Override
+//    public void createCase(String name, int CPR, String address) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 }

@@ -62,7 +62,6 @@ public interface IBusiness {
     
     /**
      * 
-     * @param caseType The type of case
      * @param individualName The name of the individual the case is about
      * @param individualAddress The address of the individual the case is about
      * @param individualCPR The CPR of the individual the case is about
@@ -76,7 +75,7 @@ public interface IBusiness {
      * @param inquiryFrom The source of the inquiry, who made the inquiry
      * @param caseFromAdress The Address of the source, the address of who made the inquiry
      */
-    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress);
+    public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress);
     
     /**
      *
@@ -197,10 +196,10 @@ public interface IBusiness {
      */
     public List getCasenumSortedList();
     
-    /**
-     * To test
-     */
-    public void createCase();
+//    /**
+//     * To test
+//     */
+//    public void createCase();
     
     /**
      *
