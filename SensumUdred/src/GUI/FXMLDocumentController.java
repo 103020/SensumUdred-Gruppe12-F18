@@ -7,6 +7,7 @@ package GUI;
 
 import Acq.IGUI;
 import Acq.IMeeting;
+import Acq.InquiryFrom;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -273,7 +274,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonCreateCaseMT(ActionEvent event) {
         tabPane.getTabs().add(createCaseTab);
-        tabPane.getTabs().add(caseOpeningTab);
         tabPane.getSelectionModel().selectNext();
     }
 
@@ -281,10 +281,11 @@ public class FXMLDocumentController implements Initializable {
     private void handleButtonNextTabCC(ActionEvent event) {
         //TODO: will also save that values on this page (case opening)
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        boolean next = false;
         if (!createNameFieldCC.getText().equals("") && !createPersonalNumberFieldCC.getText().equals("") && !createAdresseFieldCC.getText().equals("")) {
             if (isInteger(createPersonalNumberFieldCC.getText(), 10)) {
                 //TODO: that v  
-                //facade.createCase(createNameFieldCC.getText(), Integer.parseInt(createPersonalNumberFieldCC.getText()), createAdresseFieldCC.getText());
+                next = true;
             } else {
                 alert.setTitle("Forkert input");
                 alert.setHeaderText("Forkerte værdier i \"CPR\"");
@@ -297,47 +298,108 @@ public class FXMLDocumentController implements Initializable {
             alert.setContentText("Check \"Navn\", \"CPR\" og \"Adresse\".");
             alert.showAndWait();
         }
-        tabPane.getSelectionModel().selectNext();
+        if (next){
+            tabPane.getTabs().add(caseOpeningTab);
+            tabPane.getSelectionModel().selectNext();
+            tabPane.getTabs().remove(createCaseTab);
+        }
     }
 
     @FXML
     private void handleButtonCreateCaseCO(ActionEvent event) {
+        boolean temp = true;
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Manglende input");
+        InquiryFrom inquiry = null;
+        boolean consentBoo = false;
+        boolean mouth = false;
+        boolean clarity = false;
+        boolean caseClarityBoo = false;
         if (caseFrom.getSelectedToggle() != null) {
-            System.out.println(caseFrom.getSelectedToggle().toString()); //TODO: add calls
+            //System.out.println(caseFrom.getSelectedToggle().toString()); //TODO: add calls
+            if (caseFrom.getSelectedToggle() == citizenRadioCO) {
+                inquiry = InquiryFrom.INDIVIDUAL;
+            } else if (caseFrom.getSelectedToggle() == relativesRadioCO) {
+                inquiry = InquiryFrom.RELATIVES;
+            } else if (caseFrom.getSelectedToggle() == doctorRadioCO) {
+                inquiry = InquiryFrom.DOCTOR;
+            } else if (caseFrom.getSelectedToggle() == otherRadioCO) {
+                inquiry = InquiryFrom.OTHER;
+            }
         } else {
             alert.setHeaderText("Mangler at vælge hvor henvendelse kommer fra!");
             alert.setContentText("Der skal også angives navn og adresse.");
             alert.showAndWait();
         }
         if (caseClarity.getSelectedToggle() != null) {
-            System.out.println(caseClarity.getSelectedToggle().toString()); //TODO: add calls
+            if (caseClarity.getSelectedToggle() == seekRadioYesCO) {
+                caseClarityBoo = true;
+            }
         } else {
             alert.setHeaderText("Er borgeren klar over hvad der søges efter");
             alert.setContentText("Der skal vælge ja eller nej.");
             alert.showAndWait();
         }
         if (consent.getSelectedToggle() != null) {
-            System.out.println(consent.getSelectedToggle().toString()); //TODO: add calls
+            if (consent.getSelectedToggle() == consentRadioYesCO) {
+                consentBoo = true;
+            }
         } else {
             alert.setHeaderText("Er det relevant med samtykkeerklæring");
             alert.setContentText("Der skal vælge ja eller nej.");
             alert.showAndWait();
         }
         if (individualKnow.getSelectedToggle() != null) {
-            System.out.println(individualKnow.getSelectedToggle().toString()); //TODO: add calls
+            if (individualKnow.getSelectedToggle() == informedInquiryRadioYesCO) {
+                clarity = true;
+            }
         } else {
             alert.setHeaderText("Er borgeren indforstået med henvendelsen");
             alert.setContentText("Der skal vælge ja eller nej.");
             alert.showAndWait();
         }
         if (talkedWriten.getSelectedToggle() != null) {
-            System.out.println(talkedWriten.getSelectedToggle().toString()); //TODO: add calls
+            if (talkedWriten.getSelectedToggle() == consentRadioOrallyCO) {
+                mouth = true;
+            } else {
+                mouth = false;
+            }
         } else if (consentRadioYesCO.isSelected()) {
             alert.setHeaderText("Er samtykket give mundligt eller skriftligt?");
             alert.setContentText("Der skal vælge mellem mundligt eller skriftligt.");
             alert.showAndWait();
+        }
+        System.out.println( //a test
+                    createNameFieldCC.getText()+
+                    createAdresseFieldCC.getText()+
+                    Integer.parseInt(createPersonalNumberFieldCC.getText())+
+                    caseFrom.getSelectedToggle().toString()+
+                    caseClarity.getSelectedToggle().toString()+
+                    consentBoo+
+                    mouth+
+                    !mouth+
+                    clarity+
+                    caseClarityBoo+
+                    inquiry.toString()+ //what is this???
+                    nameAdresseTextFieldCO.getText()
+            );
+        if (temp) {
+            tabPane.getTabs().remove(caseOpeningTab);
+            facade.createCase(
+                    createNameFieldCC.getText(),
+                    createAdresseFieldCC.getText(),
+                    Integer.parseInt(createPersonalNumberFieldCC.getText()),
+                    caseFrom.getSelectedToggle().toString(),
+                    caseClarity.getSelectedToggle().toString(),
+                    consentBoo,
+                    mouth,
+                    !mouth,
+                    clarity,
+                    caseClarityBoo,
+                    inquiry, //what is this???
+                    nameAdresseTextFieldCO.getText()
+            );
+            
         }
     }
 
@@ -452,13 +514,13 @@ public class FXMLDocumentController implements Initializable {
         } finally {
             //TODO: check where it is sendt "the facade.getMeetingTime() right now"
             if (!error) {
+                facade.createMeeting();
                 facade.setMeetingTime(datePickerMeetingM.getValue().atTime(hour, minut));
                 listViewMeetingsM.getItems().clear();
                 listViewMeetingsM.getItems().add(facade.getMeetingTime());
                 textFieldMeetingM.clear();
             }
         }
-
     }
 
     /**
