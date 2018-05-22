@@ -6,6 +6,8 @@
 package Business;
 
 import Acq.IBusiness;
+import Acq.ICaseworker;
+import Acq.IIndividual;
 import java.time.LocalDateTime;
 import Acq.IMeeting;
 import Acq.ILog;
@@ -17,6 +19,8 @@ import Acq.ILog;
 public class Meeting implements IMeeting {
 
     private LocalDateTime dayOfMeeting;
+    private IIndividual participant1;
+    private ICaseworker participant2;
     private String participants;
     private String timeOfMeeting;
     private String location;
@@ -33,9 +37,11 @@ public class Meeting implements IMeeting {
      * end or the meeting is cancelled in any shape and form the meeting active is set to false 
      * @param log is what track who made the meeting
      */
-    Meeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log, int caseNum){
+    Meeting(int year, int month, int day, int hour, int minute, String location, IIndividual participant1, ICaseworker participant2, String participants, ILog log, int caseNum){
         LocalDateTime meetingDate = LocalDateTime.of(year, month, day, hour, minute);
         this.caseNum = caseNum;
+        this.participant1 = participant1;
+        this.participant2 = participant2;
         businessFacade = BusinessFacade.getInstance();
         setMeetingTime(meetingDate);
         meetingActive = true;
@@ -58,7 +64,7 @@ public class Meeting implements IMeeting {
     
     public void messageToMeeting(){
         String message = ("Vi indkalder dig til møde den: "+ getMeetingTime() + 
-                           "\nAddressen: " + getLocation() + "\nDe deltagende er: " + getMeetingParticipants());
+                           "\nAddressen: " + getLocation() + "\nDe deltagende er: " +participant1.getName()+ getMeetingParticipants()) + " og " + participant2.getName();
         businessFacade.messageToMeeting(caseNum, message);
    
     }

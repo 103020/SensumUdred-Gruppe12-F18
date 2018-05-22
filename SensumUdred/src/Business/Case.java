@@ -221,8 +221,8 @@ public class Case implements ICase{
     }
 
     @Override
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log) {
-        meeting = new Meeting(year, month, day, hour, minute, location, participants, log, caseNumber);
+    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log, ICaseworker caseworker) {
+        meeting = new Meeting(year, month, day, hour, minute, location, this.individual, caseworker, participants, log, this.caseNumber);
     }
 
 }
