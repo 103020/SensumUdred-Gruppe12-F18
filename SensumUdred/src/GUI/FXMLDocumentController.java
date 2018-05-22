@@ -236,7 +236,7 @@ public class FXMLDocumentController implements Initializable {
                 break;
         }
     }
-    
+
     @FXML
     private void searchFieldHandler(KeyEvent event) {
         switch (choiceBoxMT.getValue()) { //look in the searchfield to find thing that look like it in the list
@@ -269,7 +269,6 @@ public class FXMLDocumentController implements Initializable {
         caseListViewMT.getItems().clear();
         caseListViewMT.getItems().addAll(fList);
     }
-
 
     @FXML
     private void handleButtonCreateCaseMT(ActionEvent event) {
@@ -416,7 +415,7 @@ public class FXMLDocumentController implements Initializable {
     private void handleButtonSaveChangesVC(ActionEvent event) {
         //TODO: need to get the case data first
     }
-    
+
     @FXML
     private void handleButtonCreateMeetingM(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -425,7 +424,7 @@ public class FXMLDocumentController implements Initializable {
         String[] tempList = null;
         int hour = 0;
         int minut = 0;
-        if (textFieldMeetingM.getText() != "") { 
+        if (textFieldMeetingM.getText() != "") {
             temp = textFieldMeetingM.getText();
             tempList = temp.split(":");
         } else {
@@ -436,9 +435,9 @@ public class FXMLDocumentController implements Initializable {
         boolean error = false;
         try {
             error = false;
-            hour = Integer.parseInt(tempList[0]);//to make it so that if an input is 14:80, the time becomes 15:20
+            hour = Integer.parseInt(tempList[0]);
             minut = Integer.parseInt(tempList[1]);
-            if (minut >= 60) {
+            if (minut >= 60) { //to make it so that if an input is 14:80, the time becomes 15:20
                 hour = hour + (minut / 60);
                 minut = minut - 60 * (minut / 60);
             }
@@ -451,16 +450,17 @@ public class FXMLDocumentController implements Initializable {
             alert.showAndWait();
             error = true;
         } finally {
-            //TODO: check where it is sendt
+            //TODO: check where it is sendt "the facade.getMeetingTime() right now"
             if (!error) {
                 facade.setMeetingTime(datePickerMeetingM.getValue().atTime(hour, minut));
                 listViewMeetingsM.getItems().clear();
                 listViewMeetingsM.getItems().add(facade.getMeetingTime());
+                textFieldMeetingM.clear();
             }
         }
-        
+
     }
-    
+
     /**
      * checks if a String is a number
      *
@@ -486,12 +486,14 @@ public class FXMLDocumentController implements Initializable {
         }
         return true;
     }
+
     /**
-     * takes a list from the GUIFacade and sorts it
-     * use for sorting the list af case, that was gotten from the business layer
+     * takes a list from the GUIFacade and sorts it use for sorting the list af
+     * case, that was gotten from the business layer
+     *
      * @return returns a sorted list
      */
-    private ArrayList<caseListAbler> sortCaseNumber(){
+    private ArrayList<caseListAbler> sortCaseNumber() {
         ArrayList temp = (ArrayList) facade.getCaseList();
         Collections.sort(temp, new listAblerComparator());
         return temp;
@@ -534,19 +536,22 @@ class caseListAbler {
         return "date: " + date + " caseNumber: " + caseNumber;
     }
 }
+
 /**
  * a comparator for the caseListAbler class, for when sorting lists
+ *
  * @author 103020
  */
-class listAblerComparator implements Comparator<caseListAbler>{
-        @Override
-        public int compare(caseListAbler o1, caseListAbler o2) {
-            if (Integer.parseInt(o1.getCaseNumber()) > Integer.parseInt(o2.getCaseNumber())) {
-                return 1;
-            } else if (Integer.parseInt(o1.getCaseNumber()) < Integer.parseInt(o2.getCaseNumber())){
-                return -1;
-            } else {
-                return 0;
-            }
-        }    
+class listAblerComparator implements Comparator<caseListAbler> {
+
+    @Override
+    public int compare(caseListAbler o1, caseListAbler o2) {
+        if (Integer.parseInt(o1.getCaseNumber()) > Integer.parseInt(o2.getCaseNumber())) {
+            return 1;
+        } else if (Integer.parseInt(o1.getCaseNumber()) < Integer.parseInt(o2.getCaseNumber())) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
+}
