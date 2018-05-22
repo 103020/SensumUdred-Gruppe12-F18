@@ -126,7 +126,7 @@ public interface ICase {
     public void setMeetingTime(LocalDateTime time);
     public void setMeetingLocation(String Location);
     public void setMeetingParticipants(String participants);
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log);
+    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log, ICaseworker caseworker);
     
     
 }

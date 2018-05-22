@@ -43,7 +43,7 @@ public class Caseworker implements ICaseworker{
     @Override
     public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants){
         ILog log = new Log(this, (ICaseworker) this);
-        cas.createMeeting(year, month, day, hour, minute, location, participants, log);
+        cas.createMeeting(year, month, day, hour, minute, location,  participants, log, this);
     }
 
     @Override
