@@ -194,8 +194,8 @@ public class FXMLDocumentController implements Initializable {
         tabPane.getTabs().remove(meetingTab);
         choiceBoxMT.getItems().addAll("Dato", "Sagsnummer");
         choiceBoxMT.setValue("Sagsnummer");
-        fList = new FilteredList(FXCollections.observableArrayList(facade.getCaseList()), p -> true); //temp to test
-        //fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true); //TODO: change to this when testing is done
+        //fList = new FilteredList(FXCollections.observableArrayList(facade.getCaseList()), p -> true); //temp to test
+        fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true); //TODO: change to this when testing is done
     }
 
     @FXML
@@ -470,6 +470,9 @@ public class FXMLDocumentController implements Initializable {
             tabPane.getTabs().remove(caseOpeningTab);
             listViewMeetingsM.getItems().clear();
             listViewMeetingsM.getItems().add(facade.getMeetingTime());
+            fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true); //TODO: change to this when testing is done
+            caseListViewMT.getItems().clear();
+            caseListViewMT.getItems().addAll(fList);
         }
     }
 
