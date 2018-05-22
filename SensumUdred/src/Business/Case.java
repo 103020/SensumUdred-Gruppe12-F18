@@ -30,12 +30,12 @@ public class Case implements ICase{
     
     private IBusiness businessFacade;
     
-    Case(String caseType, String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry,
+    Case(String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry,
             String _individualInvolvement, boolean individualUnderstanding,boolean consent,
             boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String _caseFromAddress){
         creationDate = LocalDateTime.now().toString();
         isClosed = false;
-        this.caseType = caseType;
+//        this.caseType = caseType;
         this.individual.setName(individualName, log);
         this.individual.setAddress(individualAddress, log);
         this.individual.setCPR(individualCPR, log);

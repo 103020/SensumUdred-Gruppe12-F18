@@ -18,8 +18,9 @@ public interface IGUI {
     public void createMeeting();
     public void closeCase();
     public ICase accessCase();
-    public void createCase();
-    public void createCase(String name, int CPR, String address);
+    public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress);
+//    public void createCase();
+//    public void createCase(String name, int CPR, String address);
     public void setEmployeeName(String name);
     public void setEmployeeDepartment(String department);
     public void setEmployeeID(int employeeID);

@@ -14,7 +14,7 @@ public interface ICaseworker {
     public boolean accessCase(int caseNumber, ILog log); 
     
  
-    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress); 
+    public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress); 
     
     public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants);
     

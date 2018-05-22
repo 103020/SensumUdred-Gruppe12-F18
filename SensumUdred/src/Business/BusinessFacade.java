@@ -82,8 +82,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
-        worker.createCase(caseType, individualName, individualAddress, individualCPR, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
+    public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
+        worker.createCase(individualName, individualAddress, individualCPR, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
     }
     
     @Override
@@ -187,11 +187,11 @@ public class BusinessFacade implements IBusiness {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    //test
-    @Override
-    public void createCase() {
-        worker.createCase("Pizza", "Morten", "Anstalten 17", 0, "jeg vil gerne have pizza", "jeg vil gerne have pizza", true, true, true, true, true, InquiryFrom.INDIVIDUAL, "anstalten 17");
-    }
+//    //test
+//    @Override
+//    public void createCase() {
+//        worker.createCase("Pizza", "Morten", "Anstalten 17", 0, "jeg vil gerne have pizza", "jeg vil gerne have pizza", true, true, true, true, true, InquiryFrom.INDIVIDUAL, "anstalten 17");
+//    }
 
     @Override
     public boolean login(String username, String password) {

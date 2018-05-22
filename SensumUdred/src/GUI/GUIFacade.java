@@ -9,6 +9,7 @@ import Acq.IBusiness;
 import Acq.ICase;
 import Acq.IGUI;
 import Acq.IMeeting;
+import Acq.InquiryFrom;
 import Business.BusinessFacade;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -48,14 +49,14 @@ public class GUIFacade implements IGUI{
         return null;
     }
 
-    @Override
-    public void createCase() {
-        b.createCase();
-    }
+//    @Override
+//    public void createCase() {
+//        b.createCase();
+//    }
     
     @Override
-    public void createCase(String name, int CPR, String address) {
-        //b.createCase(name,CPR,address);
+    public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
+        b.createCase(individualName, individualAddress, individualCPR, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
     }
 
     @Override
