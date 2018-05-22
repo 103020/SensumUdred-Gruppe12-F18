@@ -20,12 +20,16 @@ public class Individual implements IIndividual{
     
     
 
-    public void Individual(String name, String address, int CPR, ILog log) {
+    Individual(String name, String address, int CPR, ILog log) {
         this.name = name;
         this.address = address;
         this.CPR = CPR;
     }
 
+    Individual(){
+        
+    }
+    
     @Override
     public String getName() {
         return name;

@@ -35,11 +35,12 @@ public class Meeting implements IMeeting {
     setMeetingTime(meetingDate);
     meetingActive = true;
     }
-
-    Meeting() {
-    } 
-
-    public void saveMeeting(){       
+    
+    Meeting(){
+    }
+    
+    public void saveMeeting(){   
+        //TO DO: fix
     }
     
     /**
@@ -47,7 +48,7 @@ public class Meeting implements IMeeting {
      * @param log is what track who made the meeting
      */
     public void saveLog(ILog log){
-        
+        //TO DO: fix
     }
     
     public void messageToMeeting(){
