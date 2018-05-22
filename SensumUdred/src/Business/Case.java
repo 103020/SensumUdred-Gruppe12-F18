@@ -36,6 +36,7 @@ public class Case implements ICase{
         creationDate = LocalDateTime.now().toString();
         isClosed = false;
 //        this.caseType = caseType;
+        this.individual = new Individual();
         this.individual.setName(individualName, log);
         this.individual.setAddress(individualAddress, log);
         this.individual.setCPR(individualCPR, log);
