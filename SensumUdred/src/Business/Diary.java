@@ -16,10 +16,10 @@ import java.util.Date;
  */
 public class Diary implements IDiary{
     private Date date;
-    private String entry;
+    private StringBuilder entry;
 
     Diary(String entry, ILog log) {
-        this.entry = entry;
+        this.entry = new StringBuilder(entry);
         date = new Date();
     }
 
@@ -36,11 +36,11 @@ public class Diary implements IDiary{
 
     @Override
     public void saveEntry(ILog log) {
-        
+        //TO DO: fix
     }
 
     @Override
     public String getEntry(ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return entry.toString();
     }
 }

@@ -127,6 +127,9 @@ public interface ICase {
     public void setMeetingLocation(String Location);
     public void setMeetingParticipants(String participants);
     public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log, ICaseworker caseworker);
+    public void setIndividualName(String name, ILog log);
+    public void setIndividualAddress(String Address, ILog log);
+    public void setIndividualCPR(int CPR, ILog log);
     
     
 }

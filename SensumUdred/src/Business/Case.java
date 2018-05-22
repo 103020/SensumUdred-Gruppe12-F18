@@ -226,4 +226,19 @@ public class Case implements ICase{
         meeting = new Meeting(year, month, day, hour, minute, location, this.individual, caseworker, participants, log, this.caseNumber);
     }
 
+    @Override
+    public void setIndividualName(String name, ILog log) {
+        individual.setName(name, log);
+    }
+
+    @Override
+    public void setIndividualAddress(String Address, ILog log) {
+        individual.setAddress(Address, log);
+    }
+
+    @Override
+    public void setIndividualCPR(int CPR, ILog log) {
+        individual.setCPR(CPR, log);
+    }
+
 }

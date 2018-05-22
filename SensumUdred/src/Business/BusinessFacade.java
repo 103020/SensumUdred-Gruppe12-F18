@@ -149,7 +149,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public String getIndividualName() {
-        return ind.getName();
+        return worker.getIndividual().getName();
     }
 
     @Override

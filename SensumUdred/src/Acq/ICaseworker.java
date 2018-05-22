@@ -1,5 +1,7 @@
 package Acq;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author stefan
@@ -53,4 +55,15 @@ public interface ICaseworker {
      * @return returns the employee ID of the caseworker
      */
     public String getEmployeeID();
+    
+    public void cancelMeeting();
+    public void setMeetingTime(LocalDateTime time);
+    public void setMeetingLocation(String Location);
+    public void setMeetingParticipants(String participants);
+    public void setIndividualName(String name);
+    public void setIndividualAddress(String Address);
+    public void setIndividualCPR(int CPR);
+    public ICaseworker getCaseworkerFormCase();
+    public IMeeting getMeeting();
+    public IIndividual getIndividual();
 }

@@ -7,6 +7,7 @@ package Business;
 
 import Acq.*;
 import Data.DataFacade;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -74,5 +75,58 @@ public class Caseworker implements ICaseworker{
     @Override
     public String getEmployeeID() {
         return employeeID;
+    }
+
+    @Override
+    public void cancelMeeting() {
+        cas.cancelMeeting();
+    }
+
+    @Override
+    public void setMeetingTime(LocalDateTime time) {
+        cas.setMeetingTime(time);
+    }
+
+    @Override
+    public void setMeetingLocation(String Location) {
+        cas.setMeetingLocation(Location);
+    }
+
+    @Override
+    public void setMeetingParticipants(String participants) {
+        cas.setMeetingParticipants(participants);
+    }
+
+    @Override
+    public void setIndividualName(String name) {
+        ILog log = new Log(this, this);
+        cas.setIndividualName(name, log);
+    }
+
+    @Override
+    public void setIndividualAddress(String Address) {
+        ILog log = new Log(this, this);
+        cas.setIndividualAddress(Address, log);
+    }
+
+    @Override
+    public void setIndividualCPR(int CPR) {
+        ILog log = new Log(this, this);
+        cas.setIndividualCPR(CPR, log);
+    }
+
+    @Override
+    public ICaseworker getCaseworkerFormCase() {
+        return cas.getCaseWorker();
+    }
+
+    @Override
+    public IMeeting getMeeting() {
+        return cas.getMeeting();
+    }
+
+    @Override
+    public IIndividual getIndividual() {
+        return cas.getIndividual();
     }
 }
