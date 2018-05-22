@@ -18,7 +18,7 @@ public class Diary implements IDiary{
     private Date date;
     private String entry;
 
-    public void Diary(String entry, ILog log) {
+    Diary(String entry, ILog log) {
         this.entry = entry;
         date = new Date();
     }
@@ -35,12 +35,12 @@ public class Diary implements IDiary{
     }
 
     @Override
-    public void saveEntry(ICaseworker caseworker, ILog log) {
+    public void saveEntry(ILog log) {
         
     }
 
     @Override
-    public String getEntry(ICaseworker caseworker, ILog log) {
+    public String getEntry(ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

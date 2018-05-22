@@ -207,4 +207,6 @@ public interface IBusiness {
     
     public boolean login(String username, String password);
     
+    public void messageToMeeting(int caseNum,String message);
+    
 }

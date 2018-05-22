@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Acq.IBusiness;
 import java.time.LocalDateTime;
 import Acq.IMeeting;
 import Acq.ILog;
@@ -20,6 +21,8 @@ public class Meeting implements IMeeting {
     private String timeOfMeeting;
     private String location;
     private boolean meetingActive;
+    private IBusiness businessFacade;
+    private int caseNum;
         
     /**
      * This is how a meeting the created with the following attributes
@@ -30,16 +33,19 @@ public class Meeting implements IMeeting {
      * end or the meeting is cancelled in any shape and form the meeting active is set to false 
      * @param log is what track who made the meeting
      */
-    Meeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log){  
-    LocalDateTime meetingDate = LocalDateTime.of(year, month, day, hour, minute);
-    setMeetingTime(meetingDate);
-    meetingActive = true;
+    Meeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log, int caseNum){
+        LocalDateTime meetingDate = LocalDateTime.of(year, month, day, hour, minute);
+        this.caseNum = caseNum;
+        businessFacade = BusinessFacade.getInstance();
+        setMeetingTime(meetingDate);
+        meetingActive = true;
     }
-
-    Meeting() {
-    } 
-
-    public void saveMeeting(){       
+    
+    Meeting(){
+    }
+    
+    public void saveMeeting(){   
+        //TO DO: fix
     }
     
     /**
@@ -47,23 +53,26 @@ public class Meeting implements IMeeting {
      * @param log is what track who made the meeting
      */
     public void saveLog(ILog log){
-        
+        //TO DO: fix
     }
     
     public void messageToMeeting(){
-        System.out.println("Vi indkalder dig til møde den: "+ getMeetingTime() + 
+        String message = ("Vi indkalder dig til møde den: "+ getMeetingTime() + 
                            "\nAddressen: " + getLocation() + "\nDe deltagende er: " + getMeetingParticipants());
+        businessFacade.messageToMeeting(caseNum, message);
    
     }
     
     public void cancelMeeting(){
         meetingActive = false;
-        System.out.println("Mødet er blevet annulleret!!");
+        String message = "Mødet er blevet annulleret";
+        businessFacade.messageToMeeting(caseNum, message);
     }
 
     @Override
     public void setMeetingTime(LocalDateTime time) {
         dayOfMeeting = time;
+        messageToMeeting();
     }
 
     @Override
@@ -74,11 +83,13 @@ public class Meeting implements IMeeting {
     @Override
     public void setLocation(String location) {
         this.location = location;
+        messageToMeeting();
     }
 
     @Override
     public void setMeetingParticipants(String participants) {
         this.participants = participants;
+        messageToMeeting();
     }
 
     @Override

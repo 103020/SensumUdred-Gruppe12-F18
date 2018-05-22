@@ -9,13 +9,13 @@ import java.util.Date;
 public interface IDiary {
 
     
-    void saveEntry(ICaseworker caseworker, ILog log);
+    void saveEntry(ILog log);
 
     /**
      *
      * @return  Returns the entry in string format.
      */
-    String getEntry(ICaseworker caseworker, ILog log);
+    String getEntry(ILog log);
 
     /**
      *

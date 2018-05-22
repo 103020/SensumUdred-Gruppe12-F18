@@ -122,5 +122,11 @@ public interface ICase {
     public void closeCase(ILog log);
     public ICase fetchCase(int caseNumber, ILog log);
     public void setCaseworker(ICaseworker caseworker, ILog log);
+    public void cancelMeeting();
+    public void setMeetingTime(LocalDateTime time);
+    public void setMeetingLocation(String Location);
+    public void setMeetingParticipants(String participants);
+    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log);
+    
     
 }

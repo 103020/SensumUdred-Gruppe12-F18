@@ -49,5 +49,8 @@ public interface IMeeting {
      * @param location is the addresse the meeting take place at
      */
     void setLocation(String location);
+    
+    void messageToMeeting();
+    void cancelMeeting();
  
 }
