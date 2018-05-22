@@ -283,7 +283,8 @@ public class FXMLDocumentController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         if (!createNameFieldCC.getText().equals("") && !createPersonalNumberFieldCC.getText().equals("") && !createAdresseFieldCC.getText().equals("")) {
             if (isInteger(createPersonalNumberFieldCC.getText(), 10)) {
-                  facade.createCase(createNameFieldCC.getText(), Integer.parseInt(createPersonalNumberFieldCC.getText()), createAdresseFieldCC.getText());
+                //TODO: that v  
+                //facade.createCase(createNameFieldCC.getText(), Integer.parseInt(createPersonalNumberFieldCC.getText()), createAdresseFieldCC.getText());
             } else {
                 alert.setTitle("Forkert input");
                 alert.setHeaderText("Forkerte værdier i \"CPR\"");
