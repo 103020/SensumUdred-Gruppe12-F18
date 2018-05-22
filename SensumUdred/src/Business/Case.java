@@ -35,7 +35,6 @@ public class Case implements ICase{
             boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String _caseFromAddress){
         creationDate = LocalDateTime.now().toString();
         isClosed = false;
-//        this.caseType = caseType;
         this.individual.setName(individualName, log);
         this.individual.setAddress(individualAddress, log);
         this.individual.setCPR(individualCPR, log);
@@ -165,7 +164,7 @@ public class Case implements ICase{
 
     @Override
     public void editCase(ILog log) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("Not supported yet."); //TO DO: fix
     }
 
     @Override
@@ -199,6 +198,31 @@ public class Case implements ICase{
     @Override
     public IMeeting getMeeting() {
         return meeting;
+    }
+
+    @Override
+    public void cancelMeeting() {
+        meeting.cancelMeeting();
+    }
+
+    @Override
+    public void setMeetingTime(LocalDateTime time) {
+        meeting.setMeetingTime(time);
+    }
+
+    @Override
+    public void setMeetingLocation(String Location) {
+        meeting.setLocation(Location);
+    }
+
+    @Override
+    public void setMeetingParticipants(String participants) {
+        meeting.setMeetingParticipants(participants);
+    }
+
+    @Override
+    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log) {
+        meeting = new Meeting(year, month, day, hour, minute, location, participants, log, caseNumber);
     }
 
 }

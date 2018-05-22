@@ -18,12 +18,18 @@ public class Caseworker implements ICaseworker{
     private IDepartment department;
     private String employeeID; 
     private ICase cas;
-    private Meeting meeting;
     IBusiness businessFacade;
+    
+    Caseworker(String name, IDepartment department, String employeeID){
+        this.name = name;
+        this.department = department;
+        this.employeeID = employeeID;
+    }
     
     @Override
     public boolean accessCase(int caseNumber, ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TO DO: Stefan fix
     }
 
     @Override
@@ -36,9 +42,8 @@ public class Caseworker implements ICaseworker{
     
     @Override
     public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants){
-        meeting.messageToMeeting();
         ILog log = new Log(this, (ICaseworker) this);
-        meeting = new Meeting(year, month, day, hour, minute, location, participants, log);
+        cas.createMeeting(year, month, day, hour, minute, location, participants, log);
     }
 
     @Override
