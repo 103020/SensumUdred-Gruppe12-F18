@@ -51,9 +51,21 @@ public class SQLObjectMapper {
         establishConnection();
         boolean bool = false;
         try {
-            st.executeQuery("INSERT INTO CASES (creationdate,isclosed,casetype)"
-                    + " VALUES ('" + cas.getCreationDate()+ "','" + 
-                    cas.isClosed() + "','" + cas.getCaseType() + "')");
+            st.executeQuery("INSERT INTO CASES (creationdate,isclosed,casetype,"
+                    + "inquiry,individualinvolvement,consent,writtenconsent,"
+                    + "oralconsent,casefrom,casefromaddress,caseclarity,"
+                    + "individualunderstanding,caseworker,individual,diary,meeting)"
+                    + " VALUES ('" + cas.getCreationDate()+ "','" +
+                    cas.isClosed() + "','" + cas.getCaseType() + "','" 
+                    + cas.getInquiry() + "','" + cas.getIndividualInvolvement() 
+                    + "','" + cas.getConsent() + "','" + cas.getWrittenConsent() 
+                    + "','" + cas.getOralConsent() + "','" + cas.getCaseFrom() 
+                    + "','" + cas.getCaseFromAddress() + "','" 
+                    + cas.getCaseClarity() + "','" + cas.getIndividualUnderstanding() 
+                    + "','" + cas.getCaseworker().getEmployeeID() + "','" 
+                    + cas.getIndividual().getCPR() + "','" 
+                    + cas.getDiary().getDate() + "','" 
+                    + cas.getMeeting().getParticipant1() + "')");
             bool = true;
         } catch (SQLException e) {
             e.printStackTrace();

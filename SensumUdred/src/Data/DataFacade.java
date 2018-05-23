@@ -1,6 +1,7 @@
 package Data;
 
 import Acq.IData;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,10 +23,12 @@ public class DataFacade implements IData{
     
     @Override
     public boolean save(List list) {
+        return false;
     }
 
     @Override
     public List load() {
+        return new ArrayList();
     }
 
     @Override
