@@ -118,18 +118,18 @@ public interface ICase {
     public int saveCase(ILog log);
     public void setCaseNumber(int caseNumber);
     public void editCase(ILog log);
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants);
+    public String createMeeting(int year, int month, int day, int hour, int minute, String location, ICaseworker participant2, String participants, ILog log);
     public void closeCase(ILog log);
     public ICase fetchCase(int caseNumber, ILog log);
     public void setCaseworker(ICaseworker caseworker, ILog log);
-    public void cancelMeeting();
-    public void setMeetingTime(LocalDateTime time);
-    public void setMeetingLocation(String Location);
-    public void setMeetingParticipants(String participants);
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log, ICaseworker caseworker);
+    public String cancelMeeting();
+    public String setMeetingTime(LocalDateTime time);
+    public String setMeetingLocation(String Location);
+    public String setMeetingParticipants(String participants);
     public void setIndividualName(String name, ILog log);
     public void setIndividualAddress(String Address, ILog log);
     public void setIndividualCPR(int CPR, ILog log);
+    public void enterEntry(String note, ILog log);
     
     
 }

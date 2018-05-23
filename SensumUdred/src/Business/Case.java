@@ -165,14 +165,7 @@ public class Case implements ICase{
 
     @Override
     public void editCase(ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //TO DO: fix
-    }
-
-    @Override
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants) {
-//        meeting.messageToMeeting();
-//        ILog log = new Log(this, (ICaseworker) this);
-//        createNewMeeting = new Meeting(year, month, day, hour, minute, location, participants, log);
+        throw new UnsupportedOperationException("Not supported yet."); //TODO: fix
     }
 
     @Override
@@ -202,28 +195,29 @@ public class Case implements ICase{
     }
 
     @Override
-    public void cancelMeeting() {
-        meeting.cancelMeeting();
+    public String cancelMeeting() {
+        return meeting.cancelMeeting();
     }
 
     @Override
-    public void setMeetingTime(LocalDateTime time) {
-        meeting.setMeetingTime(time);
+    public String setMeetingTime(LocalDateTime time) {
+        return meeting.setMeetingTime(time);
     }
 
     @Override
-    public void setMeetingLocation(String Location) {
-        meeting.setLocation(Location);
+    public String setMeetingLocation(String Location) {
+        return meeting.setLocation(Location);
     }
 
     @Override
-    public void setMeetingParticipants(String participants) {
-        meeting.setMeetingParticipants(participants);
+    public String setMeetingParticipants(String participants) {
+        return meeting.setMeetingParticipants(participants);
     }
 
     @Override
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log, ICaseworker caseworker) {
-        meeting = new Meeting(year, month, day, hour, minute, location, this.individual, caseworker, participants, log, this.caseNumber);
+    public String createMeeting(int year, int month, int day, int hour, int minute, String location, ICaseworker participant2, String participants, ILog log) {
+        meeting = new Meeting(year, month, day, hour, minute, location, this.individual, participant2, participants, log);
+        return meeting.messageToMeeting();
     }
 
     @Override
@@ -239,6 +233,11 @@ public class Case implements ICase{
     @Override
     public void setIndividualCPR(int CPR, ILog log) {
         individual.setCPR(CPR, log);
+    }
+
+    @Override
+    public void enterEntry(String note, ILog log) {
+        diary.enterEntry(note, log);
     }
 
 }
