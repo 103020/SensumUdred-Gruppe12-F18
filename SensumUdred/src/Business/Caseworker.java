@@ -42,10 +42,10 @@ public class Caseworker implements ICaseworker{
     
     
     @Override
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants){
-        ILog log = new Log(this, (ICaseworker) this);
+    public void createMeeting(int year, int month, int day, int hour, int minute, String location, ICaseworker participant2, String participants){
+        ILog log = new Log(this, this);
         //TODO: change method call argument list.
-        cas.createMeeting(year, month, day, hour, minute, location, this, participants, log);
+        cas.createMeeting(year, month, day, hour, minute, location, participant2, participants, log);
     }
 
     @Override
@@ -130,4 +130,5 @@ public class Caseworker implements ICaseworker{
     public IIndividual getIndividual() {
         return cas.getIndividual();
     }
+
 }

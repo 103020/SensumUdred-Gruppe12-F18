@@ -1,3 +1,6 @@
+
+
+
 package Business;
 
 import Acq.*;
@@ -109,11 +112,6 @@ public class Case implements ICase{
     }
 
     @Override
-    public String getCaseType() {
-        return caseType;
-    }
-
-    @Override
     public String getInquiry() {
         return inquiry.toString();
     }
@@ -214,6 +212,7 @@ public class Case implements ICase{
         return meeting.setMeetingParticipants(participants);
     }
 
+    @Override
     public String createMeeting(int year, int month, int day, int hour, int minute, String location, ICaseworker participant2, String participants, ILog log) {
         meeting = new Meeting(year, month, day, hour, minute, location, this.individual, participant2, participants, log);
         return meeting.messageToMeeting();
@@ -238,10 +237,5 @@ public class Case implements ICase{
     public void enterEntry(String note, ILog log) {
         diary.enterEntry(note, log);
     }
-
-    @Override
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
 }
