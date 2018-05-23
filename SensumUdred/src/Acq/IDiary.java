@@ -23,5 +23,7 @@ public interface IDiary {
      */
     Date getDate();
     
+    void enterEntry(String note, ILog log);
+    
     
 }

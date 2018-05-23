@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Data;
 
 import Acq.IData;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,12 +9,10 @@ import java.util.List;
  * @author Stefan
  */
 public class DataFacade implements IData{
-
-    private DataHandler dataHandler;
     private static DataFacade instance;
 
 
-    public static DataFacade getInstance() {
+    public static IData getInstance() {
 
         if (instance == null) {
             instance = new DataFacade();
@@ -27,15 +21,10 @@ public class DataFacade implements IData{
 
     }
     
-    @Override
-    public int save(List list) {
-        return dataHandler.save(list);
-    }
 
     @Override
     public List load() {
-        dataHandler = new DataHandler();
-        return dataHandler.load();
+        return new ArrayList();
     }
 
     @Override
@@ -56,6 +45,11 @@ public class DataFacade implements IData{
 
     @Override
     public int loadHighestCaseNumber() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int save(List list) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

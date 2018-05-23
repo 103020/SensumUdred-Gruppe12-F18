@@ -18,7 +18,7 @@ public interface ICase {
      *
      * @return Returns the caseworker assigned to the case
      */
-    public ICaseworker getCaseWorker();
+    ICaseworker getCaseworker();
 
     /**
      *
@@ -150,49 +150,10 @@ public interface ICase {
      * @param log
      */
     public void setCaseworker(ICaseworker caseworker, ILog log);
-
-    /**
-     *
-     */
-    public void cancelMeeting();
-
-    /**
-     *
-     * @param time
-     */
-    public void setMeetingTime(LocalDateTime time);
-
-    /**
-     *
-     * @param Location
-     */
-    public void setMeetingLocation(String Location);
-
-    /**
-     *
-     * @param participants
-     */
-    public void setMeetingParticipants(String participants);
-
-    /**
-     *
-     * @param year
-     * @param month
-     * @param day
-     * @param hour
-     * @param minute
-     * @param location
-     * @param participants
-     * @param log
-     * @param caseworker
-     */
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log, ICaseworker caseworker);
-
-    /**
-     *
-     * @param name
-     * @param log
-     */
+    public String cancelMeeting();
+    public String setMeetingTime(LocalDateTime time);
+    public String setMeetingLocation(String Location);
+    public String setMeetingParticipants(String participants);
     public void setIndividualName(String name, ILog log);
 
     /**
@@ -208,6 +169,7 @@ public interface ICase {
      * @param log
      */
     public void setIndividualCPR(int CPR, ILog log);
+    public void enterEntry(String note, ILog log);
     
     
 }

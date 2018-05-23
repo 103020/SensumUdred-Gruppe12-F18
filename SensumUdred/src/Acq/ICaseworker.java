@@ -17,10 +17,11 @@ public interface ICaseworker {
     public String getName();
     public IDepartment getDepartment();
     public String getEmployeeID();
-    public void cancelMeeting();
-    public void setMeetingTime(LocalDateTime time);
-    public void setMeetingLocation(String Location);
-    public void setMeetingParticipants(String participants);
+    
+    public String cancelMeeting();
+    public String setMeetingTime(LocalDateTime time);
+    public String setMeetingLocation(String Location);
+    public String setMeetingParticipants(String participants);
     public void setIndividualName(String name);
     public void setIndividualAddress(String Address);
     public void setIndividualCPR(int CPR);
