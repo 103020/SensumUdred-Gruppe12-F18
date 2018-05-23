@@ -2,8 +2,6 @@ package Business;
 
 import Acq.*;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -11,8 +9,7 @@ import java.util.List;
  */
 public class Case implements ICase{
     
-    private static int totalCases;
-    private final int caseNumber;
+    private int caseNumber;
     private ICaseworker caseWorker;
     private IIndividual individual;
     private final String creationDate;
@@ -29,17 +26,16 @@ public class Case implements ICase{
     private StringBuilder caseFromAddress;
     private boolean caseClarity;
     private boolean individualUnderstanding;
+    private IMeeting createNewMeeting;
     
-    //private IData dataFacade;
+    private IBusiness businessFacade;
     
-    Case(String caseType, String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry,
+    Case(String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry,
             String _individualInvolvement, boolean individualUnderstanding,boolean consent,
             boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String _caseFromAddress){
-        caseNumber = totalCases;
-        totalCases++;
         creationDate = LocalDateTime.now().toString();
         isClosed = false;
-        this.caseType = caseType;
+        this.individual = new Individual();
         this.individual.setName(individualName, log);
         this.individual.setAddress(individualAddress, log);
         this.individual.setCPR(individualCPR, log);
@@ -51,9 +47,8 @@ public class Case implements ICase{
         this.oralConsent = oralConsent;
         this.caseClarity = caseClarity;
         this.caseFromAddress = new StringBuilder(_caseFromAddress);
-        //dataFacade = DataFacade.getInstance();
+        caseNumber = 0;
 
-        
         switch(inquiryFrom){
             case INDIVIDUAL:
                 caseFrom = inquiryFrom.INDIVIDUAL.toString();
@@ -70,16 +65,22 @@ public class Case implements ICase{
             default:
                 break;
         }
+        
+        businessFacade = BusinessFacade.getInstance();
     }
 
     
     Case(){
-        caseNumber = totalCases;
-        totalCases++;
+        caseNumber = 0;
         creationDate = LocalDateTime.now().toString();
         isClosed = false;
         inquiry = new StringBuilder();
         individualInvolvement = new StringBuilder();
+    }
+    
+    @Override
+    public void setCaseNumber(int caseNumber){
+        this.caseNumber = caseNumber;
     }
 
     @Override
@@ -88,7 +89,7 @@ public class Case implements ICase{
     }
 
     @Override
-    public ICaseworker getCaseWorker() {
+    public ICaseworker getCaseworker() {
         return caseWorker;
     }
 
@@ -100,10 +101,10 @@ public class Case implements ICase{
     @Override
     public String getCreationDate() {
         return creationDate;
-
     }
 
-    public boolean isClosed() {
+    @Override
+    public boolean getClosed() {
         return isClosed;
     }
 
@@ -122,15 +123,18 @@ public class Case implements ICase{
         return individualInvolvement.toString();
     }
 
-    public boolean isConsent() {
+    @Override
+    public boolean getConsent() {
         return consent;
     }
 
-    public boolean isWrittenConsent() {
+    @Override
+    public boolean getWrittenConsent() {
         return writtenConsent;
     }
 
-    public boolean isOralConsent() {
+    @Override
+    public boolean getOralConsent() {
         return oralConsent;
     }
 
@@ -140,58 +144,101 @@ public class Case implements ICase{
     }
 
     @Override
-    public String getCaseFromAdress() {
+    public String getCaseFromAddress() {
         return caseFromAddress.toString();
     }
 
-    public boolean isCaseClarity() {
+    @Override
+    public boolean getCaseClarity() {
         return caseClarity;
     }
 
-    public boolean isIndividualUnderstanding() {
+    @Override
+    public boolean getIndividualUnderstanding() {
         return individualUnderstanding;
     }
 
-    public void saveCase(ILog log) {
-//      dataFacade.save(list);
+    @Override
+    public int saveCase(ILog log) {
+        return businessFacade.saveCase();
     }
 
+    @Override
     public void editCase(ILog log) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("Not supported yet."); //TO DO: fix
     }
 
-
-    public void createMeeting(int year, int month, int date, ILog log) {
-        Date meetingDate = new Date(year, month, date);
-        meeting.setMeetingTime(meetingDate);
+    @Override
+    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants) {
+//        meeting.messageToMeeting();
+//        ILog log = new Log(this, (ICaseworker) this);
+//        createNewMeeting = new Meeting(year, month, day, hour, minute, location, participants, log);
     }
 
+    @Override
     public void closeCase(ILog log) {
         isClosed = true;
     }
 
+    @Override
     public ICase fetchCase(int caseNumber, ILog log) {
-        List<ICase> tempList;
-        //tempList = dataFacade.load();
-        return tempList.get(caseNumber);
+        ICase cas = businessFacade.accessCase(caseNumber);
+        return cas;
     }
 
+    @Override
     public void setCaseworker(ICaseworker caseworker, ILog log) {
         this.caseWorker = caseworker;
     } 
 
     @Override
     public IDiary getDiary() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return diary;
     }
 
     @Override
     public IMeeting getMeeting() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return meeting;
     }
 
     @Override
-    public StringBuilder getCaseFromAddress() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void cancelMeeting() {
+        meeting.cancelMeeting();
     }
+
+    @Override
+    public void setMeetingTime(LocalDateTime time) {
+        meeting.setMeetingTime(time);
+    }
+
+    @Override
+    public void setMeetingLocation(String Location) {
+        meeting.setLocation(Location);
+    }
+
+    @Override
+    public void setMeetingParticipants(String participants) {
+        meeting.setMeetingParticipants(participants);
+    }
+
+    @Override
+    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log, ICaseworker caseworker) {
+        meeting = new Meeting(year, month, day, hour, minute, location, this.individual, caseworker, participants, log, this.caseNumber);
+    }
+
+    @Override
+    public void setIndividualName(String name, ILog log) {
+        individual.setName(name, log);
+    }
+
+    @Override
+    public void setIndividualAddress(String Address, ILog log) {
+        individual.setAddress(Address, log);
+    }
+
+    @Override
+    public void setIndividualCPR(int CPR, ILog log) {
+        individual.setCPR(CPR, log);
+    }
+
 }

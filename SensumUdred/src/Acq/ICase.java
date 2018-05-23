@@ -18,7 +18,7 @@ public interface ICase {
      *
      * @return Returns the caseworker assigned to the case
      */
-    ICaseworker getCaseWorker();
+    ICaseworker getCaseworker();
 
     /**
      *
@@ -32,22 +32,102 @@ public interface ICase {
      */
     String getCreationDate();
 
-
+    /**
+     * 
+     * @return returns the type of the case
+     */
     public String getCaseType();
+    
+    /**
+     * 
+     * @return returns the inquiry
+     */
     public String getInquiry();
+    
+    /**
+     * 
+     * @return returns the text of the individual involvement
+     */
     public String getIndividualInvolvement();
+    
+    /**
+     * 
+     * @return returns the source of the inquiry, who made the inquiry
+     */
     public String getCaseFrom();
-    public String getCaseFromAdress();
-    public IDiary getDiary();
-    public boolean isClosed();
-    public IMeeting getMeeting();
-    public boolean isConsent();
-    public boolean isWrittenConsent();
-    public boolean isOralConsent();
+    
+    /**
+     * 
+     * @return returns the Address of the source, the address of who made the inquiry
+     */
     public String getCaseFromAddress();
-    public boolean isCaseClarity();
-    public boolean isIndividualUnderstanding();
-    public ICase getCase();
     
+    /**
+     * 
+     * @return returns the diary of the case
+     */
+    public IDiary getDiary();
     
+    /**
+     * 
+     * @return returns whether the case is closed
+     */
+    public boolean getClosed();
+    
+    /**
+     * 
+     * @return returns the meeting
+     */
+    public IMeeting getMeeting();
+    
+    /**
+     * 
+     * @return returns whether The individuals consent to get relevant data
+     */
+    public boolean getConsent();
+    
+    /**
+     * 
+     * @return returns whether the consent is written
+     */
+    public boolean getWrittenConsent();
+    
+    /**
+     * 
+     * @return return whether the consent is oral
+     */
+    public boolean getOralConsent();
+   
+    
+    /**
+     * 
+     * @return returns whether it is clear what the individual seek
+     */
+    public boolean getCaseClarity();
+    
+    /**
+     * 
+     * @return returns whether the individual is consent to the inquiry
+     */
+    public boolean getIndividualUnderstanding();
+    
+    /**
+     * saves the case to the database
+     * @param log is used to log that the case has been saved
+     */
+    public int saveCase(ILog log);
+    public void setCaseNumber(int caseNumber);
+    public void editCase(ILog log);
+    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants);
+    public void closeCase(ILog log);
+    public ICase fetchCase(int caseNumber, ILog log);
+    public void setCaseworker(ICaseworker caseworker, ILog log);
+    public void cancelMeeting();
+    public void setMeetingTime(LocalDateTime time);
+    public void setMeetingLocation(String Location);
+    public void setMeetingParticipants(String participants);
+    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log, ICaseworker caseworker);
+    public void setIndividualName(String name, ILog log);
+    public void setIndividualAddress(String Address, ILog log);
+    public void setIndividualCPR(int CPR, ILog log);    
 }

@@ -5,27 +5,118 @@
  */
 package Business;
 
-import java.util.Date;
+import Acq.IBusiness;
+import Acq.ICaseworker;
+import Acq.IIndividual;
+import java.time.LocalDateTime;
+import Acq.IMeeting;
+import Acq.ILog;
 
 /**
  *
  * @author Nicolai
  */
-public class Meeting {
+public class Meeting implements IMeeting {
 
-    void setMeetingTime(Date time) {
+    private LocalDateTime dayOfMeeting;
+    private IIndividual participant1;
+    private ICaseworker participant2;
+    private String participants;
+    private String timeOfMeeting;
+    private String location;
+    private boolean meetingActive;
+    private IBusiness businessFacade;
+    private int caseNum;
+        
+    /**
+     * This is how a meeting the created with the following attributes
+     * @param time the date of the meeting
+     * @param timeOfMeeting the time of the meeting
+     * @param location the address the meeting is taking place at
+     * @param active when meetings are created it is set as active == true, but when the meeting
+     * end or the meeting is cancelled in any shape and form the meeting active is set to false 
+     * @param log is what track who made the meeting
+     */
+    Meeting(int year, int month, int day, int hour, int minute, String location, IIndividual participant1, ICaseworker participant2, String participants, ILog log, int caseNum){
+        LocalDateTime meetingDate = LocalDateTime.of(year, month, day, hour, minute);
+        this.caseNum = caseNum;
+        this.participant1 = participant1;
+        this.participant2 = participant2;
+        businessFacade = BusinessFacade.getInstance();
+        setMeetingTime(meetingDate);
+        meetingActive = true;
+    }
+    
+    Meeting(){
+    }
+    
+    public void saveMeeting(){   
+        //TO DO: fix
+    }
+    
+    /**
+     * There is created a log after a meeting is created, and that need to be saved in the datebase, and this method does that
+     * @param log is what track who made the meeting
+     */
+    public void saveLog(ILog log){
+        //TO DO: fix
+    }
+    
+    @Override
+    public void messageToMeeting(){
+        String message = ("Vi indkalder dig til møde den: "+ getMeetingTime() + 
+                           "\nAddressen: " + getLocation() + "\nDe deltagende er: " +participant1.getName()+ getMeetingParticipants()) + " og " + participant2.getName();
+        businessFacade.messageToMeeting(caseNum, message);
+   
+    }
+    
+    @Override
+    public void cancelMeeting(){
+        meetingActive = false;
+        String message = "Mødet er blevet annulleret";
+        businessFacade.messageToMeeting(caseNum, message);
+    }
+
+    @Override
+    public void setMeetingTime(LocalDateTime time) {
+        dayOfMeeting = time;
+        messageToMeeting();
+    }
+
+    @Override
+    public String getLocation() {
+        return location;
+    }
+
+    @Override
+    public void setLocation(String location) {
+        this.location = location;
+        messageToMeeting();
+    }
+
+    @Override
+    public void setMeetingParticipants(String participants) {
+        this.participants = participants;
+        messageToMeeting();
+    }
+
+    @Override
+    public LocalDateTime getMeetingTime() {
+        return dayOfMeeting;
+    }
+
+    @Override
+    public String getMeetingParticipants() {
+        return participants;
+    }
+
+    @Override
+    public String getParticipant1() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    void setMeetingParticipants(String participants) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    Date getMeetingTime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    String getMeetingParticipants() {
+    @Override
+    public String getParticipant2() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

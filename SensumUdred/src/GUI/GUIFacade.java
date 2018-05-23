@@ -5,10 +5,14 @@
  */
 package GUI;
 
+import Acq.IBusiness;
 import Acq.ICase;
 import Acq.IGUI;
-import java.util.Date;
+import Acq.IMeeting;
+import Acq.InquiryFrom;
 import Business.BusinessFacade;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,10 +21,10 @@ import java.util.List;
  */
 public class GUIFacade implements IGUI{
 
-    BusinessFacade b = new BusinessFacade();
+    IBusiness b = new BusinessFacade();
     
     @Override
-    public boolean saveCase() {
+    public int saveCase() {
         return b.saveCase();
     }
 
@@ -31,7 +35,7 @@ public class GUIFacade implements IGUI{
 
     @Override
     public void createMeeting() {
-        b.createMeeting();
+        //b.createMeeting();
     }
 
     @Override
@@ -41,27 +45,28 @@ public class GUIFacade implements IGUI{
 
     @Override
     public ICase accessCase() {
-        return b.accessCase();
+        //return b.accessCase();
+        return null;
     }
 
-    @Override
-    public void createCase() {
-        b.createCase();
-    }
+//    @Override
+//    public void createCase() {
+//        b.createCase();
+//    }
     
     @Override
-    public void createCase(String name, int CPR, String address) {
-        b.createCase(name,CPR,address);
+    public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
+        b.createCase(individualName, individualAddress, individualCPR, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
     }
 
     @Override
     public void setEmployeeName(String name) {
-        b.setEmployeeDepartment(name);
+        //b.setEmployeeDepartment(name);
     }
 
     @Override
     public void setEmployeeDepartment(String department) {
-        b.setEmployeeDepartment(department);
+        //b.setEmployeeDepartment(department);
     }
 
     @Override
@@ -70,7 +75,7 @@ public class GUIFacade implements IGUI{
     }
 
     @Override
-    public void setMeetingTime(Date time) {
+    public void setMeetingTime(LocalDateTime time) {
         b.setMeetingTime(time);
     }
 
@@ -95,12 +100,24 @@ public class GUIFacade implements IGUI{
     }
 
     @Override
-    public List getDateSortedList() {
-        return b.getDateSortedList();
+    public List getCaseList() {
+        List convert = new ArrayList();
+        convert.add(new caseListAbler("58", "16/08-12"));
+        convert.add(new caseListAbler("12", "30/01-03"));
+        /* TODO: when a list is returnable
+        for (ICase ic : b.getCasenumSortedList()) {
+            convert.add(new caseListAbler(""+ic.getCaseNumber(),""+ic.getCreationDate()));
+        }*/
+        return convert;
+    }
+    
+    @Override
+    public LocalDateTime getMeetingTime(){
+        return b.getMeetingTime();
     }
 
     @Override
-    public List getCasenumSortedList() {
-        return b.getCasenumSortedList();
+    public boolean login(String username, String password) {
+        return b.login(username, password);
     }
 }

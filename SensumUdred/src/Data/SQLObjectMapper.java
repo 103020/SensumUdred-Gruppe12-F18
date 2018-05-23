@@ -1,7 +1,7 @@
 package Data;
 
 import Acq.ICase;
-import org.postgresql.Driver;
+//import org.postgresql.Driver;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -56,7 +56,7 @@ public class SQLObjectMapper {
                     + "oralconsent,casefrom,casefromaddress,caseclarity,"
                     + "individualunderstanding,caseworker,individual,diary,meeting)"
                     + " VALUES ('" + cas.getCreationDate()+ "','" +
-                    cas.isClosed() + "','" + cas.getCaseType() + "','" 
+                    cas.getClosed() + "','" + cas.getCaseType() + "','" 
                     + cas.getInquiry() + "','" + cas.getIndividualInvolvement() 
                     + "','" + cas.getConsent() + "','" + cas.getWrittenConsent() 
                     + "','" + cas.getOralConsent() + "','" + cas.getCaseFrom() 

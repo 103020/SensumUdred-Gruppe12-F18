@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
@@ -160,11 +162,12 @@
                         <Button fx:id="myCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonMyCase" prefHeight="25.0" prefWidth="150.0" text="Mine Sager" GridPane.rowIndex="1" />
                         <Button fx:id="dateSortButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonDate" prefHeight="25.0" prefWidth="150.0" text="Dato" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Button fx:id="casenumberSortButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCaseNumber" prefHeight="25.0" prefWidth="150.0" text="Sagsnummer" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <TextField fx:id="searchFieldMT" maxWidth="1.7976931348623157E308" onAction="#handleSearchField" onInputMethodTextChanged="#searchFieldHandler" promptText="Søgefelt" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <TextField fx:id="searchFieldMT" maxWidth="1.7976931348623157E308" onKeyReleased="#searchFieldHandler" promptText="Søgefelt" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                         <ListView fx:id="caseListViewMT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="5" />
                         <Button fx:id="createCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCreateCaseMT" prefHeight="25.0" prefWidth="150.0" text="Lav Sag" />
                         <Button fx:id="editCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonEditCaseMT" text="Ændre Sag" GridPane.rowIndex="3" />
                         <Button fx:id="viewCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonViewCaseMT" text="Se Sag" GridPane.rowIndex="2" />
+                        <ChoiceBox fx:id="choiceBoxMT" onMouseClicked="#handleChoiceBoxChange" prefWidth="150.0" GridPane.columnIndex="3" />
                      </children>
                   </GridPane>
                </children>
@@ -481,6 +484,34 @@
                   <Label text="Borgerinddragelse" GridPane.rowIndex="3" />
                   <Button fx:id="nextButtonCO" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCreateCaseCO" text="Lav Sag" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.rowSpan="2" />
                </children>
+            </GridPane>
+         </content>
+      </Tab>
+      <Tab fx:id="meetingTab" text="Møder">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ListView fx:id="listViewMeetingsM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="62.0" prefWidth="95.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="5" />
+                  <Button fx:id="buttonCreateMeetingM" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCreateMeetingM" text="Opredt møde" GridPane.rowIndex="3" />
+                  <DatePicker fx:id="datePickerMeetingM" maxWidth="1.7976931348623157E308" promptText="Vælg dato" GridPane.rowIndex="1" />
+                  <TextField fx:id="textFieldMeetingM" maxWidth="1.7976931348623157E308" promptText="Indtast klokken for mødet" GridPane.rowIndex="2" />
+               </children>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
             </GridPane>
          </content>
       </Tab>

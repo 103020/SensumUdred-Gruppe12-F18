@@ -7,6 +7,7 @@ package Business;
 
 import Acq.*;
 import Data.DataFacade;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -18,18 +19,32 @@ public class Caseworker implements ICaseworker{
     private IDepartment department;
     private String employeeID; 
     private ICase cas;
+    IBusiness businessFacade;
+    
+    Caseworker(String name, IDepartment department, String employeeID){
+        this.name = name;
+        this.department = department;
+        this.employeeID = employeeID;
+    }
     
     @Override
     public boolean accessCase(int caseNumber, ILog log) {
-        IData dataFacade = DataFacade.getInstance();
-        dataFacade.load();
-        return dataFacade.load() != null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TO DO: Stefan fix
     }
 
     @Override
-    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
+    public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
         ILog log = new Log(this, this);
-        cas = new Case(caseType, individualName, individualAddress,individualCPR, log, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
+        cas = new Case(individualName, individualAddress,individualCPR, log, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
+        cas.setCaseNumber(cas.saveCase(log));
+    }
+    
+    
+    @Override
+    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants){
+        ILog log = new Log(this, (ICaseworker) this);
+        cas.createMeeting(year, month, day, hour, minute, location,  participants, log, this);
     }
 
     @Override
@@ -60,5 +75,58 @@ public class Caseworker implements ICaseworker{
     @Override
     public String getEmployeeID() {
         return employeeID;
+    }
+
+    @Override
+    public void cancelMeeting() {
+        cas.cancelMeeting();
+    }
+
+    @Override
+    public void setMeetingTime(LocalDateTime time) {
+        cas.setMeetingTime(time);
+    }
+
+    @Override
+    public void setMeetingLocation(String Location) {
+        cas.setMeetingLocation(Location);
+    }
+
+    @Override
+    public void setMeetingParticipants(String participants) {
+        cas.setMeetingParticipants(participants);
+    }
+
+    @Override
+    public void setIndividualName(String name) {
+        ILog log = new Log(this, this);
+        cas.setIndividualName(name, log);
+    }
+
+    @Override
+    public void setIndividualAddress(String Address) {
+        ILog log = new Log(this, this);
+        cas.setIndividualAddress(Address, log);
+    }
+
+    @Override
+    public void setIndividualCPR(int CPR) {
+        ILog log = new Log(this, this);
+        cas.setIndividualCPR(CPR, log);
+    }
+
+    @Override
+    public ICaseworker getCaseworkerFormCase() {
+        return cas.getCaseworker();
+    }
+
+    @Override
+    public IMeeting getMeeting() {
+        return cas.getMeeting();
+    }
+
+    @Override
+    public IIndividual getIndividual() {
+        return cas.getIndividual();
     }
 }

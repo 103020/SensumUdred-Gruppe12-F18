@@ -5,18 +5,25 @@
  */
 package GUI;
 
+import Acq.IGUI;
+import Acq.IMeeting;
+import Acq.InquiryFrom;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
@@ -26,16 +33,19 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 /**
  *
  * @author 103020
  */
 public class FXMLDocumentController implements Initializable {
-    
-    GUIFacade facade;
-    
+
+    IGUI facade;
+
+    FilteredList<caseListAbler> fList;
+
     @FXML
     private Tab mainTab;
     @FXML
@@ -61,7 +71,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField searchFieldMT;
     @FXML
-    private ListView<List> caseListViewMT;
+    private ListView<caseListAbler> caseListViewMT;
     @FXML
     private Button createCaseButtonMT;
     @FXML
@@ -105,7 +115,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Tab readCaseTab;
     @FXML
-    private ListView<List> noteListViewVC;
+    private ListView<String> noteListViewVC;
     @FXML
     private Label caseNumberLabelVC;
     @FXML
@@ -160,8 +170,19 @@ public class FXMLDocumentController implements Initializable {
     private Button nextButtonCO;
     @FXML
     private Button nextTabButtonCC;
-    
-    
+    @FXML
+    private ChoiceBox<String> choiceBoxMT;
+    @FXML
+    private Tab meetingTab;
+    @FXML
+    private ListView<LocalDateTime> listViewMeetingsM;
+    @FXML
+    private Button buttonCreateMeetingM;
+    @FXML
+    private DatePicker datePickerMeetingM;
+    @FXML
+    private TextField textFieldMeetingM;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         facade = new GUIFacade();
@@ -170,15 +191,25 @@ public class FXMLDocumentController implements Initializable {
         tabPane.getTabs().remove(editCaseTab);
         tabPane.getTabs().remove(readCaseTab);
         tabPane.getTabs().remove(caseOpeningTab);
-        
-    }    
+        tabPane.getTabs().remove(meetingTab);
+        choiceBoxMT.getItems().addAll("Dato", "Sagsnummer");
+        choiceBoxMT.setValue("Sagsnummer");
+        //fList = new FilteredList(FXCollections.observableArrayList(facade.getCaseList()), p -> true); //temp to test
+        fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true); //TODO: change to this when testing is done
+    }
 
     @FXML
     private void handleButtonLogin(ActionEvent event) {
+        //TODO: check user inputs
+        //if you succesfully logged in
+        tabPane.getTabs().add(meetingTab);
         tabPane.getTabs().add(mainTab);
         tabPane.getSelectionModel().selectNext();
+        if (listViewMeetingsM.getItems().isEmpty()) {
+            tabPane.getSelectionModel().selectNext();
+        }
+        caseListViewMT.getItems().addAll(fList);
         tabPane.getTabs().remove(loginTab); // removes the tab
-        //tabPane.getTabs().add(loginTab); // addes the tab again
     }
 
     @FXML
@@ -186,192 +217,406 @@ public class FXMLDocumentController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION); //just a debug alert
         alert.setTitle("debug Support");
         alert.setHeaderText("debug Support");
-        alert.setContentText("Help is not available."); 
+        alert.setContentText("Help is not available.");
         alert.showAndWait();
     }
 
     @FXML
-    private void searchFieldHandler(InputMethodEvent event) {
+    private void handleChoiceBoxChange(MouseEvent event) {
+        searchFieldMT.clear();
+        switch (choiceBoxMT.getValue()) { //look in the searchfield to find thing that look like it in the list
+            case "Dato":
+                fList.setPredicate(p -> p.getDate().toLowerCase().contains("" + searchFieldMT.getText().toLowerCase().trim()));
+                caseListViewMT.getItems().clear();
+                caseListViewMT.getItems().addAll(fList);
+                break;
+            case "Sagsnummer":
+                fList.setPredicate(p -> p.getCaseNumber().toLowerCase().contains("" + searchFieldMT.getText().toLowerCase().trim()));
+                caseListViewMT.getItems().clear();
+                caseListViewMT.getItems().addAll(fList);
+                break;
+        }
+    }
+
+    @FXML
+    private void searchFieldHandler(KeyEvent event) {
+        switch (choiceBoxMT.getValue()) { //look in the searchfield to find thing that look like it in the list
+            case "Dato":
+                fList.setPredicate(p -> p.getDate().toLowerCase().contains("" + searchFieldMT.getText().toLowerCase().trim()));
+                caseListViewMT.getItems().clear();
+                caseListViewMT.getItems().addAll(fList);
+                break;
+            case "Sagsnummer":
+                fList.setPredicate(p -> p.getCaseNumber().toLowerCase().contains("" + searchFieldMT.getText().toLowerCase().trim()));
+                caseListViewMT.getItems().clear();
+                caseListViewMT.getItems().addAll(fList);
+                break;
+        }
     }
 
     @FXML
     private void handleButtonMyCase(ActionEvent event) {
+        //TODO: what do it need to do?
     }
 
     @FXML
     private void handleButtonDate(ActionEvent event) {
-        caseListViewMT.getItems().clear();
-        caseListViewMT.getItems().addAll(facade.getDateSortedList());
+        //TODO: sort the fList when what date is, is in place
     }
 
     @FXML
     private void handleButtonCaseNumber(ActionEvent event) {
+        fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true);
         caseListViewMT.getItems().clear();
-        caseListViewMT.getItems().addAll(facade.getCasenumSortedList());
-    }
-
-    @FXML
-    private void handleSearchField(ActionEvent event) {
+        caseListViewMT.getItems().addAll(fList);
     }
 
     @FXML
     private void handleButtonCreateCaseMT(ActionEvent event) {
         tabPane.getTabs().add(createCaseTab);
-        tabPane.getTabs().add(caseOpeningTab);
         tabPane.getSelectionModel().selectNext();
     }
 
-        @FXML
+    @FXML
     private void handleButtonNextTabCC(ActionEvent event) {
-        //TODO: will also save that values on that page
+        //TODO: will also save that values on this page (case opening)
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        boolean next = false;
         if (!createNameFieldCC.getText().equals("") && !createPersonalNumberFieldCC.getText().equals("") && !createAdresseFieldCC.getText().equals("")) {
             if (isInteger(createPersonalNumberFieldCC.getText(), 10)) {
-                facade.createCase(createNameFieldCC.getText(),Integer.parseInt(createPersonalNumberFieldCC.getText()),createAdresseFieldCC.getText());
-                
+                //TODO: that v  
+                next = true;
             } else {
                 alert.setTitle("Forkert input");
                 alert.setHeaderText("Forkerte værdier i \"CPR\"");
-                alert.setContentText("Der skal stå et tal i \"CPR\"."); 
+                alert.setContentText("Der skal stå et tal i \"CPR\".");
                 alert.showAndWait();
             }
         } else {
             alert.setTitle("Forkert input");
             alert.setHeaderText("Forkerte værdier i felterne");
-            alert.setContentText("Check \"Navn\", \"CPR\" og \"Adresse\"."); 
+            alert.setContentText("Check \"Navn\", \"CPR\" og \"Adresse\".");
             alert.showAndWait();
         }
-        tabPane.getSelectionModel().selectNext();
+        if (next){
+            tabPane.getTabs().add(caseOpeningTab);
+            tabPane.getSelectionModel().selectNext();
+            tabPane.getTabs().remove(createCaseTab);
+        }
     }
-    
+
     @FXML
     private void handleButtonCreateCaseCO(ActionEvent event) {
+        boolean temp = true;
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Manglende input");
+        InquiryFrom inquiry = null;
+        boolean consentBoo = false;
+        boolean mouth = false;
+        boolean clarity = false;
+        boolean caseClarityBoo = false;
         if (caseFrom.getSelectedToggle() != null) {
-            System.out.println(caseFrom.getSelectedToggle().toString());
+            //System.out.println(caseFrom.getSelectedToggle().toString()); //TODO: add calls
+            if (caseFrom.getSelectedToggle() == citizenRadioCO) {
+                inquiry = InquiryFrom.INDIVIDUAL;
+            } else if (caseFrom.getSelectedToggle() == relativesRadioCO) {
+                inquiry = InquiryFrom.RELATIVES;
+            } else if (caseFrom.getSelectedToggle() == doctorRadioCO) {
+                inquiry = InquiryFrom.DOCTOR;
+            } else if (caseFrom.getSelectedToggle() == otherRadioCO) {
+                inquiry = InquiryFrom.OTHER;
+            }
         } else {
-                alert.setHeaderText("Mangler at vælge hvor henvendelse kommer fra!");
-                alert.setContentText("Der skal også angives navn og adresse."); 
-                alert.showAndWait();
+            alert.setHeaderText("Mangler at vælge hvor henvendelse kommer fra!");
+            alert.setContentText("Der skal også angives navn og adresse.");
+            alert.showAndWait();
         }
         if (caseClarity.getSelectedToggle() != null) {
-            System.out.println(caseClarity.getSelectedToggle().toString());
+            if (caseClarity.getSelectedToggle() == seekRadioYesCO) {
+                caseClarityBoo = true;
+            }
         } else {
-                alert.setHeaderText("Er borgeren klar over hvad der søges efter");
-                alert.setContentText("Der skal vælge ja eller nej."); 
-                alert.showAndWait();
+            alert.setHeaderText("Er borgeren klar over hvad der søges efter");
+            alert.setContentText("Der skal vælge ja eller nej.");
+            alert.showAndWait();
         }
         if (consent.getSelectedToggle() != null) {
-            System.out.println(consent.getSelectedToggle().toString());
+            if (consent.getSelectedToggle() == consentRadioYesCO) {
+                consentBoo = true;
+            }
         } else {
-                alert.setHeaderText("Er det relevant med samtykkeerklæring");
-                alert.setContentText("Der skal vælge ja eller nej."); 
-                alert.showAndWait();
+            alert.setHeaderText("Er det relevant med samtykkeerklæring");
+            alert.setContentText("Der skal vælge ja eller nej.");
+            alert.showAndWait();
         }
         if (individualKnow.getSelectedToggle() != null) {
-            System.out.println(individualKnow.getSelectedToggle().toString());
+            if (individualKnow.getSelectedToggle() == informedInquiryRadioYesCO) {
+                clarity = true;
+            }
         } else {
-                alert.setHeaderText("Er borgeren indforstået med henvendelsen");
-                alert.setContentText("Der skal vælge ja eller nej."); 
-                alert.showAndWait();
+            alert.setHeaderText("Er borgeren indforstået med henvendelsen");
+            alert.setContentText("Der skal vælge ja eller nej.");
+            alert.showAndWait();
         }
         if (talkedWriten.getSelectedToggle() != null) {
-            System.out.println(talkedWriten.getSelectedToggle().toString());
+            if (talkedWriten.getSelectedToggle() == consentRadioOrallyCO) {
+                mouth = true;
+            } else {
+                mouth = false;
+            }
         } else if (consentRadioYesCO.isSelected()) {
-                alert.setHeaderText("Er samtykket give mundligt eller skriftligt?");
-                alert.setContentText("Der skal vælge mellem mundligt eller skriftligt."); 
-                alert.showAndWait();
+            alert.setHeaderText("Er samtykket give mundligt eller skriftligt?");
+            alert.setContentText("Der skal vælge mellem mundligt eller skriftligt.");
+            alert.showAndWait();
+        }
+        System.out.println( //a test
+                    createNameFieldCC.getText()+
+                    createAdresseFieldCC.getText()+
+                    Integer.parseInt(createPersonalNumberFieldCC.getText())+
+                    caseFrom.getSelectedToggle().toString()+
+                    caseClarity.getSelectedToggle().toString()+
+                    consentBoo+
+                    mouth+
+                    !mouth+
+                    clarity+
+                    caseClarityBoo+
+                    inquiry.toString()+ //what is this???
+                    nameAdresseTextFieldCO.getText()
+            );
+        if (temp) {
+            tabPane.getTabs().remove(caseOpeningTab);
+            facade.createCase(
+                    createNameFieldCC.getText(),
+                    createAdresseFieldCC.getText(),
+                    Integer.parseInt(createPersonalNumberFieldCC.getText()),
+                    caseFrom.getSelectedToggle().toString(),
+                    caseClarity.getSelectedToggle().toString(),
+                    consentBoo,
+                    mouth,
+                    !mouth,
+                    clarity,
+                    caseClarityBoo,
+                    inquiry, //what is this???
+                    nameAdresseTextFieldCO.getText()
+            );
+            
         }
     }
-    
-        @FXML
+
+    @FXML
     private void handleRadioButtonConsent(ActionEvent event) {
         if (consentRadioNoCO.isSelected()) {
-                consentRadioWrittenCO.setSelected(false);
-                consentRadioOrallyCO.setSelected(false);
-                consentRadioWrittenCO.setDisable(true);
-                consentRadioOrallyCO.setDisable(true);
+            consentRadioWrittenCO.setSelected(false);
+            consentRadioOrallyCO.setSelected(false);
+            consentRadioWrittenCO.setDisable(true);
+            consentRadioOrallyCO.setDisable(true);
         }
         if (consentRadioYesCO.isSelected()) {
-                consentRadioWrittenCO.setSelected(true);
-                consentRadioOrallyCO.setSelected(true);
-                consentRadioWrittenCO.setDisable(false);
-                consentRadioOrallyCO.setDisable(false);
+            consentRadioWrittenCO.setSelected(true);
+            consentRadioOrallyCO.setSelected(true);
+            consentRadioWrittenCO.setDisable(false);
+            consentRadioOrallyCO.setDisable(false);
         }
 
-    }
-    
-    /**
-     * checks if a String is a number
-     * @param s the String being checked
-     * @param radix the number system
-     * @return a boolean true is returned if s was a number
-     */
-    protected static boolean isInteger(String s, int radix) {
-        if(s.isEmpty()) return false;
-        for(int i = 0; i < s.length(); i++) {
-            if(i == 0 && s.charAt(i) == '-') {
-                if(s.length() == 1) return false;
-                else continue;
-            }
-            if(Character.digit(s.charAt(i),radix) < 0) return false;
-        }
-        return true;
     }
 
     @FXML
     private void handleButtonEditCaseMT(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         if (caseListViewMT.getItems().isEmpty()) {
-            alert.setTitle("The List is empty");
-            alert.setHeaderText("There is nothing to edit!");
-            alert.setContentText("Make a case instead."); 
+            alert.setTitle("Listen er tom");
+            alert.setHeaderText("Der er ingen ting at redigere!");
+            alert.setContentText("Lav en sag istedet.");
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
-            caseListViewMT.getSelectionModel().getSelectedItem().get(0); //TODO: not edit a closed case, TODO: get the case so it can be edited
+            caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber(); //TODO: not edit a closed case, TODO: get the case so it can be edited
             tabPane.getTabs().add(editCaseTab);
             tabPane.getSelectionModel().selectNext();
         } else {
-            alert.setTitle("Nothing Selected");
-            alert.setHeaderText("No case is Selected!");
-            alert.setContentText("Select a case."); 
+            alert.setTitle("Ingen ting valgt");
+            alert.setHeaderText("Ingen sag er valgt!");
+            alert.setContentText("Vælgt en sag.");
             alert.showAndWait();
         }
-        
+
     }
 
     @FXML
     private void handleButtonViewCaseMT(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         if (caseListViewMT.getItems().isEmpty()) {
-            alert.setTitle("The List is empty");
-            alert.setHeaderText("There is nothing to edit!");
-            alert.setContentText("Make a case instead."); 
+            alert.setTitle("Listen er tom");
+            alert.setHeaderText("Der er ingen sager!");
+            alert.setContentText("Lav en sag istedet.");
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
-            caseListViewMT.getSelectionModel().getSelectedItem().get(0); //TODO: get the case so it can be viewed
+            caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber(); //TODO: get the case so it can be viewed
             tabPane.getTabs().add(readCaseTab);
             tabPane.getSelectionModel().selectNext();
         } else {
-            alert.setTitle("Nothing Selected");
-            alert.setHeaderText("No case is Selected!");
-            alert.setContentText("Select a case."); 
+            alert.setTitle("Ingen ting valgt");
+            alert.setHeaderText("Ingen sag er valgt!");
+            alert.setContentText("Vælgt en sag.");
             alert.showAndWait();
         }
     }
 
     @FXML
     private void handleTabViewMT(Event event) {
-        if (mainTab.isSelected()) {
+        if (mainTab.isSelected() || meetingTab.isSelected()) {
             tabPane.getTabs().remove(createCaseTab);
             tabPane.getTabs().remove(editCaseTab);
             tabPane.getTabs().remove(readCaseTab);
             tabPane.getTabs().remove(caseOpeningTab);
+            listViewMeetingsM.getItems().clear();
+            listViewMeetingsM.getItems().add(facade.getMeetingTime());
+            fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true); //TODO: change to this when testing is done
+            caseListViewMT.getItems().clear();
+            caseListViewMT.getItems().addAll(fList);
         }
     }
 
     @FXML
     private void handleButtonSaveChangesVC(ActionEvent event) {
+        //TODO: need to get the case data first
+    }
+
+    @FXML
+    private void handleButtonCreateMeetingM(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Forkert indput!");
+        String temp;
+        String[] tempList = null;
+        int hour = 0;
+        int minut = 0;
+        if (textFieldMeetingM.getText() != "") {
+            temp = textFieldMeetingM.getText();
+            tempList = temp.split(":");
+        } else {
+            alert.setHeaderText("Du skal skrive et klokkeslæt i tekstfeltet!");
+            alert.setContentText("Der skal være en værdi i tekstfeltet!");
+            alert.showAndWait();
+        }
+        boolean error = false;
+        try {
+            error = false;
+            hour = Integer.parseInt(tempList[0]);
+            minut = Integer.parseInt(tempList[1]);
+            if (minut >= 60) { //to make it so that if an input is 14:80, the time becomes 15:20
+                hour = hour + (minut / 60);
+                minut = minut - 60 * (minut / 60);
+            }
+            if (hour >= 24) {
+                hour = hour - 24 * (hour / 24);
+            }
+        } catch (NumberFormatException e) {
+            alert.setHeaderText("Du skal skrive et klokkeslæt i textfeltet!");
+            alert.setContentText("Klokkeslættet skal skrive som \"HH:MM\", hvor HH er timer og MM er minutter!");
+            alert.showAndWait();
+            error = true;
+        } finally {
+            //TODO: check where it is sendt "the facade.getMeetingTime() right now"
+            if (!error) {
+                facade.createMeeting();
+                facade.setMeetingTime(datePickerMeetingM.getValue().atTime(hour, minut));
+                listViewMeetingsM.getItems().clear();
+                listViewMeetingsM.getItems().add(facade.getMeetingTime());
+                textFieldMeetingM.clear();
+            }
+        }
+    }
+
+    /**
+     * checks if a String is a number
+     *
+     * @param s the String being checked
+     * @param radix the number system
+     * @return a boolean true is returned if s was a number
+     */
+    protected static boolean isInteger(String s, int radix) {
+        if (s.isEmpty()) {
+            return false;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (i == 0 && s.charAt(i) == '-') {
+                if (s.length() == 1) {
+                    return false;
+                } else {
+                    continue;
+                }
+            }
+            if (Character.digit(s.charAt(i), radix) < 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * takes a list from the GUIFacade and sorts it use for sorting the list af
+     * case, that was gotten from the business layer
+     *
+     * @return returns a sorted list
+     */
+    private ArrayList<caseListAbler> sortCaseNumber() {
+        ArrayList temp = (ArrayList) facade.getCaseList();
+        Collections.sort(temp, new listAblerComparator());
+        return temp;
+    }
+}
+
+/**
+ * a way to format the case to the listview in the gui
+ *
+ * @author 103020
+ */
+class caseListAbler {
+
+    String caseNumber;
+    String date;
+
+    caseListAbler(String caseNumber, String date) {
+        this.caseNumber = caseNumber;
+        this.date = date;
+    }
+
+    public String getCaseNumber() {
+        return caseNumber;
+    }
+
+    public void setCaseNumber(String caseNumber) {
+        this.caseNumber = caseNumber;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "date: " + date + " caseNumber: " + caseNumber;
+    }
+}
+
+/**
+ * a comparator for the caseListAbler class, for when sorting lists
+ *
+ * @author 103020
+ */
+class listAblerComparator implements Comparator<caseListAbler> {
+
+    @Override
+    public int compare(caseListAbler o1, caseListAbler o2) {
+        if (Integer.parseInt(o1.getCaseNumber()) > Integer.parseInt(o2.getCaseNumber())) {
+            return 1;
+        } else if (Integer.parseInt(o1.getCaseNumber()) < Integer.parseInt(o2.getCaseNumber())) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }

@@ -7,6 +7,7 @@ package Business;
 
 import Acq.*;
 import Data.DataFacade;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class BusinessFacade implements IBusiness {
     Meeting meeting = new Meeting();
     Individual ind = new Individual();
     
-    static DataFacade data;
+    static IData data;
 
     
     private static BusinessFacade instance;
@@ -44,8 +45,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public ICaseworker getCaseWorker() {
-        return cas.getCaseWorker();
+    public ICaseworker getCaseworker() {
+        return cas.getCaseworker();
     }
 
     @Override
@@ -54,7 +55,7 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean saveCase() {
+    public int saveCase() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //return data.save(list) //need a methode were we get the list from Case
     }
@@ -70,33 +71,42 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void createMeeting() {
-        //cas.createMeeting();
-    }
-
-    @Override
     public void closeCase() {
         //cas.closeCase();
     }
 
     @Override
-    public ICase accessCase() {
+    public ICase accessCase(int caseNumber) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //return cas.accessData(this, casworker)//need more implemented
     }
 
     @Override
-    public void createCase(String caseType, String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
-        worker.createCase(caseType, individualName, individualAddress, individualCPR, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
+    public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
+        worker.createCase(individualName, individualAddress, individualCPR, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
+    }
+    
+    @Override
+    public void createMeeting(int year, int month, int date, int hour, int minute, String location, String participants){
+        worker.createMeeting(year, month, date, hour, minute, location, participants);
     }
 
+    public String getLocation(){
+        return meeting.getLocation();
+    }
+    
+    @Override
+    public LocalDateTime getMeetingTime(){
+        return meeting.getMeetingTime();
+    }
+    
     @Override
     public void setEmployeeName(String name) {
         worker.setName(name);
     }
 
     @Override
-    public void setEmployeeDepartment(String department) {
+    public void setEmployeeDepartment(IDepartment department) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //        worker.setDepartment(department); //check IDepartment as input?
     }
@@ -122,7 +132,7 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void setMeetingTime(Date time) {
+    public void setMeetingTime(LocalDateTime time) {
         meeting.setMeetingTime(time);
     }
 
@@ -131,10 +141,6 @@ public class BusinessFacade implements IBusiness {
         meeting.setMeetingParticipants(participants);
     }
 
-    @Override
-    public Date getMeetingTime() {
-        return meeting.getMeetingTime();
-    }
 
     @Override
     public String getMeetingParticipants() {
@@ -143,7 +149,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public String getIndividualName() {
-        return ind.getName();
+        return worker.getIndividual().getName();
     }
 
     @Override
@@ -172,24 +178,30 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void createCase(String name, int CPR, String address) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List getDateSortedList() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List getCasenumSortedList() {
+    public List<ICase> getCasenumSortedList() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+//    //test
+//    @Override
+//    public void createCase() {
+//        worker.createCase("Pizza", "Morten", "Anstalten 17", 0, "jeg vil gerne have pizza", "jeg vil gerne have pizza", true, true, true, true, true, InquiryFrom.INDIVIDUAL, "anstalten 17");
+//    }
+
     @Override
-    public void createCase() {
-        //worker.createCase("Pizza", "Morten", "Anstalten 17", 0, "jeg vil gerne have pizza", "jeg vil gerne have pizza", true, true, true, true, true, InquiryFrom.INDIVIDUAL, "anstalten 17");
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean login(String username, String password) {
+        return data.login(username, password);
+    }
+
+    @Override
+    public void messageToMeeting(int caseNum, String message) {
+        //TO DO: Stefan fix, skal bruge en table som indeholder casenumber og beskeder
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

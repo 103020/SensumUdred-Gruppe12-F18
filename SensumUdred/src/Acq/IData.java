@@ -12,8 +12,9 @@ import java.util.List;
  * @author stefan
  */
 public interface IData {
-    public boolean save(List list);
+    public int save(List list);
     public List load();
     public List loadUser();
-    
+    public boolean login(String username, String password);
+    public int loadHighestCaseNumber();
 }

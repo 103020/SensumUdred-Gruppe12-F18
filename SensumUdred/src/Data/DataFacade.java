@@ -21,10 +21,6 @@ public class DataFacade implements IData{
 
     }
     
-    @Override
-    public boolean save(List list) {
-        return false;
-    }
 
     @Override
     public List load() {
@@ -35,6 +31,21 @@ public class DataFacade implements IData{
     public List loadUser() {
         UserHandler userHandler = new UserHandler();
         return userHandler.loadUser();
+    }
+
+    @Override
+    public boolean login(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int loadHighestCaseNumber() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int save(List list) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
