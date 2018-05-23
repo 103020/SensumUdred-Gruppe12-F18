@@ -19,11 +19,11 @@ public class BusinessFacade implements IBusiness {
     
     //temp to test
     ICase cas = new Case();
-    Caseworker worker = new Caseworker();
+    Caseworker worker = new Caseworker("name",new Department(),"28");//TODO:fix caseworker
     Meeting meeting = new Meeting();
     Individual ind = new Individual();
     
-    static IData data;
+    static IData data = new DataFacade();
 
     
     private static BusinessFacade instance;
@@ -202,6 +202,11 @@ public class BusinessFacade implements IBusiness {
     public void messageToMeeting(int caseNum, String message) {
         //TO DO: Stefan fix, skal bruge en table som indeholder casenumber og beskeder
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setFacadeCase(int caseNumber) {
+        //cas = //TODO: change the case that is call to in this facade, but we need a getcase that uses a casenumber to find it
     }
     
 }

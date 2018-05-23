@@ -200,23 +200,32 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonLogin(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Fejl i Login");
         //TODO: check user inputs
-        if (facade.login(usernameFieldLT.getText(), passwordFieldLT.getText())) {
-            //if you succesfully logged in
-            tabPane.getTabs().add(meetingTab);
-            tabPane.getTabs().add(mainTab);
-            tabPane.getSelectionModel().selectNext();
-            if (listViewMeetingsM.getItems().isEmpty()) {
-                tabPane.getSelectionModel().selectNext();
-            }
-            caseListViewMT.getItems().addAll(fList);
-            tabPane.getTabs().remove(loginTab); // removes the tab
+        if (usernameFieldLT.getText().equals("")||passwordFieldLT.getText().equals("")) {
+            alert.setHeaderText("Der skal stå noget i brugernavn og adganskode feltet!");
+                alert.setContentText("Indtast brugernavn og adgangskode!");
+                alert.showAndWait();
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fejl i Login");
-            alert.setHeaderText("Der var en fejl i enten dit brugernavn eller din adganskode!");
-            alert.setContentText("Indtast brugernavn og adgangskode igen!");
-            alert.showAndWait();
+            if (facade.login(usernameFieldLT.getText(), passwordFieldLT.getText())) {
+                //if you succesfully logged in
+                userNameMT.setText("Username: " + usernameFieldLT.getText());
+                caseListViewMT.getItems().addAll(fList); //TODO: check this
+                tabPane.getTabs().add(meetingTab);
+                tabPane.getTabs().add(mainTab);
+                tabPane.getSelectionModel().selectNext();
+                if (listViewMeetingsM.getItems().isEmpty()) {
+                    tabPane.getSelectionModel().selectNext();
+                }
+                caseListViewMT.getItems().clear();
+                caseListViewMT.getItems().addAll(fList);
+                tabPane.getTabs().remove(loginTab); // removes the tab
+            } else {
+                alert.setHeaderText("Der var en fejl i enten dit brugernavn eller din adganskode!");
+                alert.setContentText("Indtast brugernavn og adgangskode igen!");
+                alert.showAndWait();
+            }
         }
     }
 
@@ -437,11 +446,11 @@ public class FXMLDocumentController implements Initializable {
             alert.setContentText("Lav en sag istedet.");
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
-            caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber(); //TODO: not edit a closed case, TODO: get the case so it can be edited
+            System.out.println(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()); //TODO: not edit a closed case, TODO: get the case so it can be edited
             tabPane.getTabs().add(editCaseTab);
-            /*currentNameLabelEC.setText(facade.); //TODO: need some getters
-            currentPersonalNumberLabelEC.setText(value);
-            currentAdresseLabelEC.setText(value);*/
+            currentNameLabelEC.setText(facade.getIndividualName());
+            currentPersonalNumberLabelEC.setText(facade.getIndividualCPR()+"");
+            currentAdresseLabelEC.setText(facade.getIndividualAddress());
             tabPane.getSelectionModel().selectNext();
         } else {
             alert.setTitle("Ingen ting valgt");
@@ -481,7 +490,7 @@ public class FXMLDocumentController implements Initializable {
             tabPane.getTabs().remove(caseOpeningTab);
             listViewMeetingsM.getItems().clear();
             listViewMeetingsM.getItems().add(facade.getMeetingTime());
-            fList.clear();
+            //fList.clear();
             fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true);
             caseListViewMT.getItems().clear();
             caseListViewMT.getItems().addAll(fList);
