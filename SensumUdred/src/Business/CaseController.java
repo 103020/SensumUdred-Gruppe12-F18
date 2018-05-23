@@ -14,37 +14,29 @@ import java.util.List;
 public class CaseController implements ICaseController{
     
     private List<ICase> cases;
-    private List<ICaseworker> caseWorkers;
     
     @Override
     public boolean addCase(ICase newCase){
         return cases.add(newCase);
     }
-    
-    @Override
-    public boolean addCaseWorker(ICaseworker caseWorker){
-        return caseWorkers.add(caseWorker);
-    }
-    
+
     @Override
     public List<ICase> getCaseList(){
         return cases;
     }
     
-    @Override
-    public List<ICaseworker> getCaseWorkers(){
-        return caseWorkers;
-    }
-    
+
     /** find ud af om caseNumber skal laves om til et index **/ 
     @Override
     public ICase getCase(int caseNumber){
-        return cases.get(caseNumber);
+        int caseIndex = -1;
+        for (int i = 0; i < cases.size(); i++) {
+            if (cases.get(i).getCaseNumber() == caseNumber) {
+                caseIndex = i;
+            }
+        }
+        return cases.get(caseIndex);
     }
     
-    @Override
-    public ICaseworker getCaseworker(int employerID){
-        return caseWorkers.get(employerID);
-    }
     
 }

@@ -47,7 +47,7 @@ public class Meeting implements IMeeting {
     }
     
     public void saveMeeting(){   
-        //TO DO: fix
+        //TODO: fix
     }
     
     /**
@@ -55,7 +55,7 @@ public class Meeting implements IMeeting {
      * @param log is what track who made the meeting
      */
     public void saveLog(ILog log){
-        //TO DO: fix
+        //TODO: fix
     }
     
     public String messageToMeeting(){

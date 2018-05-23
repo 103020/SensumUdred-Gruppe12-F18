@@ -35,10 +35,7 @@ public class Case implements ICase{
             boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String _caseFromAddress){
         creationDate = LocalDateTime.now().toString();
         isClosed = false;
-        this.individual = new Individual();
-        this.individual.setName(individualName, log);
-        this.individual.setAddress(individualAddress, log);
-        this.individual.setCPR(individualCPR, log);
+        this.individual = new Individual(individualName, individualAddress, individualCPR, log);
         this.inquiry = new StringBuilder(_inquiry);
         this.individualInvolvement = new StringBuilder(_individualInvolvement);
         this.individualUnderstanding = individualUnderstanding;

@@ -13,9 +13,9 @@ import java.util.List;
  */
 public interface ICaseController {
     boolean addCase(ICase newCase);
-    boolean addCaseWorker(ICaseworker caseWorker);
+
     List<ICase> getCaseList();
-    List<ICaseworker> getCaseWorkers();
+
     ICase getCase(int caseNumber);
-    ICaseworker getCaseworker(int employerID);
+
 }

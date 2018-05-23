@@ -19,12 +19,14 @@ public class Caseworker implements ICaseworker{
     private IDepartment department;
     private String employeeID; 
     private ICase cas;
-    IBusiness businessFacade;
+    private IBusiness businessFacade;
+    private ICaseController caseControl;
     
     Caseworker(String name, IDepartment department, String employeeID, String caseworkerPassword, String caseworkerUsername ){
         this.name = name;
         this.department = department;
         this.employeeID = employeeID;
+        caseControl = new CaseController();
     }
     
     @Override
@@ -129,5 +131,18 @@ public class Caseworker implements ICaseworker{
     @Override
     public IIndividual getIndividual() {
         return cas.getIndividual();
+    }
+    
+    public void setCase(int caseNumber){
+        this.cas = caseControl.getCase(caseNumber);
+    }
+    
+    public void enterEntry(String note){
+        ILog log = new Log(this, this);
+        cas.enterEntry(note, log);
+    }
+    
+    public ICase getCase(){
+        return cas;
     }
 }
