@@ -204,16 +204,5 @@ public class BusinessFacade implements IBusiness {
     public boolean login(String username, String password) {
         return data.login(username, password);
     }
-
-    @Override
-    public void messageToMeeting(int caseNum, String message) {
-        //TO DO: Stefan fix, skal bruge en table som indeholder casenumber og beskeder
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setFacadeCase(int caseNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

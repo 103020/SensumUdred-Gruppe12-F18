@@ -36,11 +36,19 @@ public class Diary implements IDiary{
 
     @Override
     public void saveEntry(ILog log) {
-        //TO DO: fix
+        //TODO: fix
     }
 
     @Override
     public String getEntry(ILog log) {
         return entry.toString();
     }
+
+    @Override
+    public void enterEntry(String note, ILog log) {
+        entry.insert(entry.length(), "\n" + toString() + " " + note);
+       
+    }
+    
+    
 }
