@@ -236,6 +236,7 @@ public class Case implements ICase{
     public void enterEntry(String note, ILog log) {
         diary.enterEntry(note, log);
     }
+    
 
 
 }
