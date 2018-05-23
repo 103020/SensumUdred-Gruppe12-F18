@@ -19,7 +19,9 @@ public class IndividualData implements IIndividual{
     private String address;
     private int CPR;
     
-    
+    IndividualData(){
+        
+    }
 
     IndividualData(String name, String address, int CPR) {
         this.name = name;
@@ -27,6 +29,11 @@ public class IndividualData implements IIndividual{
         this.CPR = CPR;
     }
 
+    void setAttributes(String name, String address, int CPR){
+        this.name = name;
+        this.address = address;
+        this.CPR = CPR;
+    }
     
     @Override
     public String getName() {

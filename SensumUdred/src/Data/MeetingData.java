@@ -5,13 +5,10 @@
  */
 package Data;
 
-import Business.*;
-import Acq.IBusiness;
-import Acq.ICaseworker;
-import Acq.IIndividual;
+import Acq.*;
 import java.time.LocalDateTime;
-import Acq.IMeeting;
-import Acq.ILog;
+import java.time.format.DateTimeFormatter;
+
 
 /**
  *
@@ -45,6 +42,16 @@ public class MeetingData implements IMeeting {
     }
     
     MeetingData(){
+    }
+    
+    void setAttributes(String dateandtime, IIndividual participant1, ICaseworker participant2,
+            String location, boolean meetingActive){
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+        dayOfMeeting = LocalDateTime.parse(dateandtime, formatter);
+        this.participant1 = participant1;
+        this.participant2 = participant2;
+        this.location = location;
+        this.meetingActive = meetingActive;
     }
 
     @Override

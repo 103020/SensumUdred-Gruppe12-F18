@@ -18,9 +18,21 @@ import java.util.Date;
 public class DiaryData implements IDiary{
     private String date;
     private StringBuilder entry;
+    
+    DiaryData(){
+        
+    }
 
     DiaryData(String entry, String date) {
         this.entry = new StringBuilder(entry);
+        this.date = date;
+    }
+    
+    void setEntry(String entry){
+        this.entry = new StringBuilder(entry);
+    }
+    
+    void setDate(String date){
         this.date = date;
     }
 

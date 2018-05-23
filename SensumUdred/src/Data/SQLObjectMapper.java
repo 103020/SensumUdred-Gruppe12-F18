@@ -75,7 +75,7 @@ public class SQLObjectMapper {
             rs = st.executeQuery("SELECT * FROM CASES WHERE CASES.CASEWORKER=" 
                 + caseworker.getEmployeeID());
             while (rs.next()) {
-                ICase cas = new CaseData(
+                CaseData cas = new CaseData(
                         rs.getBoolean("individualunderstanding"), 
                         rs.getBoolean("consent"), 
                         rs.getBoolean("writtenconsent"), 
@@ -89,7 +89,40 @@ public class SQLObjectMapper {
                         rs.getBoolean("isClosed"), 
                         rs.getString("creationdate")
                 );
-                cas.
+                
+                /* create diary object */
+                ResultSet rs2 = st.executeQuery("SELECT * FROM DIARIES WHERE DIARY.CASE=" + cas.getCaseNumber());
+                DiaryData diary = new DiaryData();
+                diary.setEntry(rs2.getString("entry"));
+                diary.setDate(rs2.getString("diarydate"));
+                
+                
+                /* create individual object */
+                rs2 = st.executeQuery("SELECT * FROM INDIVIDUALS INNER JOIN "
+                        + "CASES ON INDIVIDUALS.INDIVIDUALCPR=CASES.INDIVIDUAL "
+                        + "WHERE CASES.CASENUMBER=" + cas.getCaseNumber());
+                IndividualData individual = new IndividualData();
+                individual.setAttributes(
+                        rs2.getString("individualname"), 
+                        rs2.getString("individualAddress"), 
+                        rs2.getInt("individualCPR"));
+                
+                /* create meeting object */ // will be put in a list
+                rs2 = st.executeQuery("SELECT * FROM MEETINGS WHERE "
+                        + "MEETINGS.PARTICIPANT1=" + cas.getIndividual().getCPR() 
+                        + " AND MEETINGS.PARTICIPANT2=" 
+                        + cas.getCaseworker().getEmployeeID());
+                MeetingData meeting = new MeetingData();
+                while (rs2.next()) {
+                    meeting.setAttributes(
+                            rs2.getString("meetingdateandtime"), 
+                            individual, caseworker, 
+                            rs2.getString("location"), 
+                            rs2.getBoolean("meetingactive"));
+                }
+                
+                cas.addObjects(caseworker, diary, meeting, individual);
+                caseList.add(cas);
             }
         } catch (SQLException e) {
             e.printStackTrace();
