@@ -18,7 +18,7 @@ public interface ICase {
      *
      * @return Returns the caseworker assigned to the case
      */
-    ICaseworker getCaseworker();
+    public ICaseworker getCaseworker();
 
     /**
      *
@@ -31,12 +31,6 @@ public interface ICase {
      * @return Returns the creation date of the case
      */
     public String getCreationDate();
-
-    /**
-     * 
-     * @return returns the type of the case
-     */
-    public String getCaseType();
     
     /**
      * 
@@ -126,19 +120,22 @@ public interface ICase {
 
     /**
      *
-     * @param log
+     * @param log is the log that is set when a case is edited
      */
     public void editCase(ILog log);
 
     /**
      *
-     * @param year
-     * @param month
-     * @param day
-     * @param hour
-     * @param minute
-     * @param location
-     * @param participants
+     * @param year year of the meeting
+     * @param month month of the meeting
+     * @param day day of the meeting
+     * @param hour hour of the meeting
+     * @param minute minute of the meeting 
+     * @param location location/address the meeting is taking place
+     * @param participant2 is the caseworker
+     * @param participants is the individuals 
+     * @param log log when a meeting is created
+     * @return 
      */
     public String createMeeting(int year, int month, int day, int hour, int minute, String location, ICaseworker participant2, String participants, ILog log);
 
@@ -147,41 +144,74 @@ public interface ICase {
      * @param log
      */
     public void closeCase(ILog log);
-
+    
     /**
      *
-     * @param caseNumber
-     * @param log
-     * @return
+     * @param caseNumber here is the casenumber the number it fetch to get the right case
+     * @param log is the log that is set when a case is fetched 
+     * @return a case object
      */
     public ICase fetchCase(int caseNumber, ILog log);
 
     /**
      *
-     * @param caseworker
-     * @param log
+     * @param caseworker set the caseworker
+     * @param log when a new caseworker is set 
      */
     public void setCaseworker(ICaseworker caseworker, ILog log);
+
+    /**
+     *
+     * @return a message when a meeting is cancelled
+     */
     public String cancelMeeting();
+
+    /**
+     *
+     * @param time is the date, day and time of the day the meeting is taking place at
+     * @return a message that gives all the information about the meeting
+     */
     public String setMeetingTime(LocalDateTime time);
+
+    /**
+     *
+     * @param Location is the location the meeting is taking place at
+     * @return a message that gives all the information about the meeting
+     */
     public String setMeetingLocation(String Location);
+
+    /**
+     *
+     * @param participants is who is participating in the meeting
+     * @return a message that gives all the information about the meeting
+     */
     public String setMeetingParticipants(String participants);
+
+    /**
+     *
+     * @param name that is set to the individual, that is connected to the meeting
+     * @param log when a new name is set for the individual
+     */
     public void setIndividualName(String name, ILog log);
 
     /**
      *
-     * @param Address
-     * @param log
+     * @param Address is address set to the individual, that is connected to the meeting
+     * @param log when a new address set for the individual
      */
     public void setIndividualAddress(String Address, ILog log);
 
     /**
      *
-     * @param CPR
-     * @param log
+     * @param CPR is the individual personalnumber
+     * @param log when a new personal number is set for the individual
      */
     public void setIndividualCPR(int CPR, ILog log);
-    public void enterEntry(String note, ILog log);
-    
-    
+
+    /**
+     *
+     * @param note is a note set to the caseworker
+     * @param log when a caseworker enter a diary on a case
+     */
+    public void enterEntry(String note, ILog log);   
 }

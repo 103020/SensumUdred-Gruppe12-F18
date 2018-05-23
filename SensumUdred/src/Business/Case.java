@@ -1,3 +1,6 @@
+
+
+
 package Business;
 
 import Acq.*;
@@ -103,11 +106,6 @@ public class Case implements ICase{
     @Override
     public boolean getClosed() {
         return isClosed;
-    }
-
-    @Override
-    public String getCaseType() {
-        return caseType;
     }
 
     @Override

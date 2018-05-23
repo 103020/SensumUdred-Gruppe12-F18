@@ -12,10 +12,25 @@ import java.util.List;
  * @author Tobias
  */
 public interface ICaseController {
-    boolean addCase(ICase newCase);
 
-    List<ICase> getCaseList();
+    /**
+     *
+     * @param newCase the new case is a object of ICase
+     * @return and add the new case to a caselist
+     */
+    public boolean addCase(ICase newCase);
 
-    ICase getCase(int caseNumber);
+    /**
+     *
+     * @return the case list is returned 
+     */
+    public List<ICase> getCaseList();
+
+    /**
+     *
+     * @param caseNumber the number that is assigned to the case
+     * @return the case
+     */
+    public ICase getCase(int caseNumber);
 
 }
