@@ -13,25 +13,12 @@ import java.time.LocalDateTime;
  * @author stefan
  */
 public interface IMeeting {
-    
-    /**
-     * Set the date of the meeting
-     * @param time is the date of the meeting
-     */
-    String setMeetingTime(LocalDateTime time);
-    
     /**
      *  
      * @return the meeting date 
      */
     LocalDateTime getMeetingTime();
-
-    /**
-     * Set the participants for the meeting with a String
-     * @param participants are them who are in the meeting
-     */
-    String setMeetingParticipants(String participants);
-        
+   
     /**
      *
      * @return participants for the meeting
@@ -40,17 +27,7 @@ public interface IMeeting {
     
     /**
      * 
-     * @return the location or the addresse the meeting take place at
+     * @return the location or the address the meeting take place at
      */
     String getLocation();
-    
-    /**
-     * Set the location of the meeting
-     * @param location is the addresse the meeting take place at
-     */
-    String setLocation(String location);
-    
-    String messageToMeeting();
-    String cancelMeeting();
- 
 }

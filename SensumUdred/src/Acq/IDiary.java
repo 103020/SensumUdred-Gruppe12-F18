@@ -8,9 +8,6 @@ import java.util.Date;
  */
 public interface IDiary {
 
-    
-    void saveEntry(ILog log);
-
     /**
      *
      * @return  Returns the entry in string format.
@@ -21,9 +18,8 @@ public interface IDiary {
      *
      * @return  returns the date of the entry
      */
-    Date getDate();
-    
-    void enterEntry(String note, ILog log);
+    String getDate();
+
     
     
 }
