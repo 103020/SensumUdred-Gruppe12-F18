@@ -126,21 +126,9 @@ public interface ICase {
 
     /**
      *
-     * @param log
+     * @param log is the log that is set when a case is edited
      */
     public void editCase(ILog log);
-
-    /**
-     *
-     * @param year
-     * @param month
-     * @param day
-     * @param hour
-     * @param minute
-     * @param location
-     * @param participants
-     */
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants);
 
     /**
      *
