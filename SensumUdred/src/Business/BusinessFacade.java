@@ -23,6 +23,12 @@ public class BusinessFacade implements IBusiness {
     private Meeting meeting;
     private Individual ind;
     
+//test     
+//ICase cas = new Case();
+//Caseworker worker = new Caseworker();
+//Meeting meeting = new Meeting();
+//Individual ind = Individual;
+    
     static IData data;
 
     
@@ -202,6 +208,11 @@ public class BusinessFacade implements IBusiness {
     @Override
     public void messageToMeeting(int caseNum, String message) {
         //TO DO: Stefan fix, skal bruge en table som indeholder casenumber og beskeder
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setFacadeCase(int caseNumber) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

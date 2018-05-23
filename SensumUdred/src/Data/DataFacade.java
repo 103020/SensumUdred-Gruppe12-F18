@@ -46,7 +46,12 @@ public class DataFacade implements IData{
 
     @Override
     public boolean login(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TODO: get stuff from database login
+        /*
+        get data from database about user
+        check through if they are the same as username and password
+        */
+        return true; //debug
     }
 
     @Override

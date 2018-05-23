@@ -120,4 +120,24 @@ public class GUIFacade implements IGUI{
     public boolean login(String username, String password) {
         return b.login(username, password);
     }
+
+    @Override
+    public String getIndividualName() {
+        return b.getIndividualName();
+    }
+
+    @Override
+    public String getIndividualAddress() {
+        return b.getIndividualAddress();
+    }
+
+    @Override
+    public int getIndividualCPR() {
+        return b.getIndividualCPR();
+    }
+
+    @Override
+    public void setFacadeCase(int caseNumber) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
