@@ -29,7 +29,7 @@ public class Meeting implements IMeeting {
      * This is how a meeting the created with the following attributes
      * @param time the date of the meeting
      * @param timeOfMeeting the time of the meeting
-     * @param location the addresse the meeting is taking place at
+     * @param location the address the meeting is taking place at
      * @param active when meetings are created it is set as active == true, but when the meeting
      * end or the meeting is cancelled in any shape and form the meeting active is set to false 
      * @param log is what track who made the meeting
@@ -62,6 +62,7 @@ public class Meeting implements IMeeting {
                            "\nAddressen: " + getLocation() + "\nDe deltagende er: " +participant1.getName()+ " " + getMeetingParticipants()) + " og " + participant2.getName();
     }
     
+    @Override
     public String cancelMeeting(){
         meetingActive = false;
         return ("Mødet den: " + getMeetingTime() + "\n Ved: " + getLocation() + "\nMed: " +participant1.getName()+ getMeetingParticipants() + " og " + participant2.getName() + "\nEr blevet annuleret");
@@ -98,6 +99,5 @@ public class Meeting implements IMeeting {
     @Override
     public String getMeetingParticipants() {
         return participants;
-    }
-    
+    }   
 }

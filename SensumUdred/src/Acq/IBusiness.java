@@ -24,7 +24,7 @@ public interface IBusiness {
      * 
      * @return returns the caseworker
      */
-    public ICaseworker getCaseWorker();
+    public ICaseworker getCaseworker();
     
     /**
      * 

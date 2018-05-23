@@ -51,8 +51,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public ICaseworker getCaseWorker() {
-        return cas.getCaseWorker();
+    public ICaseworker getCaseworker() {
+        return cas.getCaseworker();
     }
 
     @Override
@@ -98,6 +98,7 @@ public class BusinessFacade implements IBusiness {
         worker.createMeeting(year, month, date, hour, minute, location, participants);
     }
 
+    @Override
     public String getLocation(){
         return meeting.getLocation();
     }
@@ -203,6 +204,16 @@ public class BusinessFacade implements IBusiness {
     @Override
     public boolean login(String username, String password) {
         return data.login(username, password);
+    }
+
+    @Override
+    public void messageToMeeting(int caseNum, String message) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setFacadeCase(int caseNumber) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

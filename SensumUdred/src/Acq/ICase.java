@@ -18,7 +18,7 @@ public interface ICase {
      *
      * @return Returns the caseworker assigned to the case
      */
-    public ICaseworker getCaseWorker();
+    ICaseworker getCaseworker();
 
     /**
      *
