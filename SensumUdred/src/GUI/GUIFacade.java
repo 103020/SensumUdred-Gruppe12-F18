@@ -7,7 +7,10 @@ package GUI;
 
 import Acq.IBusiness;
 import Acq.ICase;
+import Acq.ICaseworker;
 import Acq.IGUI;
+import Acq.IIndividual;
+import Acq.ILog;
 import Acq.IMeeting;
 import Acq.InquiryFrom;
 import Business.BusinessFacade;
@@ -34,8 +37,8 @@ public class GUIFacade implements IGUI{
     }
 
     @Override
-    public void createMeeting() {
-        //b.createMeeting();
+    public void createMeeting(LocalDateTime time, String location, IIndividual participant1, ICaseworker participant2, String participants) {
+        b.createMeeting(time, location, participants);
     }
 
     @Override

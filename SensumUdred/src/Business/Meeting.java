@@ -34,12 +34,11 @@ public class Meeting implements IMeeting {
      * end or the meeting is cancelled in any shape and form the meeting active is set to false 
      * @param log is what track who made the meeting
      */
-    Meeting(int year, int month, int day, int hour, int minute, String location, IIndividual participant1, ICaseworker participant2, String participants, ILog log){
-        LocalDateTime meetingDate = LocalDateTime.of(year, month, day, hour, minute);
+    Meeting(LocalDateTime time, String location, IIndividual participant1, ICaseworker participant2, String participants, ILog log){
+        this.dayOfMeeting = time;
         this.participant1 = participant1;
         this.participant2 = participant2;
         this.participants = participants;
-        dayOfMeeting = meetingDate;
         meetingActive = true;
     }
     

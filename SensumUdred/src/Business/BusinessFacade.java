@@ -94,8 +94,8 @@ public class BusinessFacade implements IBusiness {
     }
     
     @Override
-    public void createMeeting(int year, int month, int date, int hour, int minute, String location, String participants){
-        worker.createMeeting(year, month, date, hour, minute, location, participants);
+    public void createMeeting(LocalDateTime time, String location, String participants){
+        worker.createMeeting(time, location, participants);
     }
 
     @Override

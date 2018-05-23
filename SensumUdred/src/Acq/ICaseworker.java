@@ -34,17 +34,13 @@ public interface ICaseworker {
     public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress);  
 
     /**
-     *
-     * @param year year of the meeting 
-     * @param month month of the meeting 
-     * @param day day of the meeting
-     * @param hour hour of the meeting 
-     * @param minute minute of the meeting
+     * 
+     * @param time the time of the meeting
      * @param location address the meeting is taking place
      * @param participants all the participants
      * @return
      */
-    public String createMeeting(int year, int month, int day, int hour, int minute, String location, String participants);
+    public String createMeeting(LocalDateTime time, String location, String participants);
 
     /**
      *

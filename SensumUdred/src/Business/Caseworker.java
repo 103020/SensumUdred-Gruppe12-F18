@@ -46,10 +46,10 @@ public class Caseworker implements ICaseworker{
     
     
     @Override
-    public String createMeeting(int year, int month, int day, int hour, int minute, String location, String participants){
+    public String createMeeting(LocalDateTime time, String location, String participants){
         ILog log = new Log(this, (ICaseworker) this);
         //TODO: change method call argument list.
-        return cas.createMeeting(year, month, day, hour, minute, location, this, participants, log);
+        return cas.createMeeting(time, location, this, participants, log);
     }
 
     @Override

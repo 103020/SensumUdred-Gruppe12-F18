@@ -77,16 +77,12 @@ public interface IBusiness {
     public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress);
     
     /**
-     *
-     * @param year of the meeting 
-     * @param month of the meeting 
-     * @param day of the meeting
-     * @param hour of the meeting 
-     * @param minute of the meeting 
+     * 
+     * @param time time of the meeting
      * @param location the addresse the meeting is taking place at
      * @param participants the names of the participants
      */
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants);
+    public void createMeeting(LocalDateTime time, String location, String participants);
     /**
      * 
      * @param name sets the name of the employee

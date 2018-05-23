@@ -126,18 +126,14 @@ public interface ICase {
 
     /**
      *
-     * @param year year of the meeting
-     * @param month month of the meeting
-     * @param day day of the meeting
-     * @param hour hour of the meeting
-     * @param minute minute of the meeting 
+     * @param time the time of the meeting
      * @param location location/address the meeting is taking place
      * @param participant2 is the caseworker
      * @param participants is the individuals 
      * @param log log when a meeting is created
      * @return 
      */
-    public String createMeeting(int year, int month, int day, int hour, int minute, String location, ICaseworker participant2, String participants, ILog log);
+    public String createMeeting(LocalDateTime time, String location, ICaseworker participant2, String participants, ILog log);
 
     /**
      *
