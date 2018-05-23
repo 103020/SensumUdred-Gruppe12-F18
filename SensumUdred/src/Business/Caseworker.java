@@ -30,7 +30,7 @@ public class Caseworker implements ICaseworker{
     @Override
     public boolean accessCase(int caseNumber, ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        //TO DO: Stefan fix
+        //TODO: Stefan fix
     }
 
     @Override
@@ -42,10 +42,10 @@ public class Caseworker implements ICaseworker{
     
     
     @Override
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants){
+    public String createMeeting(int year, int month, int day, int hour, int minute, String location, String participants){
         ILog log = new Log(this, (ICaseworker) this);
         //TODO: change method call argument list.
-        cas.createMeeting(year, month, day, hour, minute, location, this, participants, log);
+        return cas.createMeeting(year, month, day, hour, minute, location, this, participants, log);
     }
 
     @Override

@@ -140,7 +140,7 @@ public interface ICase {
      * @param location
      * @param participants
      */
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants);
+    public String createMeeting(int year, int month, int day, int hour, int minute, String location, ICaseworker participant2, String participants, ILog log);
 
     /**
      *

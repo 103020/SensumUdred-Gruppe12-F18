@@ -38,6 +38,7 @@ public class Meeting implements IMeeting {
         LocalDateTime meetingDate = LocalDateTime.of(year, month, day, hour, minute);
         this.participant1 = participant1;
         this.participant2 = participant2;
+        this.participants = participants;
         dayOfMeeting = meetingDate;
         meetingActive = true;
     }
@@ -100,4 +101,12 @@ public class Meeting implements IMeeting {
     public String getMeetingParticipants() {
         return participants;
     }   
+    
+    public IIndividual getIndividual(){
+        return participant1;
+    }
+    
+    public ICaseworker getCaseworker(){
+        return participant2;
+    }
 }
