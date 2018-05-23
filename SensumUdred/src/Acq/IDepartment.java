@@ -16,5 +16,5 @@ public interface IDepartment {
      * @return Return the name of the department
      */
     @Override
-    String toString();
+    public String toString();
 }

@@ -217,5 +217,9 @@ public interface IBusiness {
      */
     public void messageToMeeting(int caseNum, String message);
     
+    /**
+     *
+     * @param caseNumber to set the casenumber in the gui
+     */
     public void setFacadeCase(int caseNumber);
 }

@@ -10,36 +10,39 @@ public interface IIndividual {
      *
      * @return  Returns the name of the individual
      */
-    String getName();
+    public String getName();
 
     /**
      *
      * @return returns the address of the individual
      */
-    String getAddress();
+    public String getAddress();
 
     /**
      *
      * @return returns the CPR number of the individual
      */
-    int getCPR();
+    public int getCPR();
 
     /**
      *  method to change the name of the individual
      * @param name  the name of the individual
+     * @param log log when a name is set
      */
-    void setName(String name, ILog log);
+    public void setName(String name, ILog log);
 
     /**
      *  method to change the address of the individual
      * @param address the address of the individual.
+     * @param log log when a address is set
      */
-    void setAddress(String address, ILog log);
+    public void setAddress(String address, ILog log);
 
     /**
      *  method to change the CPR number of the individual
      * @param CPR the CPR number of the individual.
+     * @param log log when a CPR is set
      */
-    void setCPR(int CPR, ILog log);
+    public void setCPR(int CPR, ILog log);
     
 }
