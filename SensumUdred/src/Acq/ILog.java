@@ -11,7 +11,17 @@ package Acq;
  * @param <E>
  */
 public interface ILog<E> {
+
+    /**
+     *
+     * @param e take a object
+     */
     public void writeLog(E e);
+
+    /**
+     *
+     * @return a log String
+     */
     public String getLogString();
     
 }

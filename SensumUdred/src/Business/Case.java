@@ -33,6 +33,23 @@ public class Case implements ICase{
     
     private IBusiness businessFacade;
     
+    
+    /**
+     * 
+     * @param individualName The name of the individual the case is about
+     * @param individualAddress The address of the individual the case is about
+     * @param individualCPR The CPR of the individual the case is about
+     * @param _inquiry The inquiry of the case
+     * @param _individualInvolvement The text of the individual involvement
+     * @param individualUnderstanding The individual's consent to the inquiry
+     * @param consent The individuals consent to get relevant data
+     * @param writtenConsent The individual consent as written
+     * @param oralConsent The individual consent as oral
+     * @param caseClarity Is it clear what the individual seeks?
+     * @param inquiryFrom The source of the inquiry, who made the inquiry
+     * @param caseFromAdress The Address of the source, the address of who made the inquiry
+     */
+    
     Case(String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry,
             String _individualInvolvement, boolean individualUnderstanding,boolean consent,
             boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String _caseFromAddress){
@@ -234,6 +251,7 @@ public class Case implements ICase{
     public void enterEntry(String note, ILog log) {
         diary.enterEntry(note, log);
     }
+    
 
 
 }

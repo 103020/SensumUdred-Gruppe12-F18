@@ -23,6 +23,11 @@ public interface IDiary {
      */
     Date getDate();
     
+    /**
+     *
+     * @param note note to the caseworker
+     * @param log log when a caseworker go into diary
+     */
     void enterEntry(String note, ILog log);
     
     
