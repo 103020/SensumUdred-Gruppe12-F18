@@ -29,7 +29,7 @@ public class BusinessFacade implements IBusiness {
 //Meeting meeting = new Meeting();
 //Individual ind = Individual;
     
-    static IData data;
+    static IData data = new DataFacade();
 
     
     private static BusinessFacade instance;
@@ -105,7 +105,12 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public LocalDateTime getMeetingTime(){
-        return meeting.getMeetingTime();
+        try {
+            return meeting.getMeetingTime();
+        } catch(NullPointerException e){
+            System.out.println(e);
+        }
+        return null;
     }
     
     @Override
@@ -214,6 +219,11 @@ public class BusinessFacade implements IBusiness {
     @Override
     public void setFacadeCase(int caseNumber) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void createMeeting() {
+        meeting = new Meeting();
     }
     
 }

@@ -35,7 +35,7 @@ public class GUIFacade implements IGUI{
 
     @Override
     public void createMeeting() {
-        //b.createMeeting();
+        b.createMeeting();
     }
 
     @Override

@@ -218,4 +218,6 @@ public interface IBusiness {
     public void messageToMeeting(int caseNum, String message);
     
     public void setFacadeCase(int caseNumber);
+
+    public void createMeeting();
 }
