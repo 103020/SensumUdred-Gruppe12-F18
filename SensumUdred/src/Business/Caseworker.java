@@ -8,6 +8,7 @@ package Business;
 import Acq.*;
 import Data.DataFacade;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  *
@@ -40,6 +41,7 @@ public class Caseworker implements ICaseworker{
         ILog log = new Log(this, this);
         cas = new Case(individualName, individualAddress,individualCPR, log, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
         cas.setCaseNumber(cas.saveCase(log));
+        caseControl.addCase(cas);
     }
     
     
@@ -144,5 +146,14 @@ public class Caseworker implements ICaseworker{
     
     public ICase getCase(){
         return cas;
+    }
+    
+    public void closeCase(){
+        ILog log = new Log(this, this);
+        cas.closeCase(log);
+    }
+    
+    public List<ICase> getCaseList(){
+        return caseControl.getCaseList();
     }
 }
