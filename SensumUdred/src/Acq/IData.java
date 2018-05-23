@@ -12,6 +12,12 @@ import java.util.List;
  * @author stefan
  */
 public interface IData {
+
+    /**
+     *
+     * @param list
+     * @return
+     */
     public int save(List list);
     public List load();
     public List loadUser();

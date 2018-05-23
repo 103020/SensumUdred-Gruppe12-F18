@@ -38,6 +38,7 @@ public class Meeting implements IMeeting {
         LocalDateTime meetingDate = LocalDateTime.of(year, month, day, hour, minute);
         this.participant1 = participant1;
         this.participant2 = participant2;
+        this.participants = participants;
         dayOfMeeting = meetingDate;
         meetingActive = true;
     }
@@ -46,7 +47,7 @@ public class Meeting implements IMeeting {
     }
     
     public void saveMeeting(){   
-        //TO DO: fix
+        //TODO: fix
     }
     
     /**
@@ -54,7 +55,7 @@ public class Meeting implements IMeeting {
      * @param log is what track who made the meeting
      */
     public void saveLog(ILog log){
-        //TO DO: fix
+        //TODO: fix
     }
     
     public String messageToMeeting(){
@@ -100,4 +101,12 @@ public class Meeting implements IMeeting {
     public String getMeetingParticipants() {
         return participants;
     }   
+    
+    public IIndividual getIndividual(){
+        return participant1;
+    }
+    
+    public ICaseworker getCaseworker(){
+        return participant2;
+    }
 }

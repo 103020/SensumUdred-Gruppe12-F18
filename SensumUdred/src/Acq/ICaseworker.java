@@ -41,14 +41,14 @@ public interface ICaseworker {
      * @param hour
      * @param minute
      * @param location
-     * @param participant2
      * @param participants
+     * @return
      */
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, ICaseworker participant2, String participants);
+    public String createMeeting(int year, int month, int day, int hour, int minute, String location, String participants);
 
     /**
      *
-     * @param name
+     * @param name set the name of the caseworker
      */
     public void setName(String name);
 

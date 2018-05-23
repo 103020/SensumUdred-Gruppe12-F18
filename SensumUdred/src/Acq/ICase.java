@@ -126,27 +126,28 @@ public interface ICase {
 
     /**
      *
-     * @param log the is log that is set when a case is closed
+     * @param year year of the meeting
+     * @param month month of the meeting
+     * @param day day of the meeting
+     * @param hour hour of the meeting
+     * @param minute minute of the meeting 
+     * @param location location/address the meeting is taking place
+     * @param participant2 is the caseworker
+     * @param participants is the individuals 
+     * @param log log when a meeting is created
+     * @return 
+     */
+    public String createMeeting(int year, int month, int day, int hour, int minute, String location, ICaseworker participant2, String participants, ILog log);
+
+    /**
+     *
+     * @param log
      */
     public void closeCase(ILog log);
     
     /**
      *
-     * @param year of the meeting 
-     * @param month of the meeting 
-     * @param day of the meeting
-     * @param hour of the meeting
-     * @param minute of the meeting
-     * @param location the meeting is taking place at
-     * @param participant2 is the caseworker
-     * @param participants is the individuals
-     * @param log when a meeting is created
-     */
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, ICaseworker participant2, String participants, ILog log);
-
-    /**
-     *
-     * @param caseNumber here is the casenumber that is fetch to get the right case
+     * @param caseNumber here is the casenumber the number it fetch to get the right case
      * @param log is the log that is set when a case is fetched 
      * @return a case object
      */
