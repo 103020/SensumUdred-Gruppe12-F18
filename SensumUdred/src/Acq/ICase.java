@@ -12,25 +12,25 @@ public interface ICase {
      *
      * @return  Returns the case number of the case
      */
-    int getCaseNumber();
+    public int getCaseNumber();
 
     /**
      *
      * @return Returns the caseworker assigned to the case
      */
-    ICaseworker getCaseWorker();
+    public ICaseworker getCaseWorker();
 
     /**
      *
      * @return  Returns the individual the case is about
      */
-    IIndividual getIndividual();
+    public IIndividual getIndividual();
 
     /**
      *
      * @return Returns the creation date of the case
      */
-    String getCreationDate();
+    public String getCreationDate();
 
     /**
      * 
@@ -114,21 +114,111 @@ public interface ICase {
     /**
      * saves the case to the database
      * @param log is used to log that the case has been saved
+     * @return 
      */
     public int saveCase(ILog log);
+
+    /**
+     *
+     * @param caseNumber is the number that is set to the case
+     */
     public void setCaseNumber(int caseNumber);
+
+    /**
+     *
+     * @param log
+     */
     public void editCase(ILog log);
+
+    /**
+     *
+     * @param year
+     * @param month
+     * @param day
+     * @param hour
+     * @param minute
+     * @param location
+     * @param participants
+     */
     public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants);
+
+    /**
+     *
+     * @param log
+     */
     public void closeCase(ILog log);
+
+    /**
+     *
+     * @param caseNumber
+     * @param log
+     * @return
+     */
     public ICase fetchCase(int caseNumber, ILog log);
+
+    /**
+     *
+     * @param caseworker
+     * @param log
+     */
     public void setCaseworker(ICaseworker caseworker, ILog log);
+
+    /**
+     *
+     */
     public void cancelMeeting();
+
+    /**
+     *
+     * @param time
+     */
     public void setMeetingTime(LocalDateTime time);
+
+    /**
+     *
+     * @param Location
+     */
     public void setMeetingLocation(String Location);
+
+    /**
+     *
+     * @param participants
+     */
     public void setMeetingParticipants(String participants);
+
+    /**
+     *
+     * @param year
+     * @param month
+     * @param day
+     * @param hour
+     * @param minute
+     * @param location
+     * @param participants
+     * @param log
+     * @param caseworker
+     */
     public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants, ILog log, ICaseworker caseworker);
+
+    /**
+     *
+     * @param name
+     * @param log
+     */
     public void setIndividualName(String name, ILog log);
+
+    /**
+     *
+     * @param Address
+     * @param log
+     */
     public void setIndividualAddress(String Address, ILog log);
+
+    /**
+     *
+     * @param CPR
+     * @param log
+     */
     public void setIndividualCPR(int CPR, ILog log);
     
     

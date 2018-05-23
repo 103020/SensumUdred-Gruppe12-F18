@@ -21,7 +21,7 @@ public class Caseworker implements ICaseworker{
     private ICase cas;
     IBusiness businessFacade;
     
-    Caseworker(String name, IDepartment department, String employeeID){
+    Caseworker(String name, IDepartment department, String employeeID, String caseworkerPassword, String caseworkerUsername ){
         this.name = name;
         this.department = department;
         this.employeeID = employeeID;
@@ -51,7 +51,7 @@ public class Caseworker implements ICaseworker{
     public void setName(String name) {
         this.name = name;
     }
-
+    
     @Override
     public void setDepartment(IDepartment department) {
         this.department = department;

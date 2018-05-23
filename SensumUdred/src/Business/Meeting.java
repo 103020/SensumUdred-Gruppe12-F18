@@ -22,7 +22,6 @@ public class Meeting implements IMeeting {
     private IIndividual participant1;
     private ICaseworker participant2;
     private String participants;
-    private String timeOfMeeting;
     private String location;
     private boolean meetingActive;
     private IBusiness businessFacade;

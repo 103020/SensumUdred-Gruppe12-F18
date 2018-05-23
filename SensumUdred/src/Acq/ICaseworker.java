@@ -7,55 +7,16 @@ import java.time.LocalDateTime;
  * @author stefan
  */
 public interface ICaseworker {
-    
-    /**
-     *  Accesses case from data
-     * @return
-     * @param caseNumber the case number of the case to be accessed
-     */
-    public boolean accessCase(int caseNumber, ILog log); 
-    
- 
-    public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress); 
-    
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants);
-    
-    /**
-     *
-     * @param name  The name of the caseworker to be set
-     */
-    public void setName(String name);
-    
-    /**
-     *
-     * @param department the department to assign the caseworker to
-     */
-    public void setDepartment(IDepartment department);
-    
-    /**
-     *
-     * @param employeeID The ID of the employee that wishes to be set
-     */
-    public void setEmployeeID(String employeeID);
-    
-    /**
-     *
-     * @return returns the name of the caseworker
-     */
-    public String getName();
-    
-    /**
-     *
-     * @return  returns the department of the caseworker
-     */
-    public IDepartment getDepartment();
 
-    /**
-     *
-     * @return returns the employee ID of the caseworker
-     */
+    public boolean accessCase(int caseNumber, ILog log);  
+    public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress);  
+    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants);
+    public void setName(String name);
+    public void setDepartment(IDepartment department);
+    public void setEmployeeID(String employeeID);
+    public String getName();
+    public IDepartment getDepartment();
     public String getEmployeeID();
-    
     public void cancelMeeting();
     public void setMeetingTime(LocalDateTime time);
     public void setMeetingLocation(String Location);
@@ -66,4 +27,5 @@ public interface ICaseworker {
     public ICaseworker getCaseworkerFormCase();
     public IMeeting getMeeting();
     public IIndividual getIndividual();
+    
 }
