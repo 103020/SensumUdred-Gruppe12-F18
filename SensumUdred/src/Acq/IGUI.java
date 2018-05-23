@@ -29,7 +29,11 @@ public interface IGUI {
     public void setIndividualName(String name);
     public void setIndividualAddress(String address);
     public void setIndividualCPR(int CPR);
+    public String getIndividualName();
+    public String getIndividualAddress();
+    public int getIndividualCPR();
     public List getCaseList();
     public LocalDateTime getMeetingTime();
     public boolean login(String username, String password);
+    public void setFacadeCase(int caseNumber);
 }

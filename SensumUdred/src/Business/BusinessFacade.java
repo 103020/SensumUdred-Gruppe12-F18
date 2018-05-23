@@ -17,11 +17,17 @@ import java.util.List;
  */
 public class BusinessFacade implements IBusiness {
     
-    //temp to test
-    ICase cas = new Case();
-    Caseworker worker = new Caseworker();
-    Meeting meeting = new Meeting();
-    Individual ind = new Individual();
+
+    private ICase cas;
+    private Caseworker worker;
+    private Meeting meeting;
+    private Individual ind;
+    
+//test     
+//ICase cas = new Case();
+//Caseworker worker = new Caseworker();
+//Meeting meeting = new Meeting();
+//Individual ind = Individual;
     
     static IData data;
 
@@ -84,6 +90,7 @@ public class BusinessFacade implements IBusiness {
     @Override
     public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
         worker.createCase(individualName, individualAddress, individualCPR, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
+        
     }
     
     @Override
@@ -91,6 +98,7 @@ public class BusinessFacade implements IBusiness {
         worker.createMeeting(year, month, date, hour, minute, location, participants);
     }
 
+    @Override
     public String getLocation(){
         return meeting.getLocation();
     }
@@ -200,7 +208,11 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void messageToMeeting(int caseNum, String message) {
-        //TO DO: Stefan fix, skal bruge en table som indeholder casenumber og beskeder
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setFacadeCase(int caseNumber) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

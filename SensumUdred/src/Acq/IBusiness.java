@@ -54,6 +54,7 @@ public interface IBusiness {
     
     /**
      * 
+     * @param caseNumber the number of the case
      * @return returns a case
      */
     public ICase accessCase(int caseNumber);
@@ -194,10 +195,6 @@ public interface IBusiness {
      */
     public List getCasenumSortedList();
     
-//    /**
-//     * To test
-//     */
-//    public void createCase();
     
     /**
      *
@@ -205,8 +202,20 @@ public interface IBusiness {
      */
     public String getLocation();
     
+    /**
+     *
+     * @param username the name of the user logging in
+     * @param password of the user
+     * @return
+     */
     public boolean login(String username, String password);
     
-    public void messageToMeeting(int caseNum,String message);
+    /**
+     *
+     * @param caseNum is the casenumber the meeting is on
+     * @param message is what is send when a meeting is created
+     */
+    public void messageToMeeting(int caseNum, String message);
     
+    public void setFacadeCase(int caseNumber);
 }

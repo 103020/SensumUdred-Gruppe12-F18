@@ -21,7 +21,7 @@ public class Caseworker implements ICaseworker{
     private ICase cas;
     IBusiness businessFacade;
     
-    Caseworker(String name, IDepartment department, String employeeID){
+    Caseworker(String name, IDepartment department, String employeeID, String caseworkerPassword, String caseworkerUsername ){
         this.name = name;
         this.department = department;
         this.employeeID = employeeID;
@@ -44,14 +44,15 @@ public class Caseworker implements ICaseworker{
     @Override
     public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants){
         ILog log = new Log(this, (ICaseworker) this);
-        cas.createMeeting(year, month, day, hour, minute, location,  participants, log, this);
+        //TODO: change method call argument list.
+        cas.createMeeting(year, month, day, hour, minute, location, this, participants, log);
     }
 
     @Override
     public void setName(String name) {
         this.name = name;
     }
-
+    
     @Override
     public void setDepartment(IDepartment department) {
         this.department = department;
@@ -78,23 +79,23 @@ public class Caseworker implements ICaseworker{
     }
 
     @Override
-    public void cancelMeeting() {
-        cas.cancelMeeting();
+    public String cancelMeeting() {
+        return cas.cancelMeeting();
     }
 
     @Override
-    public void setMeetingTime(LocalDateTime time) {
-        cas.setMeetingTime(time);
+    public String setMeetingTime(LocalDateTime time) {
+        return cas.setMeetingTime(time);
     }
 
     @Override
-    public void setMeetingLocation(String Location) {
-        cas.setMeetingLocation(Location);
+    public String setMeetingLocation(String Location) {
+        return cas.setMeetingLocation(Location);
     }
 
     @Override
-    public void setMeetingParticipants(String participants) {
-        cas.setMeetingParticipants(participants);
+    public String setMeetingParticipants(String participants) {
+        return cas.setMeetingParticipants(participants);
     }
 
     @Override

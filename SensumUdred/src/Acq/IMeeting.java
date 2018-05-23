@@ -18,7 +18,7 @@ public interface IMeeting {
      * Set the date of the meeting
      * @param time is the date of the meeting
      */
-    void setMeetingTime(LocalDateTime time);
+    String setMeetingTime(LocalDateTime time);
     
     /**
      *  
@@ -30,7 +30,7 @@ public interface IMeeting {
      * Set the participants for the meeting with a String
      * @param participants are them who are in the meeting
      */
-    void setMeetingParticipants(String participants);
+    String setMeetingParticipants(String participants);
         
     /**
      *
@@ -48,10 +48,9 @@ public interface IMeeting {
      * Set the location of the meeting
      * @param location is the addresse the meeting take place at
      */
-    void setLocation(String location);
+    String setLocation(String location);
     
-    void messageToMeeting();
-    void cancelMeeting();
-    String getParticipant1(); // get the individual on the meeting
-    String getParticipant2(); // get teh caseworker on the meeting
+    String messageToMeeting();
+    String cancelMeeting();
+ 
 }
