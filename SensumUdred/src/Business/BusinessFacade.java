@@ -197,7 +197,12 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public boolean login(String username, String password) {
-        return data.login(username, password);
+        boolean temp = data.login(username, password);
+        if (temp) {
+            worker = (Caseworker)data.getCaseWorker(username);
+            return temp;
+        }
+        return temp;
     }
 
     @Override
