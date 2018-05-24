@@ -51,12 +51,12 @@ public class SQLObjectMapper {
         establishConnection();
         boolean bool = false;
         try {
-            st.executeQuery("INSERT INTO CASES (creationdate,isclosed,casetype,"
+            st.executeQuery("INSERT INTO CASES (creationdate,isclosed"
                     + "inquiry,individualinvolvement,consent,writtenconsent,"
                     + "oralconsent,casefrom,casefromaddress,caseclarity,"
                     + "individualunderstanding,caseworker,individual,diary,meeting)"
-                    + " VALUES ('" + cas.getCreationDate()+ "','" +
-                    cas.getClosed() + "','" + cas.getCaseType() + "','" 
+                    + " VALUES ('" + cas.getCreationDate()+ "','" 
+                    + cas.getClosed() + "','" 
                     + cas.getInquiry() + "','" + cas.getIndividualInvolvement() 
                     + "','" + cas.getConsent() + "','" + cas.getWrittenConsent() 
                     + "','" + cas.getOralConsent() + "','" + cas.getCaseFrom() 
@@ -64,8 +64,7 @@ public class SQLObjectMapper {
                     + cas.getCaseClarity() + "','" + cas.getIndividualUnderstanding() 
                     + "','" + cas.getCaseworker().getEmployeeID() + "','" 
                     + cas.getIndividual().getCPR() + "','" 
-                    + cas.getDiary().getDate() + "','" 
-                    + cas.getMeeting().getParticipant1() + "')");
+                    + cas.getDiary().getDate() + "')");
             bool = true;
         } catch (SQLException e) {
             e.printStackTrace();

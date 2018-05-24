@@ -548,7 +548,7 @@ public class FXMLDocumentController implements Initializable {
         } finally {
             //TODO: check where it is sendt "the facade.getMeetingTime() right now"
             if (!error) {
-                facade.createMeeting();
+                facade.cr;
                 //facade.setMeetingTime(datePickerMeetingM.getValue().atTime(hour, minut));//TODO:when meetings are fixed
                 listViewMeetingsM.getItems().clear();
                 //listViewMeetingsM.getItems().add(facade.getMeetingTime());//TODO:when meetings are fixed
