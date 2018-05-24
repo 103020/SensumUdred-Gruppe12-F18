@@ -28,6 +28,7 @@ public class Caseworker implements ICaseworker{
         this.department = department;
         this.employeeID = employeeID;
         caseControl = new CaseController();
+        cas = new Case();
     }
 
     public boolean accessCase(int caseNumber, ILog log) {

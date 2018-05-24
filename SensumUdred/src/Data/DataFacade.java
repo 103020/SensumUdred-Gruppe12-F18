@@ -41,12 +41,9 @@ public class DataFacade implements IData{
         /*
         get data from database about user
         check through if they are the same as username and password
-        */
-        if (SQLObjectMapper.getCaseworker(username).getEmployeeID().equals(username)) {
-            return true;
-        } else {
-            return false;
-        }
+         */
+        System.out.println(SQLObjectMapper.getCaseworker(username).toString());
+        return SQLObjectMapper.getCaseworker(username).getEmployeeID().equals(username);
     }
 
     @Override
