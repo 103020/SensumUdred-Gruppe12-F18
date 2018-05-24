@@ -33,4 +33,9 @@ public class Department implements IDepartment{
         return amountOfEmployees;
     }
 
+    @Override
+    public String getName() {
+        return departmentName;
+    }
+
 }

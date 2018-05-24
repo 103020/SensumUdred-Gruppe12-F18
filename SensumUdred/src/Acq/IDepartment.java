@@ -23,4 +23,6 @@ public interface IDepartment {
      * @return number of people in department
      */
     public int getAmount();
+
+    public String getName();
 }
