@@ -106,8 +106,8 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public LocalDateTime getMeetingTime(){
-        try {
-            return worker.getMeeting().getMeetingTime();
+        try { //TODO: getmeetingtime this is temp
+            return meeting.getMeetingTime();
         } catch(NullPointerException e){
             System.out.println(e);
         }
