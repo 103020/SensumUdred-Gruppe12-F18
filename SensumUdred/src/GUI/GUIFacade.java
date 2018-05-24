@@ -109,7 +109,7 @@ public class GUIFacade implements IGUI{
         return convert;
     }
     
-    public List getMeetingList(){
+    public List<meetingListAbler> getMeetingList(){
         List convert = new ArrayList();
         convert.add(new meetingListAbler(b.getMeetingTime(),""+b.getLocation()));
         return convert;

@@ -2,6 +2,7 @@ package Data;
 
 import Acq.ICaseworker;
 import Acq.IData;
+import Business.Caseworker;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +37,16 @@ public class DataFacade implements IData{
 
     @Override
     public boolean login(String username, String password) {
-       
-            return true; //debug
+        //TODO: get stuff from database login
+        /*
+        get data from database about user
+        check through if they are the same as username and password
+        */
+        if (SQLObjectMapper.getCaseworker(username).getEmployeeID().equals(username)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -48,6 +57,11 @@ public class DataFacade implements IData{
     @Override
     public int save(List list) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ICaseworker getCaseWorker(String username) {
+        return SQLObjectMapper.getCaseworker(username);
     }
     
 }
