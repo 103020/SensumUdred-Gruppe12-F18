@@ -94,7 +94,7 @@
             </GridPane>
          </content>
     </Tab>
-    <Tab fx:id="mainTab" onSelectionChanged="#handleTabViewMT" text="Main Tab">
+    <Tab fx:id="mainTab" onSelectionChanged="#handleTabViewMT" text="Hovedmenu">
          <content>
             <GridPane>
               <columnConstraints>

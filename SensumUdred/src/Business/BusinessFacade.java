@@ -101,7 +101,11 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public String getLocation(){
-        return worker.getMeeting().getLocation();
+        try {
+            return worker.getMeeting().getLocation();
+        } catch(NullPointerException e) {
+            return null;
+        }
     }
     
     @Override

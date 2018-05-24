@@ -450,10 +450,11 @@ public class FXMLDocumentController implements Initializable {
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
             System.out.println(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()); //TODO: not edit a closed case, TODO: get the case so it can be edited
             tabPane.getTabs().add(editCaseTab);
+            tabPane.getSelectionModel().selectNext();
             currentNameLabelEC.setText(facade.getIndividualName());
             currentPersonalNumberLabelEC.setText(facade.getIndividualCPR()+"");
             currentAdresseLabelEC.setText(facade.getIndividualAddress());
-            tabPane.getSelectionModel().selectNext();
+            
         } else {
             alert.setTitle("Ingen ting valgt");
             alert.setHeaderText("Ingen sag er valgt!");
@@ -671,7 +672,7 @@ class meetingListAbler {
     
     @Override
     public String toString(){
-        return "Time of meeting: " + time + " location: " + location;
+        return "Mødetid: " + time + " Lokation: " + location;
     }
        
 }
