@@ -67,7 +67,7 @@ public class SQLObjectMapper {
                 + "','" + cas.getCaseworker().getEmployeeID() + "','"
                 + cas.getIndividual().getCPR() + "','"
                 + cas.getDiary().getDate() + "','"
-                + cas.getMeeting().getParticipant1() + "')");
+                + cas.getMeeting().getIndividual() + "')");
             success = true;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -95,7 +95,8 @@ public class SQLObjectMapper {
                         rs.getString("individualinvolvement"), 
                         rs.getString("casefromaddress"), 
                         rs.getBoolean("isClosed"), 
-                        rs.getString("creationdate")
+                        rs.getString("creationdate"),
+                        rs.getString("Casetype")
                 );
                 
                 /* create diary object */
@@ -187,9 +188,9 @@ public class SQLObjectMapper {
         establishConnection();
         boolean success = false;
         try {
-            st.execute("INSERT INTO MEETINGS (PARTICIPANT1,PARTICIPANT2,"
+            st.execute("INSERT INTO MEETINGS (MEETINGINDIVIDUAL,MEETINGCASEWORKER,"
                 + "MEETINGDATEANDTIME,LOCATION,MEETINGACTIVE) VALUES ('" 
-                + meeting.getParticipant1() + "','" + meeting.getParticipant2()
+                + meeting.getIndividual() + "','" + meeting.getCaseworker()
                 + "','" + meeting.getMeetingTime().toString() + "','" 
                 + meeting.getLocation() + "','" + meeting.getActive() + "')");
             success = true;

@@ -5,7 +5,6 @@
  */
 package Business;
 
-import Acq.IBusiness;
 import Acq.ICaseworker;
 import Acq.IIndividual;
 import java.time.LocalDateTime;
@@ -19,9 +18,8 @@ import Acq.ILog;
 public class Meeting implements IMeeting {
 
     private LocalDateTime dayOfMeeting;
-    private IIndividual participant1;
-    private ICaseworker participant2;
-    private String participants;
+    private IIndividual individual;
+    private ICaseworker caseworker;
     private String location;
     private boolean meetingActive;
         
@@ -34,11 +32,10 @@ public class Meeting implements IMeeting {
      * end or the meeting is cancelled in any shape and form the meeting active is set to false 
      * @param log is what track who made the meeting
      */
-    Meeting(int year, int month, int day, int hour, int minute, String location, IIndividual participant1, ICaseworker participant2, String participants, ILog log){
-        LocalDateTime meetingDate = LocalDateTime.of(year, month, day, hour, minute);
-        this.participant1 = participant1;
-        this.participant2 = participant2;
-        dayOfMeeting = meetingDate;
+    Meeting(LocalDateTime time, String location, IIndividual individual, ICaseworker caseworker, ILog log){
+        this.dayOfMeeting = time;
+        this.individual = individual;
+        this.caseworker = caseworker;
         meetingActive = true;
     }
     
@@ -46,7 +43,7 @@ public class Meeting implements IMeeting {
     }
     
     public void saveMeeting(){   
-        //TO DO: fix
+        //TODO: fix
     }
     
     /**
@@ -54,17 +51,17 @@ public class Meeting implements IMeeting {
      * @param log is what track who made the meeting
      */
     public void saveLog(ILog log){
-        //TO DO: fix
+        //TODO: fix
     }
-    
+ 
     public String messageToMeeting(){
         return ("Vi indkalder dig til møde den: "+ getMeetingTime() + 
-                           "\nAddressen: " + getLocation() + "\nDe deltagende er: " +participant1.getName()+ " " + getMeetingParticipants()) + " og " + participant2.getName();
+                           "\nAddressen: " + getLocation() + "\nDe deltagende er: " + getMeetingParticipants());
     }
     
     public String cancelMeeting(){
         meetingActive = false;
-        return ("Mødet den: " + getMeetingTime() + "\n Ved: " + getLocation() + "\nMed: " +participant1.getName()+ getMeetingParticipants() + " og " + participant2.getName() + "\nEr blevet annuleret");
+        return ("Mødet den: " + getMeetingTime() + "\n Ved: " + getLocation() + "\nDeltagere: " + getMeetingParticipants() + "\nEr blevet annuleret");
     }
 
     public String setMeetingTime(LocalDateTime time) {
@@ -82,11 +79,6 @@ public class Meeting implements IMeeting {
         return messageToMeeting();
     }
 
-    public String setMeetingParticipants(String participants) {
-        this.participants = participants;
-        return messageToMeeting();
-    }
-
     @Override
     public LocalDateTime getMeetingTime() {
         return dayOfMeeting;
@@ -94,21 +86,22 @@ public class Meeting implements IMeeting {
 
     @Override
     public String getMeetingParticipants() {
-        return participants;
+        return individual.getName() + " og " + caseworker.getName();
     }   
-
+    
     @Override
-    public IIndividual getParticipant1() {
-        return this.participant1;
+    public IIndividual getIndividual(){
+        return individual;
     }
-
+    
     @Override
-    public ICaseworker getParticipant2() {
-        return this.participant2;
+    public ICaseworker getCaseworker(){
+        return caseworker;
     }
-
+    
     @Override
     public boolean getActive() {
-        return this.meetingActive;
+        return meetingActive;
     }
+
 }

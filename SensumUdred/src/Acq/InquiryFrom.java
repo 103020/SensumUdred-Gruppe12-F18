@@ -18,7 +18,10 @@ public enum InquiryFrom {
         this.inquiryString = inquiryString; 
     }
 
-   
+    /**
+     *
+     * @return inquiry string
+     */
     @Override
     public String toString() {
         return inquiryString;

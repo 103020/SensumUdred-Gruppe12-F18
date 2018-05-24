@@ -11,40 +11,43 @@ import java.util.List;
  *
  * @author Tobias
  */
-public class CaseController implements ICaseController{
+public class CaseController{
     
-    private List<ICase> cases;
-    private List<ICaseworker> caseWorkers;
-    
-    @Override
-    public boolean addCase(ICase newCase){
+    private List<Case> cases;
+    private List<Meeting> meeting;
+
+    public boolean addCase(Case newCase){
         return cases.add(newCase);
     }
-    
-    @Override
-    public boolean addCaseWorker(ICaseworker caseWorker){
-        return caseWorkers.add(caseWorker);
-    }
-    
-    @Override
-    public List<ICase> getCaseList(){
+
+    public List<Case> getCaseList(){
         return cases;
     }
     
-    @Override
-    public List<ICaseworker> getCaseWorkers(){
-        return caseWorkers;
+    /**
+     *
+     * @param newMeeting
+     * @return
+     */
+    public boolean addMeeting(Meeting newMeeting){
+        return meeting.add(newMeeting);
+    }
+
+    public List<Meeting> getMeetingList(){
+        return meeting;
     }
     
+
     /** find ud af om caseNumber skal laves om til et index **/ 
-    @Override
-    public ICase getCase(int caseNumber){
-        return cases.get(caseNumber);
+    public Case getCase(int caseNumber){
+        int caseIndex = -1;
+        for (int i = 0; i < cases.size(); i++) {
+            if (cases.get(i).getCaseNumber() == caseNumber) {
+                caseIndex = i;
+            }
+        }
+        return cases.get(caseIndex);
     }
     
-    @Override
-    public ICaseworker getCaseworker(int employerID){
-        return caseWorkers.get(employerID);
-    }
     
 }

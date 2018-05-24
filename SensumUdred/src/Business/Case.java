@@ -1,3 +1,6 @@
+
+
+
 package Business;
 
 import Acq.*;
@@ -26,19 +29,32 @@ public class Case implements ICase{
     private StringBuilder caseFromAddress;
     private boolean caseClarity;
     private boolean individualUnderstanding;
-    private Meeting createNewMeeting;
     
     private IBusiness businessFacade;
+    
+    
+    /**
+     * 
+     * @param individualName The name of the individual the case is about
+     * @param individualAddress The address of the individual the case is about
+     * @param individualCPR The CPR of the individual the case is about
+     * @param _inquiry The inquiry of the case
+     * @param _individualInvolvement The text of the individual involvement
+     * @param individualUnderstanding The individual's consent to the inquiry
+     * @param consent The individuals consent to get relevant data
+     * @param writtenConsent The individual consent as written
+     * @param oralConsent The individual consent as oral
+     * @param caseClarity Is it clear what the individual seeks?
+     * @param inquiryFrom The source of the inquiry, who made the inquiry
+     * @param caseFromAdress The Address of the source, the address of who made the inquiry
+     */
     
     Case(String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry,
             String _individualInvolvement, boolean individualUnderstanding,boolean consent,
             boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String _caseFromAddress){
         creationDate = LocalDateTime.now().toString();
         isClosed = false;
-        this.individual = new Individual();
-        this.individual.setName(individualName, log);
-        this.individual.setAddress(individualAddress, log);
-        this.individual.setCPR(individualCPR, log);
+        this.individual = new Individual(individualName, individualAddress, individualCPR, log);
         this.inquiry = new StringBuilder(_inquiry);
         this.individualInvolvement = new StringBuilder(_individualInvolvement);
         this.individualUnderstanding = individualUnderstanding;
@@ -105,11 +121,6 @@ public class Case implements ICase{
     @Override
     public boolean getClosed() {
         return isClosed;
-    }
-
-    @Override
-    public String getCaseType() {
-        return caseType;
     }
 
     @Override
@@ -184,7 +195,7 @@ public class Case implements ICase{
     }
 
     @Override
-    public IMeeting getMeeting() {
+    public Meeting getMeeting() {
         return meeting;
     }
 
@@ -200,12 +211,8 @@ public class Case implements ICase{
         return meeting.setLocation(Location);
     }
 
-    public String setMeetingParticipants(String participants) {
-        return meeting.setMeetingParticipants(participants);
-    }
-
-    public String createMeeting(int year, int month, int day, int hour, int minute, String location, ICaseworker participant2, String participants, ILog log) {
-        meeting = new Meeting(year, month, day, hour, minute, location, this.individual, participant2, participants, log);
+    public String createMeeting(LocalDateTime dateTime, String location, Caseworker participant2, ILog log) {
+        meeting = new Meeting(dateTime, location, this.individual, participant2, log);
         return meeting.messageToMeeting();
     }
 
@@ -225,8 +232,11 @@ public class Case implements ICase{
         diary.enterEntry(note, log);
     }
 
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public String getCaseType() {
+        return this.caseType;
     }
+    
+
 
 }

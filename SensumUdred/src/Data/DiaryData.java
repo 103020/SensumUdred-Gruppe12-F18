@@ -44,7 +44,7 @@ public class DiaryData implements IDiary{
     
     @Override
     public String toString(){
-        return "Diary entry date: " + date.toString();
+        return "Diary entry date: " + date;
     }
 
 
@@ -52,4 +52,5 @@ public class DiaryData implements IDiary{
     public String getEntry() {
         return entry.toString();
     }
+
 }

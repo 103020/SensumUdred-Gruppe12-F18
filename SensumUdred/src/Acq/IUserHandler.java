@@ -12,5 +12,10 @@ import java.util.List;
  * @author Tobias
  */
 public interface IUserHandler {
+
+    /**
+     *
+     * @return exception for file, IO
+     */
     List<ICaseworker> loadUser();
 }

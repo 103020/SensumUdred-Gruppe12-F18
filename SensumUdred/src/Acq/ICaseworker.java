@@ -8,6 +8,11 @@ import java.time.LocalDateTime;
  */
 public interface ICaseworker {
     public String getName();
+
+    /**
+     *
+     * @return the department of the caseworker
+     */
     public IDepartment getDepartment();
     public String getEmployeeID();    
 }

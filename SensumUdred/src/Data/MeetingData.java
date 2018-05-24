@@ -69,18 +69,20 @@ public class MeetingData implements IMeeting {
         return participants;
     }   
 
+
     @Override
-    public IIndividual getParticipant1() {
-        return this.participant1;
+    public ICaseworker getCaseworker() {
+        return participant2;
     }
 
     @Override
-    public ICaseworker getParticipant2() {
-        return this.participant2;
+    public IIndividual getIndividual() {
+        return participant1;
     }
 
     @Override
     public boolean getActive() {
-        return this.meetingActive;
+        return meetingActive;
     }
+
 }

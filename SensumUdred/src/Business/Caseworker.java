@@ -8,6 +8,7 @@ package Business;
 import Acq.*;
 import Data.DataFacade;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  *
@@ -19,29 +20,36 @@ public class Caseworker implements ICaseworker{
     private Department department;
     private String employeeID; 
     private Case cas;
-    IBusiness businessFacade;
+    private IBusiness businessFacade;
+    private CaseController caseControl;
     
     Caseworker(String name, Department department, String employeeID, String caseworkerPassword, String caseworkerUsername ){
         this.name = name;
         this.department = department;
         this.employeeID = employeeID;
+        caseControl = new CaseController();
     }
 
     public boolean accessCase(int caseNumber, ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        //TO DO: Stefan fix
+        //TODO: Stefan fix
     }
 
-    public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
+    public void createCase(String individualName, String individualAddress, 
+            int individualCPR, String _inquiry, String _individualInvolvement, 
+            boolean individualUnderstanding,boolean consent, 
+            boolean writtenConsent, boolean oralConsent, boolean caseClarity, 
+            InquiryFrom inquiryFrom, String caseFromAdress) {
         ILog log = new Log(this, this);
         cas = new Case(individualName, individualAddress,individualCPR, log, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
         cas.setCaseNumber(cas.saveCase(log));
+        caseControl.addCase(cas);
     }
     
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants){
+    public String createMeeting(LocalDateTime time, String location){
         ILog log = new Log(this, (ICaseworker) this);
         //TODO: change method call argument list.
-        cas.createMeeting(year, month, day, hour, minute, location, this, participants, log);
+        return cas.createMeeting(time, location, this, log);
     }
 
     public void setName(String name) {
@@ -83,10 +91,6 @@ public class Caseworker implements ICaseworker{
         return cas.setMeetingLocation(Location);
     }
 
-    public String setMeetingParticipants(String participants) {
-        return cas.setMeetingParticipants(participants);
-    }
-
     public void setIndividualName(String name) {
         ILog log = new Log(this, this);
         cas.setIndividualName(name, log);
@@ -106,11 +110,33 @@ public class Caseworker implements ICaseworker{
         return cas.getCaseworker();
     }
 
-    public IMeeting getMeeting() {
+    public Meeting getMeeting() {
         return cas.getMeeting();
     }
 
     public IIndividual getIndividual() {
         return cas.getIndividual();
+    }
+    
+    public void setCase(int caseNumber){
+        this.cas = caseControl.getCase(caseNumber);
+    }
+    
+    public void enterEntry(String note){
+        ILog log = new Log(this, this);
+        cas.enterEntry(note, log);
+    }
+    
+    public ICase getCase(){
+        return cas;
+    }
+    
+    public void closeCase(){
+        ILog log = new Log(this, this);
+        cas.closeCase(log);
+    }
+    
+    public List<Case> getCaseList(){
+        return caseControl.getCaseList();
     }
 }

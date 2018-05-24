@@ -18,7 +18,7 @@ public interface ICase {
      *
      * @return Returns the caseworker assigned to the case
      */
-    ICaseworker getCaseworker();
+    public ICaseworker getCaseworker();
 
     /**
      *
@@ -31,12 +31,6 @@ public interface ICase {
      * @return Returns the creation date of the case
      */
     public String getCreationDate();
-
-    /**
-     * 
-     * @return returns the type of the case
-     */
-    public String getCaseType();
     
     /**
      * 
@@ -98,6 +92,8 @@ public interface ICase {
      */
     public boolean getOralConsent();
    
+    public String getCaseType();
+    
     
     /**
      * 

@@ -10,13 +10,13 @@ public interface IIndividual {
      *
      * @return  Returns the name of the individual
      */
-    String getName();
+    public String getName();
 
     /**
      *
      * @return returns the address of the individual
      */
-    String getAddress();
+    public String getAddress();
 
     /**
      *

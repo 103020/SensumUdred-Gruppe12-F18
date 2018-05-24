@@ -13,25 +13,27 @@ import java.time.LocalDateTime;
  * @author stefan
  */
 public interface IMeeting {
+
     /**
      *  
      * @return the meeting date 
      */
-    LocalDateTime getMeetingTime();
-   
+    public LocalDateTime getMeetingTime();
+        
     /**
      *
      * @return participants for the meeting
      */
-    String getMeetingParticipants();
-    
-    IIndividual getParticipant1();
-    ICaseworker getParticipant2();
-    boolean getActive();
+    public String getMeetingParticipants();
+    public ICaseworker getCaseworker();
+    public IIndividual getIndividual();
+            
+    public boolean getActive();
     
     /**
      * 
      * @return the location or the address the meeting take place at
      */
-    String getLocation();
+    public String getLocation();
+ 
 }

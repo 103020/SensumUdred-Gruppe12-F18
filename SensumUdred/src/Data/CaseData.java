@@ -30,7 +30,7 @@ public class CaseData implements ICase{
     CaseData(boolean individualUnderstanding,boolean consent, boolean writtenConsent, 
             boolean oralConsent, boolean caseClarity, String caseFrom, 
             int casenumber, String inquiry, String individualInvolvement, 
-            String caseFromAddress, boolean isClosed, String creationdate)
+            String caseFromAddress, boolean isClosed, String creationdate,String caseType)
     {
         this.isClosed = isClosed;
         this.inquiry = inquiry;
@@ -44,6 +44,7 @@ public class CaseData implements ICase{
         this.caseNumber = casenumber;
         this.creationDate = creationdate;
         this.caseFrom = caseFrom;
+        this.caseType = caseType;
 
     }
     
@@ -90,12 +91,12 @@ public class CaseData implements ICase{
 
     @Override
     public String getInquiry() {
-        return inquiry.toString();
+        return inquiry;
     }
 
     @Override
     public String getIndividualInvolvement() {
-        return individualInvolvement.toString();
+        return individualInvolvement;
     }
 
     @Override
@@ -120,7 +121,7 @@ public class CaseData implements ICase{
 
     @Override
     public String getCaseFromAddress() {
-        return caseFromAddress.toString();
+        return caseFromAddress;
     }
 
     @Override

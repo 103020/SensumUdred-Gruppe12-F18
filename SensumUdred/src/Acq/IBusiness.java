@@ -77,16 +77,11 @@ public interface IBusiness {
     public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress);
     
     /**
-     *
-     * @param year of the meeting 
-     * @param month of the meeting 
-     * @param day of the meeting
-     * @param hour of the meeting 
-     * @param minute of the meeting 
+     * 
+     * @param time time of the meeting
      * @param location the addresse the meeting is taking place at
-     * @param participants the names of the participants
      */
-    public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants);
+    public void createMeeting(LocalDateTime time, String location);
     /**
      * 
      * @param name sets the name of the employee
@@ -128,12 +123,6 @@ public interface IBusiness {
      * @param time sets the time and date of the meeting
      */
     public void setMeetingTime(LocalDateTime time);
-    
-    /**
-     * 
-     * @param participants sets the participants of the meeting
-     */
-    public void setMeetingParticipants(String participants);
     
     /**
      * 
@@ -212,10 +201,8 @@ public interface IBusiness {
     
     /**
      *
-     * @param caseNum is the casenumber the meeting is on
-     * @param message is what is send when a meeting is created
+     * @param caseNumber to set the casenumber in the gui
      */
-    public void messageToMeeting(int caseNum, String message);
-    
     public void setFacadeCase(int caseNumber);
+
 }

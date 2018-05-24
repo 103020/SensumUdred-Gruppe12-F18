@@ -18,7 +18,7 @@ import java.util.List;
 public class BusinessFacade implements IBusiness {
     
 
-    private ICase cas;
+    private Case cas;
     private Caseworker worker;
     private Meeting meeting;
     private Individual ind;
@@ -29,7 +29,7 @@ public class BusinessFacade implements IBusiness {
 //Meeting meeting = new Meeting();
 //Individual ind = Individual;
     
-    static IData data;
+    static IData data = new DataFacade();
 
     
     private static BusinessFacade instance;
@@ -47,28 +47,29 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public int getCaseNumber() {
-        return cas.getCaseNumber();
+        return worker.getCase().getCaseNumber();
     }
 
     @Override
     public ICaseworker getCaseworker() {
-        return cas.getCaseworker();
+        return worker.getCase().getCaseworker();
     }
 
     @Override
     public IIndividual getIndividual() {
-        return cas.getIndividual();
+        return worker.getCase().getIndividual();
     }
 
     @Override
     public int saveCase() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //return data.save(list) //need a methode were we get the list from Case
+        //TODO: sefan fix
     }
 
     @Override
     public String getCaseCreationDate() {
-        return cas.getCreationDate();
+        return worker.getCase().getCreationDate();
     }
 
     @Override
@@ -78,7 +79,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void closeCase() {
-        //cas.closeCase();
+        worker.closeCase();
     }
 
     @Override
@@ -94,18 +95,23 @@ public class BusinessFacade implements IBusiness {
     }
     
     @Override
-    public void createMeeting(int year, int month, int date, int hour, int minute, String location, String participants){
-        worker.createMeeting(year, month, date, hour, minute, location, participants);
+    public void createMeeting(LocalDateTime time, String location){
+        worker.createMeeting(time, location);
     }
 
     @Override
     public String getLocation(){
-        return meeting.getLocation();
+        return worker.getMeeting().getLocation();
     }
     
     @Override
     public LocalDateTime getMeetingTime(){
-        return meeting.getMeetingTime();
+        try { //TODO: getmeetingtime this is temp
+            return meeting.getMeetingTime();
+        } catch(NullPointerException e){
+            System.out.println(e);
+        }
+        return null;
     }
     
     @Override
@@ -141,18 +147,12 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void setMeetingTime(LocalDateTime time) {
-        meeting.setMeetingTime(time);
+        worker.getMeeting().setMeetingTime(time);
     }
-
-    @Override
-    public void setMeetingParticipants(String participants) {
-        meeting.setMeetingParticipants(participants);
-    }
-
 
     @Override
     public String getMeetingParticipants() {
-        return meeting.getMeetingParticipants();
+        return worker.getMeeting().getMeetingParticipants();
     }
 
     @Override
@@ -162,27 +162,27 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public String getIndividualAddress() {
-        return ind.getAddress();
+        return worker.getIndividual().getAddress();
     }
 
     @Override
     public int getIndividualCPR() {
-        return ind.getCPR();
+        return worker.getIndividual().getCPR();
     }
 
     @Override
     public void setIndividualName(String name) {
-        //ind.setName(name);
+        worker.setIndividualName(name);
     }
 
     @Override
     public void setIndividualAddress(String address) {
-        //ind.setAddress(address);
+        worker.setIndividualAddress(address);
     }
 
     @Override
     public void setIndividualCPR(int CPR) {
-        //ind.setCPR(CPR);
+        worker.setIndividualCPR(CPR);
     }
 
     @Override
@@ -195,25 +195,15 @@ public class BusinessFacade implements IBusiness {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-//    //test
-//    @Override
-//    public void createCase() {
-//        worker.createCase("Pizza", "Morten", "Anstalten 17", 0, "jeg vil gerne have pizza", "jeg vil gerne have pizza", true, true, true, true, true, InquiryFrom.INDIVIDUAL, "anstalten 17");
-//    }
-
     @Override
     public boolean login(String username, String password) {
         return data.login(username, password);
     }
 
     @Override
-    public void messageToMeeting(int caseNum, String message) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setFacadeCase(int caseNumber) {
+        worker.setCase(caseNumber);
     }
 
-    @Override
-    public void setFacadeCase(int caseNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

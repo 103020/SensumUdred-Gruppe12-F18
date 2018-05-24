@@ -14,10 +14,6 @@ public interface IDiary {
      */
     String getEntry();
 
-    /**
-     *
-     * @return  returns the date of the entry
-     */
     String getDate();
 
     

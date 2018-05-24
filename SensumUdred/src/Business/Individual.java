@@ -26,10 +26,6 @@ public class Individual implements IIndividual{
         this.CPR = CPR;
     }
 
-    Individual(){
-        
-    }
-    
     @Override
     public String getName() {
         return name;
