@@ -36,9 +36,9 @@ public class GUIFacade implements IGUI{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void createMeeting(LocalDateTime time, String location, IIndividual participant1, ICaseworker participant2, String participants) {
-        b.createMeeting(time, location, participants);
+    public void createMeeting(LocalDateTime time, String location) {
+        b.createMeeting(time, location);
+
     }
 
     @Override
@@ -79,7 +79,7 @@ public class GUIFacade implements IGUI{
 
     @Override
     public void setMeetingParticipants(String participants) {
-        b.setMeetingParticipants(participants);
+        //b.setMeetingParticipants(participants);
     }
 
     @Override
@@ -102,12 +102,19 @@ public class GUIFacade implements IGUI{
         List convert = new ArrayList();
         convert.add(new caseListAbler("58", "16/08-12"));
         convert.add(new caseListAbler("12", "30/01-03"));
-        /* TODO: when a list is returnable
-        for (ICase ic : b.getCasenumSortedList()) {
-            convert.add(new caseListAbler(""+ic.getCaseNumber(),""+ic.getCreationDate()));
-        }*/
+//        TODO: when a list is returnable
+//        for (ICase ic : b.getCasenumSortedList()) {
+//            convert.add(new caseListAbler(""+ic.getCaseNumber(),""+ic.getCreationDate()));
+//        }
         return convert;
     }
+    
+    public List getMeetingList(){
+        List convert = new ArrayList();
+        convert.add(new meetingListAbler(b.getMeetingTime(),""+b.getLocation()));
+        return convert;
+}
+
     
     @Override
     public LocalDateTime getMeetingTime(){

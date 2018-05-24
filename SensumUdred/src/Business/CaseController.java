@@ -14,6 +14,7 @@ import java.util.List;
 public class CaseController implements ICaseController{
     
     private List<ICase> cases;
+    private List<IMeeting> meeting;
     
     @Override
     public boolean addCase(ICase newCase){
@@ -23,6 +24,21 @@ public class CaseController implements ICaseController{
     @Override
     public List<ICase> getCaseList(){
         return cases;
+    }
+    
+    /**
+     *
+     * @param newMeeting
+     * @return
+     */
+    @Override
+    public boolean addMeeting(IMeeting newMeeting){
+        return meeting.add(newMeeting);
+    }
+    
+    @Override
+    public List<IMeeting> getMeetingList(){
+        return meeting;
     }
     
 

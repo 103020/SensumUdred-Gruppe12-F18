@@ -127,9 +127,7 @@ public interface ICase {
     /**
      *
      * @param time the time of the meeting
-     * @param location location/address the meeting is taking place
-     * @param participant2 is the caseworker
-     * @param participants is the individuals 
+     * @param location location/address the meeting is taking place 
      * @param log log when a meeting is created
      * @return 
      */

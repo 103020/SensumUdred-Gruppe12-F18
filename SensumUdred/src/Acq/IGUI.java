@@ -56,11 +56,8 @@ public interface IGUI {
      *
      * @param time
      * @param location
-     * @param participant1
-     * @param participant2
-     * @param participants
      */
-    public void createMeeting(LocalDateTime time, String location, IIndividual participant1, ICaseworker participant2, String participants);
+    public void createMeeting(LocalDateTime time, String location);
     
     /**
      *
@@ -133,6 +130,12 @@ public interface IGUI {
      * @return the caselist
      */
     public List getCaseList();
+    
+    /**
+     *
+     * @return the meeting list
+     */
+    public List getMeetingList();
 
     /**
      *
