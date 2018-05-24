@@ -1,5 +1,6 @@
 package Data;
 
+import Acq.ICaseworker;
 import Acq.IData;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,6 @@ import java.util.List;
  */
 public class DataFacade implements IData{
     private static DataFacade instance;
-
 
     public static IData getInstance() {
 
@@ -36,12 +36,8 @@ public class DataFacade implements IData{
 
     @Override
     public boolean login(String username, String password) {
-        //TODO: get stuff from database login
-        /*
-        get data from database about user
-        check through if they are the same as username and password
-        */
-        return true; //debug
+       
+            return true; //debug
     }
 
     @Override
