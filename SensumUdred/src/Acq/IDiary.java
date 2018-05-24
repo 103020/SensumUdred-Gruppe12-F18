@@ -12,9 +12,13 @@ public interface IDiary {
      *
      * @return  Returns the entry in string format.
      */
-    String getEntry();
+    public String getEntry();
 
-    String getDate();
+    /**
+     *
+     * @return the diary date
+     */
+    public String getDate();
 
     
     

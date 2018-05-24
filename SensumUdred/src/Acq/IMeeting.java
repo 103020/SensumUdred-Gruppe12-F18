@@ -25,9 +25,23 @@ public interface IMeeting {
      * @return participants for the meeting
      */
     public String getMeetingParticipants();
+
+    /**
+     *
+     * @return the caseworker
+     */
     public ICaseworker getCaseworker();
+
+    /**
+     *
+     * @return the caseworker
+     */
     public IIndividual getIndividual();
             
+    /**
+     *
+     * @return if the meeting is active
+     */
     public boolean getActive();
     
     /**

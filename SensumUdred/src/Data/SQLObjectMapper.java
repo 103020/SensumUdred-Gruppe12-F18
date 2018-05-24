@@ -4,8 +4,6 @@ import Acq.*;
 //import org.postgresql.Driver;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -76,7 +74,7 @@ public class SQLObjectMapper {
         return success;
     }
     
-    public static ArrayList<ICase> getCases(ICaseworker caseworker){
+    static ArrayList<ICase> getCases(ICaseworker caseworker){
         ArrayList<ICase> caseList = new ArrayList();
         establishConnection();
         try {
@@ -129,13 +127,14 @@ public class SQLObjectMapper {
                             rs2.getString("location"), 
                             rs2.getBoolean("meetingactive"));
                 }
-                
+                rs2.close();
+                rs.close();
                 cas.addObjects(caseworker, diary, meeting, individual);
                 caseList.add(cas);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }            
         closeConnection();
         return caseList;
     }
@@ -155,6 +154,22 @@ public class SQLObjectMapper {
         return success;
     }
     
+    static IDiary getDiary(ICase cas){
+        establishConnection();
+        DiaryData diary = new DiaryData();
+        try {
+            rs = st.executeQuery("SELECT * FROM DIARIES WHERE "
+                    + "DIARY.DIARYBELONGSTOCASENUMBER=" + cas.getCaseNumber());
+               diary.setEntry(rs.getString("entry"));
+               diary.setDate(rs.getString("DIARYDATE"));
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return diary;
+    }
+    
     static boolean saveCaseworker(ICaseworker caseworker) {
         establishConnection();
         boolean success = false;
@@ -167,6 +182,29 @@ public class SQLObjectMapper {
         }
         closeConnection();
         return success;
+    }
+    
+    static ICaseworker getCaseworker(String username) {
+        establishConnection();
+        CaseworkerData caseworker = new CaseworkerData();
+        try {
+            rs = st.executeQuery("SELECT * FROM CASEWORKERS WHERE "
+                    + "CASEWORKERS.EMPLOYEEID=" + username);
+            /* fetching a department to add to the caseworker */
+            DepartmentData department = new DepartmentData();
+            ResultSet rs2 = st.executeQuery("SELECT * FROM DEPARTMENTS WHERE "
+                    + "DEPARTMENTS.DEPARTMENTNAME=" + rs.getString("BELONGSTODEPARTMENT"));
+            department.addAttributes(rs2.getInt("PEOPLEAMOUNT"), rs2.getString("DEPARTMENTNAME"));
+            
+            caseworker.addAttributes(rs.getString("CASEWORKERNAME"), 
+                    department, rs.getString("EMPLOYEEID"));
+            rs2.close();
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return caseworker;
     }
     
     static boolean saveDepartment(IDepartment dep) {
@@ -183,6 +221,8 @@ public class SQLObjectMapper {
         closeConnection();
         return success;
     }
+    
+    
     
     static boolean saveMeeting(IMeeting meeting){
         establishConnection();
