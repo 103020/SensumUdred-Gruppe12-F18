@@ -133,7 +133,7 @@ public interface ICase {
      * @param log log when a meeting is created
      * @return 
      */
-    public String createMeeting(LocalDateTime time, String location, ICaseworker participant2, String participants, ILog log);
+    public String createMeeting(LocalDateTime time, String location, ILog log);
 
     /**
      *
@@ -175,13 +175,6 @@ public interface ICase {
      * @return a message that gives all the information about the meeting
      */
     public String setMeetingLocation(String Location);
-
-    /**
-     *
-     * @param participants is who is participating in the meeting
-     * @return a message that gives all the information about the meeting
-     */
-    public String setMeetingParticipants(String participants);
 
     /**
      *

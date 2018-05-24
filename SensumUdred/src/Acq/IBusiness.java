@@ -82,7 +82,7 @@ public interface IBusiness {
      * @param location the addresse the meeting is taking place at
      * @param participants the names of the participants
      */
-    public void createMeeting(LocalDateTime time, String location, String participants);
+    public void createMeeting(LocalDateTime time, String location);
     /**
      * 
      * @param name sets the name of the employee
@@ -124,12 +124,6 @@ public interface IBusiness {
      * @param time sets the time and date of the meeting
      */
     public void setMeetingTime(LocalDateTime time);
-    
-    /**
-     * 
-     * @param participants sets the participants of the meeting
-     */
-    public void setMeetingParticipants(String participants);
     
     /**
      * 
