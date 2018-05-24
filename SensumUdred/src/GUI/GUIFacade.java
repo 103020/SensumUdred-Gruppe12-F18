@@ -36,8 +36,8 @@ public class GUIFacade implements IGUI{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void createMeeting(LocalDateTime time, String location, IIndividual participant1, ICaseworker participant2, String participants) {
-        b.createMeeting(time, location, participants);
+    public void createMeeting(LocalDateTime time, String location) {
+        b.createMeeting(time, location);
 
     }
 
@@ -84,7 +84,7 @@ public class GUIFacade implements IGUI{
 
     @Override
     public void setMeetingParticipants(String participants) {
-        b.setMeetingParticipants(participants);
+        //b.setMeetingParticipants(participants);
     }
 
     @Override
