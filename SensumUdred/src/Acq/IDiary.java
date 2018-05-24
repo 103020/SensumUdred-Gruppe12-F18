@@ -12,7 +12,7 @@ public interface IDiary {
      *
      * @return  Returns the entry in string format.
      */
-    String getEntry(ILog log);
+    String getEntry();
 
     /**
      *

@@ -29,8 +29,9 @@ public class DataFacade implements IData{
 
     @Override
     public List loadUser() {
-        UserHandler userHandler = new UserHandler();
-        return userHandler.loadUser();
+//        UserHandler userHandler = new UserHandler();
+//        return userHandler.loadUser();
+        return new ArrayList();
     }
 
     @Override

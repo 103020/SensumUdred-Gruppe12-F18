@@ -45,17 +45,14 @@ public class Individual implements IIndividual{
         return CPR;
     }
 
-    @Override
     public void setName(String name, ILog log) {
         this.name = name;
     }
 
-    @Override
     public void setAddress(String address, ILog log) {
         this.address = address;
     }
 
-    @Override
     public void setCPR(int CPR, ILog log) {
         this.CPR = CPR;
     }

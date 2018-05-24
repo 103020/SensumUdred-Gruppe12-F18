@@ -68,4 +68,19 @@ public class MeetingData implements IMeeting {
     public String getMeetingParticipants() {
         return participants;
     }   
+
+    @Override
+    public IIndividual getParticipant1() {
+        return this.participant1;
+    }
+
+    @Override
+    public ICaseworker getParticipant2() {
+        return this.participant2;
+    }
+
+    @Override
+    public boolean getActive() {
+        return this.meetingActive;
+    }
 }

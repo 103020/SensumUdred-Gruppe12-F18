@@ -62,13 +62,11 @@ public class Meeting implements IMeeting {
                            "\nAddressen: " + getLocation() + "\nDe deltagende er: " +participant1.getName()+ " " + getMeetingParticipants()) + " og " + participant2.getName();
     }
     
-    @Override
     public String cancelMeeting(){
         meetingActive = false;
         return ("Mødet den: " + getMeetingTime() + "\n Ved: " + getLocation() + "\nMed: " +participant1.getName()+ getMeetingParticipants() + " og " + participant2.getName() + "\nEr blevet annuleret");
     }
 
-    @Override
     public String setMeetingTime(LocalDateTime time) {
         dayOfMeeting = time;
         return messageToMeeting();
@@ -79,13 +77,11 @@ public class Meeting implements IMeeting {
         return location;
     }
 
-    @Override
     public String setLocation(String location) {
         this.location = location;
         return messageToMeeting();
     }
 
-    @Override
     public String setMeetingParticipants(String participants) {
         this.participants = participants;
         return messageToMeeting();
@@ -100,4 +96,19 @@ public class Meeting implements IMeeting {
     public String getMeetingParticipants() {
         return participants;
     }   
+
+    @Override
+    public IIndividual getParticipant1() {
+        return this.participant1;
+    }
+
+    @Override
+    public ICaseworker getParticipant2() {
+        return this.participant2;
+    }
+
+    @Override
+    public boolean getActive() {
+        return this.meetingActive;
+    }
 }

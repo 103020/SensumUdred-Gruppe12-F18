@@ -4,6 +4,8 @@ import Acq.*;
 //import org.postgresql.Driver;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -47,25 +49,31 @@ public class SQLObjectMapper {
         
     }
     
-    public static void saveCase(ICase cas){
+    static boolean saveCase(ICase cas){
         establishConnection();
-         st.executeQuery("INSERT INTO CASES (creationdate,isclosed,casetype,"
-            + "inquiry,individualinvolvement,consent,writtenconsent,"
-            + "oralconsent,casefrom,casefromaddress,caseclarity,"
-            + "individualunderstanding,caseworker,individual,diary,meeting)"
-            + " VALUES ('" + cas.getCreationDate()+ "','" +
-            cas.getClosed() + "','" + cas.getCaseType() + "','" 
-            + cas.getInquiry() + "','" + cas.getIndividualInvolvement() 
-            + "','" + cas.getConsent() + "','" + cas.getWrittenConsent() 
-            + "','" + cas.getOralConsent() + "','" + cas.getCaseFrom() 
-            + "','" + cas.getCaseFromAddress() + "','" 
-            + cas.getCaseClarity() + "','" + cas.getIndividualUnderstanding() 
-            + "','" + cas.getCaseworker().getEmployeeID() + "','" 
-            + cas.getIndividual().getCPR() + "','" 
-            + cas.getDiary().getDate() + "','" 
-            + cas.getMeeting().getParticipant1() + "')");
-        
+        boolean success = false;
+        try {
+            st.execute("INSERT INTO CASES (creationdate,isclosed,casetype,"
+                + "inquiry,individualinvolvement,consent,writtenconsent,"
+                + "oralconsent,casefrom,casefromaddress,caseclarity,"
+                + "individualunderstanding,caseworker,individual,diary,meeting)"
+                + " VALUES ('" + cas.getCreationDate()+ "','" +
+                cas.getClosed() + "','" + cas.getCaseType() + "','"
+                + cas.getInquiry() + "','" + cas.getIndividualInvolvement()
+                + "','" + cas.getConsent() + "','" + cas.getWrittenConsent()
+                + "','" + cas.getOralConsent() + "','" + cas.getCaseFrom()
+                + "','" + cas.getCaseFromAddress() + "','"
+                + cas.getCaseClarity() + "','" + cas.getIndividualUnderstanding()
+                + "','" + cas.getCaseworker().getEmployeeID() + "','"
+                + cas.getIndividual().getCPR() + "','"
+                + cas.getDiary().getDate() + "','"
+                + cas.getMeeting().getParticipant1() + "')");
+            success = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         closeConnection();
+        return success;
     }
     
     public static ArrayList<ICase> getCases(ICaseworker caseworker){
@@ -129,6 +137,82 @@ public class SQLObjectMapper {
         }
         closeConnection();
         return caseList;
+    }
+    
+    static boolean saveDiary(ICase cas, IDiary diary){
+        establishConnection();
+        boolean success = false;
+        try{
+            st.execute("INSERT INTO DIARIES (DIARYBELONGSTOCASENUMBER ,"
+                + "DIARYDATE,ENTRY)" + "VALUES ('" + cas.getCaseNumber() + 
+                "','" + diary.getDate() + "','" + diary.getEntry() + "')");
+            success = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return success;
+    }
+    
+    static boolean saveCaseworker(ICaseworker caseworker) {
+        establishConnection();
+        boolean success = false;
+        try {
+            st.execute("INSERT INTO CASEWORKERS (EMPLOYEEID,NAME)" + "VALUES ('"
+                + caseworker.getEmployeeID() + "','" + caseworker.getName() + "')");
+            success = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        closeConnection();
+        return success;
+    }
+    
+    static boolean saveDepartment(IDepartment dep) {
+        establishConnection();
+        boolean success = false;
+        try {
+            st.execute("INSERT INTO DEPARTMENTS (DEPARTMENTNAME,PEOPLEAMOUNT)" 
+                + "VALUES ('" + dep.toString() + "','" 
+                + dep.getAmount() + "')'");
+            success = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        closeConnection();
+        return success;
+    }
+    
+    static boolean saveMeeting(IMeeting meeting){
+        establishConnection();
+        boolean success = false;
+        try {
+            st.execute("INSERT INTO MEETINGS (PARTICIPANT1,PARTICIPANT2,"
+                + "MEETINGDATEANDTIME,LOCATION,MEETINGACTIVE) VALUES ('" 
+                + meeting.getParticipant1() + "','" + meeting.getParticipant2()
+                + "','" + meeting.getMeetingTime().toString() + "','" 
+                + meeting.getLocation() + "','" + meeting.getActive() + "')");
+            success = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        closeConnection();
+        return success;
+    }
+    
+    static boolean saveIndividual(IIndividual individual){
+        establishConnection();
+        boolean success = false;
+        try {
+            st.execute("INSERT INTO INDIVIDUALS (INDIVIDUALCPR, INDIVIDUALNAME, "
+                + "INDIVIDUALADDRESS) + VALUES ('" + individual.getCPR() 
+                + "," + individual.getName() + "," + individual.getAddress() + "')");
+            success = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        closeConnection();
+        return success;
     }
     
     public static int updateCase(ICase cas){

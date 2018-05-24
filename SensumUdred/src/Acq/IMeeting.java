@@ -25,6 +25,10 @@ public interface IMeeting {
      */
     String getMeetingParticipants();
     
+    IIndividual getParticipant1();
+    ICaseworker getParticipant2();
+    boolean getActive();
+    
     /**
      * 
      * @return the location or the address the meeting take place at

@@ -47,8 +47,9 @@ public class DiaryData implements IDiary{
         return "Diary entry date: " + date.toString();
     }
 
+
     @Override
-    public String getEntry(ILog log) {
+    public String getEntry() {
         return entry.toString();
     }
 }

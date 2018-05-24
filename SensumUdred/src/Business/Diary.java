@@ -8,6 +8,7 @@ package Business;
 import Acq.ICaseworker;
 import Acq.IDiary;
 import Acq.ILog;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -15,39 +16,41 @@ import java.util.Date;
  * @author Nicolai
  */
 public class Diary implements IDiary{
-    private Date date;
+    private String date;
     private StringBuilder entry;
 
     Diary(String entry, ILog log) {
         this.entry = new StringBuilder(entry);
-        date = new Date();
+        date = LocalDateTime.now().toString();
     }
 
     @Override
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
     
     @Override
     public String toString(){
-        return "Diary entry date: " + date.toString();
+        return "Diary entry date: " + date;
     }
 
-    @Override
     public void saveEntry(ILog log) {
         //TODO: fix
     }
 
-    @Override
     public String getEntry(ILog log) {
         return entry.toString();
     }
 
-    @Override
     public void enterEntry(String note, ILog log) {
         entry.insert(entry.length(), "\n" + toString() + " " + note);
        
+    }
+
+    @Override
+    public String getEntry() {
+        return this.entry.toString();
     }
     
     

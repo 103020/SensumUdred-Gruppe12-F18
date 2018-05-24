@@ -17,4 +17,6 @@ public interface IDepartment {
      */
     @Override
     String toString();
+
+    int getAmount();
 }

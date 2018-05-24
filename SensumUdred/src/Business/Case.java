@@ -10,10 +10,10 @@ import java.time.LocalDateTime;
 public class Case implements ICase{
     
     private int caseNumber;
-    private ICaseworker caseWorker;
-    private IIndividual individual;
+    private Caseworker caseWorker;
+    private Individual individual;
     private final String creationDate;
-    private IDiary diary;
+    private Diary diary;
     private boolean isClosed;
     private String caseType;
     private Meeting meeting;
@@ -26,7 +26,7 @@ public class Case implements ICase{
     private StringBuilder caseFromAddress;
     private boolean caseClarity;
     private boolean individualUnderstanding;
-    private IMeeting createNewMeeting;
+    private Meeting createNewMeeting;
     
     private IBusiness businessFacade;
     
@@ -77,8 +77,7 @@ public class Case implements ICase{
         inquiry = new StringBuilder();
         individualInvolvement = new StringBuilder();
     }
-    
-    @Override
+
     public void setCaseNumber(int caseNumber){
         this.caseNumber = caseNumber;
     }
@@ -158,29 +157,24 @@ public class Case implements ICase{
         return individualUnderstanding;
     }
 
-    @Override
     public int saveCase(ILog log) {
         return businessFacade.saveCase();
     }
 
-    @Override
     public void editCase(ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //TODO: fix
     }
 
-    @Override
     public void closeCase(ILog log) {
         isClosed = true;
     }
 
-    @Override
     public ICase fetchCase(int caseNumber, ILog log) {
         ICase cas = businessFacade.accessCase(caseNumber);
         return cas;
     }
 
-    @Override
-    public void setCaseworker(ICaseworker caseworker, ILog log) {
+    public void setCaseworker(Caseworker caseworker, ILog log) {
         this.caseWorker = caseworker;
     } 
 
@@ -194,22 +188,18 @@ public class Case implements ICase{
         return meeting;
     }
 
-    @Override
     public String cancelMeeting() {
         return meeting.cancelMeeting();
     }
 
-    @Override
     public String setMeetingTime(LocalDateTime time) {
         return meeting.setMeetingTime(time);
     }
 
-    @Override
     public String setMeetingLocation(String Location) {
         return meeting.setLocation(Location);
     }
 
-    @Override
     public String setMeetingParticipants(String participants) {
         return meeting.setMeetingParticipants(participants);
     }
@@ -219,27 +209,22 @@ public class Case implements ICase{
         return meeting.messageToMeeting();
     }
 
-    @Override
     public void setIndividualName(String name, ILog log) {
         individual.setName(name, log);
     }
 
-    @Override
     public void setIndividualAddress(String Address, ILog log) {
         individual.setAddress(Address, log);
     }
 
-    @Override
     public void setIndividualCPR(int CPR, ILog log) {
         individual.setCPR(CPR, log);
     }
 
-    @Override
     public void enterEntry(String note, ILog log) {
         diary.enterEntry(note, log);
     }
 
-    @Override
     public void createMeeting(int year, int month, int day, int hour, int minute, String location, String participants) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
