@@ -26,13 +26,6 @@ public interface IMeeting {
      * @return the meeting date 
      */
     public LocalDateTime getMeetingTime();
-
-    /**
-     * Set the participants for the meeting with a String
-     * @param participants are them who are in the meeting
-     * @return a message when new participants are set
-     */
-    public String setMeetingParticipants(String participants);
         
     /**
      *

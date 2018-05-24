@@ -40,7 +40,7 @@ public interface ICaseworker {
      * @param participants all the participants
      * @return
      */
-    public String createMeeting(LocalDateTime time, String location, String participants);
+    public String createMeeting(LocalDateTime time, String location);
 
     /**
      *
@@ -97,13 +97,6 @@ public interface ICaseworker {
      * @return a message when a new location is set
      */
     public String setMeetingLocation(String Location);
-
-    /**
-     *
-     * @param participants set the participants of the meeting
-     * @return a message when new participants is set
-     */
-    public String setMeetingParticipants(String participants);
 
     /**
      *

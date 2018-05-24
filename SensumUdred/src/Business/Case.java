@@ -222,13 +222,8 @@ public class Case implements ICase{
     }
 
     @Override
-    public String setMeetingParticipants(String participants) {
-        return meeting.setMeetingParticipants(participants);
-    }
-
-    @Override
-    public String createMeeting(LocalDateTime time, String location, ICaseworker participant2, String participants, ILog log) {
-        meeting = new Meeting(time, location, this.individual, participant2, participants, log);
+    public String createMeeting(LocalDateTime time, String location, ILog log) {
+        meeting = new Meeting(time, location, this.individual, this.caseWorker, log);
         return meeting.messageToMeeting();
     }
 
