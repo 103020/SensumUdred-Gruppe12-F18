@@ -202,16 +202,8 @@ public interface IBusiness {
     
     /**
      *
-     * @param caseNum is the casenumber the meeting is on
-     * @param message is what is send when a meeting is created
-     */
-    public void messageToMeeting(int caseNum, String message);
-    
-    /**
-     *
      * @param caseNumber to set the casenumber in the gui
      */
     public void setFacadeCase(int caseNumber);
 
-    public void createMeeting();
 }

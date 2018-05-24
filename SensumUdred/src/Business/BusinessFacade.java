@@ -47,28 +47,29 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public int getCaseNumber() {
-        return cas.getCaseNumber();
+        return worker.getCase().getCaseNumber();
     }
 
     @Override
     public ICaseworker getCaseworker() {
-        return cas.getCaseworker();
+        return worker.getCase().getCaseworker();
     }
 
     @Override
     public IIndividual getIndividual() {
-        return cas.getIndividual();
+        return worker.getCase().getIndividual();
     }
 
     @Override
     public int saveCase() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //return data.save(list) //need a methode were we get the list from Case
+        //TODO: sefan fix
     }
 
     @Override
     public String getCaseCreationDate() {
-        return cas.getCreationDate();
+        return worker.getCase().getCreationDate();
     }
 
     @Override
@@ -78,7 +79,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void closeCase() {
-        //cas.closeCase();
+        worker.closeCase();
     }
 
     @Override
@@ -100,7 +101,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public String getLocation(){
-        return meeting.getLocation();
+        return worker.getMeeting().getLocation();
     }
     
     @Override
@@ -146,12 +147,12 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void setMeetingTime(LocalDateTime time) {
-        meeting.setMeetingTime(time);
+        worker.getMeeting().setMeetingTime(time);
     }
 
     @Override
     public String getMeetingParticipants() {
-        return meeting.getMeetingParticipants();
+        return worker.getMeeting().getMeetingParticipants();
     }
 
     @Override
@@ -161,27 +162,27 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public String getIndividualAddress() {
-        return ind.getAddress();
+        return worker.getIndividual().getAddress();
     }
 
     @Override
     public int getIndividualCPR() {
-        return ind.getCPR();
+        return worker.getIndividual().getCPR();
     }
 
     @Override
     public void setIndividualName(String name) {
-        //ind.setName(name);
+        worker.setIndividualName(name);
     }
 
     @Override
     public void setIndividualAddress(String address) {
-        //ind.setAddress(address);
+        worker.setIndividualAddress(address);
     }
 
     @Override
     public void setIndividualCPR(int CPR) {
-        //ind.setCPR(CPR);
+        worker.setIndividualCPR(CPR);
     }
 
     @Override
@@ -206,18 +207,9 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void messageToMeeting(int caseNum, String message) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void setFacadeCase(int caseNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        worker.setCase(caseNumber);
     }
 
-    @Override
-    public void createMeeting() {
-        meeting = new Meeting();
-    }
     
 }
