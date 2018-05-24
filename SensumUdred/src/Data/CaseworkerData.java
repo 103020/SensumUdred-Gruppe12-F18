@@ -17,14 +17,15 @@ public class CaseworkerData implements ICaseworker{
     private String name;
     private IDepartment department;
     private String employeeID; 
-    private ICase cas;
 
+    CaseworkerData(){
+        
+    }
     
-    CaseworkerData(String name, IDepartment department, String employeeID, ICase cas){
+    void addAttributes(String name, IDepartment department, String employeeID){
         this.name = name;
         this.department = department;
         this.employeeID = employeeID;
-        this.cas = cas;
     }
  
     @Override
