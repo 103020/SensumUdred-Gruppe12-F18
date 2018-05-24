@@ -17,8 +17,8 @@ import java.time.format.DateTimeFormatter;
 public class MeetingData implements IMeeting {
 
     private LocalDateTime dayOfMeeting;
-    private IIndividual participant1;
-    private ICaseworker participant2;
+    private IIndividual individual;
+    private ICaseworker caseworker;
     private String participants;
     private String location;
     private boolean meetingActive;
@@ -35,8 +35,8 @@ public class MeetingData implements IMeeting {
     MeetingData(int year, int month, int day, int hour, int minute, String location, 
             IIndividual participant1, ICaseworker participant2, String participants){
         LocalDateTime meetingDate = LocalDateTime.of(year, month, day, hour, minute);
-        this.participant1 = participant1;
-        this.participant2 = participant2;
+        this.individual = participant1;
+        this.caseworker = participant2;
         dayOfMeeting = meetingDate;
         meetingActive = true;
     }
@@ -48,8 +48,8 @@ public class MeetingData implements IMeeting {
             String location, boolean meetingActive){
         DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
         dayOfMeeting = LocalDateTime.parse(dateandtime, formatter);
-        this.participant1 = participant1;
-        this.participant2 = participant2;
+        this.individual = participant1;
+        this.caseworker = participant2;
         this.location = location;
         this.meetingActive = meetingActive;
     }
@@ -72,12 +72,12 @@ public class MeetingData implements IMeeting {
 
     @Override
     public ICaseworker getCaseworker() {
-        return participant2;
+        return caseworker;
     }
 
     @Override
     public IIndividual getIndividual() {
-        return participant1;
+        return individual;
     }
 
     @Override
