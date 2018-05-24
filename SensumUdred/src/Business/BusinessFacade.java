@@ -94,8 +94,8 @@ public class BusinessFacade implements IBusiness {
     }
     
     @Override
-    public void createMeeting(int year, int month, int date, int hour, int minute, String location, String participants){
-        worker.createMeeting(year, month, date, hour, minute, location, participants);
+    public void createMeeting(LocalDateTime time, String location){
+        worker.createMeeting(time, location);
     }
 
     @Override
@@ -148,12 +148,6 @@ public class BusinessFacade implements IBusiness {
     public void setMeetingTime(LocalDateTime time) {
         meeting.setMeetingTime(time);
     }
-
-    @Override
-    public void setMeetingParticipants(String participants) {
-        meeting.setMeetingParticipants(participants);
-    }
-
 
     @Override
     public String getMeetingParticipants() {

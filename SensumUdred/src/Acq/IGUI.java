@@ -26,7 +26,6 @@ public interface IGUI {
      */
     public void editCase(ICase ca);
 
-    public void createMeeting();
 
     public void closeCase();
 
@@ -53,6 +52,16 @@ public interface IGUI {
      */
     public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress);
 
+    /**
+     *
+     * @param time
+     * @param location
+     * @param participant1
+     * @param participant2
+     * @param participants
+     */
+    public void createMeeting(LocalDateTime time, String location, IIndividual participant1, ICaseworker participant2, String participants);
+    
     /**
      *
      * @param name set the name of the employee

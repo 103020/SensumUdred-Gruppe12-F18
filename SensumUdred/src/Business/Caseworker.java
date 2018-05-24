@@ -46,10 +46,10 @@ public class Caseworker implements ICaseworker{
     
     
     @Override
-    public String createMeeting(int year, int month, int day, int hour, int minute, String location, String participants){
+    public String createMeeting(LocalDateTime time, String location){
         ILog log = new Log(this, (ICaseworker) this);
         //TODO: change method call argument list.
-        return cas.createMeeting(year, month, day, hour, minute, location, this, participants, log);
+        return cas.createMeeting(time, location, log);
     }
 
     @Override
@@ -96,12 +96,7 @@ public class Caseworker implements ICaseworker{
     public String setMeetingLocation(String Location) {
         return cas.setMeetingLocation(Location);
     }
-
-    @Override
-    public String setMeetingParticipants(String participants) {
-        return cas.setMeetingParticipants(participants);
-    }
-
+    
     @Override
     public void setIndividualName(String name) {
         ILog log = new Log(this, this);
