@@ -101,7 +101,11 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public String getLocation(){
-        return worker.getMeeting().getLocation();
+        try {
+            return worker.getMeeting().getLocation();
+        } catch(NullPointerException e) {
+            return null;
+        }
     }
     
     @Override
@@ -197,7 +201,13 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public boolean login(String username, String password) {
-        return data.login(username, password);
+        boolean temp = data.login(username, password);
+        if (temp) {
+            ICaseworker temp2 = data.getCaseWorker(username);
+            worker = new Caseworker(temp2.getName(), new Department(temp2.getDepartment().getName()), temp2.getEmployeeID());
+            return temp;
+        }
+        return temp;
     }
 
     @Override

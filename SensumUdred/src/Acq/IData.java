@@ -5,6 +5,7 @@
  */
 package Acq;
 
+import Business.Caseworker;
 import java.util.List;
 
 /**
@@ -45,4 +46,6 @@ public interface IData {
      * @return the highest case number
      */
     public int loadHighestCaseNumber();
+
+    public ICaseworker getCaseWorker(String username);
 }

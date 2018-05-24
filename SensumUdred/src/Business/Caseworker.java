@@ -23,11 +23,12 @@ public class Caseworker implements ICaseworker{
     private IBusiness businessFacade;
     private CaseController caseControl;
     
-    Caseworker(String name, Department department, String employeeID, String caseworkerPassword, String caseworkerUsername ){
+    Caseworker(String name, Department department, String employeeID){
         this.name = name;
         this.department = department;
         this.employeeID = employeeID;
         caseControl = new CaseController();
+        cas = new Case();
     }
 
     public boolean accessCase(int caseNumber, ILog log) {

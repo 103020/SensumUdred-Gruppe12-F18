@@ -16,7 +16,13 @@ public interface IDepartment {
      * @return Return the name of the department
      */
     @Override
-    String toString();
+    public String toString();
 
-    int getAmount();
+    /**
+     *
+     * @return number of people in department
+     */
+    public int getAmount();
+
+    public String getName();
 }

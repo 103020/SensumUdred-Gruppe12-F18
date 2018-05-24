@@ -194,19 +194,21 @@ public class SQLObjectMapper {
         CaseworkerData caseworker = new CaseworkerData();
         try {
             rs = st.executeQuery("SELECT * FROM CASEWORKERS WHERE "
-                    + "CASEWORKERS.EMPLOYEEID=" + username);
+                    + "CASEWORKERS.EMPLOYEEID='" + username + "'");
             rs.next();
             /* fetching a department to add to the caseworker */
             DepartmentData department = new DepartmentData();
             ResultSet rs2 = st.executeQuery("SELECT * FROM DEPARTMENTS WHERE "
-                    + "DEPARTMENTS.DEPARTMENTNAME=" + rs.getString("BELONGSTODEPARTMENT"));
+                    + "DEPARTMENTS.DEPARTMENTNAME='" + rs.getString("BELONGSTODEPARTMENT")+"'");
             rs2.next();
             department.addAttributes(rs2.getInt("PEOPLEAMOUNT"), rs2.getString("DEPARTMENTNAME"));
-            
+            rs = st.executeQuery("SELECT * FROM CASEWORKERS WHERE "
+                    + "CASEWORKERS.EMPLOYEEID='" + username + "'");
+            rs.next();
             caseworker.addAttributes(rs.getString("CASEWORKERNAME"), 
                     department, rs.getString("EMPLOYEEID"));
-            rs2.close();
-            rs.close();
+            //rs2.close();
+            //rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

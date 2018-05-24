@@ -14,5 +14,10 @@ public interface ICaseworker {
      * @return the department of the caseworker
      */
     public IDepartment getDepartment();
+
+    /**
+     *
+     * @return the employeeID
+     */
     public String getEmployeeID();    
 }

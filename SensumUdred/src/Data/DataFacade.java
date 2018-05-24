@@ -1,6 +1,8 @@
 package Data;
 
+import Acq.ICaseworker;
 import Acq.IData;
+import Business.Caseworker;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,8 +42,9 @@ public class DataFacade implements IData{
         /*
         get data from database about user
         check through if they are the same as username and password
-        */
-        return true; //debug
+         */
+        System.out.println(SQLObjectMapper.getCaseworker(username).toString());
+        return SQLObjectMapper.getCaseworker(username).getEmployeeID().equals(username);
     }
 
     @Override
@@ -52,6 +55,11 @@ public class DataFacade implements IData{
     @Override
     public int save(List list) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ICaseworker getCaseWorker(String username) {
+        return SQLObjectMapper.getCaseworker(username);
     }
     
 }
