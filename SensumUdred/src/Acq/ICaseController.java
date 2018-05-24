@@ -25,6 +25,19 @@ public interface ICaseController {
      * @return the case list is returned 
      */
     public List<ICase> getCaseList();
+    
+    /**
+     *
+     * @return the meeting list
+     */
+    public List<IMeeting> getMeetingList();
+    
+    /**
+     *
+     * @param newMeeting A new meeting is added to the meeting list
+     * @return return the new meeting 
+     */
+    public boolean addMeeting(IMeeting newMeeting);
 
     /**
      *

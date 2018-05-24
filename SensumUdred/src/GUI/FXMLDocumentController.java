@@ -618,7 +618,7 @@ class caseListAbler {
         this.caseNumber = caseNumber;
         this.date = date;
     }
-
+    
     public String getCaseNumber() {
         return caseNumber;
     }
@@ -639,6 +639,42 @@ class caseListAbler {
     public String toString() {
         return "date: " + date + " caseNumber: " + caseNumber;
     }
+}
+
+/**
+ * a way to format the meeting to the listview in the gui
+ */
+class meetingListAbler {
+    
+    LocalDateTime time;
+    String location;
+    
+    meetingListAbler(LocalDateTime time, String location) {
+        this.location = location;
+        this.time = time;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    
+    @Override
+    public String toString(){
+        return "Time of meeting: " + time + " location: " + location;
+    }
+       
 }
 
 /**

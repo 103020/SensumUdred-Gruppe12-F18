@@ -130,6 +130,12 @@ public interface IGUI {
      * @return the caselist
      */
     public List getCaseList();
+    
+    /**
+     *
+     * @return the meeting list
+     */
+    public List getMeetingList();
 
     /**
      *

@@ -51,11 +51,6 @@ public class GUIFacade implements IGUI{
         //return b.accessCase();
         return null;
     }
-
-//    @Override
-//    public void createCase() {
-//        b.createCase();
-//    }
     
     @Override
     public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
@@ -107,12 +102,19 @@ public class GUIFacade implements IGUI{
         List convert = new ArrayList();
         convert.add(new caseListAbler("58", "16/08-12"));
         convert.add(new caseListAbler("12", "30/01-03"));
-        /* TODO: when a list is returnable
-        for (ICase ic : b.getCasenumSortedList()) {
-            convert.add(new caseListAbler(""+ic.getCaseNumber(),""+ic.getCreationDate()));
-        }*/
+//        TODO: when a list is returnable
+//        for (ICase ic : b.getCasenumSortedList()) {
+//            convert.add(new caseListAbler(""+ic.getCaseNumber(),""+ic.getCreationDate()));
+//        }
         return convert;
     }
+    
+    public List getMeetingList(){
+        List convert = new ArrayList();
+        convert.add(new meetingListAbler(b.getMeetingTime(),""+b.getLocation()));
+        return convert;
+}
+
     
     @Override
     public LocalDateTime getMeetingTime(){

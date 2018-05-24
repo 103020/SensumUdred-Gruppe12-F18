@@ -80,7 +80,6 @@ public interface IBusiness {
      * 
      * @param time time of the meeting
      * @param location the addresse the meeting is taking place at
-     * @param participants the names of the participants
      */
     public void createMeeting(LocalDateTime time, String location);
     /**
