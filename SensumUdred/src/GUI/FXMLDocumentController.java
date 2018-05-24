@@ -175,7 +175,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Tab meetingTab;
     @FXML
-    private ListView<LocalDateTime> listViewMeetingsM;
+    private ListView<String> listViewMeetingsM;
     @FXML
     private Button buttonCreateMeetingM;
     @FXML
@@ -491,7 +491,7 @@ public class FXMLDocumentController implements Initializable {
             tabPane.getTabs().remove(readCaseTab);
             tabPane.getTabs().remove(caseOpeningTab);
             listViewMeetingsM.getItems().clear();
-            listViewMeetingsM.getItems().add(facade.getMeetingTime());
+            listViewMeetingsM.getItems().addAll(facade.getMeetingList());
             //fList.clear();
             fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true);
             caseListViewMT.getItems().clear();
@@ -553,8 +553,7 @@ public class FXMLDocumentController implements Initializable {
                 if (!textFieldLocationM.getText().equals("")) {
                     facade.createMeeting(datePickerMeetingM.getValue().atTime(hour, minut), textFieldLocationM.getText());
                     listViewMeetingsM.getItems().clear();
-                    //listViewMeetingsM.getItems().add(facade.getMeetingTime());//TODO:when meetings are fixed
-                    listViewMeetingsM.getItems().add(datePickerMeetingM.getValue().atTime(hour, minut));
+                    listViewMeetingsM.getItems().addAll(facade.getMeetingList());
                     textFieldMeetingM.clear();
                 } else {
                     alert.setHeaderText("Der mangler en lokation!");
