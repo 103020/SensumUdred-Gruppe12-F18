@@ -18,7 +18,7 @@ import java.util.List;
 public class BusinessFacade implements IBusiness {
     
 
-    private ICase cas;
+    private Case cas;
     private Caseworker worker;
     private Meeting meeting;
     private Individual ind;

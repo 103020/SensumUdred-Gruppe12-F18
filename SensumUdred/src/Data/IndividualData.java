@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business;
+package Data;
 
+import Business.*;
 import Acq.IIndividual;
 import Acq.ILog;
 
@@ -12,20 +13,28 @@ import Acq.ILog;
  *
  * @author Nicolai
  */
-public class Individual implements IIndividual{
+public class IndividualData implements IIndividual{
 
     private String name;
     private String address;
     private int CPR;
     
-    
+    IndividualData(){
+        
+    }
 
-    Individual(String name, String address, int CPR, ILog log) {
+    IndividualData(String name, String address, int CPR) {
         this.name = name;
         this.address = address;
         this.CPR = CPR;
     }
 
+    void setAttributes(String name, String address, int CPR){
+        this.name = name;
+        this.address = address;
+        this.CPR = CPR;
+    }
+    
     @Override
     public String getName() {
         return name;
@@ -41,16 +50,4 @@ public class Individual implements IIndividual{
         return CPR;
     }
 
-    public void setName(String name, ILog log) {
-        this.name = name;
-    }
-
-    public void setAddress(String address, ILog log) {
-        this.address = address;
-    }
-
-    public void setCPR(int CPR, ILog log) {
-        this.CPR = CPR;
-    }
-    
 }

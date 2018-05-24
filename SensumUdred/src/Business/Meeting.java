@@ -5,7 +5,6 @@
  */
 package Business;
 
-import Acq.IBusiness;
 import Acq.ICaseworker;
 import Acq.IIndividual;
 import java.time.LocalDateTime;
@@ -54,19 +53,17 @@ public class Meeting implements IMeeting {
     public void saveLog(ILog log){
         //TODO: fix
     }
-    
+ 
     public String messageToMeeting(){
         return ("Vi indkalder dig til møde den: "+ getMeetingTime() + 
                            "\nAddressen: " + getLocation() + "\nDe deltagende er: " + getMeetingParticipants());
     }
     
-    @Override
     public String cancelMeeting(){
         meetingActive = false;
         return ("Mødet den: " + getMeetingTime() + "\n Ved: " + getLocation() + "\nDeltagere: " + getMeetingParticipants() + "\nEr blevet annuleret");
     }
 
-    @Override
     public String setMeetingTime(LocalDateTime time) {
         dayOfMeeting = time;
         return messageToMeeting();
@@ -77,7 +74,6 @@ public class Meeting implements IMeeting {
         return location;
     }
 
-    @Override
     public String setLocation(String location) {
         this.location = location;
         return messageToMeeting();
@@ -93,11 +89,19 @@ public class Meeting implements IMeeting {
         return individual.getName() + " og " + caseworker.getName();
     }   
     
+    @Override
     public IIndividual getIndividual(){
         return individual;
     }
     
+    @Override
     public ICaseworker getCaseworker(){
         return caseworker;
     }
+    
+    @Override
+    public boolean getActive() {
+        return meetingActive;
+    }
+
 }

@@ -11,18 +11,16 @@ import java.util.List;
  *
  * @author Tobias
  */
-public class CaseController implements ICaseController{
+public class CaseController{
     
-    private List<ICase> cases;
-    private List<IMeeting> meeting;
-    
-    @Override
-    public boolean addCase(ICase newCase){
+    private List<Case> cases;
+    private List<Meeting> meeting;
+
+    public boolean addCase(Case newCase){
         return cases.add(newCase);
     }
 
-    @Override
-    public List<ICase> getCaseList(){
+    public List<Case> getCaseList(){
         return cases;
     }
     
@@ -31,20 +29,17 @@ public class CaseController implements ICaseController{
      * @param newMeeting
      * @return
      */
-    @Override
-    public boolean addMeeting(IMeeting newMeeting){
+    public boolean addMeeting(Meeting newMeeting){
         return meeting.add(newMeeting);
     }
-    
-    @Override
-    public List<IMeeting> getMeetingList(){
+
+    public List<Meeting> getMeetingList(){
         return meeting;
     }
     
 
     /** find ud af om caseNumber skal laves om til et index **/ 
-    @Override
-    public ICase getCase(int caseNumber){
+    public Case getCase(int caseNumber){
         int caseIndex = -1;
         for (int i = 0; i < cases.size(); i++) {
             if (cases.get(i).getCaseNumber() == caseNumber) {

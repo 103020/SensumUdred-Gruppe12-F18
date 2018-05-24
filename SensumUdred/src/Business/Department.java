@@ -13,11 +13,24 @@ import Acq.IDepartment;
  */
 public class Department implements IDepartment{
     private String departmentName;
+    private int amountOfEmployees;
     
+    Department(String name){
+        this.departmentName = name;
+    }
     
     @Override
     public String toString(){
         return departmentName;
+    }
+
+    void addEmployee(){
+        amountOfEmployees++;
+    }
+    
+    @Override
+    public int getAmount() {
+        return amountOfEmployees;
     }
 
 }

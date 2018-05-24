@@ -3,25 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business;
+package Data;
 
+import Business.*;
 import Acq.ICaseworker;
 import Acq.IDiary;
 import Acq.ILog;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
  *
  * @author Nicolai
  */
-public class Diary implements IDiary{
+public class DiaryData implements IDiary{
     private String date;
     private StringBuilder entry;
+    
+    DiaryData(){
+        
+    }
 
-    Diary(String entry, ILog log) {
+    DiaryData(String entry, String date) {
         this.entry = new StringBuilder(entry);
-        date = LocalDateTime.now().toString();
+        this.date = date;
+    }
+    
+    void setEntry(String entry){
+        this.entry = new StringBuilder(entry);
+    }
+    
+    void setDate(String date){
+        this.date = date;
     }
 
     @Override
@@ -35,23 +47,10 @@ public class Diary implements IDiary{
         return "Diary entry date: " + date;
     }
 
-    public void saveEntry(ILog log) {
-        //TODO: fix
-    }
-
-    public String getEntry(ILog log) {
-        return entry.toString();
-    }
-
-    public void enterEntry(String note, ILog log) {
-        entry.insert(entry.length(), "\n" + toString() + " " + note);
-       
-    }
 
     @Override
     public String getEntry() {
-        return this.entry.toString();
+        return entry.toString();
     }
-    
-    
+
 }
