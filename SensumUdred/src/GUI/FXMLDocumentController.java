@@ -551,12 +551,15 @@ public class FXMLDocumentController implements Initializable {
             //TODO: check where it is sendt "the facade.getMeetingTime() right now"
             if (!error) {
                 if (!textFieldLocationM.getText().equals("")) {
-                    facade.createMeeting(datePickerMeetingM.getValue().atTime(hour, minut), textFieldLocationM.getText()); //add textfield for the location
-                    //facade.setMeetingTime(datePickerMeetingM.getValue().atTime(hour, minut));//TODO:when meetings are fixed
+                    facade.createMeeting(datePickerMeetingM.getValue().atTime(hour, minut), textFieldLocationM.getText());
                     listViewMeetingsM.getItems().clear();
                     //listViewMeetingsM.getItems().add(facade.getMeetingTime());//TODO:when meetings are fixed
                     listViewMeetingsM.getItems().add(datePickerMeetingM.getValue().atTime(hour, minut));
                     textFieldMeetingM.clear();
+                } else {
+                    alert.setHeaderText("Der mangler en lokation!");
+                    alert.setContentText("Indtast en lokation i tekstfeltet!");
+                    alert.showAndWait();
                 }
             }
         }
