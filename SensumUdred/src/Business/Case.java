@@ -18,7 +18,6 @@ public class Case implements ICase{
     private final String creationDate;
     private Diary diary;
     private boolean isClosed;
-    private String caseType;
     private Meeting meeting;
     private StringBuilder inquiry;
     private StringBuilder individualInvolvement;
@@ -231,12 +230,4 @@ public class Case implements ICase{
     public void enterEntry(String note, ILog log) {
         diary.enterEntry(note, log);
     }
-
-    @Override
-    public String getCaseType() {
-        return this.caseType;
-    }
-    
-
-
 }

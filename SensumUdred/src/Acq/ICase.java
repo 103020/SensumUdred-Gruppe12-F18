@@ -91,10 +91,7 @@ public interface ICase {
      * @return return whether the consent is oral
      */
     public boolean getOralConsent();
-   
-    public String getCaseType();
-    
-    
+      
     /**
      * 
      * @return returns whether it is clear what the individual seek
