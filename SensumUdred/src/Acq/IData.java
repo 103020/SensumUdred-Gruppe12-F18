@@ -16,13 +16,6 @@ public interface IData {
 
     /**
      *
-     * @param list the list that is saved
-     * @return
-     */
-    public int save(List list);
-
-    /**
-     *
      * @return a new arraylist
      */
     public List load();

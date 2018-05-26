@@ -312,6 +312,7 @@ public class SQLObjectMapper {
         return 0;
     }
     
-    
-   
+    static void saveLog(ILog log){       
+    }
+
 }
