@@ -65,8 +65,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void editCase(ICase cas) {
-        data.updateCase(cas);
+    public void editCase(ICase cas, ILog log) {
+        data.updateCase(cas, log);
     }
 
     @Override

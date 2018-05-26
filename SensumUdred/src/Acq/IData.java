@@ -30,4 +30,5 @@ public interface IData {
     public boolean saveMeeting(IMeeting meeting, ILog log);
     public boolean saveIndividual(IIndividual individual, ILog log);
     public ICaseworker getCaseworker(String username);
+    public void updateCase(ICase cas, ILog log);
 }

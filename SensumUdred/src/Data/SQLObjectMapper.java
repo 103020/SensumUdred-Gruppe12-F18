@@ -326,7 +326,7 @@ public class SQLObjectMapper {
 //        
 //    }
     
-    public static int updateCase(ICase cas){
+    static int updateCase(ICase cas){
         return 0;
     }
     
