@@ -17,18 +17,10 @@ import java.util.List;
 public class BusinessFacade implements IBusiness {
     
     private Caseworker worker;
-    
-//test     
-//ICase cas = new Case();
-//Caseworker worker = new Caseworker();
-//Meeting meeting = new Meeting();
-//Individual ind = Individual;
-    
-    static IData data = DataFacade.getInstance();
+       
+    static IData data = new DataFacade();
 
-    
     private static BusinessFacade instance;
-
 
     public static BusinessFacade getInstance() {
 
@@ -78,7 +70,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public ICase accessCase(int caseNumber) {
-        //TO DO: Make this
+        //TODO: Make this
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //return cas.accessData(this, casworker)//need more implemented
     }

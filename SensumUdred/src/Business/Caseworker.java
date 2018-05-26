@@ -29,6 +29,7 @@ public class Caseworker implements ICaseworker{
         this.employeeID = employeeID;
         caseControl = new CaseController();
         cas = new Case();
+        businessFacade = BusinessFacade.getInstance();
     }
 
     public boolean accessCase(int caseNumber, ILog log) {

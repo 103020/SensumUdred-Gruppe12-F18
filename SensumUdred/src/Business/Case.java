@@ -176,10 +176,10 @@ public class Case implements ICase{
         return businessFacade.saveCase(this, log);
     }
 
-    public void editCase(ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //TODO: fix
+    public void editCase(ICase cas, ILog log) {
+        businessFacade.editCase(this, log);
     }
-
+    
     public void closeCase(ILog log) {
         isClosed = true;
     }
@@ -215,8 +215,8 @@ public class Case implements ICase{
         return meeting.setLocation(Location);
     }
 
-    public String createMeeting(LocalDateTime dateTime, String location, Caseworker participant2, ILog log) {
-        meeting = new Meeting(dateTime, location, this.individual, participant2, log);
+    public String createMeeting(LocalDateTime dateTime, String location, Caseworker caseworker, ILog log) {
+        meeting = new Meeting(dateTime, location, this.individual, caseworker, log);
         return meeting.messageToMeeting();
     }
 
