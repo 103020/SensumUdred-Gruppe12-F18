@@ -47,7 +47,8 @@ public class SQLObjectMapper {
         
     }
     
-    static boolean saveCase(ICase cas){
+    //TODO: change return type to the casenumber (serial casenumber)
+    static int saveCase(ICase cas){
         establishConnection();
         boolean success = false;
         try {
@@ -71,7 +72,7 @@ public class SQLObjectMapper {
             ex.printStackTrace();
         }
         closeConnection();
-        return success;
+        return 1;
     }
     
     static ArrayList<ICase> getCases(ICaseworker caseworker){
@@ -312,7 +313,14 @@ public class SQLObjectMapper {
         return 0;
     }
     
-    static void saveLog(ILog log){       
+    static void saveLog(ILog log){
+        establishConnection();
+        try {
+            st.execute("INSERT INTO LOGS (LOGSTRING) VALUES('" + log.getLogString() + "')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
     }
-
+   
 }

@@ -16,9 +16,11 @@ public interface IGUI {
 
     /**
      *
+     * @param cas
+     * @param log
      * @return
      */
-    public int saveCase();
+    public int saveCase(ICase cas, ILog log);
 
     /**
      *

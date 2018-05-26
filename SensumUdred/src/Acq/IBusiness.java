@@ -34,9 +34,11 @@ public interface IBusiness {
     
     /**
      * 
+     * @param cas
+     * @param log
      * @return returns the caseNumber
      */
-    public int saveCase(ICase cas);
+    public int saveCase(ICase cas, ILog log);
     
     /**
      * 

@@ -1,7 +1,6 @@
 package Data;
 
-import Acq.ICaseworker;
-import Acq.IData;
+import Acq.*;
 import Business.Caseworker;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,35 +20,51 @@ public class DataFacade implements IData{
         return instance;
 
     }
-    
-
-    @Override
-    public List load() {
-        return new ArrayList();
-    }
-
-    @Override
-    public List loadUser() {
-//        UserHandler userHandler = new UserHandler();
-//        return userHandler.loadUser();
-        return new ArrayList();
-    }
 
     @Override
     public boolean login(String username, String password) {
-        //TODO: get stuff from database login
-        /*
-        get data from database about user
-        check through if they are the same as username and password
-         */
-//        System.out.println(SQLObjectMapper.getCaseworker(username).toString());
         return SQLObjectMapper.getCaseworker(username).getEmployeeID().equals(username);
     }
 
     @Override
-    public ICaseworker getCaseWorker(String username) {
-        return SQLObjectMapper.getCaseworker(username);
+    public ArrayList<ICase> getCases(ICaseworker caseworker, ILog log) {
+        SQLObjectMapper.saveLog(log);
+        return SQLObjectMapper.getCases(caseworker);
     }
-    
+
+    @Override
+    public int saveCase(ICase cas, ILog log) {
+        SQLObjectMapper.saveLog(log);
+        return SQLObjectMapper.saveCase(cas);
+    }
+
+    @Override
+    public void saveDiary(ICase cas, IDiary diary, ILog log) {
+        SQLObjectMapper.saveLog(log);
+        SQLObjectMapper.saveDiary(cas, diary);
+    }
+
+    @Override
+    public void saveCaseworker(ICaseworker caseworker) {
+        SQLObjectMapper.saveCaseworker(caseworker);
+    }
+
+    @Override
+    public void saveDepartment(IDepartment dep) {
+        SQLObjectMapper.saveDepartment(dep);
+    }
+
+    @Override
+    public void saveMeeting(IMeeting meeting, ILog log) {
+        SQLObjectMapper.saveLog(log);
+        SQLObjectMapper.saveMeeting(meeting);
+    }
+
+    @Override
+    public void saveIndividual(IIndividual individual, ILog log) {
+        SQLObjectMapper.saveLog(log);
+        SQLObjectMapper.saveIndividual(individual);
+    }
+   
 }
     

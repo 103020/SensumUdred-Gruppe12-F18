@@ -27,8 +27,8 @@ public class GUIFacade implements IGUI{
     IBusiness b = new BusinessFacade();
     
     @Override
-    public int saveCase() {
-        return b.saveCase();
+    public int saveCase(ICase cas, ILog log) {
+        return b.saveCase(cas, log);
     }
 
     @Override

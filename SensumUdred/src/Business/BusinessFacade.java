@@ -61,8 +61,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public int saveCase(ICase cas) {
-       return data.saveCase(cas);
+    public int saveCase(ICase cas, ILog log) {
+       return data.saveCase(cas, log);
     }
 
     @Override
