@@ -16,12 +16,6 @@ public interface IGUI {
 
     /**
      *
-     * @return
-     */
-    public int saveCase();
-
-    /**
-     *
      * @param ca
      */
     public void editCase(ICase ca);

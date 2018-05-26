@@ -25,11 +25,6 @@ import java.util.List;
 public class GUIFacade implements IGUI{
 
     IBusiness b = new BusinessFacade();
-    
-    @Override
-    public int saveCase() {
-        return b.saveCase();
-    }
 
     @Override
     public void editCase(ICase ca) {
