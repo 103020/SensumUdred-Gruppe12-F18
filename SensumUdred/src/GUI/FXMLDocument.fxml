@@ -19,7 +19,7 @@
 
 <TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLDocumentController">
   <tabs>
-    <Tab id="loginTab" fx:id="loginTab" text="Login Tab">
+    <Tab id="loginTab" fx:id="loginTab" text="Login">
          <content>
             <GridPane>
               <columnConstraints>
@@ -506,7 +506,7 @@
               </rowConstraints>
                <children>
                   <ListView fx:id="listViewMeetingsM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="62.0" prefWidth="95.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="5" />
-                  <Button fx:id="buttonCreateMeetingM" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCreateMeetingM" text="Opredt møde" GridPane.rowIndex="4" />
+                  <Button fx:id="buttonCreateMeetingM" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCreateMeetingM" text="Opret møde" GridPane.rowIndex="4" />
                   <DatePicker fx:id="datePickerMeetingM" maxWidth="1.7976931348623157E308" promptText="Vælg dato" GridPane.rowIndex="1" />
                   <TextField fx:id="textFieldMeetingM" maxWidth="1.7976931348623157E308" promptText="Indtast klokken for mødet" GridPane.rowIndex="2" />
                   <TextField fx:id="textFieldLocationM" maxWidth="1.7976931348623157E308" promptText="Indtast lokation" GridPane.rowIndex="3" />

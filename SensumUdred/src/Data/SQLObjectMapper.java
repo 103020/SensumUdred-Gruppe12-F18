@@ -51,12 +51,12 @@ public class SQLObjectMapper {
         establishConnection();
         boolean success = false;
         try {
-            st.execute("INSERT INTO CASES (creationdate,isclosed,casetype,"
+            st.execute("INSERT INTO CASES (creationdate,isclosed,"
                 + "inquiry,individualinvolvement,consent,writtenconsent,"
                 + "oralconsent,casefrom,casefromaddress,caseclarity,"
                 + "individualunderstanding,caseworker,individual,diary,meeting)"
                 + " VALUES ('" + cas.getCreationDate()+ "','" +
-                cas.getClosed() + "','" + cas.getCaseType() + "','"
+                cas.getClosed() + "','"
                 + cas.getInquiry() + "','" + cas.getIndividualInvolvement()
                 + "','" + cas.getConsent() + "','" + cas.getWrittenConsent()
                 + "','" + cas.getOralConsent() + "','" + cas.getCaseFrom()
@@ -93,8 +93,7 @@ public class SQLObjectMapper {
                         rs.getString("individualinvolvement"), 
                         rs.getString("casefromaddress"), 
                         rs.getBoolean("isClosed"), 
-                        rs.getString("creationdate"),
-                        rs.getString("Casetype")
+                        rs.getString("creationdate")
                 );
                 
                 /* create diary object */
