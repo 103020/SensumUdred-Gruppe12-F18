@@ -48,9 +48,9 @@ public class SQLObjectMapper {
     }
     
     //TODO: change return type to the casenumber (serial casenumber)
-    static boolean saveCase(ICase cas){
+    static int saveCase(ICase cas){
         establishConnection();
-        boolean success = false;
+        int caseNumber = 0;
         try {
             st.execute("INSERT INTO CASES (creationdate,isclosed,"
                 + "inquiry,individualinvolvement,consent,writtenconsent,"
@@ -67,12 +67,15 @@ public class SQLObjectMapper {
                 + cas.getIndividual().getCPR() + "','"
                 + cas.getDiary().getDate() + "','"
                 + cas.getMeeting().getIndividual() + "')");
-            success = true;
+            rs = st.executeQuery("SELECT CURRVAL(pg_get_serial_sequence"
+                    + "('Cases', 'casenumber'))");
+            rs.next();
+            caseNumber = rs.getInt("Casenumber");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         closeConnection();
-        return success;
+        return caseNumber;
     }
     
     static ArrayList<ICase> getCases(ICaseworker caseworker){
