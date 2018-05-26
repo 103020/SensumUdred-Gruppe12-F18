@@ -6,6 +6,7 @@
 package Acq;
 
 import Business.Caseworker;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,36 +17,16 @@ public interface IData {
 
     /**
      *
-     * @param list the list that is saved
-     * @return
-     */
-    public int save(List list);
-
-    /**
-     *
-     * @return a new arraylist
-     */
-    public List load();
-
-    /**
-     *
-     * @return a user
-     */
-    public List loadUser();
-
-    /**
-     *
      * @param username the username of the login
      * @param password the password of the login
      * @return the login
      */
     public boolean login(String username, String password);
-
-    /**
-     *
-     * @return the highest case number
-     */
-    public int loadHighestCaseNumber();
-
-    public ICaseworker getCaseWorker(String username);
+    public ArrayList<ICase> getCases(ICaseworker caseworker, ILog log);
+    public int saveCase(ICase cas, ILog log);
+    public void saveDiary(ICase cas, IDiary diary, ILog log);
+    public void saveCaseworker(ICaseworker caseworker);
+    public void saveDepartment(IDepartment dep);
+    public void saveMeeting(IMeeting meeting);
+    public void saveIndividual(IIndividual individual, ILog log);
 }
