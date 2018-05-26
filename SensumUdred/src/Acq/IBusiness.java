@@ -170,20 +170,7 @@ public interface IBusiness {
      * 
      * @param CPR sets the CPR of the individual
      */
-    public void setIndividualCPR(int CPR);
-    
-    /**
-     * 
-     * @return returns a list of cases sorted after date
-     */
-    public List getDateSortedList();
-    
-    /**
-     * 
-     * @return returns a list of cases sorted after case number
-     */
-    public List getCasenumSortedList();
-    
+    public void setIndividualCPR(int CPR);    
     
     /**
      *
@@ -204,5 +191,4 @@ public interface IBusiness {
      * @param caseNumber to set the casenumber in the gui
      */
     public void setFacadeCase(int caseNumber);
-
 }

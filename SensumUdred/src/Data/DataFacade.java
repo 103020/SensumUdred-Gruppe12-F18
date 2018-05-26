@@ -1,5 +1,6 @@
 package Data;
 
+import Acq.ICase;
 import Acq.ICaseworker;
 import Acq.IData;
 import Business.Caseworker;
@@ -59,6 +60,16 @@ public class DataFacade implements IData{
     @Override
     public ICaseworker getCaseWorker(String username) {
         return SQLObjectMapper.getCaseworker(username);
+    }
+
+    @Override
+    public void updateCase(ICase ca) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int saveCase(ICase cas) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

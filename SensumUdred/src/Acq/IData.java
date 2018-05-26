@@ -48,4 +48,8 @@ public interface IData {
     public int loadHighestCaseNumber();
 
     public ICaseworker getCaseWorker(String username);
+
+    public void updateCase(ICase ca);
+
+    public int saveCase(ICase cas);
 }
