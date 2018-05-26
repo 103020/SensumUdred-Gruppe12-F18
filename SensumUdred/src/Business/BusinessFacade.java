@@ -8,8 +8,6 @@ package Business;
 import Acq.*;
 import Data.DataFacade;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -17,11 +15,7 @@ import java.util.List;
  */
 public class BusinessFacade implements IBusiness {
     
-
-    private Case cas;
     private Caseworker worker;
-    private Meeting meeting;
-    private Individual ind;
     
 //test     
 //ICase cas = new Case();
@@ -72,7 +66,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void editCase(ICase ca) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        data.updateCase(ca);
     }
 
     @Override
@@ -82,6 +76,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public ICase accessCase(int caseNumber) {
+        //TO DO: Make this
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //return cas.accessData(this, casworker)//need more implemented
     }
@@ -108,8 +103,8 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public LocalDateTime getMeetingTime(){
-        try { //TODO: getmeetingtime this is temp
-            return meeting.getMeetingTime();
+        try { 
+            return worker.getMeeting().getMeetingTime();
         } catch(NullPointerException e){
             System.out.println(e);
         }
@@ -123,13 +118,12 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void setEmployeeDepartment(IDepartment department) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//        worker.setDepartment(department); //check IDepartment as input?
+        worker.setDepartment((Department)department);
     }
 
     @Override
     public void setEmployeeID(int employeeID) {
-        worker.setEmployeeID(""+employeeID); //TODO: this is temp to remove an error
+        worker.setEmployeeID(""+employeeID);
     }
 
     @Override
@@ -188,30 +182,19 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public List getDateSortedList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<ICase> getCasenumSortedList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public boolean login(String username, String password) {
-        boolean temp = data.login(username, password);
-        if (temp) {
-            ICaseworker temp2 = data.getCaseWorker(username);
-            worker = new Caseworker(temp2.getName(), new Department(temp2.getDepartment().getName()), temp2.getEmployeeID());
-            return temp;
+        boolean loginSuccess = data.login(username, password);
+        if (loginSuccess) {
+            ICaseworker tempCaseworker = data.getCaseworker(username);
+            worker = new Caseworker(tempCaseworker.getName(), new Department(tempCaseworker.getDepartment().getName()), tempCaseworker.getEmployeeID());
+            return loginSuccess;
         }
-        return temp;
+        return loginSuccess;
     }
 
     @Override
     public void setFacadeCase(int caseNumber) {
         worker.setCase(caseNumber);
     }
-
-    
+ 
 }
