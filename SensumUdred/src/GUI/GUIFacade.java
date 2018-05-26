@@ -97,6 +97,8 @@ public class GUIFacade implements IGUI{
         List convert = new ArrayList();
         convert.add(new caseListAbler("58", "16/08-12"));
         convert.add(new caseListAbler("12", "30/01-03"));
+        convert.add(new caseListAbler("800", "16/08-17"));
+        convert.add(new caseListAbler("39", "30/01-08"));
 //        TODO: when a list is returnable
 //        for (ICase ic : b.getCasenumSortedList()) {
 //            convert.add(new caseListAbler(""+ic.getCaseNumber(),""+ic.getCreationDate()));

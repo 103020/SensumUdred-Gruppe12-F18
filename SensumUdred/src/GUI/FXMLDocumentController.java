@@ -197,14 +197,13 @@ public class FXMLDocumentController implements Initializable {
         choiceBoxMT.getItems().addAll("Dato", "Sagsnummer");
         choiceBoxMT.setValue("Sagsnummer");
         //fList = new FilteredList(FXCollections.observableArrayList(facade.getCaseList()), p -> true); //temp to test
-        fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true); //TODO: change to this when testing is done
+        fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true);
     }
 
     @FXML
     private void handleButtonLogin(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Fejl i Login");
-        //TODO: check user inputs
         if (usernameFieldLT.getText().equals("")||passwordFieldLT.getText().equals("")) {
             alert.setHeaderText("Der skal stå noget i brugernavn og adganskode feltet!");
                 alert.setContentText("Indtast brugernavn og adgangskode!");
@@ -298,12 +297,10 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonNextTabCC(ActionEvent event) {
-        //TODO: will also save that values on this page (case opening)
         Alert alert = new Alert(Alert.AlertType.ERROR);
         boolean next = false;
         if (!createNameFieldCC.getText().equals("") && !createPersonalNumberFieldCC.getText().equals("") && !createAdresseFieldCC.getText().equals("")) {
             if (isInteger(createPersonalNumberFieldCC.getText(), 10)) {
-                //TODO: that v  
                 next = true;
             } else {
                 alert.setTitle("Forkert input");
@@ -335,7 +332,7 @@ public class FXMLDocumentController implements Initializable {
         boolean clarity = false;
         boolean caseClarityBoo = false;
         if (caseFrom.getSelectedToggle() != null) {
-            //System.out.println(caseFrom.getSelectedToggle().toString()); //TODO: add calls
+            //System.out.println(caseFrom.getSelectedToggle().toString());
             if (caseFrom.getSelectedToggle() == citizenRadioCO) {
                 inquiry = InquiryFrom.INDIVIDUAL;
             } else if (caseFrom.getSelectedToggle() == relativesRadioCO) {
@@ -549,7 +546,6 @@ public class FXMLDocumentController implements Initializable {
             alert.showAndWait();
             error = true;
         } finally {
-            //TODO: check where it is sendt "the facade.getMeetingTime() right now"
             if (!error) {
                 if (!textFieldLocationM.getText().equals("")) {
                     facade.createMeeting(datePickerMeetingM.getValue().atTime(hour, minut), textFieldLocationM.getText());
