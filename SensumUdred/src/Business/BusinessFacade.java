@@ -23,7 +23,7 @@ public class BusinessFacade implements IBusiness {
 //Meeting meeting = new Meeting();
 //Individual ind = Individual;
     
-    static IData data = new DataFacade();
+    static IData data = DataFacade.getInstance();
 
     
     private static BusinessFacade instance;

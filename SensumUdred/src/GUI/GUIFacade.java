@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class GUIFacade implements IGUI{
 
-    IBusiness b = new BusinessFacade();
+    IBusiness b = BusinessFacade.getInstance();
 
     @Override
     public void editCase(ICase ca) {
