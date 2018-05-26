@@ -23,7 +23,7 @@ public class BusinessFacade implements IBusiness {
 //Meeting meeting = new Meeting();
 //Individual ind = Individual;
     
-    static IData data = new DataFacade();
+    static IData data = DataFacade.getInstance();
 
     
     private static BusinessFacade instance;
@@ -55,8 +55,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public int saveCase(ICase cas) {
-        return data.saveCase(cas);
+    public int saveCase(ICase cas, ILog log) {
+       return data.saveCase(cas, log);
     }
 
     @Override
@@ -185,7 +185,7 @@ public class BusinessFacade implements IBusiness {
     public boolean login(String username, String password) {
         boolean loginSuccess = data.login(username, password);
         if (loginSuccess) {
-            ICaseworker tempCaseworker = data.getCaseWorker(username);
+            ICaseworker tempCaseworker = data.getCaseworker(username);
             worker = new Caseworker(tempCaseworker.getName(), new Department(tempCaseworker.getDepartment().getName()), tempCaseworker.getEmployeeID());
             return loginSuccess;
         }

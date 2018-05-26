@@ -23,52 +23,51 @@ public class DataFacade implements IData{
 
     @Override
     public boolean login(String username, String password) {
-        //TODO: get stuff from database login
-        /*
-        get data from database about user
-        check through if they are the same as username and password
-         */
-//        System.out.println(SQLObjectMapper.getCaseworker(username).toString());
         return SQLObjectMapper.getCaseworker(username).getEmployeeID().equals(username);
     }
 
     @Override
     public ArrayList<ICase> getCases(ICaseworker caseworker, ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SQLObjectMapper.saveLog(log);
+        return SQLObjectMapper.getCases(caseworker);
     }
 
     @Override
     public int saveCase(ICase cas, ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SQLObjectMapper.saveLog(log);
+        return SQLObjectMapper.saveCase(cas);
     }
 
     @Override
     public void saveDiary(ICase cas, IDiary diary, ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SQLObjectMapper.saveLog(log);
+        SQLObjectMapper.saveDiary(cas, diary);
     }
 
     @Override
     public void saveCaseworker(ICaseworker caseworker) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SQLObjectMapper.saveCaseworker(caseworker);
     }
 
     @Override
     public void saveDepartment(IDepartment dep) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SQLObjectMapper.saveDepartment(dep);
     }
 
     @Override
-    public void saveMeeting(IMeeting meeting) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void saveMeeting(IMeeting meeting, ILog log) {
+        SQLObjectMapper.saveLog(log);
+        SQLObjectMapper.saveMeeting(meeting);
     }
 
     @Override
     public void saveIndividual(IIndividual individual, ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SQLObjectMapper.saveLog(log);
+        SQLObjectMapper.saveIndividual(individual);
     }
-
     
-
-
-    
+    public ICaseworker getCaseworker(String username){
+        return SQLObjectMapper.getCaseworker(username);
+    }  
 }
+    

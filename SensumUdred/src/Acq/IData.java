@@ -27,6 +27,7 @@ public interface IData {
     public void saveDiary(ICase cas, IDiary diary, ILog log);
     public void saveCaseworker(ICaseworker caseworker);
     public void saveDepartment(IDepartment dep);
-    public void saveMeeting(IMeeting meeting);
+    public void saveMeeting(IMeeting meeting, ILog log);
     public void saveIndividual(IIndividual individual, ILog log);
+    public ICaseworker getCaseworker(String username);
 }

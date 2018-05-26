@@ -24,8 +24,8 @@ import java.util.List;
  */
 public class GUIFacade implements IGUI{
 
-    IBusiness b = new BusinessFacade();
-
+    IBusiness b = BusinessFacade.getInstance();
+    
     @Override
     public void editCase(ICase ca) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -142,4 +142,5 @@ public class GUIFacade implements IGUI{
     public void setFacadeCase(int caseNumber) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }
