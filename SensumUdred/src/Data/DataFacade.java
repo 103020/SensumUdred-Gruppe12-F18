@@ -69,5 +69,10 @@ public class DataFacade implements IData{
     public ICaseworker getCaseworker(String username){
         return SQLObjectMapper.getCaseworker(username);
     }  
+    
+    public void updateCase(ICase cas, ILog log){
+        SQLObjectMapper.saveLog(log);
+        SQLObjectMapper.updateCase(cas);
+    }
 }
     
