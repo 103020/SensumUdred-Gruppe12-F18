@@ -15,9 +15,8 @@ public class Log<E> implements ILog{
 
     private String logString = "";
     
-    Log(E e, ICaseworker cs){
+    Log(ICaseworker cs){
         logString += "\n" + LocalDateTime.now().toString();
-        logString += " access to " + e.toString();
         logString += " by " + cs.toString();
     }
 
