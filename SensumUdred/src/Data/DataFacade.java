@@ -39,33 +39,34 @@ public class DataFacade implements IData{
     }
 
     @Override
-    public void saveDiary(ICase cas, IDiary diary, ILog log) {
+    public boolean saveDiary(ICase cas, IDiary diary, ILog log) {
         SQLObjectMapper.saveLog(log);
-        SQLObjectMapper.saveDiary(cas, diary);
+        return SQLObjectMapper.saveDiary(cas, diary);
     }
 
     @Override
-    public void saveCaseworker(ICaseworker caseworker) {
-        SQLObjectMapper.saveCaseworker(caseworker);
+    public boolean saveCaseworker(ICaseworker caseworker) {
+        return SQLObjectMapper.saveCaseworker(caseworker);
     }
 
     @Override
-    public void saveDepartment(IDepartment dep) {
-        SQLObjectMapper.saveDepartment(dep);
+    public boolean saveDepartment(IDepartment dep) {
+        return SQLObjectMapper.saveDepartment(dep);
     }
 
     @Override
-    public void saveMeeting(IMeeting meeting, ILog log) {
+    public boolean saveMeeting(IMeeting meeting, ILog log) {
         SQLObjectMapper.saveLog(log);
-        SQLObjectMapper.saveMeeting(meeting);
+        return SQLObjectMapper.saveMeeting(meeting);
     }
 
     @Override
-    public void saveIndividual(IIndividual individual, ILog log) {
+    public boolean saveIndividual(IIndividual individual, ILog log) {
         SQLObjectMapper.saveLog(log);
-        SQLObjectMapper.saveIndividual(individual);
+        return SQLObjectMapper.saveIndividual(individual);
     }
     
+    @Override
     public ICaseworker getCaseworker(String username){
         return SQLObjectMapper.getCaseworker(username);
     }  

@@ -65,8 +65,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void editCase(ICase ca) {
-        data.updateCase(ca);
+    public void editCase(ICase cas) {
+        data.updateCase(cas);
     }
 
     @Override
@@ -195,6 +195,31 @@ public class BusinessFacade implements IBusiness {
     @Override
     public void setFacadeCase(int caseNumber) {
         worker.setCase(caseNumber);
+    }
+
+    @Override
+    public boolean saveMeeting(IMeeting meeting, ILog log) {
+        return data.saveMeeting((Meeting)meeting, log);
+    }
+
+    @Override
+    public boolean saveDiary(IDiary diary, ILog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean saveIndividual(IIndividual individual, ILog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean saveDepartment(IDepartment department) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean saveCaseworker(ICaseworker caseworker) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
  
 }

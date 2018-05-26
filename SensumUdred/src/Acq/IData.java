@@ -24,10 +24,10 @@ public interface IData {
     public boolean login(String username, String password);
     public ArrayList<ICase> getCases(ICaseworker caseworker, ILog log);
     public int saveCase(ICase cas, ILog log);
-    public void saveDiary(ICase cas, IDiary diary, ILog log);
-    public void saveCaseworker(ICaseworker caseworker);
-    public void saveDepartment(IDepartment dep);
-    public void saveMeeting(IMeeting meeting, ILog log);
-    public void saveIndividual(IIndividual individual, ILog log);
+    public boolean saveDiary(ICase cas, IDiary diary, ILog log);
+    public boolean saveCaseworker(ICaseworker caseworker);
+    public boolean saveDepartment(IDepartment dep);
+    public boolean saveMeeting(IMeeting meeting, ILog log);
+    public boolean saveIndividual(IIndividual individual, ILog log);
     public ICaseworker getCaseworker(String username);
 }

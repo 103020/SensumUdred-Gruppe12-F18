@@ -5,11 +5,8 @@
  */
 package Business;
 
-import Acq.ICaseworker;
-import Acq.IIndividual;
+import Acq.*;
 import java.time.LocalDateTime;
-import Acq.IMeeting;
-import Acq.ILog;
 
 /**
  *
@@ -22,6 +19,7 @@ public class Meeting implements IMeeting {
     private ICaseworker caseworker;
     private String location;
     private boolean meetingActive;
+    private IBusiness businessFacade;
         
     /**
      * This is how a meeting the created with the following attributes
@@ -37,23 +35,16 @@ public class Meeting implements IMeeting {
         this.individual = individual;
         this.caseworker = caseworker;
         meetingActive = true;
+        businessFacade = BusinessFacade.getInstance();
     }
     
     Meeting(){
     }
     
-    public void saveMeeting(){   
+    public void saveMeeting(ILog log){   
         //TODO: fix
     }
-    
-    /**
-     * There is created a log after a meeting is created, and that need to be saved in the datebase, and this method does that
-     * @param log is what track who made the meeting
-     */
-    public void saveLog(ILog log){
-        //TODO: fix
-    }
- 
+   
     public String messageToMeeting(){
         return ("Vi indkalder dig til møde den: "+ getMeetingTime() + 
                            "\nAddressen: " + getLocation() + "\nDe deltagende er: " + getMeetingParticipants());
@@ -102,6 +93,12 @@ public class Meeting implements IMeeting {
     @Override
     public boolean getActive() {
         return meetingActive;
+    }
+    
+    @Override
+    public String toString(){
+        return "Meeting with individual: " + this.individual.getCPR() + ", on date: "
+                + this.dayOfMeeting.toString();
     }
 
 }
