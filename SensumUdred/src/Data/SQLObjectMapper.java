@@ -47,6 +47,7 @@ public class SQLObjectMapper {
         
     }
     
+    //TODO: change return type to the casenumber (serial casenumber)
     static boolean saveCase(ICase cas){
         establishConnection();
         boolean success = false;
@@ -312,6 +313,14 @@ public class SQLObjectMapper {
         return 0;
     }
     
-    
+    static void saveLog(ILog log){
+        establishConnection();
+        try {
+            st.execute("INSERT INTO LOGS (LOGSTRING) VALUES('" + log.getLogString() + "')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+    }
    
 }
