@@ -39,9 +39,6 @@ public class Meeting implements IMeeting {
         meetingActive = true;
     }
     
-    Meeting(){
-    }
-    
     public void saveMeeting(){   
         //TODO: fix
     }

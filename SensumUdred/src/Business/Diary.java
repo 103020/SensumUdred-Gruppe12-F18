@@ -39,10 +39,6 @@ public class Diary implements IDiary{
         //TODO: fix
     }
 
-    public String getEntry(ILog log) {
-        return entry.toString();
-    }
-
     public void enterEntry(String note, ILog log) {
         entry.insert(entry.length(), "\n" + toString() + " " + note);
        

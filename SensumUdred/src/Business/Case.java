@@ -210,8 +210,8 @@ public class Case implements ICase{
         return meeting.setLocation(Location);
     }
 
-    public String createMeeting(LocalDateTime dateTime, String location, Caseworker participant2, ILog log) {
-        meeting = new Meeting(dateTime, location, this.individual, participant2, log);
+    public String createMeeting(LocalDateTime dateTime, String location, Caseworker caseworker, ILog log) {
+        meeting = new Meeting(dateTime, location, this.individual, caseworker, log);
         return meeting.messageToMeeting();
     }
 

@@ -37,8 +37,6 @@ public class CaseController{
         return meeting;
     }
     
-
-    /** find ud af om caseNumber skal laves om til et index **/ 
     public Case getCase(int caseNumber){
         int caseIndex = -1;
         for (int i = 0; i < cases.size(); i++) {
