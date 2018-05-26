@@ -1,8 +1,6 @@
 package Data;
 
-import Acq.ICase;
-import Acq.ICaseworker;
-import Acq.IData;
+import Acq.*;
 import Business.Caseworker;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,19 +20,6 @@ public class DataFacade implements IData{
         return instance;
 
     }
-    
-
-    @Override
-    public List load() {
-        return new ArrayList();
-    }
-
-    @Override
-    public List loadUser() {
-//        UserHandler userHandler = new UserHandler();
-//        return userHandler.loadUser();
-        return new ArrayList();
-    }
 
     @Override
     public boolean login(String username, String password) {
@@ -48,28 +33,42 @@ public class DataFacade implements IData{
     }
 
     @Override
-    public int loadHighestCaseNumber() {
+    public ArrayList<ICase> getCases(ICaseworker caseworker, ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int save(List list) {
+    public int saveCase(ICase cas, ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ICaseworker getCaseWorker(String username) {
-        return SQLObjectMapper.getCaseworker(username);
-    }
-
-    @Override
-    public void updateCase(ICase ca) {
+    public void saveDiary(ICase cas, IDiary diary, ILog log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int saveCase(ICase cas) {
+    public void saveCaseworker(ICaseworker caseworker) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void saveDepartment(IDepartment dep) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void saveMeeting(IMeeting meeting) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void saveIndividual(IIndividual individual, ILog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
+
     
 }
