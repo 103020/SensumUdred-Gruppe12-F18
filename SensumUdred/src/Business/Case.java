@@ -171,10 +171,10 @@ public class Case implements ICase{
         return businessFacade.saveCase(this, log);
     }
 
-    public void editCase(ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //TODO: fix
+    public void editCase(ICase cas, ILog log) {
+        businessFacade.editCase(this, log);
     }
-
+    
     public void closeCase(ILog log) {
         isClosed = true;
     }

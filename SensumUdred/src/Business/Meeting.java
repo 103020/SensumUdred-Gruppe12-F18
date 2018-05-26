@@ -17,6 +17,7 @@ public class Meeting implements IMeeting {
     private LocalDateTime dayOfMeeting;
     private IIndividual individual;
     private ICaseworker caseworker;
+    private ICase cas;
     private String location;
     private boolean meetingActive;
     private IBusiness businessFacade;
@@ -38,10 +39,6 @@ public class Meeting implements IMeeting {
         businessFacade = BusinessFacade.getInstance();
     }
     
-    public void saveMeeting(){   
-        //TODO: fix
-    }
-   
     public String messageToMeeting(){
         return ("Vi indkalder dig til møde den: "+ getMeetingTime() + 
                            "\nAddressen: " + getLocation() + "\nDe deltagende er: " + getMeetingParticipants());
