@@ -167,7 +167,7 @@ public class Case implements ICase{
         return individualUnderstanding;
     }
 
-    public int saveCase(ILog log) {
+    public int saveCase(ICase cas, ILog log) {
         return businessFacade.saveCase(this, log);
     }
 

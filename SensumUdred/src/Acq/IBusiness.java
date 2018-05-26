@@ -48,9 +48,10 @@ public interface IBusiness {
     
     /**
      * 
-     * @param ca take a case to be edited
+     * @param cas take a case to be edited
+     * @param log
      */
-    public void editCase(ICase ca);
+    public void editCase(ICase cas, ILog log);
     
     public void closeCase();
     
