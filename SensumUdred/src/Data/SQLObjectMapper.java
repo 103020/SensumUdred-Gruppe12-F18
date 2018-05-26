@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * @author stefan
  */
 public class SQLObjectMapper {
+    //TODO: fix SQL statments, update colume names!
     static Connection db;
     static Statement st;
     static ResultSet rs;
@@ -52,10 +53,10 @@ public class SQLObjectMapper {
         establishConnection();
         int caseNumber = 0;
         try {
-            st.execute("INSERT INTO CASES (creationdate,isclosed,"
+            rs = st.executeQuery("INSERT INTO CASES (creationdate,isclosed,"
                 + "inquiry,individualinvolvement,consent,writtenconsent,"
                 + "oralconsent,casefrom,casefromaddress,caseclarity,"
-                + "individualunderstanding,caseworker,individual,diary,meeting)"
+                + "individualunderstanding,caseworker,individual)"
                 + " VALUES ('" + cas.getCreationDate()+ "','" +
                 cas.getClosed() + "','"
                 + cas.getInquiry() + "','" + cas.getIndividualInvolvement()
@@ -64,13 +65,10 @@ public class SQLObjectMapper {
                 + "','" + cas.getCaseFromAddress() + "','"
                 + cas.getCaseClarity() + "','" + cas.getIndividualUnderstanding()
                 + "','" + cas.getCaseworker().getEmployeeID() + "','"
-                + cas.getIndividual().getCPR() + "','"
-                + cas.getDiary().getDate() + "','"
-                + cas.getMeeting().getIndividual() + "')");
-            rs = st.executeQuery("SELECT CURRVAL(pg_get_serial_sequence"
-                    + "('Cases', 'casenumber'))");
+                + cas.getIndividual().getCPR() + "') RETURNING CASENUMBER");
+            
             rs.next();
-            caseNumber = rs.getInt("Casenumber");
+            caseNumber = rs.getInt(1);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -311,9 +309,9 @@ public class SQLObjectMapper {
         establishConnection();
         boolean success = false;
         try {
-            st.execute("INSERT INTO INDIVIDUALS (INDIVIDUALCPR, INDIVIDUALNAME, "
-                + "INDIVIDUALADDRESS) + VALUES ('" + individual.getCPR() 
-                + "," + individual.getName() + "," + individual.getAddress() + "')");
+            st.execute("INSERT INTO INDIVIDUALS (INDIVIDUALCPR,INDIVIDUALNAME,"
+                + "INDIVIDUALADDRESS) VALUES ('" + individual.getCPR() 
+                + "','" + individual.getName() + "','" + individual.getAddress() + "')");
             success = true;
         } catch (SQLException ex) {
             ex.printStackTrace();

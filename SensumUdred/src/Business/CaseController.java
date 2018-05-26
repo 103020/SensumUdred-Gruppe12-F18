@@ -5,6 +5,7 @@
  */
 package Business;
 import Acq.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,14 +14,14 @@ import java.util.List;
  */
 public class CaseController{
     
-    private List<Case> cases;
-    private List<Meeting> meeting;
+    private static List<Case> cases = new ArrayList();
+    private static List<Meeting> meeting;
 
-    public boolean addCase(Case newCase){
+    public static boolean addCase(Case newCase){
         return cases.add(newCase);
     }
 
-    public List<Case> getCaseList(){
+    public static List<Case> getCaseList(){
         return cases;
     }
     
@@ -29,17 +30,17 @@ public class CaseController{
      * @param newMeeting
      * @return
      */
-    public boolean addMeeting(Meeting newMeeting){
+    public static boolean addMeeting(Meeting newMeeting){
         return meeting.add(newMeeting);
     }
 
-    public List<Meeting> getMeetingList(){
+    public static List<Meeting> getMeetingList(){
         return meeting;
     }
     
 
     /** find ud af om caseNumber skal laves om til et index **/ 
-    public Case getCase(int caseNumber){
+    public static Case getCase(int caseNumber){
         int caseIndex = -1;
         for (int i = 0; i < cases.size(); i++) {
             if (cases.get(i).getCaseNumber() == caseNumber) {

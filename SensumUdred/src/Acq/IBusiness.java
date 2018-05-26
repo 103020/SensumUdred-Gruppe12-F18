@@ -201,4 +201,8 @@ public interface IBusiness {
      * @param caseNumber to set the casenumber in the gui
      */
     public void setFacadeCase(int caseNumber);
+
+    public void setDiary(String text);
+
+    public List<ICase> getCaseList();
 }

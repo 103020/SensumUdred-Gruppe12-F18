@@ -8,6 +8,7 @@ package Business;
 import Acq.*;
 import Data.DataFacade;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  *
@@ -56,7 +57,8 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public int saveCase(ICase cas, ILog log) {
-       return data.saveCase(cas, log);
+        data.saveIndividual(getIndividual(), log);
+        return data.saveCase(cas, log);
     }
 
     @Override
@@ -220,6 +222,20 @@ public class BusinessFacade implements IBusiness {
     @Override
     public boolean saveCaseworker(ICaseworker caseworker) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setDiary(String text) {
+        worker.enterEntry(text);
+    }
+
+    /**
+     * need to call the datalayer for a list of all the cases for a specific caseworker
+     * @return 
+     */
+    @Override
+    public List<ICase> getCaseList() {
+        return data.getCases(worker, log); //TODO: get a log
     }
  
 }

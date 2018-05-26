@@ -101,4 +101,8 @@ public class Meeting implements IMeeting {
                 + this.dayOfMeeting.toString();
     }
 
+    void setIndividual(IIndividual temp) {
+        this.individual = temp;
+    }
+
 }

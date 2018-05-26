@@ -42,7 +42,9 @@ public class Caseworker implements ICaseworker{
             boolean writtenConsent, boolean oralConsent, boolean caseClarity, 
             InquiryFrom inquiryFrom, String caseFromAdress) {
         ILog log = new Log(this);
-        cas = new Case(individualName, individualAddress,individualCPR, log, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
+        cas = new Case(individualName, individualAddress,individualCPR, log, 
+                _inquiry, _individualInvolvement, individualUnderstanding, 
+                consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress, this);
         cas.setCaseNumber(cas.saveCase(cas, log));
         caseControl.addCase(cas);
     }

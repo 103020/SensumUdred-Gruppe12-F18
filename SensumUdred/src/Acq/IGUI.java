@@ -7,6 +7,7 @@ package Acq;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import javafx.scene.control.TextArea;
 
 /**
  *
@@ -150,4 +151,6 @@ public interface IGUI {
      * @param caseNumber set the facade case with the casenumber
      */
     public void setFacadeCase(int caseNumber);
+
+    public void setDiary(String text);
 }

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class Case implements ICase{
     
     private int caseNumber;
-    private Caseworker caseWorker;
+    private Caseworker caseworker;
     private Individual individual;
     private final String creationDate;
     private Diary diary;
@@ -50,7 +50,8 @@ public class Case implements ICase{
     
     Case(String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry,
             String _individualInvolvement, boolean individualUnderstanding,boolean consent,
-            boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String _caseFromAddress){
+            boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, 
+            String _caseFromAddress, Caseworker caseworker){
         creationDate = LocalDateTime.now().toString();
         isClosed = false;
         this.individual = new Individual(individualName, individualAddress, individualCPR, log);
@@ -63,7 +64,11 @@ public class Case implements ICase{
         this.caseClarity = caseClarity;
         this.caseFromAddress = new StringBuilder(_caseFromAddress);
         caseNumber = 0;
-
+        this.caseworker = caseworker;
+        diary = new Diary("Opretet", log);
+        meeting = new Meeting();
+        meeting.setIndividual(this.individual);
+        
         switch(inquiryFrom){
             case INDIVIDUAL:
                 caseFrom = inquiryFrom.INDIVIDUAL.toString();
@@ -104,7 +109,7 @@ public class Case implements ICase{
 
     @Override
     public ICaseworker getCaseworker() {
-        return caseWorker;
+        return caseworker;
     }
 
     @Override
@@ -185,7 +190,7 @@ public class Case implements ICase{
     }
 
     public void setCaseworker(Caseworker caseworker, ILog log) {
-        this.caseWorker = caseworker;
+        this.caseworker = caseworker;
     } 
 
     @Override

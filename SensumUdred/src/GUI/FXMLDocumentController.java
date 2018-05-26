@@ -389,8 +389,8 @@ public class FXMLDocumentController implements Initializable {
                     createNameFieldCC.getText()+
                     createAdresseFieldCC.getText()+
                     Integer.parseInt(createPersonalNumberFieldCC.getText())+
-                    caseFrom.getSelectedToggle().toString()+
-                    caseClarity.getSelectedToggle().toString()+
+                    inquiryTextAreaCO.getText()+
+                    citizenInvolvementTextAreaCO.getText()+
                     consentBoo+
                     mouth+
                     !mouth+
@@ -405,17 +405,17 @@ public class FXMLDocumentController implements Initializable {
                     createNameFieldCC.getText(),
                     createAdresseFieldCC.getText(),
                     Integer.parseInt(createPersonalNumberFieldCC.getText()),
-                    caseFrom.getSelectedToggle().toString(),
-                    caseClarity.getSelectedToggle().toString(),
+                    inquiryTextAreaCO.getText(),
+                    citizenInvolvementTextAreaCO.getText(),
                     consentBoo,
                     mouth,
                     !mouth,
                     clarity,
                     caseClarityBoo,
-                    inquiry, //what is this???
+                    inquiry,
                     nameAdresseTextFieldCO.getText()
             );
-            
+            //facade.setDiary(commentTextAreaCC.getText());
         }
     }
 

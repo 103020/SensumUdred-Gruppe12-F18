@@ -17,6 +17,7 @@ import Business.BusinessFacade;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.TextArea;
 
 /**
  *
@@ -95,14 +96,16 @@ public class GUIFacade implements IGUI{
     @Override
     public List getCaseList() {
         List convert = new ArrayList();
+        /*
         convert.add(new caseListAbler("58", "16/08-12"));
         convert.add(new caseListAbler("12", "30/01-03"));
         convert.add(new caseListAbler("800", "16/08-17"));
         convert.add(new caseListAbler("39", "30/01-08"));
-//        TODO: when a list is returnable
-//        for (ICase ic : b.getCasenumSortedList()) {
-//            convert.add(new caseListAbler(""+ic.getCaseNumber(),""+ic.getCreationDate()));
-//        }
+        */
+        //TODO: when a list is returnable
+        for (ICase ic : b.getCaseList()) {
+            convert.add(new caseListAbler(""+ic.getCaseNumber(),""+ic.getCreationDate()));
+        }
         return convert;
     }
     
@@ -141,6 +144,11 @@ public class GUIFacade implements IGUI{
     @Override
     public void setFacadeCase(int caseNumber) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setDiary(String text) {
+        b.setDiary(text);
     }
 
 }
