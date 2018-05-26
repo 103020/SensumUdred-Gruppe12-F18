@@ -47,8 +47,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public int saveCase(ICase cas) {
-        return data.saveCase(cas);
+    public int saveCase(ICase cas, ILog log) {
+       return data.saveCase(cas, log);
     }
 
     @Override
@@ -57,8 +57,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void editCase(ICase ca) {
-        data.updateCase(ca);
+    public void editCase(ICase cas, ILog log) {
+        data.updateCase(cas, log);
     }
 
     @Override
@@ -177,7 +177,7 @@ public class BusinessFacade implements IBusiness {
     public boolean login(String username, String password) {
         boolean loginSuccess = data.login(username, password);
         if (loginSuccess) {
-            ICaseworker tempCaseworker = data.getCaseWorker(username);
+            ICaseworker tempCaseworker = data.getCaseworker(username);
             worker = new Caseworker(tempCaseworker.getName(), new Department(tempCaseworker.getDepartment().getName()), tempCaseworker.getEmployeeID());
             return loginSuccess;
         }
@@ -187,6 +187,31 @@ public class BusinessFacade implements IBusiness {
     @Override
     public void setFacadeCase(int caseNumber) {
         worker.setCase(caseNumber);
+    }
+
+    @Override
+    public boolean saveMeeting(IMeeting meeting, ILog log) {
+        return data.saveMeeting((Meeting)meeting, log);
+    }
+
+    @Override
+    public boolean saveDiary(IDiary diary, ILog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean saveIndividual(IIndividual individual, ILog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean saveDepartment(IDepartment department) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean saveCaseworker(ICaseworker caseworker) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
  
 }

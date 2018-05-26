@@ -34,9 +34,18 @@ public interface IBusiness {
     
     /**
      * 
+     * @param cas use 'this' on case
+     * @param log a log object made by the caseworker.
      * @return returns the caseNumber
      */
-    public int saveCase(ICase cas);
+    public int saveCase(ICase cas, ILog log);
+    
+    public boolean saveMeeting(IMeeting meeting, ILog log);
+    public boolean saveDiary(IDiary diary, ILog log);
+    public boolean saveIndividual(IIndividual individual, ILog log);
+    public boolean saveDepartment(IDepartment department);
+    public boolean saveCaseworker(ICaseworker caseworker);
+    
     
     /**
      * 
@@ -46,9 +55,10 @@ public interface IBusiness {
     
     /**
      * 
-     * @param ca take a case to be edited
+     * @param cas take a case to be edited
+     * @param log
      */
-    public void editCase(ICase ca);
+    public void editCase(ICase cas, ILog log);
     
     public void closeCase();
     

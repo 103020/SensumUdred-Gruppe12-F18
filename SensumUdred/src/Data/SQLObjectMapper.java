@@ -48,9 +48,9 @@ public class SQLObjectMapper {
     }
     
     //TODO: change return type to the casenumber (serial casenumber)
-    static boolean saveCase(ICase cas){
+    static int saveCase(ICase cas){
         establishConnection();
-        boolean success = false;
+        int caseNumber = 0;
         try {
             st.execute("INSERT INTO CASES (creationdate,isclosed,"
                 + "inquiry,individualinvolvement,consent,writtenconsent,"
@@ -67,12 +67,15 @@ public class SQLObjectMapper {
                 + cas.getIndividual().getCPR() + "','"
                 + cas.getDiary().getDate() + "','"
                 + cas.getMeeting().getIndividual() + "')");
-            success = true;
+            rs = st.executeQuery("SELECT CURRVAL(pg_get_serial_sequence"
+                    + "('Cases', 'casenumber'))");
+            rs.next();
+            caseNumber = rs.getInt("Casenumber");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         closeConnection();
-        return success;
+        return caseNumber;
     }
     
     static ArrayList<ICase> getCases(ICaseworker caseworker){
@@ -96,41 +99,55 @@ public class SQLObjectMapper {
                         rs.getBoolean("isClosed"), 
                         rs.getString("creationdate")
                 );
-                
-                /* create diary object */
-                ResultSet rs2 = st.executeQuery("SELECT * FROM DIARIES WHERE DIARY.CASE=" + cas.getCaseNumber());
-                rs2.next();
-                DiaryData diary = new DiaryData();
-                diary.setEntry(rs2.getString("entry"));
-                diary.setDate(rs2.getString("diarydate"));
-                
-                
-                /* create individual object */
-                rs2 = st.executeQuery("SELECT * FROM INDIVIDUALS INNER JOIN "
-                        + "CASES ON INDIVIDUALS.INDIVIDUALCPR=CASES.INDIVIDUAL "
-                        + "WHERE CASES.CASENUMBER=" + cas.getCaseNumber());
-                rs2.next();
+                /* creating empty objects to hold attributes */
                 IndividualData individual = new IndividualData();
-                individual.setAttributes(
-                        rs2.getString("individualname"), 
-                        rs2.getString("individualAddress"), 
-                        rs2.getInt("individualCPR"));
-                
-                /* create meeting object */ // will be put in a list
-                rs2 = st.executeQuery("SELECT * FROM MEETINGS WHERE "
-                        + "MEETINGS.PARTICIPANT1=" + cas.getIndividual().getCPR() 
-                        + " AND MEETINGS.PARTICIPANT2=" 
-                        + cas.getCaseworker().getEmployeeID());
-                rs2.next();
+                DiaryData diary = new DiaryData();
                 MeetingData meeting = new MeetingData();
-                while (rs2.next()) {
-                    meeting.setAttributes(
-                            rs2.getString("meetingdateandtime"), 
-                            individual, caseworker, 
-                            rs2.getString("location"), 
-                            rs2.getBoolean("meetingactive"));
+                
+                try {
+                    /* create diary object */
+                    ResultSet rs2 = st.executeQuery("SELECT * FROM DIARIES WHERE DIARY.CASE=" + cas.getCaseNumber());
+                    rs2.next();
+                    diary.setEntry(rs2.getString("entry"));
+                    diary.setDate(rs2.getString("diarydate"));
+                    rs2.close();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
                 }
-                rs2.close();
+                
+                try {
+                    /* create individual object */
+                    ResultSet rs2 = st.executeQuery("SELECT * FROM INDIVIDUALS INNER JOIN "
+                            + "CASES ON INDIVIDUALS.INDIVIDUALCPR=CASES.INDIVIDUAL "
+                            + "WHERE CASES.CASENUMBER=" + cas.getCaseNumber());
+                    rs2.next();
+                    individual.setAttributes(
+                            rs2.getString("individualname"), 
+                            rs2.getString("individualAddress"), 
+                            rs2.getInt("individualCPR"));
+                    rs2.close();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+                
+                try {
+                    /* create meeting object */ 
+                    ResultSet rs2 = st.executeQuery("SELECT * FROM MEETINGS WHERE "
+                            + "MEETINGS.PARTICIPANT1=" + cas.getIndividual().getCPR() 
+                            + " AND MEETINGS.PARTICIPANT2=" 
+                            + cas.getCaseworker().getEmployeeID());
+                    rs2.next();
+                    meeting.setAttributes(
+                    rs2.getString("meetingdateandtime"), 
+                    individual, caseworker, 
+                    rs2.getString("location"), 
+                    rs2.getBoolean("meetingactive"));
+                    
+                    rs2.close();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+                
                 rs.close();
                 cas.addObjects(caseworker, diary, meeting, individual);
                 caseList.add(cas);
@@ -309,7 +326,7 @@ public class SQLObjectMapper {
 //        
 //    }
     
-    public static int updateCase(ICase cas){
+    static int updateCase(ICase cas){
         return 0;
     }
     

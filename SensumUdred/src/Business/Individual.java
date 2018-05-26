@@ -53,4 +53,9 @@ public class Individual implements IIndividual{
         this.CPR = CPR;
     }
     
+    @Override
+    public String toString(){
+        return "Individual CPR: " + this.CPR;
+    }
+    
 }

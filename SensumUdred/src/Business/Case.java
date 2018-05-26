@@ -167,8 +167,8 @@ public class Case implements ICase{
         return individualUnderstanding;
     }
 
-    public int saveCase(ILog log) {
-        return businessFacade.saveCase(this);
+    public int saveCase(ICase cas, ILog log) {
+        return businessFacade.saveCase(this, log);
     }
 
     public void editCase(ILog log) {
@@ -229,5 +229,10 @@ public class Case implements ICase{
 
     public void enterEntry(String note, ILog log) {
         diary.enterEntry(note, log);
+    }
+    
+    @Override
+    public String toString(){
+        return "Casenumber" + this.caseNumber;
     }
 }
