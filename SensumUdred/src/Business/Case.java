@@ -169,7 +169,7 @@ public class Case implements ICase{
     }
 
     public int saveCase(ILog log) {
-        return businessFacade.saveCase();
+        return businessFacade.saveCase(this);
     }
 
     public void editCase(ILog log) {

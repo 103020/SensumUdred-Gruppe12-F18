@@ -36,7 +36,7 @@ public interface IBusiness {
      * 
      * @return returns the caseNumber
      */
-    public int saveCase();
+    public int saveCase(ICase cas);
     
     /**
      * 

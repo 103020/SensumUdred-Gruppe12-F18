@@ -61,10 +61,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public int saveCase() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        //return data.save(list) //need a methode were we get the list from Case
-        //TODO: sefan fix
+    public int saveCase(ICase cas) {
+       return data.saveCase(cas);
     }
 
     @Override
