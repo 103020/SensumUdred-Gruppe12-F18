@@ -34,11 +34,5 @@ public interface IData {
      */
     public boolean login(String username, String password);
 
-    /**
-     *
-     * @return the highest case number
-     */
-    public int loadHighestCaseNumber();
-
     public ICaseworker getCaseWorker(String username);
 }
