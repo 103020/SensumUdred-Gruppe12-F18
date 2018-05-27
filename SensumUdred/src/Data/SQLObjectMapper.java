@@ -330,8 +330,113 @@ public class SQLObjectMapper {
 //        
 //    }
     
-    static int updateCase(ICase cas){
-        return 0;
+    static boolean updateCase(ICase cas){
+        establishConnection();
+        boolean success = false;
+        try{
+            st.execute("UPDATE CASES SET" +
+                " ISCLOSED = " + cas.getClosed() +
+                ", INQUIRY = " + cas.getInquiry() + 
+                ", INDIVIDUALINVOLVEMENT = " + cas.getIndividualInvolvement() + 
+                ", CONSENT = " + cas.getConsent() + 
+                ", WRITTENCONSENT = " + cas.getWrittenConsent() +
+                ", ORALCONSENT = " + cas.getOralConsent() + 
+                ", CASEFROM = " + cas.getCaseFrom() + 
+                ", CASEFROMADDRESS = " + cas.getCaseFromAddress() +
+                ", CASECLARITY = " + cas.getCaseClarity() +
+                ", INDIVIDUALUNDERSTANDING = " + cas.getIndividualUnderstanding() +
+                ", CASEWORKER = " + cas.getCaseworker().getEmployeeID() + 
+                " WHERE CASES.CASENUMBER=" + cas.getCaseNumber());
+            success = true;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        closeConnection();
+        return success;
+    }
+    
+    static boolean updateDiary(IDiary diary, ICase cas){
+        establishConnection();
+        boolean success = false;
+        try {
+            st.execute("UPDATE DIARIES SET" +
+                "ENTRY = " + diary.getEntry() + 
+                " WHERE DIARIES.DIARYBELONGSTOCASENUMBER=" + cas.getCaseNumber());
+            success = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return success;
+    }
+    
+    static boolean updateMeeting(IMeeting meeting, ICase cas){
+        establishConnection();
+        boolean success = false;
+        try {
+            st.execute("UPDATE MEETINGS SET" +
+                " MEETINGCASEWORKER = " + meeting.getCaseworker() +
+                ", MEETINGDATEANDTIME = " + meeting.getMeetingTime().toString() +
+                ", LOCATION = " + meeting.getLocation() +
+                ", MEETINGACTIVE = " + meeting.getActive() +
+                " WHERE MEETINGS.MEETINGBELONGSTOCASENUMBER=" + cas.getCaseNumber());
+            success = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return success;
+        
+    }
+    
+    static boolean updateIndividual(IIndividual individual){
+        establishConnection();
+        boolean success = false;
+        try {
+            st.execute("UPDATE INDIVIDUALS SET" +
+                " INDIVIDUALCPR = " + individual.getCPR() +
+                ", INDIVIDUALNAME = " + individual.getName() +
+                ", INDIVIDUALADDRESS = " + individual.getAddress() +
+                " WHERE INDIVIDUALS.INDIVIDUALCPR=" + individual.getCPR());
+            success = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return success;
+    }
+    
+    static boolean updateCaseWorker(ICaseworker caseworker){
+        establishConnection();
+        boolean success = false;
+        try {
+            st.execute("UPDATE CASEWORKERS SET" +
+                " EMPLOYEEID = " + caseworker.getEmployeeID() +
+                ", CASEWORKERNAME = " + caseworker.getName() +
+                ", BELONGSTODEPARTMENT = " + caseworker.getDepartment() +
+                " WHERE CASEWORKERS.EMPLOYEEID=" + caseworker.getEmployeeID());
+            success = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return success;
+    }
+    
+    static boolean updateDepartment(IDepartment department){
+        establishConnection();
+        boolean success = false;
+        try {
+            st.execute("UPDATE DEPARTMENTS SET" +
+                " DEPARTMENTNAME = " + department.getName() +
+                ", PEOPLEAMOUNT = " + department.getAmount() +
+                " WHERE DEPARTMENTS.DEPARTMENTNAME=" + department.getName());
+            success = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return success;
     }
     
     static void saveLog(ILog log){
