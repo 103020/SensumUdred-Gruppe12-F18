@@ -37,8 +37,10 @@ public class Meeting implements IMeeting {
         this.caseworker = caseworker;
         meetingActive = true;
         businessFacade = BusinessFacade.getInstance();
+        log.writeLog("Meeting with individual: "+ individual.getCPR() + " Created on"
+                + " date: " + time.toString());
     }
-    
+
     public String messageToMeeting(){
         return ("Vi indkalder dig til møde den: "+ getMeetingTime() + 
                            "\nAddressen: " + getLocation() + "\nDe deltagende er: " + getMeetingParticipants());
@@ -97,6 +99,11 @@ public class Meeting implements IMeeting {
 
     void setIndividual(IIndividual temp) {
         this.individual = temp;
+    }
+    
+    void saveMeeting(ICase cas, ILog log){
+        log.writeLog(this);
+        businessFacade.saveMeeting(this, cas, log);
     }
 
 }

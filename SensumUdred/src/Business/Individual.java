@@ -24,6 +24,7 @@ public class Individual implements IIndividual{
         this.name = name;
         this.address = address;
         this.CPR = CPR;
+        log.writeLog("Individual with CPR: " + CPR + " created");
     }
 
     @Override
@@ -42,14 +43,17 @@ public class Individual implements IIndividual{
     }
 
     public void setName(String name, ILog log) {
+        log.writeLog(this);
         this.name = name;
     }
 
     public void setAddress(String address, ILog log) {
+        log.writeLog(this);
         this.address = address;
     }
 
     public void setCPR(int CPR, ILog log) {
+        log.writeLog(this);
         this.CPR = CPR;
     }
     

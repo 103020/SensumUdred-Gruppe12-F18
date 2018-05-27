@@ -52,6 +52,7 @@ public class Case implements ICase{
             String _individualInvolvement, boolean individualUnderstanding,boolean consent,
             boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, 
             String _caseFromAddress, Caseworker caseworker){
+        log.writeLog("Case created");
         creationDate = LocalDateTime.now().toString();
         isClosed = false;
         this.individual = new Individual(individualName, individualAddress, individualCPR, log);
@@ -65,8 +66,8 @@ public class Case implements ICase{
         this.caseFromAddress = new StringBuilder(_caseFromAddress);
         caseNumber = 0;
         this.caseworker = caseworker;
-        diary = new Diary("Opretet", log);
-        meeting = new Meeting();
+//        diary = new Diary("Oprettet", log);
+//        meeting = new Meeting();
         meeting.setIndividual(this.individual);
         
         switch(inquiryFrom){

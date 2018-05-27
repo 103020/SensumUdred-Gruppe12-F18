@@ -17,7 +17,7 @@ public class Log<E> implements ILog{
     
     Log(ICaseworker cs){
         logString += "\n" + LocalDateTime.now().toString();
-        logString += " by " + cs.toString();
+        logString += " by " + cs.toString() + ": ";
     }
 
     @Override

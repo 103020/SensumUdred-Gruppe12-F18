@@ -5,14 +5,7 @@
  */
 package GUI;
 
-import Acq.IBusiness;
-import Acq.ICase;
-import Acq.ICaseworker;
-import Acq.IGUI;
-import Acq.IIndividual;
-import Acq.ILog;
-import Acq.IMeeting;
-import Acq.InquiryFrom;
+import Acq.*;
 import Business.BusinessFacade;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -32,6 +25,7 @@ public class GUIFacade implements IGUI{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
     public void createMeeting(LocalDateTime time, String location) {
         b.createMeeting(time, location);
 
@@ -109,6 +103,7 @@ public class GUIFacade implements IGUI{
         return convert;
     }
     
+    @Override
     public List<meetingListAbler> getMeetingList(){
         List convert = new ArrayList();
         convert.add(new meetingListAbler(b.getMeetingTime(),""+b.getLocation()));

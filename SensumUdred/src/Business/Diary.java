@@ -5,9 +5,7 @@
  */
 package Business;
 
-import Acq.ICaseworker;
-import Acq.IDiary;
-import Acq.ILog;
+import Acq.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -18,10 +16,13 @@ import java.util.Date;
 public class Diary implements IDiary{
     private String date;
     private StringBuilder entry;
+    private IBusiness businessFacade;
 
     Diary(String entry, ILog log) {
         this.entry = new StringBuilder(entry);
         date = LocalDateTime.now().toString();
+        businessFacade = BusinessFacade.getInstance();
+        log.writeLog("Diary created date: " + date);
     }
 
     @Override
@@ -36,10 +37,12 @@ public class Diary implements IDiary{
     }
 
     public void saveEntry(ILog log) {
-        //TODO: fix
+        log.writeLog(this);
+        businessFacade.saveDiary(this, log);
     }
 
     public void enterEntry(String note, ILog log) {
+        log.writeLog(this);
         entry.insert(entry.length(), "\n" + toString() + " " + note);
        
     }

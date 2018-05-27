@@ -46,15 +46,20 @@ public class CaseData implements ICase{
 
     }
     
-    /*  method for adding the other objects to the case, as to avoid a mess 
-        in the fetching of case objects from the database
-    */
-    int addObjects(ICaseworker caseworker, IDiary diary, IMeeting meeting, IIndividual individual) {
-        this.caseworker = caseworker;
+    void addDiary(IDiary diary){
         this.diary = diary;
+    }
+    
+    void addMeeting(IMeeting meeting){
         this.meeting = meeting;
+    }
+    
+    void addIndividual(IIndividual individual){
         this.individual = individual;
-        return 1;
+    }
+    
+    void addCaseworker(ICaseworker caseworker){
+        this.caseworker = caseworker;
     }
 
     @Override

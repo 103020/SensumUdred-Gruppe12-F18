@@ -40,7 +40,7 @@ public interface IBusiness {
      */
     public int saveCase(ICase cas, ILog log);
     
-    public boolean saveMeeting(IMeeting meeting, ILog log);
+    public boolean saveMeeting(IMeeting meeting, ICase cas, ILog log);
     public boolean saveDiary(IDiary diary, ILog log);
     public boolean saveIndividual(IIndividual individual, ILog log);
     public boolean saveDepartment(IDepartment department);
@@ -204,5 +204,5 @@ public interface IBusiness {
 
     public void setDiary(String text);
 
-    public List<ICase> getCaseList();
+    public List<ICase> getCaseList(ILog log);
 }

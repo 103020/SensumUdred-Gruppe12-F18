@@ -99,20 +99,20 @@ public class SQLObjectMapper {
                 );
                 /* creating empty objects to hold attributes */
                 IndividualData individual = new IndividualData();
-                DiaryData diary = new DiaryData();
-                MeetingData meeting = new MeetingData();
+//                DiaryData diary = new DiaryData();
+//                MeetingData meeting = new MeetingData();
                 
-                try {
-                    /* create diary object */
-                    ResultSet rs2 = st.executeQuery("SELECT * FROM DIARIES WHERE DIARY.CASE=" + cas.getCaseNumber());
-                    rs2.next();
-                    diary.setEntry(rs2.getString("entry"));
-                    diary.setDate(rs2.getString("diarydate"));
-                    rs2.close();
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-                
+//                try {
+//                    /* create diary object */
+//                    ResultSet rs2 = st.executeQuery("SELECT * FROM DIARIES WHERE DIARY.CASE=" + cas.getCaseNumber());
+//                    rs2.next();
+//                    diary.setEntry(rs2.getString("entry"));
+//                    diary.setDate(rs2.getString("diarydate"));
+//                    rs2.close();
+//                } catch (NullPointerException e) {
+//                    e.printStackTrace();
+//                }
+//                
                 try {
                     /* create individual object */
                     ResultSet rs2 = st.executeQuery("SELECT * FROM INDIVIDUALS INNER JOIN "
@@ -128,26 +128,31 @@ public class SQLObjectMapper {
                     e.printStackTrace();
                 }
                 
-                try {
-                    /* create meeting object */ 
-                    ResultSet rs2 = st.executeQuery("SELECT * FROM MEETINGS WHERE "
-                            + "MEETINGS.PARTICIPANT1=" + cas.getIndividual().getCPR() 
-                            + " AND MEETINGS.PARTICIPANT2=" 
-                            + cas.getCaseworker().getEmployeeID());
-                    rs2.next();
-                    meeting.setAttributes(
-                    rs2.getString("meetingdateandtime"), 
-                    individual, caseworker, 
-                    rs2.getString("location"), 
-                    rs2.getBoolean("meetingactive"));
-                    
-                    rs2.close();
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    /* create meeting object */ 
+//                    ResultSet rs2 = st.executeQuery("SELECT * FROM MEETINGS WHERE "
+//                            + "MEETINGS.PARTICIPANT1=" + cas.getIndividual().getCPR() 
+//                            + " AND MEETINGS.PARTICIPANT2=" 
+//                            + cas.getCaseworker().getEmployeeID());
+//                    rs2.next();
+//                    meeting.setAttributes(
+//                    rs2.getString("meetingdateandtime"), 
+//                    individual, caseworker, 
+//                    rs2.getString("location"), 
+//                    rs2.getBoolean("meetingactive"));
+//                    
+//                    rs2.close();
+//                } catch (NullPointerException e) {
+//                    e.printStackTrace();
+//                }
                 
                 rs.close();
-                cas.addObjects(caseworker, diary, meeting, individual);
+                cas.addCaseworker(caseworker);
+                cas.addIndividual(individual);
+                
+//                cas.addMeeting(meeting);
+//                cas.addDiary(diary);
+                
                 caseList.add(cas);
             }
         } catch (SQLException e) {
@@ -172,7 +177,7 @@ public class SQLObjectMapper {
         return success;
     }
     
-    /* possibly not needed since diary is fetched along with the case */
+    
     static IDiary getDiary(ICase cas){
         establishConnection();
         DiaryData diary = new DiaryData();
@@ -180,7 +185,7 @@ public class SQLObjectMapper {
             rs = st.executeQuery("SELECT * FROM DIARIES WHERE "
                     + "DIARY.DIARYBELONGSTOCASENUMBER=" + cas.getCaseNumber());
             rs.next();
-               diary.setEntry(rs.getString("entry"));
+               diary.setEntry(rs.getString("ENTRY"));
                diary.setDate(rs.getString("DIARYDATE"));
             rs.close();
         } catch (SQLException e) {
@@ -194,7 +199,7 @@ public class SQLObjectMapper {
         establishConnection();
         boolean success = false;
         try {
-            st.execute("INSERT INTO CASEWORKERS (EMPLOYEEID,NAME)" + "VALUES ('"
+            st.execute("INSERT INTO CASEWORKERS (EMPLOYEEID,CASEWORKERNAME)" + "VALUES ('"
                 + caseworker.getEmployeeID() + "','" + caseworker.getName() + "')");
             success = true;
         } catch (SQLException ex) {
@@ -266,13 +271,15 @@ public class SQLObjectMapper {
         return departmentList;
     }
     
-    static boolean saveMeeting(IMeeting meeting){
+    static boolean saveMeeting(IMeeting meeting, ICase cas){
         establishConnection();
         boolean success = false;
         try {
             st.execute("INSERT INTO MEETINGS (MEETINGINDIVIDUAL,MEETINGCASEWORKER,"
+                + "MEETINGBELONGSTOCASENUMBER," 
                 + "MEETINGDATEANDTIME,LOCATION,MEETINGACTIVE) VALUES ('" 
                 + meeting.getIndividual() + "','" + meeting.getCaseworker()
+                + "','" + cas.getCaseNumber()
                 + "','" + meeting.getMeetingTime().toString() + "','" 
                 + meeting.getLocation() + "','" + meeting.getActive() + "')");
             success = true;
@@ -283,7 +290,6 @@ public class SQLObjectMapper {
         return success;
     }
     
-    /* possibly not needed since meeting is fetched along with case */
     static IMeeting getMeeting(ICase cas){
         establishConnection();
         MeetingData meeting = new MeetingData();

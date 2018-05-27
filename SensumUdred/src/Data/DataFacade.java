@@ -55,9 +55,9 @@ public class DataFacade implements IData{
     }
 
     @Override
-    public boolean saveMeeting(IMeeting meeting, ILog log) {
+    public boolean saveMeeting(IMeeting meeting, ICase cas, ILog log) {
         SQLObjectMapper.saveLog(log);
-        return SQLObjectMapper.saveMeeting(meeting);
+        return SQLObjectMapper.saveMeeting(meeting, cas);
     }
 
     @Override

@@ -192,8 +192,8 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean saveMeeting(IMeeting meeting, ILog log) {
-        return data.saveMeeting((Meeting)meeting, log);
+    public boolean saveMeeting(IMeeting meeting, ICase cas, ILog log) {
+        return data.saveMeeting((Meeting)meeting, cas, log);
     }
 
     @Override
@@ -226,7 +226,7 @@ public class BusinessFacade implements IBusiness {
      * @return 
      */
     @Override
-    public List<ICase> getCaseList() {
+    public List<ICase> getCaseList(ILog log) {
         return data.getCases(worker, log); //TODO: get a log
     }
  
