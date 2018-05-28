@@ -197,23 +197,23 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public boolean saveDiary(IDiary diary, ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean saveDiary(ICase cas, IDiary diary, ILog log) {
+        return data.saveDiary(cas, diary, log);
     }
 
     @Override
     public boolean saveIndividual(IIndividual individual, ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return data.saveIndividual(individual, log);
     }
 
     @Override
     public boolean saveDepartment(IDepartment department) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return data.saveDepartment(department);
     }
 
     @Override
     public boolean saveCaseworker(ICaseworker caseworker) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return data.saveCaseworker(caseworker);
     }
 
     @Override
@@ -228,6 +228,11 @@ public class BusinessFacade implements IBusiness {
     @Override
     public List<ICase> getCaseList(ILog log) {
         return data.getCases(worker, log); //TODO: get a log
+    }
+
+    @Override
+    public List<ICase> getCaseList() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
  
 }

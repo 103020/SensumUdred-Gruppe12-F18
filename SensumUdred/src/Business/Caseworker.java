@@ -8,6 +8,7 @@ package Business;
 import Acq.*;
 import Data.DataFacade;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -131,6 +132,7 @@ public class Caseworker implements ICaseworker{
         cas.enterEntry(note, log);
     }
     
+    @Override
     public ICase getCase(){
         return cas;
     }
@@ -147,5 +149,15 @@ public class Caseworker implements ICaseworker{
     @Override
     public String toString(){
         return "Caseworker: " + this.employeeID + ", name: " + this.name;
+    }
+    
+    public List<Case> getCases(ILog log){
+        log.writeLog(this);
+        List<ICase> ICaseList = businessFacade.getCaseList(log);
+        List<Case> caseList = new ArrayList<>();
+        for (ICase cas : ICaseList) {
+            caseList.add((Case)cas);
+        }
+        return caseList;
     }
 }

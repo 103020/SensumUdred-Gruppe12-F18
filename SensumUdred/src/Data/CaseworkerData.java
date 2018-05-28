@@ -42,4 +42,9 @@ public class CaseworkerData implements ICaseworker{
     public String getEmployeeID() {
         return employeeID;
     }
+
+    @Override
+    public ICase getCase() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

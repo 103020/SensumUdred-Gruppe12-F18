@@ -37,8 +37,9 @@ public class Diary implements IDiary{
     }
 
     public void saveEntry(ILog log) {
+        ICaseworker caseworker = businessFacade.getCaseworker();
         log.writeLog(this);
-        businessFacade.saveDiary(this, log);
+        businessFacade.saveDiary(caseworker.getCase(), this, log);
     }
 
     public void enterEntry(String note, ILog log) {

@@ -19,5 +19,7 @@ public interface ICaseworker {
      *
      * @return the employeeID
      */
-    public String getEmployeeID();    
+    public String getEmployeeID();  
+    
+    public ICase getCase();
 }
