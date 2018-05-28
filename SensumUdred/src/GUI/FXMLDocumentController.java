@@ -198,17 +198,17 @@ public class FXMLDocumentController implements Initializable {
         choiceBoxMT.getItems().addAll("Dato", "Sagsnummer");
         choiceBoxMT.setValue("Sagsnummer");
         //fList = new FilteredList(FXCollections.observableArrayList(facade.getCaseList()), p -> true); //temp to test
-        
+
     }
 
     @FXML
     private void handleButtonLogin(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Fejl i Login");
-        if (usernameFieldLT.getText().equals("")||passwordFieldLT.getText().equals("")) {
+        if (usernameFieldLT.getText().equals("") || passwordFieldLT.getText().equals("")) {
             alert.setHeaderText("Der skal stå noget i brugernavn og adganskode feltet!");
-                alert.setContentText("Indtast brugernavn og adgangskode!");
-                alert.showAndWait();
+            alert.setContentText("Indtast brugernavn og adgangskode!");
+            alert.showAndWait();
         } else {
             if (facade.login(usernameFieldLT.getText(), passwordFieldLT.getText())) {
                 //if you succesfully logged in
@@ -273,11 +273,11 @@ public class FXMLDocumentController implements Initializable {
                 break;
         }
     }
-    
-        @FXML
+
+    @FXML
     private void handleListVIewCaseListMT(MouseEvent event) {
         String tempCaseNumber = caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber();
-        userStatusMT.setText("Sag valgt: "+tempCaseNumber);
+        userStatusMT.setText("Sag valgt: " + tempCaseNumber);
     }
 
     @FXML
@@ -322,7 +322,7 @@ public class FXMLDocumentController implements Initializable {
             alert.setContentText("Check \"Navn\", \"CPR\" og \"Adresse\".");
             alert.showAndWait();
         }
-        if (next){
+        if (next) {
             tabPane.getTabs().add(caseOpeningTab);
             tabPane.getSelectionModel().selectNext();
             tabPane.getTabs().remove(createCaseTab);
@@ -394,19 +394,19 @@ public class FXMLDocumentController implements Initializable {
             alert.showAndWait();
         }
         System.out.println( //a test
-                    createNameFieldCC.getText()+
-                    createAdresseFieldCC.getText()+
-                    Integer.parseInt(createPersonalNumberFieldCC.getText())+
-                    inquiryTextAreaCO.getText()+
-                    citizenInvolvementTextAreaCO.getText()+
-                    consentBoo+
-                    mouth+
-                    !mouth+
-                    clarity+
-                    caseClarityBoo+
-                    inquiry.toString()+
-                    nameAdresseTextFieldCO.getText()
-            );
+                createNameFieldCC.getText()
+                + createAdresseFieldCC.getText()
+                + Integer.parseInt(createPersonalNumberFieldCC.getText())
+                + inquiryTextAreaCO.getText()
+                + citizenInvolvementTextAreaCO.getText()
+                + consentBoo
+                + mouth
+                + !mouth
+                + clarity
+                + caseClarityBoo
+                + inquiry.toString()
+                + nameAdresseTextFieldCO.getText()
+        );
         if (temp) {
             tabPane.getTabs().remove(caseOpeningTab);
             facade.createCase(
@@ -456,7 +456,7 @@ public class FXMLDocumentController implements Initializable {
             ICase temp = facade.accessCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
             caseNumberLabelEC.setText(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber());
             currentNameLabelEC.setText(temp.getIndividual().getName());
-            currentPersonalNumberLabelEC.setText(""+temp.getIndividual().getCPR());
+            currentPersonalNumberLabelEC.setText("" + temp.getIndividual().getCPR());
             currentAdresseLabelEC.setText(temp.getIndividual().getAddress());
             tabPane.getTabs().add(editCaseTab);
             tabPane.getSelectionModel().selectNext();
@@ -481,11 +481,11 @@ public class FXMLDocumentController implements Initializable {
             ICase temp = facade.accessCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
             caseNumberLabelVC.setText(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber());
             nameLabelVC.setText(temp.getIndividual().getName());
-            personalNumberLabelVC.setText(""+temp.getIndividual().getCPR());
+            personalNumberLabelVC.setText("" + temp.getIndividual().getCPR());
             adresseLabelVC.setText(temp.getIndividual().getAddress());
-            try{
-            noteListViewVC.getItems().add(temp.getDiary().getEntry());
-            } catch(NullPointerException e){
+            try {
+                noteListViewVC.getItems().add(temp.getDiary().getEntry());
+            } catch (NullPointerException e) {
                 noteListViewVC.getItems().add("Der er intet i dagbogen");
             }
             //caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber(); //TODO: get the case so it can be viewed
@@ -512,6 +512,8 @@ public class FXMLDocumentController implements Initializable {
             fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true);
             caseListViewMT.getItems().clear();
             caseListViewMT.getItems().addAll(fList);
+            listViewMeetingsM.getItems().clear();
+            listViewMeetingsM.getItems().addAll(facade.getMeetingList());
         }
     }
 
@@ -526,54 +528,67 @@ public class FXMLDocumentController implements Initializable {
         if (!createPersonalNumberFieldEC.getText().isEmpty()) {
             facade.setIndividualAddress(createPersonalNumberFieldEC.getText());
         }
-        
+
         facade.setDiary(commentTextAreaEC.getText()); //diary call
+        tabPane.getTabs().remove(editCaseTab);
     }
 
     @FXML
     private void handleButtonCreateMeetingM(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Forkert indput!");
+        ICase tempCase;
+        boolean caseSelected = false;
+        if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
+            caseSelected = true;
+        } else {
+            alert.setHeaderText("Du skal vælge en sag!");
+            alert.setContentText("Vælge en sag i Hovedmenuen!");
+            alert.showAndWait();
+            caseSelected = false;
+        }
         String temp;
         String[] tempList = null;
         int hour = 0;
         int minut = 0;
-        if (textFieldMeetingM.getText() != "") {
-            temp = textFieldMeetingM.getText();
-            tempList = temp.split(":");
-        } else {
-            alert.setHeaderText("Du skal skrive et klokkeslæt i tekstfeltet!");
-            alert.setContentText("Der skal være en værdi i tekstfeltet!");
-            alert.showAndWait();
-        }
-        boolean error = false;
-        try {
-            error = false;
-            hour = Integer.parseInt(tempList[0]);
-            minut = Integer.parseInt(tempList[1]);
-            if (minut >= 60) { //to make it so that if an input is 14:80, the time becomes 15:20
-                hour = hour + (minut / 60);
-                minut = minut - 60 * (minut / 60);
+        if (caseSelected) {
+            if (textFieldMeetingM.getText() != "") {
+                temp = textFieldMeetingM.getText();
+                tempList = temp.split(":");
+            } else {
+                alert.setHeaderText("Du skal skrive et klokkeslæt i tekstfeltet!");
+                alert.setContentText("Der skal være en værdi i tekstfeltet!");
+                alert.showAndWait();
             }
-            if (hour >= 24) {
-                hour = hour - 24 * (hour / 24);
-            }
-        } catch (NumberFormatException e) {
-            alert.setHeaderText("Du skal skrive et klokkeslæt i textfeltet!");
-            alert.setContentText("Klokkeslættet skal skrive som \"HH:MM\", hvor HH er timer og MM er minutter!");
-            alert.showAndWait();
-            error = true;
-        } finally {
-            if (!error) {
-                if (!textFieldLocationM.getText().equals("")) {
-                    facade.createMeeting(datePickerMeetingM.getValue().atTime(hour, minut), textFieldLocationM.getText());
-                    listViewMeetingsM.getItems().clear();
-                    listViewMeetingsM.getItems().addAll(facade.getMeetingList());
-                    textFieldMeetingM.clear();
-                } else {
-                    alert.setHeaderText("Der mangler en lokation!");
-                    alert.setContentText("Indtast en lokation i tekstfeltet!");
-                    alert.showAndWait();
+            boolean error = false;
+            try {
+                error = false;
+                hour = Integer.parseInt(tempList[0]);
+                minut = Integer.parseInt(tempList[1]);
+                if (minut >= 60) { //to make it so that if an input is 14:80, the time becomes 15:20
+                    hour = hour + (minut / 60);
+                    minut = minut - 60 * (minut / 60);
+                }
+                if (hour >= 24) {
+                    hour = hour - 24 * (hour / 24);
+                }
+            } catch (NumberFormatException e) {
+                alert.setHeaderText("Du skal skrive et klokkeslæt i textfeltet!");
+                alert.setContentText("Klokkeslættet skal skrive som \"HH:MM\", hvor HH er timer og MM er minutter!");
+                alert.showAndWait();
+                error = true;
+            } finally {
+                if (!error) {
+                    if (!textFieldLocationM.getText().equals("")) {
+                        facade.createMeeting(datePickerMeetingM.getValue().atTime(hour, minut), textFieldLocationM.getText());
+                        listViewMeetingsM.getItems().clear();
+                        listViewMeetingsM.getItems().addAll(facade.getMeetingList());
+                        textFieldMeetingM.clear();
+                    } else {
+                        alert.setHeaderText("Der mangler en lokation!");
+                        alert.setContentText("Indtast en lokation i tekstfeltet!");
+                        alert.showAndWait();
+                    }
                 }
             }
         }
@@ -632,7 +647,7 @@ class caseListAbler {
         this.caseNumber = caseNumber;
         this.date = date;
     }
-    
+
     public String getCaseNumber() {
         return caseNumber;
     }
@@ -659,10 +674,10 @@ class caseListAbler {
  * a way to format the meeting to the listview in the gui
  */
 class meetingListAbler {
-    
+
     LocalDateTime time;
     String location;
-    
+
     meetingListAbler(LocalDateTime time, String location) {
         this.location = location;
         this.time = time;
@@ -683,12 +698,12 @@ class meetingListAbler {
     public void setLocation(String location) {
         this.location = location;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Mødetid: " + time + " Lokation: " + location;
     }
-       
+
 }
 
 /**
