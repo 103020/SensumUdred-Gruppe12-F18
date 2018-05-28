@@ -43,6 +43,12 @@ public class GUIFacade implements IGUI{
     }
     
     @Override
+    public ICase accessCase(int parseInt) {
+        return b.accessCase(parseInt);
+    }
+
+    
+    @Override
     public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
         b.createCase(individualName, individualAddress, individualCPR, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
     }
@@ -98,6 +104,7 @@ public class GUIFacade implements IGUI{
         */
         //TODO: when a list is returnable
         for (ICase ic : b.getCaseList()) {
+            System.out.println(""+ic.getCaseNumber() + " : " +ic.getCreationDate());
             convert.add(new caseListAbler(""+ic.getCaseNumber(),""+ic.getCreationDate()));
         }
         return convert;
@@ -145,5 +152,4 @@ public class GUIFacade implements IGUI{
     public void setDiary(String text) {
         b.setDiary(text);
     }
-
 }

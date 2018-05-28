@@ -119,7 +119,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="userStatusMT" prefHeight="17.0" prefWidth="300.0" text="Label" GridPane.columnSpan="2" />
+                        <Label fx:id="userStatusMT" prefHeight="17.0" prefWidth="300.0" text="Ingen sag valgt" GridPane.columnSpan="2" />
                      </children>
                      <padding>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -163,7 +163,7 @@
                         <Button fx:id="dateSortButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonDate" prefHeight="25.0" prefWidth="150.0" text="Dato" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Button fx:id="casenumberSortButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCaseNumber" prefHeight="25.0" prefWidth="150.0" text="Sagsnummer" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <TextField fx:id="searchFieldMT" maxWidth="1.7976931348623157E308" onKeyReleased="#searchFieldHandler" promptText="Søgefelt" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <ListView fx:id="caseListViewMT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="5" />
+                        <ListView fx:id="caseListViewMT" onMouseClicked="#handleListVIewCaseListMT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="5" />
                         <Button fx:id="createCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCreateCaseMT" prefHeight="25.0" prefWidth="150.0" text="Lav Sag" />
                         <Button fx:id="editCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonEditCaseMT" text="Ændre Sag" GridPane.rowIndex="3" />
                         <Button fx:id="viewCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonViewCaseMT" text="Se Sag" GridPane.rowIndex="2" />

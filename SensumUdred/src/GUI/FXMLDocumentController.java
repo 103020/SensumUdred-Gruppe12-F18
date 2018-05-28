@@ -272,6 +272,12 @@ public class FXMLDocumentController implements Initializable {
                 break;
         }
     }
+    
+        @FXML
+    private void handleListVIewCaseListMT(MouseEvent event) {
+        String tempCaseNumber = caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber();
+        userStatusMT.setText("Sag valgt: "+tempCaseNumber);
+    }
 
     @FXML
     private void handleButtonMyCase(ActionEvent event) {
@@ -471,7 +477,8 @@ public class FXMLDocumentController implements Initializable {
             alert.setContentText("Lav en sag istedet.");
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
-            caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber(); //TODO: get the case so it can be viewed
+            facade.accessCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
+            //caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber(); //TODO: get the case so it can be viewed
             tabPane.getTabs().add(readCaseTab);
             tabPane.getSelectionModel().selectNext();
         } else {

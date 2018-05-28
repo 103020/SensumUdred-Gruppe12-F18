@@ -71,9 +71,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public ICase accessCase(int caseNumber) {
-        //TODO: Make this
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        //return cas.accessData(this, casworker)//need more implemented
+        return worker.accessCase(caseNumber, log);
     }
 
     @Override

@@ -31,9 +31,7 @@ public class CaseController{
         List<ICase> ICaseList = business.getCaseList(log);
         cases.clear();
         for(ICase cas : ICaseList){
-            System.out.println(InquiryFrom.valueOf("individual"));
-            System.out.println(InquiryFrom.valueOf(cas.getCaseFrom().toLowerCase()));
-            cases.add(new Case(
+            Case temp = new Case(
                     cas.getIndividual().getName(), 
                     cas.getIndividual().getAddress(), 
                     cas.getIndividual().getCPR(), 
@@ -45,7 +43,7 @@ public class CaseController{
                     cas.getWrittenConsent(), 
                     cas.getOralConsent(), 
                     cas.getCaseClarity(), 
-                    InquiryFrom.valueOf(cas.getCaseFrom().toLowerCase()), 
+                    InquiryFrom.valueOf(cas.getCaseFrom().toUpperCase()), 
                     cas.getCaseFromAddress(), 
                     new Caseworker(
                             cas.getCaseworker().getName(), 
@@ -55,7 +53,10 @@ public class CaseController{
                             ), 
                             cas.getCaseworker().getEmployeeID()
                     )
-            ));
+            );
+            temp.setCaseNumber(cas.getCaseNumber());
+            temp.setCreationDate(cas.getCreationDate());
+            cases.add(temp);
         }
         return cases;
     }

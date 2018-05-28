@@ -153,4 +153,6 @@ public interface IGUI {
     public void setFacadeCase(int caseNumber);
 
     public void setDiary(String text);
+
+    public ICase accessCase(int parseInt);
 }

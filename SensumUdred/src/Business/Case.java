@@ -15,7 +15,7 @@ public class Case implements ICase{
     private int caseNumber;
     private Caseworker caseworker;
     private Individual individual;
-    private final String creationDate;
+    private String creationDate;
     private Diary diary;
     private boolean isClosed;
     private Meeting meeting;
@@ -68,7 +68,11 @@ public class Case implements ICase{
         this.caseworker = caseworker;
 //        diary = new Diary("Oprettet", log);
 //        meeting = new Meeting();
-        meeting.setIndividual(this.individual);
+        try {
+            meeting.setIndividual(this.individual);
+        } catch(NullPointerException e){
+            System.out.println(e);
+        }
         
         switch(inquiryFrom){
             case INDIVIDUAL:
@@ -235,6 +239,9 @@ public class Case implements ICase{
 
     public void enterEntry(String note, ILog log) {
         diary.enterEntry(note, log);
+    }
+    public void setCreationDate(String date){
+        this.creationDate = date;
     }
     
     @Override
