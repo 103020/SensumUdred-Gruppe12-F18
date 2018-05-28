@@ -1,5 +1,6 @@
 package Starter;
 
+import GUI.SensumGUI;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,12 +11,12 @@ import javafx.stage.Stage;
  *
  * @author stefan
  */
-public class Starter extends Application {
+public class Starter{
     public static void main(String[] args){
-             
+        SensumGUI.main(args);
     }
 
-    @Override
+    /*@Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
@@ -23,5 +24,5 @@ public class Starter extends Application {
         
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
 }

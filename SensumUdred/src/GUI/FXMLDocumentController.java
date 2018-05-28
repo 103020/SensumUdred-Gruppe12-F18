@@ -437,7 +437,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleButtonEditCaseMT(ActionEvent event) {
+    private void handleButtonEditCaseMT(ActionEvent event) { //TODO: the things to edit are a little weird and not supposed to be edited
         Alert alert = new Alert(Alert.AlertType.ERROR);
         if (caseListViewMT.getItems().isEmpty()) {
             alert.setTitle("Listen er tom");
@@ -509,7 +509,7 @@ public class FXMLDocumentController implements Initializable {
             facade.setIndividualAddress(createPersonalNumberFieldEC.getText());
         }
         
-        //facade. (commentTextAreaEC.getText()) //diary call
+        facade.setDiary(commentTextAreaEC.getText()); //diary call
     }
 
     @FXML
