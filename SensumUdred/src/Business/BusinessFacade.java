@@ -8,6 +8,7 @@ package Business;
 import Acq.*;
 import Data.DataFacade;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -232,7 +233,8 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public List<ICase> getCaseList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new ArrayList<>(); //TODO: this is a test
     }
  
 }
