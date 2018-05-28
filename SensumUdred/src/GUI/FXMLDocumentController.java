@@ -520,6 +520,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonSaveChangesVC(ActionEvent event) {
+        facade.setFacadeCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
         if (!createNameFieldEC.getText().isEmpty()) {
             facade.setIndividualName(createNameFieldEC.getText());
         }
@@ -529,7 +530,6 @@ public class FXMLDocumentController implements Initializable {
         if (!createPersonalNumberFieldEC.getText().isEmpty()) {
             facade.setIndividualAddress(createPersonalNumberFieldEC.getText());
         }
-        facade.setFacadeCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
         facade.setDiary(commentTextAreaEC.getText()); //diary call
         tabPane.getTabs().remove(editCaseTab);
     }

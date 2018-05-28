@@ -17,7 +17,7 @@ public class Individual implements IIndividual{
     private String name;
     private String address;
     private int CPR;
-    private BusinessFacade businessFacade;
+    private BusinessFacade businessFacade = BusinessFacade.getInstance();
     
     
 

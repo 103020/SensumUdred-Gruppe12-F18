@@ -214,4 +214,6 @@ public interface IBusiness {
     public boolean updateIndividual(IIndividual individual, ILog log);
     public boolean updateCaseWorker(ICaseworker caseworker);
     public boolean updateDepartment(IDepartment department);
+
+    public void getDiary();
 }

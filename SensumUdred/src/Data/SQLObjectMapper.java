@@ -354,9 +354,9 @@ public class SQLObjectMapper {
         boolean success = false;
         try {
             st.execute("UPDATE INDIVIDUALS SET" +
-                " INDIVIDUALCPR = " + individual.getCPR() +
-                ", INDIVIDUALNAME = " + individual.getName() +
-                ", INDIVIDUALADDRESS = " + individual.getAddress() +
+                " INDIVIDUALCPR = " + "'" + individual.getCPR() + "'" +
+                ", INDIVIDUALNAME = " + "'" + individual.getName() + "'" +
+                ", INDIVIDUALADDRESS = " + "'"+ individual.getAddress() + "'" +
                 " WHERE INDIVIDUALS.INDIVIDUALCPR=" + individual.getCPR());
             success = true;
         } catch (SQLException e) {

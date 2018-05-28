@@ -69,6 +69,11 @@ public class Case implements ICase{
 //        diary = new Diary("Oprettet", log);
 //        meeting = new Meeting();
         try {
+            businessFacade.getDiary();
+        } catch (NullPointerException e){
+            System.out.println(e);
+        }
+        try {
             meeting.setIndividual(this.individual);
         } catch(NullPointerException e){
             System.out.println(e);
