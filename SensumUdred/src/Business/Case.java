@@ -16,7 +16,7 @@ public class Case implements ICase{
     private Caseworker caseworker;
     private Individual individual;
     private String creationDate;
-    private Diary diary;
+    private Diary diary = null;
     private boolean isClosed;
     private Meeting meeting;
     private StringBuilder inquiry;
@@ -68,6 +68,11 @@ public class Case implements ICase{
         this.caseworker = caseworker;
 //        diary = new Diary("Oprettet", log);
 //        meeting = new Meeting();
+        try {
+            businessFacade.getDiary();
+        } catch (NullPointerException e){
+            System.out.println(e);
+        }
         try {
             meeting.setIndividual(this.individual);
         } catch(NullPointerException e){
@@ -222,6 +227,8 @@ public class Case implements ICase{
 
     public String createMeeting(LocalDateTime dateTime, String location, Caseworker caseworker, ILog log) {
         meeting = new Meeting(dateTime, location, this.individual, caseworker, log);
+        log.writeLog(meeting);
+        businessFacade.saveMeeting(meeting, this, log);
         return meeting.messageToMeeting();
     }
 
@@ -240,8 +247,11 @@ public class Case implements ICase{
     public void enterEntry(String note, ILog log) {
         if (diary == null) {
             diary = new Diary(note, log);
+            System.out.println(""+this +" "+ diary +" "+ log);
+            businessFacade.saveDiary(this, diary, log);
         } else {
             diary.enterEntry(note, log);
+            businessFacade.updateDiary(diary, this, log);
         }
     }
     public void setCreationDate(String date){

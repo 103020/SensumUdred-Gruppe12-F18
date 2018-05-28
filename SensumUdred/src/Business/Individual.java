@@ -17,6 +17,7 @@ public class Individual implements IIndividual{
     private String name;
     private String address;
     private int CPR;
+    private BusinessFacade businessFacade = BusinessFacade.getInstance();
     
     
 
@@ -45,16 +46,19 @@ public class Individual implements IIndividual{
     public void setName(String name, ILog log) {
         log.writeLog(this);
         this.name = name;
+        businessFacade.updateIndividual(this, log);
     }
 
     public void setAddress(String address, ILog log) {
         log.writeLog(this);
         this.address = address;
+        businessFacade.updateIndividual(this, log);
     }
 
     public void setCPR(int CPR, ILog log) {
         log.writeLog(this);
         this.CPR = CPR;
+        businessFacade.updateIndividual(this, log);
     }
     
     @Override
