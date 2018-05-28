@@ -30,6 +30,11 @@ public interface IData {
     public boolean saveMeeting(IMeeting meeting, ICase cas, ILog log);
     public boolean saveIndividual(IIndividual individual, ILog log);
     public ICaseworker getCaseworker(String username);
-    public void updateCase(ICase cas, ILog log);
+    public boolean updateCase(ICase cas, ILog log);
+    public boolean updateDiary(IDiary diary, ICase cas, ILog log);
+    public boolean updateMeeting(IMeeting meeting, ICase cas, ILog log);
+    public boolean updateIndividual(IIndividual individual, ILog log);
+    public boolean updateCaseWorker(ICaseworker caseworker);
+    public boolean updateDepartment(IDepartment department);
     public void saveLog(ILog log);
 }

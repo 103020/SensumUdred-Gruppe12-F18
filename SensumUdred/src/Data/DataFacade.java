@@ -72,14 +72,39 @@ public class DataFacade implements IData{
     }  
     
     @Override
-    public void updateCase(ICase cas, ILog log){
+    public boolean updateCase(ICase cas, ILog log){
         SQLObjectMapper.saveLog(log);
-        SQLObjectMapper.updateCase(cas);
+        return SQLObjectMapper.updateCase(cas);
     }
 
     @Override
     public void saveLog(ILog log) {
         SQLObjectMapper.saveLog(log);
+    }
+
+    @Override
+    public boolean updateDiary(IDiary diary, ICase cas, ILog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean updateMeeting(IMeeting meeting, ICase cas, ILog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean updateIndividual(IIndividual individual, ILog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean updateCaseWorker(ICaseworker caseworker) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean updateDepartment(IDepartment department) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
     
