@@ -238,7 +238,11 @@ public class Case implements ICase{
     }
 
     public void enterEntry(String note, ILog log) {
-        diary.enterEntry(note, log);
+        if (diary == null) {
+            diary = new Diary(note, log);
+        } else {
+            diary.enterEntry(note, log);
+        }
     }
     public void setCreationDate(String date){
         this.creationDate = date;

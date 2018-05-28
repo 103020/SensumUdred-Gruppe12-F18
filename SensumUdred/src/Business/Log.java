@@ -22,7 +22,7 @@ public class Log<E> implements ILog{
 
     @Override
     public void writeLog(Object e) {
-        logString += "\n\t" + LocalDateTime.now().toString();
+        logString += "\n\t";
         logString += " access to " + e.toString();
     }
 

@@ -453,13 +453,13 @@ public class FXMLDocumentController implements Initializable {
             alert.setContentText("Lav en sag istedet.");
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
-            System.out.println(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()); //TODO: not edit a closed case, TODO: get the case so it can be edited
+            ICase temp = facade.accessCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
+            caseNumberLabelEC.setText(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber());
+            currentNameLabelEC.setText(temp.getIndividual().getName());
+            currentPersonalNumberLabelEC.setText(""+temp.getIndividual().getCPR());
+            currentAdresseLabelEC.setText(temp.getIndividual().getAddress());
             tabPane.getTabs().add(editCaseTab);
             tabPane.getSelectionModel().selectNext();
-            currentNameLabelEC.setText(facade.getIndividualName());
-            currentPersonalNumberLabelEC.setText(facade.getIndividualCPR()+"");
-            currentAdresseLabelEC.setText(facade.getIndividualAddress());
-            
         } else {
             alert.setTitle("Ingen ting valgt");
             alert.setHeaderText("Ingen sag er valgt!");
@@ -479,7 +479,15 @@ public class FXMLDocumentController implements Initializable {
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
             ICase temp = facade.accessCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
-            
+            caseNumberLabelVC.setText(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber());
+            nameLabelVC.setText(temp.getIndividual().getName());
+            personalNumberLabelVC.setText(""+temp.getIndividual().getCPR());
+            adresseLabelVC.setText(temp.getIndividual().getAddress());
+            try{
+            noteListViewVC.getItems().add(temp.getDiary().getEntry());
+            } catch(NullPointerException e){
+                noteListViewVC.getItems().add("Der er intet i dagbogen");
+            }
             //caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber(); //TODO: get the case so it can be viewed
             tabPane.getTabs().add(readCaseTab);
             tabPane.getSelectionModel().selectNext();
