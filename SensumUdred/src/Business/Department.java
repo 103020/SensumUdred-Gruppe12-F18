@@ -15,8 +15,13 @@ public class Department implements IDepartment{
     private String departmentName;
     private int amountOfEmployees;
     
-    Department(String name){
+    Department(String name, int amount){
         this.departmentName = name;
+        this.amountOfEmployees = amount;
+    }
+    
+    public void setAmountOfEmployees(int amount){
+        this.amountOfEmployees = amount;
     }
     
     @Override

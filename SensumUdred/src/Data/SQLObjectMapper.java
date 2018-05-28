@@ -13,7 +13,7 @@ public class SQLObjectMapper {
     //TODO: fix SQL statments, update colume names!
     static Connection db;
     static Statement st;
-    static ResultSet rs;
+    static ResultSet rs = null;
     static ResultSetMetaData rsmd;
     private static final String URL = "jdbc:postgresql://horton.elephantsql.com:5432/phgfknqv";
     private static final String USERNAME = "phgfknqv";
@@ -80,9 +80,14 @@ public class SQLObjectMapper {
         ArrayList<ICase> caseList = new ArrayList();
         establishConnection();
         try {
-            rs = st.executeQuery("SELECT * FROM CASES WHERE CASES.CASEWORKER=" 
+            rs = st.executeQuery("SELECT * FROM CASES INNER JOIN "
+                    + "INDIVIDUALS ON CASES.INDIVIDUAL=INDIVIDUALS.INDIVIDUALCPR "
+                    + "WHERE CASES.CASEWORKER=" 
                 + caseworker.getEmployeeID());
+            int i = 1;
             while (rs.next()) {
+                System.out.println(i);
+                i++;
                 CaseData cas = new CaseData(
                         rs.getBoolean("individualunderstanding"), 
                         rs.getBoolean("consent"), 
@@ -97,67 +102,22 @@ public class SQLObjectMapper {
                         rs.getBoolean("isClosed"), 
                         rs.getString("creationdate")
                 );
-                /* creating empty objects to hold attributes */
+                /* creating empty object to hold attributes */
                 IndividualData individual = new IndividualData();
-//                DiaryData diary = new DiaryData();
-//                MeetingData meeting = new MeetingData();
-                
-//                try {
-//                    /* create diary object */
-//                    ResultSet rs2 = st.executeQuery("SELECT * FROM DIARIES WHERE DIARY.CASE=" + cas.getCaseNumber());
-//                    rs2.next();
-//                    diary.setEntry(rs2.getString("entry"));
-//                    diary.setDate(rs2.getString("diarydate"));
-//                    rs2.close();
-//                } catch (NullPointerException e) {
-//                    e.printStackTrace();
-//                }
-//                
-                try {
-                    /* create individual object */
-                    ResultSet rs2 = st.executeQuery("SELECT * FROM INDIVIDUALS INNER JOIN "
-                            + "CASES ON INDIVIDUALS.INDIVIDUALCPR=CASES.INDIVIDUAL "
-                            + "WHERE CASES.CASENUMBER=" + cas.getCaseNumber());
-                    rs2.next();
-                    individual.setAttributes(
-                            rs2.getString("individualname"), 
-                            rs2.getString("individualAddress"), 
-                            rs2.getInt("individualCPR"));
-                    rs2.close();
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-                
-//                try {
-//                    /* create meeting object */ 
-//                    ResultSet rs2 = st.executeQuery("SELECT * FROM MEETINGS WHERE "
-//                            + "MEETINGS.PARTICIPANT1=" + cas.getIndividual().getCPR() 
-//                            + " AND MEETINGS.PARTICIPANT2=" 
-//                            + cas.getCaseworker().getEmployeeID());
-//                    rs2.next();
-//                    meeting.setAttributes(
-//                    rs2.getString("meetingdateandtime"), 
-//                    individual, caseworker, 
-//                    rs2.getString("location"), 
-//                    rs2.getBoolean("meetingactive"));
-//                    
-//                    rs2.close();
-//                } catch (NullPointerException e) {
-//                    e.printStackTrace();
-//                }
-                
-                rs.close();
+                    individual.setAttributes(rs.getString("individualname"),
+                            rs.getString("individualaddress"),
+                            rs.getInt("individualcpr"));
                 cas.addCaseworker(caseworker);
                 cas.addIndividual(individual);
-                
-//                cas.addMeeting(meeting);
-//                cas.addDiary(diary);
-                
+  
                 caseList.add(cas);
+            }
+            if (rs != null) {
+                rs.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }            
+        }       
         closeConnection();
         return caseList;
     }

@@ -181,7 +181,7 @@ public class BusinessFacade implements IBusiness {
         boolean loginSuccess = data.login(username, password);
         if (loginSuccess) {
             ICaseworker tempCaseworker = data.getCaseworker(username);
-            worker = new Caseworker(tempCaseworker.getName(), new Department(tempCaseworker.getDepartment().getName()), tempCaseworker.getEmployeeID());
+            worker = new Caseworker(tempCaseworker.getName(), new Department(tempCaseworker.getDepartment().getName(), tempCaseworker.getDepartment().getAmount()), tempCaseworker.getEmployeeID());
             return loginSuccess;
         }
         return loginSuccess;

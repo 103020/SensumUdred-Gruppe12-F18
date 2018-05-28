@@ -197,7 +197,7 @@ public class FXMLDocumentController implements Initializable {
         choiceBoxMT.getItems().addAll("Dato", "Sagsnummer");
         choiceBoxMT.setValue("Sagsnummer");
         //fList = new FilteredList(FXCollections.observableArrayList(facade.getCaseList()), p -> true); //temp to test
-        fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true);
+        
     }
 
     @FXML
@@ -211,6 +211,7 @@ public class FXMLDocumentController implements Initializable {
         } else {
             if (facade.login(usernameFieldLT.getText(), passwordFieldLT.getText())) {
                 //if you succesfully logged in
+                fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true);
                 userNameMT.setText("Username: " + usernameFieldLT.getText());
                 caseListViewMT.getItems().addAll(fList); //TODO: check this
                 tabPane.getTabs().add(meetingTab);

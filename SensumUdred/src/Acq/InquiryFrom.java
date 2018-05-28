@@ -11,7 +11,7 @@ package Acq;
  */
 public enum InquiryFrom {
     INDIVIDUAL("individual"), RELATIVES("relatives"), DOCTOR("doctor"), OTHER("other");
-    
+
     private String inquiryString; 
 
     InquiryFrom(String inquiryString) { 
