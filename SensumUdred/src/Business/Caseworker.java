@@ -22,13 +22,11 @@ public class Caseworker implements ICaseworker{
     private String employeeID; 
     private Case cas;
     private IBusiness businessFacade;
-    private CaseController caseControl;
     
     Caseworker(String name, Department department, String employeeID){
         this.name = name;
         this.department = department;
         this.employeeID = employeeID;
-        caseControl = new CaseController();
         cas = new Case();
         businessFacade = BusinessFacade.getInstance();
     }
@@ -48,7 +46,7 @@ public class Caseworker implements ICaseworker{
                 _inquiry, _individualInvolvement, individualUnderstanding, 
                 consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress, this);
         cas.setCaseNumber(cas.saveCase(cas, log));
-        caseControl.addCase(cas);
+        CaseController.addCase(cas);
     }
     
     public String createMeeting(LocalDateTime time, String location){
@@ -124,7 +122,7 @@ public class Caseworker implements ICaseworker{
     }
     
     public void setCase(int caseNumber){
-        this.cas = caseControl.getCase(caseNumber);
+        this.cas = CaseController.getCase(caseNumber);
     }
     
     public void enterEntry(String note){
@@ -142,22 +140,16 @@ public class Caseworker implements ICaseworker{
         cas.closeCase(log);
     }
     
-    public List<Case> getCaseList(){
-        return caseControl.getCaseList();
-    }
-    
     @Override
     public String toString(){
         return "Caseworker: " + this.employeeID + ", name: " + this.name;
     }
     
-    public List<Case> getCases(ILog log){
+    public List<Case> getCases(){
+        ILog log = new Log(this);
         log.writeLog(this);
-        List<ICase> ICaseList = businessFacade.getCaseList(log);
         List<Case> caseList = new ArrayList<>();
-        for (ICase cas : ICaseList) {
-            caseList.add((Case)cas);
-        }
+        caseList = CaseController.fetchCaseList(log);
         return caseList;
     }
 }

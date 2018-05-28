@@ -16,6 +16,7 @@ public class CaseController{
     
     private static List<Case> cases = new ArrayList();
     private static List<Meeting> meeting;
+    private static IBusiness business = BusinessFacade.getInstance();
 
     public static boolean addCase(Case newCase){
         return cases.add(newCase);
@@ -25,6 +26,15 @@ public class CaseController{
         return cases;
     }
     
+    public static List<Case> fetchCaseList(ILog log){
+        log.writeLog("Fetched list of available cases.");
+        List<ICase> ICaseList = business.getCaseList(log);
+        cases.clear();
+        for(ICase cas : ICaseList){
+            cases.add((Case)cas);
+        }
+        return cases;
+    }
     /**
      *
      * @param newMeeting
