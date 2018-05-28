@@ -71,7 +71,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public ICase accessCase(int caseNumber) {
-        return worker.accessCase(caseNumber, log); //TODO: log
+        return worker.accessCase(caseNumber); //TODO: log
     }
 
     @Override
@@ -237,6 +237,11 @@ public class BusinessFacade implements IBusiness {
             ICases.add((ICase)cas);
         }
         return ICases;
+    }
+    
+    @Override
+    public void saveLog(ILog log){
+        data.saveLog(log);
     }
  
 }

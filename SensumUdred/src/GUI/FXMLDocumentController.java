@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Acq.ICase;
 import Acq.IGUI;
 import Acq.IMeeting;
 import Acq.InquiryFrom;
@@ -477,7 +478,8 @@ public class FXMLDocumentController implements Initializable {
             alert.setContentText("Lav en sag istedet.");
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
-            facade.accessCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
+            ICase temp = facade.accessCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
+            
             //caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber(); //TODO: get the case so it can be viewed
             tabPane.getTabs().add(readCaseTab);
             tabPane.getSelectionModel().selectNext();

@@ -207,4 +207,5 @@ public interface IBusiness {
     public List<ICase> getCaseList(ILog log);
 
     public Iterable<ICase> getCaseList();
+    public void saveLog(ILog log);
 }

@@ -73,13 +73,15 @@ public class CaseController{
         return meeting;
     }
     
-    public static Case getCase(int caseNumber){
+    public static Case getCase(int caseNumber, ILog log){
+        log.writeLog("Access to case: " + caseNumber);
         int caseIndex = -1;
         for (int i = 0; i < cases.size(); i++) {
             if (cases.get(i).getCaseNumber() == caseNumber) {
                 caseIndex = i;
             }
         }
+        business.saveLog(log);
         return cases.get(caseIndex);
     }
     

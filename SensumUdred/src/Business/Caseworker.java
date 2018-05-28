@@ -31,9 +31,8 @@ public class Caseworker implements ICaseworker{
         businessFacade = BusinessFacade.getInstance();
     }
 
-    public boolean accessCase(int caseNumber, ILog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        //TODO: Stefan fix
+    public ICase accessCase(int caseNumber) {
+        return CaseController.getCase(caseNumber, new Log(this));
     }
 
     public void createCase(String individualName, String individualAddress, 
@@ -122,7 +121,7 @@ public class Caseworker implements ICaseworker{
     }
     
     public void setCase(int caseNumber){
-        this.cas = CaseController.getCase(caseNumber);
+        this.cas = CaseController.getCase(caseNumber, new Log(this));
     }
     
     public void enterEntry(String note){

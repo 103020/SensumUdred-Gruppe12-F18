@@ -76,5 +76,10 @@ public class DataFacade implements IData{
         SQLObjectMapper.saveLog(log);
         SQLObjectMapper.updateCase(cas);
     }
+
+    @Override
+    public void saveLog(ILog log) {
+        SQLObjectMapper.saveLog(log);
+    }
 }
     

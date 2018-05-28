@@ -31,4 +31,5 @@ public interface IData {
     public boolean saveIndividual(IIndividual individual, ILog log);
     public ICaseworker getCaseworker(String username);
     public void updateCase(ICase cas, ILog log);
+    public void saveLog(ILog log);
 }
