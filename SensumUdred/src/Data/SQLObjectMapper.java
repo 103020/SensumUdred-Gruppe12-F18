@@ -285,10 +285,6 @@ public class SQLObjectMapper {
         closeConnection();
         return success;
     }
-    /* possibly not needed since individual is fetched along with case */
-//    static IIndividual getIndividual(ICase cas){
-//        
-//    }
     
     static boolean updateCase(ICase cas){
         establishConnection();

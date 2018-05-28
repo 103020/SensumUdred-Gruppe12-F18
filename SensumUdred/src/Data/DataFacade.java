@@ -109,5 +109,20 @@ public class DataFacade implements IData{
     public boolean updateDepartment(IDepartment department) {
         return SQLObjectMapper.updateDepartment(department);
     }
+
+    @Override
+    public IDiary getDiary(ICase cas) {
+        return SQLObjectMapper.getDiary(cas);
+    }
+
+    @Override
+    public ArrayList<IDepartment> getDepartments() {
+        return SQLObjectMapper.getDepartments();
+    }
+
+    @Override
+    public IMeeting getMeeting(ICase cas) {
+        return SQLObjectMapper.getMeeting(cas);
+    }
 }
     
