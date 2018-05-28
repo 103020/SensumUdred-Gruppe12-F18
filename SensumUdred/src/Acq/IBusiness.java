@@ -6,6 +6,7 @@
 package Acq;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -215,5 +216,7 @@ public interface IBusiness {
     public boolean updateCaseWorker(ICaseworker caseworker);
     public boolean updateDepartment(IDepartment department);
 
-    public void getDiary();
+    public IDiary getDiary(ICase cas);
+    public ArrayList<IDepartment> getDepartments();
+    public IMeeting getMeeting(ICase cas);
 }

@@ -273,5 +273,20 @@ public class BusinessFacade implements IBusiness {
     public boolean updateDepartment(IDepartment department) {
         return data.updateDepartment(department);
     }
+
+    @Override
+    public IDiary getDiary(ICase cas) {
+        return data.getDiary(cas);
+    }
+
+    @Override
+    public ArrayList<IDepartment> getDepartments() {
+        return data.getDepartments();
+    }
+
+    @Override
+    public IMeeting getMeeting(ICase cas) {
+        return data.getMeeting(cas);
+    }
  
 }
