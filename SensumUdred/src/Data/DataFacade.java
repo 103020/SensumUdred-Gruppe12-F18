@@ -72,14 +72,42 @@ public class DataFacade implements IData{
     }  
     
     @Override
-    public void updateCase(ICase cas, ILog log){
+    public boolean updateCase(ICase cas, ILog log){
         SQLObjectMapper.saveLog(log);
-        SQLObjectMapper.updateCase(cas);
+        return SQLObjectMapper.updateCase(cas);
     }
 
     @Override
     public void saveLog(ILog log) {
         SQLObjectMapper.saveLog(log);
+    }
+
+    @Override
+    public boolean updateDiary(IDiary diary, ICase cas, ILog log) {
+        SQLObjectMapper.saveLog(log);
+        return SQLObjectMapper.updateDiary(diary, cas);
+    }
+
+    @Override
+    public boolean updateMeeting(IMeeting meeting, ICase cas, ILog log) {
+        SQLObjectMapper.saveLog(log);
+        return SQLObjectMapper.updateMeeting(meeting, cas);
+    }
+
+    @Override
+    public boolean updateIndividual(IIndividual individual, ILog log) {
+        SQLObjectMapper.saveLog(log);
+        return SQLObjectMapper.updateIndividual(individual);
+    }
+
+    @Override
+    public boolean updateCaseWorker(ICaseworker caseworker) {
+        return SQLObjectMapper.updateCaseWorker(caseworker);
+    }
+
+    @Override
+    public boolean updateDepartment(IDepartment department) {
+        return SQLObjectMapper.updateDepartment(department);
     }
 }
     
