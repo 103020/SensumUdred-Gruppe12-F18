@@ -68,16 +68,7 @@ public class Case implements ICase{
         this.caseworker = caseworker;
 //        diary = new Diary("Oprettet", log);
 //        meeting = new Meeting();
-        try {
-            businessFacade.getDiary(this);
-        } catch (NullPointerException e){
-            System.out.println(e);
-        }
-        try {
-            meeting.setIndividual(this.individual);
-        } catch(NullPointerException e){
-            System.out.println(e);
-        }
+        
         
         switch(inquiryFrom){
             case INDIVIDUAL:
@@ -256,6 +247,11 @@ public class Case implements ICase{
     }
     public void setCreationDate(String date){
         this.creationDate = date;
+    }
+    
+    public void setDiary(IDiary diary){
+        this.diary = new Diary(diary.getEntry(), new Log(caseworker));
+        this.diary.setDate(diary.getDate());
     }
     
     @Override

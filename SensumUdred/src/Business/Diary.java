@@ -19,7 +19,7 @@ public class Diary implements IDiary{
     private IBusiness businessFacade;
 
     Diary(String entry, ILog log) {
-        this.entry = new StringBuilder(entry);
+        this.entry = new StringBuilder("Dagbog oprettet. " + entry);
         date = LocalDateTime.now().toString();
         businessFacade = BusinessFacade.getInstance();
         log.writeLog("Diary created date: " + date);
@@ -50,6 +50,10 @@ public class Diary implements IDiary{
     @Override
     public String getEntry() {
         return this.entry.toString();
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
     
     

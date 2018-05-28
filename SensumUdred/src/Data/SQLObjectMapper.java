@@ -84,10 +84,7 @@ public class SQLObjectMapper {
                     + "INDIVIDUALS ON CASES.INDIVIDUAL=INDIVIDUALS.INDIVIDUALCPR "
                     + "WHERE CASES.CASEWORKER=" 
                 + caseworker.getEmployeeID());
-            int i = 1;
             while (rs.next()) {
-                System.out.println(i);
-                i++;
                 CaseData cas = new CaseData(
                         rs.getBoolean("individualunderstanding"), 
                         rs.getBoolean("consent"), 
@@ -143,7 +140,7 @@ public class SQLObjectMapper {
         DiaryData diary = new DiaryData();
         try {
             rs = st.executeQuery("SELECT * FROM DIARIES WHERE "
-                    + "DIARY.DIARYBELONGSTOCASENUMBER=" + cas.getCaseNumber());
+                    + "DIARIES.DIARYBELONGSTOCASENUMBER=" + cas.getCaseNumber());
             rs.next();
                diary.setEntry(rs.getString("ENTRY"));
                diary.setDate(rs.getString("DIARYDATE"));
@@ -316,7 +313,7 @@ public class SQLObjectMapper {
         boolean success = false;
         try {
             st.execute("UPDATE DIARIES SET" +
-                "ENTRY = " + diary.getEntry() + 
+                " ENTRY='" + diary.getEntry() + "'" +
                 " WHERE DIARIES.DIARYBELONGSTOCASENUMBER=" + cas.getCaseNumber());
             success = true;
         } catch (SQLException e) {

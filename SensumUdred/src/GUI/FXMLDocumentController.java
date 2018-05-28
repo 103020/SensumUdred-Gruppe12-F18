@@ -5,10 +5,7 @@
  */
 package GUI;
 
-import Acq.ICase;
-import Acq.IGUI;
-import Acq.IMeeting;
-import Acq.InquiryFrom;
+import Acq.*;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,19 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -276,8 +261,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleListVIewCaseListMT(MouseEvent event) {
-        String tempCaseNumber = caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber();
-        userStatusMT.setText("Sag valgt: " + tempCaseNumber);
+        String tempCaseNumber = null;
+        
+        if (caseListViewMT.getSelectionModel().getSelectedItem() == null) {
+            return;
+        } else {
+            tempCaseNumber = caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber();
+            userStatusMT.setText("Sag valgt: " + tempCaseNumber);
+        }
     }
 
     @FXML
@@ -423,7 +414,7 @@ public class FXMLDocumentController implements Initializable {
                     inquiry,
                     nameAdresseTextFieldCO.getText()
             );
-            //facade.setDiary(commentTextAreaCC.getText());
+            facade.setDiary(commentTextAreaCC.getText());
         }
     }
 
@@ -478,15 +469,16 @@ public class FXMLDocumentController implements Initializable {
             alert.setContentText("Lav en sag istedet.");
             alert.showAndWait();
         } else if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
+            facade.setFacadeCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
             ICase temp = facade.accessCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
             caseNumberLabelVC.setText(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber());
             nameLabelVC.setText(temp.getIndividual().getName());
             personalNumberLabelVC.setText("" + temp.getIndividual().getCPR());
             adresseLabelVC.setText(temp.getIndividual().getAddress());
             noteListViewVC.getItems().clear();
-            System.out.println(temp.getDiary().getEntry());
             try {
-                noteListViewVC.getItems().add(temp.getDiary().getEntry());
+                noteListViewVC.getItems().add(0, temp.getDiary().getEntry());
+//                noteListViewVC.getItems().add(temp.getDiary().getEntry());
             } catch (NullPointerException e) {
                 noteListViewVC.getItems().add("Der er intet i dagbogen");
             }

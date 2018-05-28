@@ -122,6 +122,19 @@ public class Caseworker implements ICaseworker{
     
     public void setCase(int caseNumber){
         this.cas = CaseController.getCase(caseNumber, new Log(this));
+        try {
+            Diary tempDiary = new Diary(businessFacade.getDiary(cas).getEntry(), new Log(this));
+            tempDiary.setDate(businessFacade.getDiary(cas).getDate());
+            cas.setDiary(tempDiary);
+        } catch (NullPointerException e){
+            System.out.println(e);
+        }
+        try {
+            
+            cas.getMeeting().setIndividual(cas.getIndividual());
+        } catch(NullPointerException e){
+            System.out.println(e);
+        }
     }
     
     public void enterEntry(String note){
