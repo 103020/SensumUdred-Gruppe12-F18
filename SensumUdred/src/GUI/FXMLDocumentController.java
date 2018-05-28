@@ -483,12 +483,13 @@ public class FXMLDocumentController implements Initializable {
             nameLabelVC.setText(temp.getIndividual().getName());
             personalNumberLabelVC.setText("" + temp.getIndividual().getCPR());
             adresseLabelVC.setText(temp.getIndividual().getAddress());
+            noteListViewVC.getItems().clear();
+            System.out.println(temp.getDiary().getEntry());
             try {
                 noteListViewVC.getItems().add(temp.getDiary().getEntry());
             } catch (NullPointerException e) {
                 noteListViewVC.getItems().add("Der er intet i dagbogen");
             }
-            //caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber(); //TODO: get the case so it can be viewed
             tabPane.getTabs().add(readCaseTab);
             tabPane.getSelectionModel().selectNext();
         } else {
@@ -528,7 +529,7 @@ public class FXMLDocumentController implements Initializable {
         if (!createPersonalNumberFieldEC.getText().isEmpty()) {
             facade.setIndividualAddress(createPersonalNumberFieldEC.getText());
         }
-
+        facade.setFacadeCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
         facade.setDiary(commentTextAreaEC.getText()); //diary call
         tabPane.getTabs().remove(editCaseTab);
     }

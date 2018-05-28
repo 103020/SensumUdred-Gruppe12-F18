@@ -226,7 +226,7 @@ public class BusinessFacade implements IBusiness {
      */
     @Override
     public List<ICase> getCaseList(ILog log) {
-        return data.getCases(worker, log); //TODO: get a log
+        return data.getCases(worker, log);
     }
 
     @Override
@@ -242,6 +242,36 @@ public class BusinessFacade implements IBusiness {
     @Override
     public void saveLog(ILog log){
         data.saveLog(log);
+    }
+
+    @Override
+    public boolean updateCase(ICase cas, ILog log) {
+        return data.updateCase(cas, log);
+    }
+
+    @Override
+    public boolean updateDiary(IDiary diary, ICase cas, ILog log) {
+        return data.updateDiary(diary, cas, log);
+    }
+
+    @Override
+    public boolean updateMeeting(IMeeting meeting, ICase cas, ILog log) {
+        return data.updateMeeting(meeting, cas, log);
+    }
+
+    @Override
+    public boolean updateIndividual(IIndividual individual, ILog log) {
+        return data.updateIndividual(individual, log);
+    }
+
+    @Override
+    public boolean updateCaseWorker(ICaseworker caseworker) {
+        return data.updateCaseWorker(caseworker);
+    }
+
+    @Override
+    public boolean updateDepartment(IDepartment department) {
+        return data.updateDepartment(department);
     }
  
 }

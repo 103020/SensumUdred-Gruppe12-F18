@@ -145,7 +145,7 @@ public class GUIFacade implements IGUI{
 
     @Override
     public void setFacadeCase(int caseNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        b.setFacadeCase(caseNumber);
     }
 
     @Override

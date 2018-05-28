@@ -208,4 +208,10 @@ public interface IBusiness {
 
     public Iterable<ICase> getCaseList();
     public void saveLog(ILog log);
+    public boolean updateCase(ICase cas, ILog log);
+    public boolean updateDiary(IDiary diary, ICase cas, ILog log);
+    public boolean updateMeeting(IMeeting meeting, ICase cas, ILog log);
+    public boolean updateIndividual(IIndividual individual, ILog log);
+    public boolean updateCaseWorker(ICaseworker caseworker);
+    public boolean updateDepartment(IDepartment department);
 }
