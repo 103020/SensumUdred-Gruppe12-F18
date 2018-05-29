@@ -16,12 +16,12 @@ public class Individual implements IIndividual{
 
     private String name;
     private String address;
-    private int CPR;
+    private long CPR;
     private BusinessFacade businessFacade = BusinessFacade.getInstance();
     
     
 
-    Individual(String name, String address, int CPR, ILog log) {
+    Individual(String name, String address, long CPR, ILog log) {
         this.name = name;
         this.address = address;
         this.CPR = CPR;
@@ -39,7 +39,7 @@ public class Individual implements IIndividual{
     }
 
     @Override
-    public int getCPR() {
+    public long getCPR() {
         return CPR;
     }
 
@@ -55,7 +55,7 @@ public class Individual implements IIndividual{
         businessFacade.updateIndividual(this, log);
     }
 
-    public void setCPR(int CPR, ILog log) {
+    public void setCPR(long CPR, ILog log) {
         log.writeLog(this);
         this.CPR = CPR;
         businessFacade.updateIndividual(this, log);

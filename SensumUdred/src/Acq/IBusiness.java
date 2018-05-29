@@ -163,7 +163,7 @@ public interface IBusiness {
      * 
      * @return returns the CPR of the individual
      */
-    public int getIndividualCPR();
+    public long getIndividualCPR();
     
     /**
      * 
@@ -181,7 +181,7 @@ public interface IBusiness {
      * 
      * @param CPR sets the CPR of the individual
      */
-    public void setIndividualCPR(int CPR);    
+    public void setIndividualCPR(long CPR);    
     
     /**
      *

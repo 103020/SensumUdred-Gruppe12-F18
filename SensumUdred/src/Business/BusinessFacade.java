@@ -155,7 +155,7 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public int getIndividualCPR() {
+    public long getIndividualCPR() {
         return worker.getIndividual().getCPR();
     }
 
@@ -170,7 +170,7 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void setIndividualCPR(int CPR) {
+    public void setIndividualCPR(long CPR) {
         worker.setIndividualCPR(CPR);
     }
 

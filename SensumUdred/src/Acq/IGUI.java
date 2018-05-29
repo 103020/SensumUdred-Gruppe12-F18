@@ -100,7 +100,7 @@ public interface IGUI {
      *
      * @param CPR set the CPR/personal number for the individual
      */
-    public void setIndividualCPR(int CPR);
+    public void setIndividualCPR(long CPR);
 
     /**
      *
@@ -118,7 +118,7 @@ public interface IGUI {
      *
      * @return the individual CPR
      */
-    public int getIndividualCPR();
+    public long getIndividualCPR();
 
     /**
      *

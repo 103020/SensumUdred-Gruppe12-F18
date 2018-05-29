@@ -89,7 +89,7 @@ public class GUIFacade implements IGUI{
     }
 
     @Override
-    public void setIndividualCPR(int CPR) {
+    public void setIndividualCPR(long CPR) {
         b.setIndividualCPR(CPR);
     }
 
@@ -139,7 +139,7 @@ public class GUIFacade implements IGUI{
     }
 
     @Override
-    public int getIndividualCPR() {
+    public long getIndividualCPR() {
         return b.getIndividualCPR();
     }
 
