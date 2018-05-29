@@ -164,4 +164,8 @@ public class Caseworker implements ICaseworker{
         caseList = CaseController.fetchCaseList(log);
         return caseList;
     }
+
+    void setMeeting(IMeeting temp) {
+        cas.setMeeting(new Meeting(temp.getMeetingTime(), temp.getLocation(), temp.getIndividual(), this, new Log(this)));
+    }
 }

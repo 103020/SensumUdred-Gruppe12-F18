@@ -155,4 +155,6 @@ public interface IGUI {
     public void setDiary(String text);
 
     public ICase accessCase(int parseInt);
+
+    public IMeeting getAMeeting(ICase temp);
 }

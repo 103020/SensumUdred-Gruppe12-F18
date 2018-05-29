@@ -258,4 +258,9 @@ public class Case implements ICase{
     public String toString(){
         return "Casenumber" + this.caseNumber;
     }
+
+    @Override
+    public void setMeeting(Meeting meeting) {
+        this.meeting = meeting; 
+    }
 }

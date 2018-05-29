@@ -1,6 +1,7 @@
 package Data;
 
 import Acq.*;
+import Business.Meeting;
 import java.time.LocalDateTime;
 
 /**
@@ -140,5 +141,10 @@ public class CaseData implements ICase{
     @Override
     public IMeeting getMeeting() {
         return meeting;
+    }
+
+    @Override
+    public void setMeeting(Meeting meeting) {
+        //Not supposed to do anything in here but it have to be added to ICase to work
     }
 }

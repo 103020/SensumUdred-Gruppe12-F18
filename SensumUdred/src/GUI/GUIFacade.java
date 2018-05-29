@@ -152,4 +152,9 @@ public class GUIFacade implements IGUI{
     public void setDiary(String text) {
         b.setDiary(text);
     }
+
+    @Override
+    public IMeeting getAMeeting(ICase temp) {
+        return b.getMeeting(temp);
+    }
 }

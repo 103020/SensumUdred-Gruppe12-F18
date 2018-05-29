@@ -82,7 +82,13 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public void createMeeting(LocalDateTime time, String location){
-        worker.createMeeting(time, location);
+        Log tLog = new Log(worker);
+        worker.getCase().setMeeting(new Meeting(time, location, worker.getCase().getIndividual(), worker, tLog));
+        if (worker.getCase().getMeeting().getIndividual() != null) {
+            data.updateMeeting(worker.getMeeting(), worker.getCase(), tLog);
+        } else {
+            worker.createMeeting(time, location);
+        }
     }
 
     @Override
@@ -286,7 +292,9 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public IMeeting getMeeting(ICase cas) {
-        return data.getMeeting(cas);
+        IMeeting temp = data.getMeeting(cas);
+        worker.setMeeting(temp); //TODO: set meeting in business
+        return temp;
     }
  
 }

@@ -235,7 +235,7 @@ public class SQLObjectMapper {
             st.execute("INSERT INTO MEETINGS (MEETINGINDIVIDUAL,MEETINGCASEWORKER,"
                 + "MEETINGBELONGSTOCASE," 
                 + "MEETINGDATEANDTIME,LOCATION,MEETINGACTIVE) VALUES ('" 
-                + meeting.getIndividual() + "','" + meeting.getCaseworker()
+                + meeting.getIndividual().getCPR() + "','" + meeting.getCaseworker().getEmployeeID()
                 + "','" + cas.getCaseNumber()
                 + "','" + meeting.getMeetingTime().toString() + "','" 
                 + meeting.getLocation() + "','" + meeting.getActive() + "')");
@@ -252,8 +252,8 @@ public class SQLObjectMapper {
         MeetingData meeting = new MeetingData();
         try {
             rs = st.executeQuery("SELECT * FROM MEETINGS WHERE "
-                    + "MEETINGS.MEETINGINDIVIDUAL=" + cas.getIndividual().getCPR() 
-                    + " AND MEETINGS.MEETINGCASEWORKER=" + cas.getCaseworker().getEmployeeID());
+                    + "MEETINGS.MEETINGINDIVIDUAL='" + cas.getIndividual().getCPR() 
+                    + "' AND MEETINGS.MEETINGCASEWORKER='" + cas.getCaseworker().getEmployeeID() + "'");
             rs.next();
            
             meeting.setAttributes(rs.getString("meetingdateandtime"), 
@@ -328,11 +328,11 @@ public class SQLObjectMapper {
         boolean success = false;
         try {
             st.execute("UPDATE MEETINGS SET" +
-                " MEETINGCASEWORKER = " + meeting.getCaseworker() +
-                ", MEETINGDATEANDTIME = " + meeting.getMeetingTime().toString() +
-                ", LOCATION = " + meeting.getLocation() +
-                ", MEETINGACTIVE = " + meeting.getActive() +
-                " WHERE MEETINGS.MEETINGBELONGSTOCASENUMBER=" + cas.getCaseNumber());
+                " MEETINGCASEWORKER='" + meeting.getCaseworker().getEmployeeID() +
+                "', MEETINGDATEANDTIME='" + meeting.getMeetingTime().toString() +
+                "', LOCATION='" + meeting.getLocation() +
+                "', MEETINGACTIVE='" + meeting.getActive() +
+                "' WHERE MEETINGS.MEETINGBELONGSTOCASE='" + cas.getCaseNumber() + "'");
             success = true;
         } catch (SQLException e) {
             e.printStackTrace();

@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
@@ -196,6 +197,7 @@ public class FXMLDocumentController implements Initializable {
                 tabPane.getSelectionModel().selectNext();
                 if (listViewMeetingsM.getItems().isEmpty()) {
                     tabPane.getSelectionModel().selectNext();
+                    listViewMeetingsM.getItems().addAll(facade.getMeetingList());
                 }
                 caseListViewMT.getItems().clear();
                 caseListViewMT.getItems().addAll(fList);
@@ -259,6 +261,19 @@ public class FXMLDocumentController implements Initializable {
         } else {
             tempCaseNumber = caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber();
             userStatusMT.setText("Sag valgt: " + tempCaseNumber);
+            ICase temp = facade.accessCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
+            IMeeting temp2 = null;
+            try {
+                temp2 = facade.getAMeeting(temp);
+            } catch(NullPointerException e){
+                List tempList = new ArrayList<meetingListAbler>(); //only if there are not meeting for the selected case
+                tempList.add(new meetingListAbler(LocalDateTime.now(), "There is no meeting right now."));
+                listViewMeetingsM.getItems().addAll(tempList);
+            }
+            List convert = new ArrayList();
+            convert.add(new meetingListAbler(temp2.getMeetingTime(),""+temp2.getLocation()));
+            listViewMeetingsM.getItems().clear();
+            listViewMeetingsM.getItems().addAll(convert);
         }
     }
 
@@ -563,6 +578,7 @@ public class FXMLDocumentController implements Initializable {
                         listViewMeetingsM.getItems().clear();
                         listViewMeetingsM.getItems().addAll(facade.getMeetingList());
                         textFieldMeetingM.clear();
+                        textFieldLocationM.clear();
                     } else {
                         alert.setHeaderText("Der mangler en lokation!");
                         alert.setContentText("Indtast en lokation i tekstfeltet!");
