@@ -48,7 +48,7 @@ public class Case implements ICase{
      * @param caseFromAdress The Address of the source, the address of who made the inquiry
      */
     
-    Case(String individualName, String individualAddress, int individualCPR, ILog log, String _inquiry,
+    Case(String individualName, String individualAddress, String individualCPR, ILog log, String _inquiry,
             String _individualInvolvement, boolean individualUnderstanding,boolean consent,
             boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, 
             String _caseFromAddress, Caseworker caseworker){
@@ -231,7 +231,7 @@ public class Case implements ICase{
         individual.setAddress(Address, log);
     }
 
-    public void setIndividualCPR(int CPR, ILog log) {
+    public void setIndividualCPR(String CPR, ILog log) {
         individual.setCPR(CPR, log);
     }
 
