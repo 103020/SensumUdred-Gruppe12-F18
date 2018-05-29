@@ -507,6 +507,7 @@ public class FXMLDocumentController implements Initializable {
             caseListViewMT.getItems().addAll(fList);
             listViewMeetingsM.getItems().clear();
             listViewMeetingsM.getItems().addAll(facade.getMeetingList());
+            userStatusMT.setText("Ingen sag valgt");
         }
     }
 
