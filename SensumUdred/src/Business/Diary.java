@@ -13,14 +13,19 @@ import java.util.Date;
  *
  * @author Nicolai
  */
-public class Diary implements IDiary{
+public class Diary implements IDiary {
+
     private String date;
     private StringBuilder entry;
     private IBusiness businessFacade;
 
     Diary(String entry, ILog log) {
-        if (this.entry.substring(0, 17).equals("Dagbog oprettet. ")) {
-            this.entry = new StringBuilder(entry);
+        if (entry.length() > 15) {
+            if (entry.substring(0, 16).equals("Dagbog oprettet.")) {
+                this.entry = new StringBuilder(entry);
+            } else {
+                this.entry = new StringBuilder("Dagbog oprettet. " + entry); //should not be used
+            }
         } else {
             this.entry = new StringBuilder("Dagbog oprettet. " + entry);
         }
@@ -34,9 +39,8 @@ public class Diary implements IDiary{
         return date;
     }
 
-    
     @Override
-    public String toString(){
+    public String toString() {
         return "Diary entry date: " + date;
     }
 
@@ -48,7 +52,7 @@ public class Diary implements IDiary{
     public void enterEntry(String note, ILog log) {
         log.writeLog(this);
         entry.insert(entry.length(), "\n" + toString() + " " + note);
-       
+
     }
 
     @Override
@@ -59,6 +63,5 @@ public class Diary implements IDiary{
     public void setDate(String date) {
         this.date = date;
     }
-    
-    
+
 }

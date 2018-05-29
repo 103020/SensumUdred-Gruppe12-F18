@@ -415,6 +415,9 @@ public class FXMLDocumentController implements Initializable {
                     nameAdresseTextFieldCO.getText()
             );
             facade.setDiary(commentTextAreaCC.getText());
+            fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true);
+            caseListViewMT.getItems().clear();
+            caseListViewMT.getItems().addAll(fList);
         }
     }
 
