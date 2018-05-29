@@ -49,12 +49,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label userNameMT;
     @FXML
-    private Button myCaseButtonMT;
-    @FXML
-    private Button dateSortButtonMT;
-    @FXML
-    private Button casenumberSortButtonMT;
-    @FXML
     private TextField searchFieldMT;
     @FXML
     private ListView<caseListAbler> caseListViewMT;
@@ -72,8 +66,6 @@ public class FXMLDocumentController implements Initializable {
     private TabPane tabPane;
     @FXML
     private Tab loginTab;
-    @FXML
-    private Label caseNumberLabelCC;
     @FXML
     private Tab editCaseTab;
     @FXML
@@ -271,17 +263,7 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
-    @FXML
-    private void handleButtonMyCase(ActionEvent event) {
-        //TODO: what do it need to do?
-    }
 
-    @FXML
-    private void handleButtonDate(ActionEvent event) {
-        //TODO: sort the fList when what date is, is in place
-    }
-
-    @FXML
     private void handleButtonCaseNumber(ActionEvent event) {
         fList = new FilteredList(FXCollections.observableArrayList(sortCaseNumber()), p -> true);
         caseListViewMT.getItems().clear();
@@ -535,6 +517,7 @@ public class FXMLDocumentController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Forkert indput!");
         ICase tempCase;
+        facade.setFacadeCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
         boolean caseSelected = false;
         if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
             caseSelected = true;

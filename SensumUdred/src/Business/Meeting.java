@@ -37,6 +37,8 @@ public class Meeting implements IMeeting {
         this.caseworker = caseworker;
         meetingActive = true;
         businessFacade = BusinessFacade.getInstance();
+        System.out.println(individual.getCPR());
+        System.out.println(time.toString());
         log.writeLog("Meeting with individual: "+ individual.getCPR() + " Created on"
                 + " date: " + time.toString());
     }
