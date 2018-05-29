@@ -233,7 +233,7 @@ public class SQLObjectMapper {
         boolean success = false;
         try {
             st.execute("INSERT INTO MEETINGS (MEETINGINDIVIDUAL,MEETINGCASEWORKER,"
-                + "MEETINGBELONGSTOCASENUMBER," 
+                + "MEETINGBELONGSTOCASE," 
                 + "MEETINGDATEANDTIME,LOCATION,MEETINGACTIVE) VALUES ('" 
                 + meeting.getIndividual() + "','" + meeting.getCaseworker()
                 + "','" + cas.getCaseNumber()
