@@ -19,7 +19,11 @@ public class Diary implements IDiary{
     private IBusiness businessFacade;
 
     Diary(String entry, ILog log) {
-        this.entry = new StringBuilder("Dagbog oprettet. " + entry);
+        if (this.entry.substring(0, 17).equals("Dagbog oprettet. ")) {
+            this.entry = new StringBuilder(entry);
+        } else {
+            this.entry = new StringBuilder("Dagbog oprettet. " + entry);
+        }
         date = LocalDateTime.now().toString();
         businessFacade = BusinessFacade.getInstance();
         log.writeLog("Diary created date: " + date);
