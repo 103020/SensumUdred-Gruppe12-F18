@@ -401,5 +401,20 @@ public class SQLObjectMapper {
         }
         closeConnection();
     }
+    
+    static ArrayList<String> getLogs(){
+        establishConnection();
+        ArrayList<String> logList = new ArrayList<>();
+        try {
+            rs = st.executeQuery("SELECT * FROM LOGS");
+            while (rs.next()) {
+                logList.add("Log#" + rs.getString(1) + ": " + rs.getString("LogString") + "\n");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return logList;
+    }
    
 }
