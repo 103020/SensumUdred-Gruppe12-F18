@@ -21,7 +21,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-
 /**
  *
  * @author 103020
@@ -299,7 +298,7 @@ public class FXMLDocumentController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         boolean next = false;
         if (!createNameFieldCC.getText().equals("") && !createPersonalNumberFieldCC.getText().equals("") && !createAdresseFieldCC.getText().equals("")) {
-            if (isInteger(createPersonalNumberFieldCC.getText(), 10)) {
+            if (createPersonalNumberFieldCC.getLength() == 10 && isNumeric(createPersonalNumberFieldCC.getText(), 10)) {
                 next = true;
             } else {
                 alert.setTitle("Forkert input");
@@ -387,7 +386,7 @@ public class FXMLDocumentController implements Initializable {
         System.out.println( //a test
                 createNameFieldCC.getText()
                 + createAdresseFieldCC.getText()
-                + Integer.parseInt(createPersonalNumberFieldCC.getText())
+                + createPersonalNumberFieldCC.getText()
                 + inquiryTextAreaCO.getText()
                 + citizenInvolvementTextAreaCO.getText()
                 + consentBoo
@@ -403,7 +402,7 @@ public class FXMLDocumentController implements Initializable {
             facade.createCase(
                     createNameFieldCC.getText(),
                     createAdresseFieldCC.getText(),
-                    Integer.parseInt(createPersonalNumberFieldCC.getText()),
+                    createPersonalNumberFieldCC.getText(),
                     inquiryTextAreaCO.getText(),
                     citizenInvolvementTextAreaCO.getText(),
                     consentBoo,
@@ -521,7 +520,7 @@ public class FXMLDocumentController implements Initializable {
             facade.setIndividualName(createNameFieldEC.getText());
         }
         if (!createPersonalNumberFieldEC.getText().isEmpty()) {
-            facade.setIndividualCPR(Integer.parseInt(createPersonalNumberFieldEC.getText()));
+            facade.setIndividualCPR(createPersonalNumberFieldEC.getText());
         }
         if (!createPersonalNumberFieldEC.getText().isEmpty()) {
             facade.setIndividualAddress(createPersonalNumberFieldEC.getText());
@@ -598,7 +597,7 @@ public class FXMLDocumentController implements Initializable {
      * @param radix the number system
      * @return a boolean true is returned if s was a number
      */
-    protected static boolean isInteger(String s, int radix) {
+    protected static boolean isNumeric(String s, int radix) {
         if (s.isEmpty()) {
             return false;
         }

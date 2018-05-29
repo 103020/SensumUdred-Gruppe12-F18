@@ -103,7 +103,7 @@ public class SQLObjectMapper {
                 IndividualData individual = new IndividualData();
                     individual.setAttributes(rs.getString("individualname"),
                             rs.getString("individualaddress"),
-                            rs.getInt("individualcpr"));
+                            rs.getString("individualcpr"));
                 cas.addCaseworker(caseworker);
                 cas.addIndividual(individual);
   

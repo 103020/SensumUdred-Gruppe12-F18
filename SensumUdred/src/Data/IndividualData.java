@@ -17,19 +17,19 @@ public class IndividualData implements IIndividual{
 
     private String name;
     private String address;
-    private long CPR;
+    private String CPR;
     
     IndividualData(){
         
     }
 
-    IndividualData(String name, String address, long CPR) {
+    IndividualData(String name, String address, String CPR) {
         this.name = name;
         this.address = address;
         this.CPR = CPR;
     }
 
-    void setAttributes(String name, String address, long CPR){
+    void setAttributes(String name, String address, String CPR){
         this.name = name;
         this.address = address;
         this.CPR = CPR;
@@ -46,7 +46,7 @@ public class IndividualData implements IIndividual{
     }
 
     @Override
-    public long getCPR() {
+    public String getCPR() {
         return CPR;
     }
 

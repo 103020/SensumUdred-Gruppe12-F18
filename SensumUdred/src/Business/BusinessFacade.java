@@ -75,7 +75,7 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
+    public void createCase(String individualName, String individualAddress, String individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
         worker.createCase(individualName, individualAddress, individualCPR, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
         
     }
@@ -155,7 +155,7 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public long getIndividualCPR() {
+    public String getIndividualCPR() {
         return worker.getIndividual().getCPR();
     }
 
@@ -170,7 +170,7 @@ public class BusinessFacade implements IBusiness {
     }
 
     @Override
-    public void setIndividualCPR(long CPR) {
+    public void setIndividualCPR(String CPR) {
         worker.setIndividualCPR(CPR);
     }
 

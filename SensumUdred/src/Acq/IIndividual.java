@@ -24,5 +24,5 @@ public interface IIndividual {
      *
      * @return returns the CPR number of the individual
      */
-    long getCPR();    
+    public String getCPR();    
 }

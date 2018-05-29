@@ -45,7 +45,7 @@ public interface IGUI {
      * @param inquiryFrom The source of the inquiry, who made the inquiry
      * @param caseFromAdress The Address of the source, the address of who made the inquiry
      */
-    public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress);
+    public void createCase(String individualName, String individualAddress, String individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress);
 
     /**
      *
@@ -100,7 +100,7 @@ public interface IGUI {
      *
      * @param CPR set the CPR/personal number for the individual
      */
-    public void setIndividualCPR(long CPR);
+    public void setIndividualCPR(String CPR);
 
     /**
      *
@@ -118,7 +118,7 @@ public interface IGUI {
      *
      * @return the individual CPR
      */
-    public long getIndividualCPR();
+    public String getIndividualCPR();
 
     /**
      *
