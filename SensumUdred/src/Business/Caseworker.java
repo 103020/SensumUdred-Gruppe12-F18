@@ -46,6 +46,7 @@ public class Caseworker implements ICaseworker{
                 consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress, this);
         cas.setCaseNumber(cas.saveCase(cas, log));
         CaseController.addCase(cas);
+        cas.createMeeting(LocalDateTime.now(), "Der er intet møde for denne sag", this, log);
     }
     
     public String createMeeting(LocalDateTime time, String location){

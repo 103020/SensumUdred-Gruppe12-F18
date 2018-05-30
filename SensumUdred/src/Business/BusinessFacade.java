@@ -77,7 +77,7 @@ public class BusinessFacade implements IBusiness {
     @Override
     public void createCase(String individualName, String individualAddress, String individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
         worker.createCase(individualName, individualAddress, individualCPR, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
-        
+        saveMeeting(worker.getMeeting(), worker.getCase(), new Log(worker));
     }
     
     @Override
@@ -85,8 +85,10 @@ public class BusinessFacade implements IBusiness {
         Log tLog = new Log(worker);
         worker.getCase().setMeeting(new Meeting(time, location, worker.getCase().getIndividual(), worker, tLog));
         if (worker.getCase().getMeeting().getIndividual() != null) {
+            System.out.println("updateMeeting");
             data.updateMeeting(worker.getMeeting(), worker.getCase(), tLog);
         } else {
+            System.out.println("createMeeting");
             worker.createMeeting(time, location);
         }
     }
