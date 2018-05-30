@@ -197,6 +197,7 @@ public class FXMLDocumentController implements Initializable {
                 tabPane.getSelectionModel().selectNext();
                 if (listViewMeetingsM.getItems().isEmpty()) {
                     tabPane.getSelectionModel().selectNext();
+                    listViewMeetingsM.getItems().clear();
                     listViewMeetingsM.getItems().addAll(facade.getMeetingList());
                 }
                 caseListViewMT.getItems().clear();
@@ -268,6 +269,7 @@ public class FXMLDocumentController implements Initializable {
             } catch(NullPointerException e){
                 List tempList = new ArrayList<meetingListAbler>(); //only if there are not meeting for the selected case
                 tempList.add(new meetingListAbler(LocalDateTime.now(), "There is no meeting right now."));
+                listViewMeetingsM.getItems().clear();
                 listViewMeetingsM.getItems().addAll(tempList);
             }
             List convert = new ArrayList();
@@ -531,10 +533,10 @@ public class FXMLDocumentController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Forkert indput!");
         ICase tempCase;
-        facade.setFacadeCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
         boolean caseSelected = false;
         if (caseListViewMT.getSelectionModel().getSelectedItem() != null) {
             caseSelected = true;
+            facade.setFacadeCase(Integer.parseInt(caseListViewMT.getSelectionModel().getSelectedItem().getCaseNumber()));
         } else {
             alert.setHeaderText("Du skal vælge en sag!");
             alert.setContentText("Vælge en sag i Hovedmenuen!");
