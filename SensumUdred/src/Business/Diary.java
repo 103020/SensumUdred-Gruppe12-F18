@@ -19,6 +19,11 @@ public class Diary implements IDiary {
     private StringBuilder entry;
     private IBusiness businessFacade;
 
+    /**
+     * creates a Diary, also uses to load a Diary so there are checks so a standard massage is not put every time
+     * @param entry
+     * @param log 
+     */
     Diary(String entry, ILog log) {
         if (entry.length() > 15) {
             if (entry.substring(0, 16).equals("Dagbog oprettet.")) {
@@ -49,6 +54,11 @@ public class Diary implements IDiary {
         businessFacade.saveDiary(businessFacade.getCaseworker().getCase(), this, log);
     }
 
+    /**
+     * puts a new entry into the Diary
+     * @param note
+     * @param log 
+     */
     public void enterEntry(String note, ILog log) {
         log.writeLog(this);
         entry.insert(entry.length(), "\n" + toString() + " " + note);

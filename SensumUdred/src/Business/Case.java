@@ -47,7 +47,6 @@ public class Case implements ICase{
      * @param inquiryFrom The source of the inquiry, who made the inquiry
      * @param caseFromAdress The Address of the source, the address of who made the inquiry
      */
-    
     Case(String individualName, String individualAddress, String individualCPR, ILog log, String _inquiry,
             String _individualInvolvement, boolean individualUnderstanding,boolean consent,
             boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, 
@@ -173,14 +172,29 @@ public class Case implements ICase{
         return individualUnderstanding;
     }
 
+    /**
+     * sends the case down to the datalayer to be saved
+     * @param cas
+     * @param log
+     * @return 
+     */
     public int saveCase(ICase cas, ILog log) {
         return businessFacade.saveCase(this, log);
     }
 
+    /**
+     * sends the case down to the datalayer to be saved, used if it allready exsists in the database
+     * @param cas
+     * @param log 
+     */
     public void editCase(ICase cas, ILog log) {
         businessFacade.editCase(this, log);
     }
     
+    /**
+     * closes the case
+     * @param log 
+     */
     public void closeCase(ILog log) {
         isClosed = true;
     }
@@ -204,6 +218,10 @@ public class Case implements ICase{
         return meeting;
     }
 
+    /**
+     * makes a meeting not active
+     * @return 
+     */
     public String cancelMeeting() {
         return meeting.cancelMeeting();
     }
@@ -216,6 +234,14 @@ public class Case implements ICase{
         return meeting.setLocation(Location);
     }
 
+    /**
+     * create a meeting for the Case
+     * @param dateTime
+     * @param location
+     * @param caseworker the person making this meeting
+     * @param log
+     * @return 
+     */
     public String createMeeting(LocalDateTime dateTime, String location, Caseworker caseworker, ILog log) {
         meeting = new Meeting(dateTime, location, this.individual, caseworker, log);
         log.writeLog(meeting);
@@ -235,6 +261,11 @@ public class Case implements ICase{
         individual.setCPR(CPR, log);
     }
 
+    /**
+     * puts a new entry in the Diary for this Case
+     * @param note the entry
+     * @param log a log made from a Caseworker before it was called here
+     */
     public void enterEntry(String note, ILog log) {
         if (diary == null) {
             diary = new Diary(note, log);

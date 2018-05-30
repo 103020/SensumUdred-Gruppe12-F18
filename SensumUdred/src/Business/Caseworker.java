@@ -31,10 +31,30 @@ public class Caseworker implements ICaseworker{
         businessFacade = BusinessFacade.getInstance();
     }
 
+    /**
+     * to get a Case with a specific Casenumber
+     * @param caseNumber
+     * @return 
+     */
     public ICase accessCase(int caseNumber) {
         return CaseController.getCase(caseNumber, new Log(this));
     }
 
+    /**
+     * creates a Case and associate it with this Caseworker
+     * @param individualName
+     * @param individualAddress
+     * @param individualCPR
+     * @param _inquiry
+     * @param _individualInvolvement
+     * @param individualUnderstanding
+     * @param consent
+     * @param writtenConsent
+     * @param oralConsent
+     * @param caseClarity
+     * @param inquiryFrom
+     * @param caseFromAdress 
+     */
     public void createCase(String individualName, String individualAddress, 
             String individualCPR, String _inquiry, String _individualInvolvement, 
             boolean individualUnderstanding,boolean consent, 
@@ -49,6 +69,12 @@ public class Caseworker implements ICaseworker{
         cas.createMeeting(LocalDateTime.now(), "Der er intet møde for denne sag", this, log);
     }
     
+    /**
+     * creates a meeting
+     * @param time
+     * @param location
+     * @return 
+     */
     public String createMeeting(LocalDateTime time, String location){
         ILog log = new Log(this);
         //TODO: change method call argument list.
@@ -121,6 +147,10 @@ public class Caseworker implements ICaseworker{
         return cas.getIndividual();
     }
     
+    /**
+     * sets the Case that is to be used currently 
+     * @param caseNumber 
+     */
     public void setCase(int caseNumber){
         this.cas = CaseController.getCase(caseNumber, new Log(this));
         try {
@@ -138,16 +168,27 @@ public class Caseworker implements ICaseworker{
         }
     }
     
+    /**
+     * an entry for a Diary
+     * @param note 
+     */
     public void enterEntry(String note){
         ILog log = new Log(this);
         cas.enterEntry(note, log);
     }
     
+    /**
+     * 
+     * @return the current case
+     */
     @Override
     public ICase getCase(){
         return cas;
     }
     
+    /**
+     * closes a Case
+     */
     public void closeCase(){
         ILog log = new Log(this);
         cas.closeCase(log);
