@@ -1,5 +1,7 @@
 package Acq;
 
+import java.math.BigInteger;
+
 /**
  *
  * @author Stefan
@@ -22,5 +24,5 @@ public interface IIndividual {
      *
      * @return returns the CPR number of the individual
      */
-    int getCPR();    
+    public String getCPR();    
 }

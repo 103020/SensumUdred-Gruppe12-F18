@@ -1,5 +1,6 @@
 package Acq;
 
+import Business.Meeting;
 import java.time.LocalDateTime;
 
 /**
@@ -103,5 +104,7 @@ public interface ICase {
      * @return returns whether the individual is consent to the inquiry
      */
     public boolean getIndividualUnderstanding();
+
+    public void setMeeting(Meeting meeting);
     
 }

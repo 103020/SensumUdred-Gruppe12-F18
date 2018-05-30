@@ -159,14 +159,11 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="myCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonMyCase" prefHeight="25.0" prefWidth="150.0" text="Mine Sager" GridPane.rowIndex="1" />
-                        <Button fx:id="dateSortButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonDate" prefHeight="25.0" prefWidth="150.0" text="Dato" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button fx:id="casenumberSortButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCaseNumber" prefHeight="25.0" prefWidth="150.0" text="Sagsnummer" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <TextField fx:id="searchFieldMT" maxWidth="1.7976931348623157E308" onKeyReleased="#searchFieldHandler" promptText="Søgefelt" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <ListView fx:id="caseListViewMT" onMouseClicked="#handleListVIewCaseListMT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="5" />
-                        <Button fx:id="createCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCreateCaseMT" prefHeight="25.0" prefWidth="150.0" text="Lav Sag" />
-                        <Button fx:id="editCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonEditCaseMT" text="Ændre Sag" GridPane.rowIndex="3" />
-                        <Button fx:id="viewCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonViewCaseMT" text="Se Sag" GridPane.rowIndex="2" />
+                        <ListView fx:id="caseListViewMT" onMouseClicked="#handleListVIewCaseListMT" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="2" GridPane.rowSpan="5" />
+                        <Button fx:id="createCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCreateCaseMT" prefHeight="25.0" prefWidth="150.0" text="Lav Sag" GridPane.rowIndex="1" />
+                        <Button fx:id="editCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonEditCaseMT" text="Ændre Sag" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button fx:id="viewCaseButtonMT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonViewCaseMT" text="Se Sag" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <ChoiceBox fx:id="choiceBoxMT" onMouseClicked="#handleChoiceBoxChange" prefWidth="150.0" GridPane.columnIndex="3" />
                      </children>
                   </GridPane>
@@ -317,8 +314,6 @@
                         <Label text="Navn:" GridPane.rowIndex="3" />
                         <Label text="CPR:" GridPane.rowIndex="4" />
                         <Label text="Adresse:" GridPane.rowIndex="5" />
-                        <Label text="Sagsnummer:" GridPane.rowIndex="2" />
-                        <Label fx:id="caseNumberLabelCC" text="1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnSpan="2" GridPane.rowIndex="2">

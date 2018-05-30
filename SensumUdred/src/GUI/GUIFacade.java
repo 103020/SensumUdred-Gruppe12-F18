@@ -49,7 +49,7 @@ public class GUIFacade implements IGUI{
 
     
     @Override
-    public void createCase(String individualName, String individualAddress, int individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
+    public void createCase(String individualName, String individualAddress, String individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
         b.createCase(individualName, individualAddress, individualCPR, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
     }
 
@@ -89,7 +89,7 @@ public class GUIFacade implements IGUI{
     }
 
     @Override
-    public void setIndividualCPR(int CPR) {
+    public void setIndividualCPR(String CPR) {
         b.setIndividualCPR(CPR);
     }
 
@@ -139,7 +139,7 @@ public class GUIFacade implements IGUI{
     }
 
     @Override
-    public int getIndividualCPR() {
+    public String getIndividualCPR() {
         return b.getIndividualCPR();
     }
 
@@ -151,5 +151,10 @@ public class GUIFacade implements IGUI{
     @Override
     public void setDiary(String text) {
         b.setDiary(text);
+    }
+
+    @Override
+    public IMeeting getAMeeting(ICase temp) {
+        return b.getMeeting(temp);
     }
 }

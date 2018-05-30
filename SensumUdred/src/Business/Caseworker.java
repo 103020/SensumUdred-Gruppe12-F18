@@ -36,7 +36,7 @@ public class Caseworker implements ICaseworker{
     }
 
     public void createCase(String individualName, String individualAddress, 
-            int individualCPR, String _inquiry, String _individualInvolvement, 
+            String individualCPR, String _inquiry, String _individualInvolvement, 
             boolean individualUnderstanding,boolean consent, 
             boolean writtenConsent, boolean oralConsent, boolean caseClarity, 
             InquiryFrom inquiryFrom, String caseFromAdress) {
@@ -103,7 +103,7 @@ public class Caseworker implements ICaseworker{
         cas.setIndividualAddress(Address, log);
     }
 
-    public void setIndividualCPR(int CPR) {
+    public void setIndividualCPR(String CPR) {
         ILog log = new Log(this);
         cas.setIndividualCPR(CPR, log);
     }
@@ -163,5 +163,9 @@ public class Caseworker implements ICaseworker{
         List<Case> caseList = new ArrayList<>();
         caseList = CaseController.fetchCaseList(log);
         return caseList;
+    }
+
+    void setMeeting(IMeeting temp) {
+        cas.setMeeting(new Meeting(temp.getMeetingTime(), temp.getLocation(), temp.getIndividual(), this, new Log(this)));
     }
 }
