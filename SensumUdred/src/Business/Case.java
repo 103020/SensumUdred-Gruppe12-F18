@@ -185,10 +185,10 @@ public class Case implements ICase{
         isClosed = true;
     }
 
-    public ICase fetchCase(int caseNumber, ILog log) {
-        ICase cas = businessFacade.accessCase(caseNumber);
-        return cas;
-    }
+//    public ICase fetchCase(int caseNumber, ILog log) {
+//        ICase cas = businessFacade.accessCase(caseNumber);
+//        return cas;
+//    }
 
     public void setCaseworker(Caseworker caseworker, ILog log) {
         this.caseworker = caseworker;

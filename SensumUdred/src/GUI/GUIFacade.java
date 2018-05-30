@@ -43,8 +43,8 @@ public class GUIFacade implements IGUI{
     }
     
     @Override
-    public ICase accessCase(int parseInt) {
-        return b.accessCase(parseInt);
+    public ICase accessCase(int caseNumber) {
+        return b.accessCase(caseNumber);
     }
 
     
