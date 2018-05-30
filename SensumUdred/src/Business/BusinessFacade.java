@@ -71,7 +71,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public ICase accessCase(int caseNumber) {
-        return worker.accessCase(caseNumber); //TODO: log
+        return worker.accessCase(caseNumber); 
     }
 
     @Override
