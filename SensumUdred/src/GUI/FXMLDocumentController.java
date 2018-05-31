@@ -302,7 +302,7 @@ public class FXMLDocumentController implements Initializable {
             } else {
                 alert.setTitle("Forkert input");
                 alert.setHeaderText("Forkerte værdier i \"CPR\"");
-                alert.setContentText("Der skal stå et tal i \"CPR\".");
+                alert.setContentText("Der skal stå et tal i \"CPR\"\neller kravet om 10 cifre er ikke opfylgt.");
                 alert.showAndWait();
             }
         } else {

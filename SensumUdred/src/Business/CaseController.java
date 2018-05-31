@@ -18,6 +18,11 @@ public class CaseController{
     private static List<Meeting> meeting;
     private static IBusiness business = BusinessFacade.getInstance();
 
+    /**
+     * adds a Case to the list of all Cases
+     * @param newCase the Case to be added to the list
+     * @return if succses full it returns a true
+     */
     public static boolean addCase(Case newCase){
         return cases.add(newCase);
     }
@@ -26,6 +31,11 @@ public class CaseController{
         return cases;
     }
     
+    /**
+     * a way to get the List full of Cases
+     * @param log
+     * @return a List of Cases
+     */
     public static List<Case> fetchCaseList(ILog log){
         log.writeLog("Fetched list of available cases.");
         List<ICase> ICaseList = business.getCaseList(log);
@@ -73,6 +83,12 @@ public class CaseController{
         return meeting;
     }
     
+    /**
+     * a way to get a Case with a specific Casenumber
+     * @param caseNumber the Casenumber of the case to return
+     * @param log
+     * @return a Case
+     */
     public static Case getCase(int caseNumber, ILog log){
         log.writeLog("Access to case: " + caseNumber);
         int caseIndex = -1;

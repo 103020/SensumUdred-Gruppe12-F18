@@ -23,6 +23,10 @@ public class BusinessFacade implements IBusiness {
 
     private static BusinessFacade instance;
 
+    /**
+     * it get the instance of the BusinessFacade
+     * @return the BusinessFacade
+     */
     public static BusinessFacade getInstance() {
 
         if (instance == null) {
@@ -32,7 +36,6 @@ public class BusinessFacade implements IBusiness {
         return instance;
         
     }
-    
     @Override
     public int getCaseNumber() {
         return worker.getCase().getCaseNumber();
@@ -48,6 +51,12 @@ public class BusinessFacade implements IBusiness {
         return worker.getCase().getIndividual();
     }
 
+    /**
+     * sends a Case down to the datalayer for it to be put into the database
+     * @param cas the Case
+     * @param log a log made in a Caseworker
+     * @return 
+     */
     @Override
     public int saveCase(ICase cas, ILog log) {
         data.saveIndividual(getIndividual(), log);
@@ -59,34 +68,69 @@ public class BusinessFacade implements IBusiness {
         return worker.getCase().getCreationDate();
     }
 
+    /**
+     * sends Case information to update an existing Case in the database
+     * @param cas
+     * @param log 
+     */
     @Override
     public void editCase(ICase cas, ILog log) {
         data.updateCase(cas, log);
     }
 
+    /**
+     * closes a case to signal that is is completed
+     */
     @Override
     public void closeCase() {
         worker.closeCase();
     }
 
+    /**
+     * to get a ICase that can be an inplenmentation of ICase
+     * @param caseNumber to specifie what Case to get up
+     * @return an ICase 
+     */
     @Override
     public ICase accessCase(int caseNumber) {
-        return worker.accessCase(caseNumber); //TODO: log
+        return worker.accessCase(caseNumber); 
     }
 
+    /**
+     * creates a Case with these params
+     * @param individualName
+     * @param individualAddress
+     * @param individualCPR
+     * @param _inquiry
+     * @param _individualInvolvement
+     * @param individualUnderstanding
+     * @param consent
+     * @param writtenConsent
+     * @param oralConsent
+     * @param caseClarity
+     * @param inquiryFrom
+     * @param caseFromAdress 
+     */
     @Override
     public void createCase(String individualName, String individualAddress, String individualCPR, String _inquiry, String _individualInvolvement, boolean individualUnderstanding,boolean consent, boolean writtenConsent, boolean oralConsent, boolean caseClarity, InquiryFrom inquiryFrom, String caseFromAdress) {
         worker.createCase(individualName, individualAddress, individualCPR, _inquiry, _individualInvolvement, individualUnderstanding, consent, writtenConsent, oralConsent, caseClarity, inquiryFrom, caseFromAdress);
-        
+        saveMeeting(worker.getMeeting(), worker.getCase(), new Log(worker));
     }
     
+    /**
+     * creates a meeting for an ICase object
+     * @param time the time of the meeting
+     * @param location the location if the meeting
+     */
     @Override
     public void createMeeting(LocalDateTime time, String location){
         Log tLog = new Log(worker);
         worker.getCase().setMeeting(new Meeting(time, location, worker.getCase().getIndividual(), worker, tLog));
         if (worker.getCase().getMeeting().getIndividual() != null) {
+            System.out.println("updateMeeting");
             data.updateMeeting(worker.getMeeting(), worker.getCase(), tLog);
         } else {
+            System.out.println("createMeeting");
             worker.createMeeting(time, location);
         }
     }
@@ -180,6 +224,12 @@ public class BusinessFacade implements IBusiness {
         worker.setIndividualCPR(CPR);
     }
 
+    /**
+     * sends the login information down to the datalayer and if it returns a true a Caseworker is loaded from the datalayer
+     * @param username
+     * @param password
+     * @return 
+     */
     @Override
     public boolean login(String username, String password) {
         boolean loginSuccess = data.login(username, password);
@@ -250,31 +300,67 @@ public class BusinessFacade implements IBusiness {
         data.saveLog(log);
     }
 
+    /**
+     * updates a Case that is saved by the datalayer
+     * @param cas
+     * @param log
+     * @return 
+     */
     @Override
     public boolean updateCase(ICase cas, ILog log) {
         return data.updateCase(cas, log);
     }
 
+    /**
+     * updates a Diary that is saved by the datalayer
+     * @param diary
+     * @param cas
+     * @param log
+     * @return 
+     */
     @Override
     public boolean updateDiary(IDiary diary, ICase cas, ILog log) {
         return data.updateDiary(diary, cas, log);
     }
 
+    /**
+     * updates a Meeting that is saved by the datalayer
+     * @param meeting
+     * @param cas
+     * @param log
+     * @return 
+     */
     @Override
     public boolean updateMeeting(IMeeting meeting, ICase cas, ILog log) {
         return data.updateMeeting(meeting, cas, log);
     }
 
+    /**
+     * updates an Individual that is saved by the datalayer
+     * @param individual
+     * @param log
+     * @return 
+     */
     @Override
     public boolean updateIndividual(IIndividual individual, ILog log) {
         return data.updateIndividual(individual, log);
     }
 
+    /**
+     * updates a Caseworker that is saved by the datalayer
+     * @param caseworker
+     * @return 
+     */
     @Override
     public boolean updateCaseWorker(ICaseworker caseworker) {
         return data.updateCaseWorker(caseworker);
     }
 
+    /**
+     * updates a Department that is saved by the datalayer
+     * @param department
+     * @return 
+     */
     @Override
     public boolean updateDepartment(IDepartment department) {
         return data.updateDepartment(department);

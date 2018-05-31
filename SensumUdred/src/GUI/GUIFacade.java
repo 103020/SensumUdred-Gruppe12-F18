@@ -43,8 +43,8 @@ public class GUIFacade implements IGUI{
     }
     
     @Override
-    public ICase accessCase(int parseInt) {
-        return b.accessCase(parseInt);
+    public ICase accessCase(int caseNumber) {
+        return b.accessCase(caseNumber);
     }
 
     
@@ -93,16 +93,13 @@ public class GUIFacade implements IGUI{
         b.setIndividualCPR(CPR);
     }
 
+    /**
+     * gets a list of Cases and format them for a ListView
+     * @return 
+     */
     @Override
     public List getCaseList() {
         List convert = new ArrayList();
-        /*
-        convert.add(new caseListAbler("58", "16/08-12"));
-        convert.add(new caseListAbler("12", "30/01-03"));
-        convert.add(new caseListAbler("800", "16/08-17"));
-        convert.add(new caseListAbler("39", "30/01-08"));
-        */
-        //TODO: when a list is returnable
         for (ICase ic : b.getCaseList()) {
             System.out.println(""+ic.getCaseNumber() + " : " +ic.getCreationDate());
             convert.add(new caseListAbler(""+ic.getCaseNumber(),""+ic.getCreationDate()));
@@ -110,6 +107,10 @@ public class GUIFacade implements IGUI{
         return convert;
     }
     
+    /**
+     * the formater for the Meeting ListView
+     * @return 
+     */
     @Override
     public List<meetingListAbler> getMeetingList(){
         List convert = new ArrayList();
